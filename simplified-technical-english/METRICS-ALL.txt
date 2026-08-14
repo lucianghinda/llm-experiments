@@ -1,0 +1,50 @@
+== 01-rails-concern
+run            cl-ctrl        cl-STE        cl-ASD       cx-ctrl        cx-STE        cx-ASD
+---------------------------------------------------------------------------------------------
+run-1       18.6 (18%)     8.1 ( 0%)     9.7 ( 1%)    11.7 ( 0%)    10.7 ( 0%)     9.6 ( 0%)
+run-2       17.4 (17%)     8.3 ( 0%)     9.8 ( 0%)    13.9 ( 4%)    11.4 ( 0%)     8.3 ( 0%)
+run-native             .             .             .    14.1 (10%)    12.4 ( 8%)    13.5 ( 8%)
+
+words          cl-ctrl        cl-STE        cl-ASD       cx-ctrl        cx-STE        cx-ASD
+run-1        1039w j26       938w j6       866w j1       300w j6       300w j0       262w j0
+run-2        1353w j14      1209w j1       849w j0       309w j3       234w j1       278w j0
+run-native             .             .             .       285w j2       308w j0       312w j0
+
+== 02-single-method-domain
+run            cl-ctrl        cl-STE        cl-ASD       cx-ctrl        cx-STE        cx-ASD
+---------------------------------------------------------------------------------------------
+run-1       16.9 (19%)     9.1 ( 0%)    10.2 ( 2%)    10.7 ( 0%)    15.1 (10%)     9.3 ( 0%)
+run-2       19.3 (22%)     8.8 ( 0%)    10.3 ( 0%)    13.8 ( 8%)    19.4 (14%)     9.9 ( 0%)
+run-native             .             .             .    25.5 (33%)     9.0 ( 0%)     9.8 ( 0%)
+
+words          cl-ctrl        cl-STE        cl-ASD       cx-ctrl        cx-STE        cx-ASD
+run-1          879w j0       643w j0       520w j0       206w j0       150w j0       174w j0
+run-2          712w j1       967w j0       401w j0       164w j2       135w j0       184w j0
+run-native             .             .             .       148w j0       117w j0       151w j0
+
+== 03-single-method-algorithm
+run            cl-ctrl        cl-STE        cl-ASD       cx-ctrl        cx-STE        cx-ASD
+---------------------------------------------------------------------------------------------
+run-1       17.5 (22%)     9.3 ( 2%)     9.0 ( 1%)    11.9 ( 0%)    13.9 ( 0%)     8.3 ( 0%)
+run-2       16.3 (12%)     9.9 ( 0%)    10.3 ( 0%)    10.5 ( 0%)    11.1 ( 0%)     8.9 ( 0%)
+run-native             .             .             .    10.0 ( 0%)     8.6 ( 0%)     9.5 ( 0%)
+
+words          cl-ctrl        cl-STE        cl-ASD       cx-ctrl        cx-STE        cx-ASD
+run-1          787w j0       606w j0       809w j0       146w j0       133w j0       131w j0
+run-2          684w j0       658w j0       573w j0       158w j0       126w j0       118w j0
+run-native             .             .             .        93w j0       107w j0       117w j0
+
+== 04-query-object
+run            cl-ctrl        cl-STE        cl-ASD       cx-ctrl        cx-STE        cx-ASD
+---------------------------------------------------------------------------------------------
+run-1       19.6 (27%)    10.7 ( 0%)    11.0 ( 1%)    12.2 ( 0%)    11.0 ( 0%)     8.3 ( 0%)
+run-2       17.0 (17%)     9.4 ( 0%)    10.6 ( 0%)    15.0 ( 5%)    11.5 ( 3%)     8.3 ( 0%)
+run-native             .             .             .    13.5 (11%)     9.4 ( 0%)     9.2 ( 0%)
+
+words          cl-ctrl        cl-STE        cl-ASD       cx-ctrl        cx-STE        cx-ASD
+run-1         1453w j4      1744w j1      1162w j1       353w j2       230w j1       396w j0
+run-2         1415w j2      1369w j1       997w j0       311w j1       337w j2       328w j1
+run-native             .             .             .       378w j0       292w j1       317w j1
+
+avg words per sentence (share of sentences over the 25-word STE limit)
+words row: prose word count, and jargon-list hits as jN

@@ -1,0 +1,34 @@
+== 01-rails-concern  (6 facts per cell)
+run         cl-ctrl   cl-STE   cl-ASD  cx-ctrl   cx-STE   cx-ASD
+-----------------------------------------------------------------
+run-1             6        6        3        4        2        2
+run-2             6        6        4        3        1        3
+run-native        .        .        .        4        2        2
+
+== 02-single-method-domain  (6 facts per cell)
+run         cl-ctrl   cl-STE   cl-ASD  cx-ctrl   cx-STE   cx-ASD
+-----------------------------------------------------------------
+run-1             5        6        2        3        1        1
+run-2             6        6        1        4        1        1
+run-native        .        .        .        1        1        1
+
+== 03-single-method-algorithm  (6 facts per cell)
+run         cl-ctrl   cl-STE   cl-ASD  cx-ctrl   cx-STE   cx-ASD
+-----------------------------------------------------------------
+run-1             6        3        5        4        2        4
+run-2             6        4        4        4        3        2
+run-native        .        .        .        3        1        1
+
+== 04-query-object  (6 facts per cell)
+run         cl-ctrl   cl-STE   cl-ASD  cx-ctrl   cx-STE   cx-ASD
+-----------------------------------------------------------------
+run-1             6        6        4        6        2        3
+run-2             6        6        2        2        5        2
+run-native        .        .        .        5        2        3
+
+== TOTAL across all experiments (24 facts per run; . means that arm was not run)
+run         cl-ctrl   cl-STE   cl-ASD  cx-ctrl   cx-STE   cx-ASD
+-----------------------------------------------------------------
+run-1            23       21       14       17        7       10
+run-2            24       22       11       13       10        8
+run-native        .        .        .       13        6        7

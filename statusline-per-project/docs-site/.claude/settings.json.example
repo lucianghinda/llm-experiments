@@ -1,0 +1,7 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "<experiment-root>/docs-site/.claude/statusline.rb",
+    "padding": 2
+  }
+}

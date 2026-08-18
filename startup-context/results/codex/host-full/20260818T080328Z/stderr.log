@@ -1,0 +1,6 @@
+2026-08-18T08:03:33.610137Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit
+2026-08-18T08:03:33.618920Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit
+2026-08-18T08:03:49.127557Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://<host>/mcp?agent=codex)")))
+2026-08-18T08:03:50.065998Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://<host>/mcp?agent=codex)")))
+2026-08-18T08:03:50.066173Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://<host>/backend-api/ps/mcp)")))
+2026-08-18T08:03:52.908797Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://<host>/backend-api/ps/mcp)")))

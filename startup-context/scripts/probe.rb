@@ -339,13 +339,16 @@ end
 def run_container(cond, outdir)
   Kit.ensure_system_started!
 
-  # opencode is not in the base image; it lives one layer above it. See
-  # containers/opencode/Containerfile for why, and note that this means the
-  # opencode floor and the other two floors are not byte-identical environments:
-  # the opencode image is the base image plus one npm package.
-  image = cond[:agent] == "opencode" ? Kit::OPENCODE_IMAGE : Kit::BASE_IMAGE
+  # base/Containerfile carries opencode, so on a rebuilt base every agent runs
+  # from one image and all three floors are the same environment. A base built
+  # before that change does not carry it, and Kit.opencode_image answers with the
+  # derived llmx-base-opencode image while that one exists. The results recorded
+  # on 2026-08-18 came from the derived image, which is the base plus one npm
+  # package, so the opencode floor in RESULTS.md is not byte-identical to the
+  # other two. That stops being true after the next base rebuild.
+  image = cond[:agent] == "opencode" ? Kit.opencode_image : Kit::BASE_IMAGE
   unless Kit.image_exists?(image)
-    builder = cond[:agent] == "opencode" ? "build_opencode_image.rb" : "build_base.rb"
+    builder = image == Kit::DERIVED_OPENCODE_IMAGE ? "build_opencode_image.rb" : "build_base.rb"
     abort "image #{image} not found; run containers/scripts/#{builder}"
   end
 

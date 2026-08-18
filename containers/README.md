@@ -92,15 +92,18 @@ Things worth knowing, each of which cost time to find:
 
 ```
 containers/
-  base/Containerfile        Ubuntu 24.04, mise-managed rubies, Node, the agent
+  base/Containerfile        Ubuntu 24.04, mise-managed rubies, Node, all three
                             CLIs, postgres, libvips, ffmpeg, sqlite
-  opencode/Containerfile    the base image plus opencode, as a thin extra layer
+  opencode/Containerfile    a compatibility layer for a base built before
+                            opencode was folded in; delete after the next rebuild
   scripts/lib/kit.rb        version pins, container helpers, a small YAML reader
   scripts/build_base.rb     builds and smoke-checks the base image
   scripts/build_app_image.rb builds a per-app image from a git bundle
   scripts/auth_setup.rb     one-time interactive login, persisted outside images
-  scripts/build_opencode_image.rb builds llmx-base-opencode from the base image
-  scripts/seed_opencode_auth.rb   copies opencode's credential file into the store
+  scripts/build_opencode_image.rb builds llmx-base-opencode; only needed on an
+                            older base, see opencode/Containerfile
+  scripts/seed_opencode_auth.rb   copies opencode credentials into the store,
+                            as an alternative to logging in
   scripts/trial_shell.rb    interactive shell in a trial container, for debugging
 ```
 
@@ -139,6 +142,15 @@ complete the normal plan-subscription login flows, and the credentials land in
 API key is needed.
 
 Re-run `auth_setup.rb` when a refresh token expires.
+
+**opencode does not take a variable like the other two.** It keeps credentials
+in `XDG_DATA_HOME`, next to its sessions and its database, so pointing that at
+the mount would hand every run a shared, host-persisted session store rather
+than a credential seed. `auth_setup.rb` points `XDG_DATA_HOME` at a directory
+inside the container, lets the login write whatever it wants there, and copies
+only `auth.json` back out when the shell exits. Everything else dies with the
+container. `seed_opencode_auth.rb` remains as the other way in: it copies this
+machine's own credential file across without a login.
 
 **The mounted store is a seed, not a home.** An agent CLI derives more than
 credentials from its config directory: Claude Code puts project state and its

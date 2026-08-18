@@ -33,7 +33,8 @@ build = [
   "--build-arg", "RUBY_VERSIONS=#{Kit::PINS[:ruby_versions]}",
   "--build-arg", "NODE_VERSION=#{Kit::PINS[:node_version]}",
   "--build-arg", "CLAUDE_CODE_VERSION=#{Kit::PINS[:claude_code_version]}",
-  "--build-arg", "CODEX_VERSION=#{Kit::PINS[:codex_version]}"
+  "--build-arg", "CODEX_VERSION=#{Kit::PINS[:codex_version]}",
+  "--build-arg", "OPENCODE_VERSION=#{Kit::PINS[:opencode_version]}"
 ]
 build << "--no-cache" if no_cache
 build << File.join(Kit::CONTAINERS_DIR, "base")
@@ -48,6 +49,7 @@ check = <<~SH
   echo "node:   $(node --version)"
   echo "claude: $(claude --version)"
   echo "codex:  $(codex --version)"
+  echo "opencode: $(opencode --version)"
   echo "vips:   $(vips --version)"
   echo "ffmpeg: $(ffmpeg -version | head -1)"
   echo "psql:   $(psql --version)"

@@ -19,9 +19,12 @@ module Kit
 
   BASE_IMAGE = ENV.fetch("LLMX_BASE_IMAGE", "llmx-base:latest")
 
-  # opencode lives one thin layer above the base rather than in it; see
-  # containers/opencode/Containerfile for why.
-  OPENCODE_IMAGE = ENV.fetch("LLMX_OPENCODE_IMAGE", "llmx-base-opencode:latest")
+  # opencode used to live one thin layer above the base, because adding a package
+  # to the base invalidates the layers that compile two rubies from source.
+  # base/Containerfile carries it now, so on a rebuilt base this is the base
+  # image. The derived image is still used when it is present, so a machine that
+  # has not rebuilt yet keeps working and neither state fails silently.
+  DERIVED_OPENCODE_IMAGE = "llmx-base-opencode:latest"
 
   # Apple's containers get a small default envelope (992MB / 4 CPU). Rails test
   # suites and `bundle install` need more than that.
@@ -38,6 +41,23 @@ module Kit
   CONTAINERS_DIR = File.join(ROOT, "containers")
 
   module_function
+
+  # An override that is set but empty is a mistake, not a choice: it would
+  # otherwise resolve to an image with no name and fail somewhere less obvious.
+  def env_override(name)
+    value = ENV[name].to_s.strip
+    value.empty? ? nil : value
+  end
+
+  # Resolved rather than constant, because answering it means asking the runtime
+  # which images exist, and most scripts that require this file never touch a
+  # container. Memoised so the question is asked once per process.
+  def opencode_image
+    @opencode_image ||=
+      env_override("LLMX_OPENCODE_IMAGE") ||
+      (image_exists?(DERIVED_OPENCODE_IMAGE) ? DERIVED_OPENCODE_IMAGE : BASE_IMAGE)
+  end
+
 
   def log(message)
     warn "[kit] #{message}"

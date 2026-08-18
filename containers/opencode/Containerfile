@@ -1,13 +1,22 @@
-# opencode on top of the shared base.
+# opencode on top of the shared base. Kept for a base image built before
+# 2026-08-18, and unnecessary after the next base rebuild.
 #
-# A derived image rather than another package on the base image's npm line, for
-# two reasons. Adding to the base invalidates that layer and every layer after
-# it, and the layers before it compile two rubies from source, so a one-package
-# change costs a 20-40 minute rebuild. It also needs room for a second full
-# image while the first still exists, and this kit has run close to the disk
-# limit before; a thin layer needs a few hundred megabytes instead.
+# base/Containerfile carries opencode now. This existed because adding a package
+# to the base invalidates that layer and every layer after it, and the layers
+# before it compile two rubies from source, so a one-package change cost a 20-40
+# minute rebuild plus room for a second full image while the first still
+# existed. That trade only made sense while the base was not being rebuilt for
+# any other reason.
 #
-# Fold this into base/Containerfile the next time that image is rebuilt anyway.
+# Kit.opencode_image prefers this image while it exists and falls back to the
+# base, so both states work and neither fails silently. Once the base is rebuilt,
+# delete this directory, delete build_opencode_image.rb, and remove the image:
+#
+#   container image delete llmx-base-opencode:latest
+#
+# Until then note that the opencode results recorded on 2026-08-18 came from
+# here, so opencode's container floor is the base plus one npm package and not
+# byte-identical to the floor Claude and Codex were measured against.
 
 ARG BASE_IMAGE=llmx-base:latest
 FROM ${BASE_IMAGE}

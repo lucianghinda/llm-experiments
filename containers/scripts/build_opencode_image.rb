@@ -16,7 +16,7 @@ Kit.ensure_disk_space!(need_gb: 5)
 
 abort "base image #{Kit::BASE_IMAGE} not found; run build_base.rb first" unless Kit.image_exists?(Kit::BASE_IMAGE)
 
-image = Kit::OPENCODE_IMAGE
+image = Kit::DERIVED_OPENCODE_IMAGE
 Kit.log "building #{image} (opencode #{Kit::PINS[:opencode_version]})"
 
 Kit.sh("container", "build",

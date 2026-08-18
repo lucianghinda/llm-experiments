@@ -12,6 +12,7 @@ ARG RUBY_VERSIONS="3.4.5 4.0.1"
 ARG NODE_VERSION="22"
 ARG CLAUDE_CODE_VERSION
 ARG CODEX_VERSION
+ARG OPENCODE_VERSION
 ARG AGENT_USER=agent
 ARG AGENT_UID=1001
 
@@ -55,8 +56,24 @@ RUN set -eux; \
     mise reshim
 
 # Agent CLIs. Pinned by build_base.rb so a rebuild is reproducible.
+#
+# opencode needs its platform binary named explicitly. opencode-ai resolves its
+# real executable through optional per-platform packages, and npm picks the musl
+# build for this glibc image, then fails in the postinstall with "Unsupported
+# platform ... wanted libc musl, current glibc". Naming the package settles the
+# choice instead of leaving it to detection, and the architecture is read at
+# build time so this works on Apple silicon and on x86 alike.
 RUN set -eux; \
-    npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}" "@openai/codex@${CODEX_VERSION}"; \
+    case "$(uname -m)" in \
+      aarch64|arm64) opencode_platform="opencode-linux-arm64" ;; \
+      x86_64|amd64)  opencode_platform="opencode-linux-x64" ;; \
+      *) echo "no opencode build for $(uname -m)" >&2; exit 1 ;; \
+    esac; \
+    npm install -g \
+      "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}" \
+      "@openai/codex@${CODEX_VERSION}" \
+      "opencode-ai@${OPENCODE_VERSION}" \
+      "${opencode_platform}@${OPENCODE_VERSION}"; \
     mise reshim
 
 # Never let a trial silently run a different CLI build than the one recorded.
@@ -94,6 +111,7 @@ RUN set -eux; \
     printf '  "node": "%s",\n' "$(node --version)" >> /etc/llmx-versions.json; \
     printf '  "claude_code": "%s",\n' "$(claude --version 2>&1 | head -1)" >> /etc/llmx-versions.json; \
     printf '  "codex": "%s",\n' "$(codex --version 2>&1 | head -1)" >> /etc/llmx-versions.json; \
+    printf '  "opencode": "%s",\n' "$(opencode --version 2>&1 | head -1)" >> /etc/llmx-versions.json; \
     printf '  "postgres": "%s"\n' "$(/usr/lib/postgresql/*/bin/postgres --version | head -1)" >> /etc/llmx-versions.json; \
     printf '}\n' >> /etc/llmx-versions.json; \
     cat /etc/llmx-versions.json

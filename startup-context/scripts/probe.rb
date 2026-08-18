@@ -132,10 +132,16 @@ end
 
 # opencode has no --strict-mcp-config: its servers are declared in opencode.json
 # and there is no way to suppress them for one run. Removing only that layer
-# therefore means rebuilding the config directory: the JSON is written out again
-# without its "mcp" key and every other entry is symlinked to the real one, so
-# the only difference between this and host-full is the MCP servers.
-def opencode_config_without_mcp
+# therefore means rebuilding the config directory: the JSON is written out
+# again and every other entry is symlinked to the real one.
+#
+# That rebuild moves XDG_CONFIG_HOME to a temporary path and turns every entry
+# into a symlink, so it changes two things at once rather than one. Which is
+# why it takes a drop_mcp argument: called with false it builds the same
+# relocated, symlinked directory with the config left intact, and that is the
+# control the no-mcp row has to be read against. Whatever separates host-full
+# from that control belongs to the rebuild and not to MCP.
+def opencode_config_rebuilt(drop_mcp:)
   source = File.join(Dir.home, ".config", "opencode")
   abort "no opencode config at #{source}" unless Dir.exist?(source)
 
@@ -150,8 +156,41 @@ def opencode_config_without_mcp
   end
 
   settings = JSON.parse(File.read(File.join(source, "opencode.json")))
-  settings.delete("mcp")
+  settings.delete("mcp") if drop_mcp
   File.write(File.join(target, "opencode.json"), JSON.pretty_generate(settings))
+  root
+end
+
+# The narrowest version of the rebuild: XDG_CONFIG_HOME moves to a temporary
+# path and that is all that changes. One symlink stands where the config
+# directory would be, so opencode reads the real files, in the real layout,
+# with the real JSON. Whatever this costs against host-full is the price of the
+# path alone, and whatever host-config-rebuilt costs against this is the price
+# of taking the directory apart entry by entry.
+def opencode_config_relocated
+  source = File.join(Dir.home, ".config", "opencode")
+  abort "no opencode config at #{source}" unless Dir.exist?(source)
+
+  root = Dir.mktmpdir("llmx-opencode-config-")
+  FileUtils.ln_s(source, File.join(root, "opencode"))
+  root
+end
+
+# The same single symlink as opencode_config_relocated, at a deliberately short
+# path. Dir.mktmpdir hands out something like
+# /var/folders/xy/1234abcd.../T/llmx-opencode-config-20260818-1234-abcd, which
+# is around sixty characters longer than <home>/.config. If opencode writes an
+# absolute path into the prompt once per skill, agent and command, then length
+# alone moves the token count, and this condition is the same relocation with
+# the length taken back out.
+def opencode_config_short_path
+  source = File.join(Dir.home, ".config", "opencode")
+  abort "no opencode config at #{source}" unless Dir.exist?(source)
+
+  root = "/tmp/lxo"
+  FileUtils.rm_rf(root)
+  FileUtils.mkdir_p(root)
+  FileUtils.ln_s(source, File.join(root, "opencode"))
   root
 end
 
@@ -167,7 +206,13 @@ def condition_env(cond, scratch)
       when :empty_dir
         Dir.mktmpdir("llmx-empty-").tap { |dir| scratch << dir }
       when :opencode_config_without_mcp
-        opencode_config_without_mcp.tap { |dir| scratch << dir }
+        opencode_config_rebuilt(drop_mcp: true).tap { |dir| scratch << dir }
+      when :opencode_config_rebuilt
+        opencode_config_rebuilt(drop_mcp: false).tap { |dir| scratch << dir }
+      when :opencode_config_relocated
+        opencode_config_relocated.tap { |dir| scratch << dir }
+      when :opencode_config_short_path
+        opencode_config_short_path.tap { |dir| scratch << dir }
       else
         value.to_s
       end

@@ -41,7 +41,7 @@ groups = rows.group_by { |r| [r["agent"], r["condition"]] }
 ORDER = {
   "claude" => %w[host-project host-full host-default-model host-no-mcp host-no-skills host-no-subagents host-lean host-leanest host-safe-mode container],
   "codex" => %w[host-project host-full host-no-mcp host-no-config container],
-  "opencode" => %w[host-project host-full host-no-mcp host-pure host-no-config host-leanest container]
+  "opencode" => %w[host-project host-full host-config-short-path host-config-relocated host-config-rebuilt host-no-mcp host-pure host-no-config host-leanest container]
 }.freeze
 
 stats = {}
@@ -111,7 +111,13 @@ end
  ["codex", "MCP servers", "host-full", "host-no-mcp"],
  ["codex", "config.toml and AGENTS.md", "host-full", "host-no-config"],
  ["codex", "Being inside a real project", "host-project", "host-full"],
- ["opencode", "MCP servers", "host-full", "host-no-mcp"],
+ # Measured against host-config-rebuilt and not against host-full, because
+# host-no-mcp has to manufacture a config directory to remove the servers, and
+# that rebuild moves XDG_CONFIG_HOME. Read against host-full this row said MCP
+# cost -1,898 tokens, which was the relocation wearing MCP's name.
+["opencode", "MCP servers", "host-config-rebuilt", "host-no-mcp"],
+["opencode", "Moving XDG_CONFIG_HOME to a long path", "host-config-relocated", "host-config-short-path"],
+["opencode", "Rebuilding the config directory entry by entry", "host-config-rebuilt", "host-config-relocated"],
  ["opencode", "External plugins", "host-full", "host-pure"],
  ["opencode", "The ~/.config/opencode directory", "host-full", "host-no-config"],
  ["opencode", "Config directory and plugins together", "host-full", "host-leanest"],

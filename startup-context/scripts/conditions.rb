@@ -79,6 +79,28 @@ CONDITIONS = [
   { agent: "opencode", key: "host-no-mcp", where: :host, cwd: :neutral, args: [],
     env: { "XDG_CONFIG_HOME" => :opencode_config_without_mcp },
     note: "MCP servers off, everything else on" },
+  # The control for the row above. Taking opencode.json apart to remove the MCP
+  # servers also moves XDG_CONFIG_HOME to a temporary path and turns every
+  # entry into a symlink, so host-no-mcp differs from host-full in two ways and
+  # not one. This condition performs the identical rebuild and leaves the
+  # config alone, which separates the two: host-full against this row is the
+  # price of the rebuild, and this row against host-no-mcp is the price of MCP.
+  { agent: "opencode", key: "host-config-rebuilt", where: :host, cwd: :neutral, args: [],
+    env: { "XDG_CONFIG_HOME" => :opencode_config_rebuilt },
+    note: "the same rebuilt config directory as host-no-mcp, with the MCP servers left in" },
+# And the control for the control. This moves XDG_CONFIG_HOME and changes
+# nothing else: one symlink to the real directory, no rewritten JSON, no
+# per-entry links. It splits the rebuild's cost into the part that belongs to
+# the path and the part that belongs to the surgery.
+{ agent: "opencode", key: "host-config-relocated", where: :host, cwd: :neutral, args: [],
+  env: { "XDG_CONFIG_HOME" => :opencode_config_relocated },
+  note: "the real config directory, reached through a symlink at a temporary path" },
+# The relocation again, at a short path instead of a long one. Everything else
+# is identical, so the gap between this row and host-config-relocated is the
+# cost of the characters in the path and nothing else.
+{ agent: "opencode", key: "host-config-short-path", where: :host, cwd: :neutral, args: [],
+env: { "XDG_CONFIG_HOME" => :opencode_config_short_path },
+note: "the same symlinked config, at a short path instead of a long temporary one" },
   { agent: "opencode", key: "host-no-config", where: :host, cwd: :neutral, args: [],
   env: { "XDG_CONFIG_HOME" => :empty_dir },
   note: "~/.config/opencode not read: no config, skills, agents or commands" },

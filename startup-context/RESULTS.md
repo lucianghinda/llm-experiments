@@ -2,8 +2,10 @@
 
 Measured on one machine on 2026-08-18. Claude Code 2.1.234 on the host and
 2.1.233 in the container; Codex 0.146.1 on the host and 0.147.0 in the
-container; opencode 1.18.15 in both. Three runs per condition, seven for
-`opencode/host-no-mcp`. Every number below is produced by `scripts/report.rb`
+container; opencode 1.18.15 in both. Three runs per condition, and seven for
+each of the four opencode rows that take the config directory apart, because
+the first reading of those came out backwards and needed more evidence. 91
+runs over 25 conditions. Every number below is produced by `scripts/report.rb`
 from `results-raw/`, not typed by hand.
 
 ## The short version
@@ -51,6 +53,9 @@ be.
 | codex | `container` | 3 | 12,212 | 12,211-12,787 | 1.00x | a fresh container: a freshly installed CLI and nothing else |
 | opencode | `host-project` | 3 | 34,042 | 33,997-34,071 | 5.77x | the same machine, inside a real project |
 | opencode | `host-full` | 3 | 33,935 | 33,906-34,097 | 5.75x | the machine as it is, in a directory with no project files |
+| opencode | `host-config-short-path` | 7 | 33,883 | 33,745-33,930 | 5.74x | the same symlinked config, at a short path instead of a long temporary one |
+| opencode | `host-config-relocated` | 7 | 36,271 | 36,102-36,706 | 6.14x | the real config directory, reached through a symlink at a temporary path |
+| opencode | `host-config-rebuilt` | 7 | 35,925 | 35,452-36,845 | 6.09x | the same rebuilt config directory as host-no-mcp, with the MCP servers left in |
 | opencode | `host-no-mcp` | 7 | 35,833 | 35,430-36,502 | 6.07x | MCP servers off, everything else on |
 | opencode | `host-pure` | 3 | 32,615 | 32,557-32,675 | 5.53x | external plugins off, everything else on |
 | opencode | `host-no-config` | 3 | 20,444 | 20,380-20,477 | 3.46x | ~/.config/opencode not read: no config, skills, agents or commands |
@@ -90,7 +95,9 @@ Each row is the difference between two conditions that are identical apart from 
 | codex | MCP servers | `host-full` minus `host-no-mcp` | 25 |
 | codex | config.toml and AGENTS.md | `host-full` minus `host-no-config` | 2,672 |
 | codex | Being inside a real project | `host-project` minus `host-full` | 447 |
-| opencode | MCP servers | `host-full` minus `host-no-mcp` | -1,898 |
+| opencode | MCP servers | `host-config-rebuilt` minus `host-no-mcp` | 92 |
+| opencode | Moving XDG_CONFIG_HOME to a long path | `host-config-relocated` minus `host-config-short-path` | 2,388 |
+| opencode | Rebuilding the config directory entry by entry | `host-config-rebuilt` minus `host-config-relocated` | -346 |
 | opencode | External plugins | `host-full` minus `host-pure` | 1,320 |
 | opencode | The ~/.config/opencode directory | `host-full` minus `host-no-config` | 13,491 |
 | opencode | Config directory and plugins together | `host-full` minus `host-leanest` | 13,484 |
@@ -119,6 +126,9 @@ Cost moves with the prompt cache, so it is reported and not compared. Token coun
 | codex | `container` | not reported | 57.1 |
 | opencode | `host-project` | 0.0000 | 10.1 |
 | opencode | `host-full` | 0.0000 | 20.3 |
+| opencode | `host-config-short-path` | 0.0000 | 5.3 |
+| opencode | `host-config-relocated` | 0.0000 | 5.5 |
+| opencode | `host-config-rebuilt` | 0.0000 | 5.5 |
 | opencode | `host-no-mcp` | 0.0000 | 9.6 |
 | opencode | `host-pure` | 0.0000 | 57.8 |
 | opencode | `host-no-config` | 0.0000 | 59.6 |
@@ -261,19 +271,74 @@ machine adds. External plugins account for another 1,320.
 That still leaves about 14,500 tokens between the stripped host run and the
 container floor that no available switch removes.
 
-### Removing opencode's MCP server made the prompt bigger
+### The result that came out backwards was measuring the wrong thing
 
-This is the one result that came out backwards. Rebuilding the config directory
-with the single MCP server removed and everything else symlinked through gave
-**35,833 tokens**, which is **1,898 more** than leaving it in. Seven runs, spread
-of 1,072, so it is not noise.
+Read against `host-full`, removing opencode's one MCP server appeared to make
+the prompt **1,898 tokens bigger**, over seven runs with a spread of 1,072. The
+number was solid. It was not a number about MCP.
 
-I do not have an explanation I can stand behind. The plausible one is that
-opencode is fitting its skill catalogue to a budget the way Codex says it does,
-so removing a tool source leaves room the skill descriptions expand into. That
-would mean the MCP server was partly paying for itself by crowding something
-else out. It is a hypothesis, and the transcript says nothing that would confirm
-or refute it, which is itself the point of the next section.
+opencode has no flag that suppresses its servers for one run, so `host-no-mcp`
+cannot remove a layer the way every other row does. It has to build a config
+directory: write `opencode.json` out again without its `mcp` key, symlink every
+other entry to the real one, and point `XDG_CONFIG_HOME` at the result. That
+changes two things at once, and only one of them is MCP.
+
+Three controls separate them. Each runs seven times, like the row it explains.
+
+| Condition | What it changes | Median |
+|---|---|---:|
+| `host-full` | nothing; the real config directory | 33,935 |
+| `host-config-short-path` | the same config, reached through a symlink at `/tmp/lxo` | 33,883 |
+| `host-config-relocated` | the same config, through a symlink at a long temporary path | 36,271 |
+| `host-config-rebuilt` | the full rebuild, MCP left in | 35,925 |
+| `host-no-mcp` | the full rebuild, MCP removed | 35,833 |
+
+Reading down the differences:
+
+| Step | Tokens |
+|---|---:|
+| Config at a short path instead of the real one | -52 |
+| Long path instead of short path | **+2,388** |
+| Taking the directory apart entry by entry | -346 |
+| Removing the MCP server | **-92** |
+
+opencode's run-to-run spread on these conditions is 185 to 1,393, so -52, -346
+and -92 are all nothing. **+2,388 is everything.** The published -1,898 was the
+path move minus a rounding error wearing MCP's name.
+
+So opencode's MCP server costs about what Claude's eight cost (501) and what
+Codex's eight cost (25): nothing worth counting. All three agents agree, and
+the disagreement was an artifact of the one measurement that had to build its
+own environment.
+
+### Where you keep opencode's config changes what every request costs
+
+The +2,388 is not a quirk of the harness. It reproduces on demand and the
+arithmetic closes.
+
+`Dir.mktmpdir` hands out a path 91 characters long. `/tmp/lxo` is 8. That is 83
+extra characters, and this machine's opencode config holds 54 skills, 29 agents
+and 3 commands, which is 86 items:
+
+```
+2,388 tokens / 86 items      = 27.8 tokens per item
+83 characters / 27.8 tokens  = 2.99 characters per token
+```
+
+Three characters per token is what a tokenizer gives a string like
+`llmx-opencode-config-20260818-15568-s0qsqt`. So opencode writes the absolute
+path of each config item into the prompt, once per item, and the length of
+`XDG_CONFIG_HOME` is multiplied by however many items live under it.
+
+Two machines with byte-identical opencode configurations therefore pay
+different amounts per request, and the thing that separates them is how deep
+the config directory sits. Nothing in opencode reports this, and no flag
+changes it.
+
+It also means the measurement rule this experiment started from has an edge
+nobody expected: a condition that relocates a directory has not held everything
+else fixed, because for opencode the location *is* one of the things being
+measured.
 
 ### opencode tells you the least about itself
 
@@ -328,7 +393,8 @@ fields looks like.
 | Give a project a real `AGENTS.md` instead of a pointer | n/a | you use Codex on a project whose rules live in `CLAUDE.md` |
 | Prune `~/.config/opencode`: 54 skills, 29 agents, 3 commands | up to 13,491 | always for opencode; it is 48% of everything that machine adds |
 | `--pure` for opencode | 1,320 | a run that needs no plugin |
-| Leave opencode's MCP server alone | nothing, and removing it cost 1,898 | measure before removing; on this machine it was not the problem |
+| Leave opencode's MCP server alone | ~0 tokens | it was never the problem; the row that said otherwise was measuring a path move |
+| Keep opencode's config directory at a short path | ~28 tokens per item per request | always; a deep path is multiplied by every skill, agent and command under it |
 
 **When it is worth measuring at all.** The startup context is a floor under
 every request in a session, so it matters in proportion to how many requests
@@ -337,9 +403,10 @@ of the window. On a 200k model it is 30% of it, before the task is read.
 
 **And measure rather than assume which layer is heavy.** The three agents do
 not agree on where the weight sits. On Claude it is the subagent catalogue
-(18,368) and MCP is nearly free (501). On opencode it is one config directory
-(13,491) and removing the MCP server made things worse (-1,898). Advice that
-names a layer without naming an agent and a version is guessing.
+(18,368). On opencode it is one config directory (13,491), plus the length of
+the path that directory sits at (2,388 here). MCP is nearly free on all three:
+501, 25 and about zero. Advice that names a layer without naming an agent and a
+version is guessing.
 
 ## What this does not show
 
@@ -353,9 +420,11 @@ names a layer without naming an agent and a version is guessing.
   comparable across rows and are printed only to show the range.
 - **Anything about other machines.** One developer, one day, one set of
   installed plugins and skills.
-- **Why removing opencode's MCP server made the prompt bigger.** The number is
-  solid across seven runs. The mechanism is not established, and the
-  budget-reallocation explanation offered above is a hypothesis, not a result.
+- **How far the path-length finding generalises.** It is established here, on
+  one config directory holding 86 items, and the arithmetic is clean. Whether
+  other agents embed config paths the same way was not tested; Claude and Codex
+  were never run from a relocated config directory, because neither of them
+  needed one.
 - **A like-for-like container floor for opencode.** Claude and Codex come from
   the shared base image; opencode's floor is that image plus one npm package,
   because the base does not carry opencode yet.

@@ -19,6 +19,9 @@
 | codex | `container` | 3 | 12,212 | 12,211-12,787 | 1.00x | a fresh container: a freshly installed CLI and nothing else |
 | opencode | `host-project` | 3 | 34,042 | 33,997-34,071 | 5.77x | the same machine, inside a real project |
 | opencode | `host-full` | 3 | 33,935 | 33,906-34,097 | 5.75x | the machine as it is, in a directory with no project files |
+| opencode | `host-config-short-path` | 7 | 33,883 | 33,745-33,930 | 5.74x | the same symlinked config, at a short path instead of a long temporary one |
+| opencode | `host-config-relocated` | 7 | 36,271 | 36,102-36,706 | 6.14x | the real config directory, reached through a symlink at a temporary path |
+| opencode | `host-config-rebuilt` | 7 | 35,925 | 35,452-36,845 | 6.09x | the same rebuilt config directory as host-no-mcp, with the MCP servers left in |
 | opencode | `host-no-mcp` | 7 | 35,833 | 35,430-36,502 | 6.07x | MCP servers off, everything else on |
 | opencode | `host-pure` | 3 | 32,615 | 32,557-32,675 | 5.53x | external plugins off, everything else on |
 | opencode | `host-no-config` | 3 | 20,444 | 20,380-20,477 | 3.46x | ~/.config/opencode not read: no config, skills, agents or commands |
@@ -58,7 +61,9 @@ Each row is the difference between two conditions that are identical apart from 
 | codex | MCP servers | `host-full` minus `host-no-mcp` | 25 |
 | codex | config.toml and AGENTS.md | `host-full` minus `host-no-config` | 2,672 |
 | codex | Being inside a real project | `host-project` minus `host-full` | 447 |
-| opencode | MCP servers | `host-full` minus `host-no-mcp` | -1,898 |
+| opencode | MCP servers | `host-config-rebuilt` minus `host-no-mcp` | 92 |
+| opencode | Moving XDG_CONFIG_HOME to a long path | `host-config-relocated` minus `host-config-short-path` | 2,388 |
+| opencode | Rebuilding the config directory entry by entry | `host-config-rebuilt` minus `host-config-relocated` | -346 |
 | opencode | External plugins | `host-full` minus `host-pure` | 1,320 |
 | opencode | The ~/.config/opencode directory | `host-full` minus `host-no-config` | 13,491 |
 | opencode | Config directory and plugins together | `host-full` minus `host-leanest` | 13,484 |
@@ -87,6 +92,9 @@ Cost moves with the prompt cache, so it is reported and not compared. Token coun
 | codex | `container` | not reported | 57.1 |
 | opencode | `host-project` | 0.0000 | 10.1 |
 | opencode | `host-full` | 0.0000 | 20.3 |
+| opencode | `host-config-short-path` | 0.0000 | 5.3 |
+| opencode | `host-config-relocated` | 0.0000 | 5.5 |
+| opencode | `host-config-rebuilt` | 0.0000 | 5.5 |
 | opencode | `host-no-mcp` | 0.0000 | 9.6 |
 | opencode | `host-pure` | 0.0000 | 57.8 |
 | opencode | `host-no-config` | 0.0000 | 59.6 |

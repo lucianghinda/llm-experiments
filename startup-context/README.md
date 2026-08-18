@@ -22,9 +22,10 @@ The floor is a fresh Apple container from [`containers/`](../containers/): a
 freshly installed CLI, no user memory file, no MCP servers, no hooks, no
 plugins, no project. Everything above it is what this machine adds.
 
-**Runs.** 3 per condition, and 7 for `opencode/host-no-mcp` because its result
-came out backwards and needed more evidence. Three agents, 22 conditions, 70
-runs.
+**Runs.** 3 per condition, and 7 for each of the four opencode rows that take
+the config directory apart, because the first reading of those came out
+backwards and the extra runs are what showed why. Three agents, 25 conditions,
+91 runs.
 
 Codex and opencode are both pinned to `gpt-5.6-sol`, so they are the one pair
 here that can be compared directly: what differs between them is the harness and
@@ -117,6 +118,16 @@ outside.
   the slug spelling Claude uses for its state directories. The shape survives,
   so a reader can still see that Claude derives a per-project memory directory
   from the working directory, and the machine's layout does not.
+
+- **One condition cannot remove only one layer, and it is worth knowing which.**
+  opencode has no flag that suppresses its MCP servers, so `host-no-mcp` builds
+  a config directory instead of passing an argument, which moves
+  `XDG_CONFIG_HOME` at the same time. That move turned out to cost 2,388 tokens
+  on its own, which is more than the layer it was trying to measure. The three
+  `host-config-*` rows exist to separate the two, and the general lesson is that
+  a condition built by relocating something has changed the location as well as
+  the contents. For opencode the location is itself a measurable layer; see
+  RESULTS.md.
 
 - **The probe measures the first request only.** Everything counted here is
   also carried by every later request in the session, so it is a floor, not a

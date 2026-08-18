@@ -37,6 +37,11 @@ FORBIDDEN = {
   "private key block" => /-----BEGIN [A-Z ]*PRIVATE KEY-----/,
   "bearer token" => /\b(?:sk|pk)-[A-Za-z0-9_-]{20,}/,
   "OAuth access token" => /\bsk-ant-[A-Za-z0-9_-]{20,}/,
+  # opencode keeps MCP headers in its config file in plain text, so an
+  # Authorization header is a real shape to guard against here and not a
+  # theoretical one. inventory.rb reads counts out of that file and never its
+  # contents; this is the net under that.
+  "authorization header" => /(?:Authorization|Bearer)["\s:=]+[A-Za-z0-9._~+\/-]{16,}/i,
   "generic api secret" => /(?:api[_-]?key|secret|password|refresh_token)["'\s:=]+[A-Za-z0-9_\-]{24,}/i
 }.freeze
 
@@ -111,6 +116,7 @@ RESIDUAL = {
   "residual host path" => %r{/(?:Users|home)/(?!agent\b)[A-Za-z0-9._-]+},
   "residual slug-encoded host path" => %r{-(?:Users|home)-(?!agent\b)[A-Za-z0-9._-]+},
   "residual temp path" => %r{[-/](?:private[-/])?var[-/]folders[-/]},
+  "residual url host" => %r{https?://(?!<host>)[^/\s"\x27]+},
   # The hole that let the worktree path through once: probe.rb writes "<home>"
   # into the argv it records, so a path under the home directory arrives here
   # already half-redacted and matches none of the patterns above. Below the
@@ -159,6 +165,15 @@ def strip_hook(event)
     event["#{key}_bytes"] = event.delete(key).to_s.bytesize
   end
   event
+end
+
+# A configured MCP endpoint is an inventory entry wearing a different hat. The
+# server names are already stripped out of the init events, and leaving the same
+# servers' URLs in a stderr log that records them failing to connect would
+# publish the list by another route. Scheme and path stay, so "two remote
+# servers dropped their transport on every run" is still readable.
+def strip_urls(text)
+  text.gsub(%r{(https?://)[^/\s"'\\)]+}) { "#{Regexp.last_match(1)}<host>" }
 end
 
 def strip_transcript(text)
@@ -224,6 +239,7 @@ Dir.glob(File.join(RAW, "**", "*")).sort.each do |path|
   next unless COPIED.include?(base) || %w[summary.json inventory.json].include?(base)
 
   text = redact(File.read(path))
+  text = strip_urls(text)
   text = strip_transcript(text) if base == "transcript.jsonl"
   text = strip_inventory(text) if base == "inventory.json"
   text = strip_labels(text) if LABELLED.include?(base)

@@ -1,12 +1,12 @@
-# frozen_string_literal: true
+  # frozen_string_literal: true
 
-# The conditions, in one place, because two scripts need them: probe.rb runs
-# them and report.rb labels its rows with them. Keeping the list here means a
-# label corrected after a run is corrected everywhere, instead of surviving in
-# whatever text happened to be written into meta.json at the time.
+  # The conditions, in one place, because two scripts need them: probe.rb runs
+  # them and report.rb labels its rows with them. Keeping the list here means a
+  # label corrected after a run is corrected everywhere, instead of surviving in
+  # whatever text happened to be written into meta.json at the time.
 
-# Each condition removes one layer and keeps everything else fixed, so the
-# difference between two rows is the cost of the layer between them.
+  # Each condition removes one layer and keeps everything else fixed, so the
+  # difference between two rows is the cost of the layer between them.
 CONDITIONS = [
   # --- claude ---------------------------------------------------------------
   { agent: "claude", key: "host-full", where: :host, cwd: :neutral, args: [],
@@ -53,5 +53,38 @@ CONDITIONS = [
     args: ["-c", "mcp_servers={}"],
     note: "MCP servers off, everything else on" },
   { agent: "codex", key: "container", where: :container, cwd: :neutral, args: [],
-    note: "a fresh container: a freshly installed CLI and nothing else" }
+    note: "a fresh container: a freshly installed CLI and nothing else" },
+
+  # --- opencode ---------------------------------------------------------------
+  #
+  # opencode has no --ephemeral and no --no-session-persistence: it writes every
+  # run into XDG_DATA_HOME, which is also where its credentials live. So every
+  # condition points XDG_DATA_HOME at a private directory seeded with the
+  # credential file alone. That keeps runs independent and keeps the probe out of
+  # the machine's real session store, and it was checked rather than assumed:
+  # against the real data directory the same prompt measured 34,011 tokens and
+  # against a private one 33,917, a gap smaller than opencode's own run-to-run
+  # spread.
+  #
+  # The model is pinned like everywhere else. opencode picks its default from
+  # state rather than from opencode.json, so a condition that moved the config or
+  # the data directory would otherwise be free to pick a different model.
+  { agent: "opencode", key: "host-full", where: :host, cwd: :neutral, args: [],
+  note: "the machine as it is, in a directory with no project files" },
+  { agent: "opencode", key: "host-project", where: :host, cwd: :project, args: [],
+  note: "the same machine, inside a real project" },
+  { agent: "opencode", key: "host-pure", where: :host, cwd: :neutral,
+  args: ["--pure"],
+  note: "external plugins off, everything else on" },
+  { agent: "opencode", key: "host-no-mcp", where: :host, cwd: :neutral, args: [],
+    env: { "XDG_CONFIG_HOME" => :opencode_config_without_mcp },
+    note: "MCP servers off, everything else on" },
+  { agent: "opencode", key: "host-no-config", where: :host, cwd: :neutral, args: [],
+  env: { "XDG_CONFIG_HOME" => :empty_dir },
+  note: "~/.config/opencode not read: no config, skills, agents or commands" },
+  { agent: "opencode", key: "host-leanest", where: :host, cwd: :neutral,
+  args: ["--pure"], env: { "XDG_CONFIG_HOME" => :empty_dir },
+  note: "no config directory and no external plugins" },
+  { agent: "opencode", key: "container", where: :container, cwd: :neutral, args: [],
+  note: "a fresh container: a freshly installed CLI and nothing else" }
 ].freeze

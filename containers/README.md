@@ -94,10 +94,13 @@ Things worth knowing, each of which cost time to find:
 containers/
   base/Containerfile        Ubuntu 24.04, mise-managed rubies, Node, the agent
                             CLIs, postgres, libvips, ffmpeg, sqlite
+  opencode/Containerfile    the base image plus opencode, as a thin extra layer
   scripts/lib/kit.rb        version pins, container helpers, a small YAML reader
   scripts/build_base.rb     builds and smoke-checks the base image
   scripts/build_app_image.rb builds a per-app image from a git bundle
   scripts/auth_setup.rb     one-time interactive login, persisted outside images
+  scripts/build_opencode_image.rb builds llmx-base-opencode from the base image
+  scripts/seed_opencode_auth.rb   copies opencode's credential file into the store
   scripts/trial_shell.rb    interactive shell in a trial container, for debugging
 ```
 

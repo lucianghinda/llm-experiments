@@ -26,16 +26,22 @@ def median(values)
   sorted.size.odd? ? sorted[mid] : ((sorted[mid - 1] + sorted[mid]) / 2.0).round
 end
 
+# The sign has to be carried separately. Reversing "-1898" and scanning it for
+# runs of digits drops the minus, which turns "removing this made the prompt
+# 1,898 tokens BIGGER" into the opposite claim.
 def commas(n)
   return "-" if n.nil?
 
-  n.to_i.to_s.reverse.scan(/\d{1,3}/).join(",").reverse
+  value = n.to_i
+  grouped = value.abs.to_s.reverse.scan(/\d{1,3}/).join(",").reverse
+  value.negative? ? "-#{grouped}" : grouped
 end
 
 groups = rows.group_by { |r| [r["agent"], r["condition"]] }
 ORDER = {
   "claude" => %w[host-project host-full host-default-model host-no-mcp host-no-skills host-no-subagents host-lean host-leanest host-safe-mode container],
-  "codex" => %w[host-project host-full host-no-mcp host-no-config container]
+  "codex" => %w[host-project host-full host-no-mcp host-no-config container],
+  "opencode" => %w[host-project host-full host-no-mcp host-pure host-no-config host-leanest container]
 }.freeze
 
 stats = {}
@@ -104,7 +110,12 @@ end
  ["claude", "Being inside a real project", "host-project", "host-full"],
  ["codex", "MCP servers", "host-full", "host-no-mcp"],
  ["codex", "config.toml and AGENTS.md", "host-full", "host-no-config"],
- ["codex", "Being inside a real project", "host-project", "host-full"]].each do |agent, label, from, to|
+ ["codex", "Being inside a real project", "host-project", "host-full"],
+ ["opencode", "MCP servers", "host-full", "host-no-mcp"],
+ ["opencode", "External plugins", "host-full", "host-pure"],
+ ["opencode", "The ~/.config/opencode directory", "host-full", "host-no-config"],
+ ["opencode", "Config directory and plugins together", "host-full", "host-leanest"],
+ ["opencode", "Being inside a real project", "host-project", "host-full"]].each do |agent, label, from, to|
   d = delta(stats, agent, from, to)
   next unless d
 
@@ -137,6 +148,12 @@ out << "| codex | MCP servers in config | #{Array(x['mcp_servers_in_config']).si
 out << "| codex | skill directories | #{x['skills_dir_entries']} |\n"
 out << "| codex | agent definitions | #{x['agents_dir_entries']} |\n"
 out << "| codex | saved prompts | #{x['prompts_dir_entries']} |\n"
+o = inventory["opencode"] || {}
+out << "| opencode | `opencode.json` | #{commas(o['config_file_bytes'])} bytes |\n"
+out << "| opencode | skill directories | #{o['skills_dir_entries']} |\n"
+out << "| opencode | agent definitions | #{o['agents_dir_entries']} |\n"
+out << "| opencode | MCP servers in config | #{o['mcp_server_count']} |\n"
+out << "| opencode | plugin entries | #{o['plugins_dir_entries']} |\n"
 
 notices = rows.flat_map { |r| Array(r["cli_notices"]) }.uniq
 unless notices.empty?

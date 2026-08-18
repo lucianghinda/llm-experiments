@@ -22,7 +22,13 @@ The floor is a fresh Apple container from [`containers/`](../containers/): a
 freshly installed CLI, no user memory file, no MCP servers, no hooks, no
 plugins, no project. Everything above it is what this machine adds.
 
-**Runs.** 3 per condition. Two agents, fifteen conditions, 45 runs.
+**Runs.** 3 per condition, and 7 for `opencode/host-no-mcp` because its result
+came out backwards and needed more evidence. Three agents, 22 conditions, 70
+runs.
+
+Codex and opencode are both pinned to `gpt-5.6-sol`, so they are the one pair
+here that can be compared directly: what differs between them is the harness and
+not the model.
 
 ## Reading the numbers
 
@@ -36,23 +42,59 @@ which bucket a token lands in depends on whether an earlier run warmed the
 cache. The sum does not move. The price does, which is why cost appears in its
 own table and is never compared across conditions.
 
-For Codex the same quantity arrives by a different route: it reports usage once
-per turn, and this probe is one turn with no tool calls, so the turn's
-`input_tokens` is the startup context.
+For Codex and opencode the same quantity arrives by a different route. Codex
+reports usage once per turn and opencode once per step, and this probe is a
+single turn with a single step and no tool calls, so each one's input count is
+the startup context.
+
+The three CLIs do not agree on what "input" means, and getting this wrong is the
+easiest way to publish a wrong number:
+
+| CLI | Field | Cached tokens |
+|---|---|---|
+| Claude Code | `input_tokens` | reported separately in `cache_read_input_tokens` and `cache_creation_input_tokens`; all three are added |
+| Codex | `input_tokens` | **included**; `cached_input_tokens` is a subset, reported for information |
+| opencode | `tokens.input` | **excluded**; `tokens.cache.read` has to be added back |
+
+The opencode row cost a wrong result before it was noticed. Reading `input`
+alone split every opencode condition into two clusters about 35% apart, which
+looked like the CLI loading different things on different runs. Three host-full
+runs reported 33,935 with no cache, then 22,130 and 22,321 each with exactly
+11,776 cache reads. `parse_probe.rb` now warns when repeats of one condition
+disagree by more than 10%, because that is what this looked like from the
+outside.
 
 ## Caveats
 
 - **One machine, one week.** These numbers describe one developer's setup on
-  2026-08-18, not Claude Code or Codex in general. What transfers is the method
-  and the shape of the answer, not the totals.
-- **The model is pinned** to `sonnet` for Claude and `gpt-5.6-sol` for Codex in
-  every condition except `claude/host-default-model`, which exists to record
-  what the machine actually reaches for when nobody pins anything. A condition
-  that changed the model would move the system prompt underneath the layer being
-  measured.
+  2026-08-18, not Claude Code, Codex or opencode in general. What transfers is
+  the method and the shape of the answer, not the totals.
+- **The model is pinned** to `sonnet` for Claude and `gpt-5.6-sol` for Codex and
+  opencode, in every condition except `claude/host-default-model`, which exists
+  to record what the machine actually reaches for when nobody pins anything. A
+  condition that changed the model would move the system prompt underneath the
+  layer being measured.
 - **The container runs a slightly older CLI** than the host (see the versions in
   `results/tables.md`), because the base image pins its versions in
   `Kit::PINS`. The gap is one patch release and it is visible in the floor.
+- **opencode's floor comes from a different image.** The base image does not
+  carry opencode, so `containers/opencode/` adds it in one layer on top. The
+  opencode floor is therefore the same environment as the other two plus one npm
+  package, not a byte-identical one.
+- **opencode has no ephemeral mode.** Claude gets `--no-session-persistence` and
+  Codex gets `--ephemeral`; opencode writes every run into `XDG_DATA_HOME`, which
+  is also where it keeps its credentials. Every opencode condition therefore
+  points that variable at a fresh directory holding the credential file alone.
+  That was checked rather than assumed: against the real data directory the same
+  prompt measured 34,011 tokens and against a private one 33,917, a gap smaller
+  than opencode's own run-to-run spread.
+- **opencode's container credentials are copied, not re-logged-in.**
+  `auth_setup.rb` opens a container and runs the real login flow for Claude and
+  Codex. opencode keeps credentials in the same directory as its sessions and its
+  database, so that shape does not fit yet, and
+  `containers/scripts/seed_opencode_auth.rb` copies the one credential file into
+  the kit's store instead. The file never enters an image and never leaves the
+  machine.
 - **`--disallowed-tools Task` is a proxy**, not a switch. There is no flag that
   turns subagents off. The catalogue of available subagents ships inside the
   Task tool's own description, so disallowing the tool removes both, and the
@@ -101,7 +143,9 @@ startup-context/
 
 ```sh
 ruby containers/scripts/build_base.rb                  # once
+ruby containers/scripts/build_opencode_image.rb        # once, adds opencode on top
 ruby containers/scripts/auth_setup.rb                  # once, interactive
+ruby containers/scripts/seed_opencode_auth.rb          # once, copies opencode's credential file
 
 export LLMX_PROJECT_DIR=/path/to/a/real/project        # for the host-project rows
 ruby startup-context/scripts/probe.rb --all --repeats 3
@@ -113,3 +157,19 @@ ruby startup-context/scripts/sanitize.rb
 
 `probe.rb --list` prints the conditions. `probe.rb --agent claude --condition
 host-full` runs one of them.
+
+## What each agent lets you turn off
+
+The three CLIs expose very different amounts of control, and that shows up in
+how many conditions each one has.
+
+| | Claude Code | Codex | opencode |
+|---|---|---|---|
+| Says what it loaded | `init` event, item by item | nothing | nothing |
+| Warns when it truncates | no | yes | no |
+| MCP off for one run | `--strict-mcp-config` | `-c mcp_servers={}` | config file only |
+| Skills off for one run | `--disable-slash-commands` | no | config file only |
+| Subagents off for one run | only by refusing `Task` | no | no |
+| Everything off for one run | `--safe-mode` | no | `--pure` is partial |
+| Session not written | `--no-session-persistence` | `--ephemeral` | no |
+

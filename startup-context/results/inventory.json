@@ -9,7 +9,7 @@
     "commands_dir_entries": 3,
     "agents_dir_entries": 0,
     "plugin_repos": 0,
-    "claude_json_bytes": 327378,
+    "claude_json_bytes": 327089,
     "claude_json_project_entries": 137,
     "settings_hook_events": [
       "SessionEnd",
@@ -27,11 +27,11 @@
       "approx_tokens": 7085
     },
     "config_file": {
-      "bytes": 15017,
-      "lines": 389,
-      "approx_tokens": 3754
+      "bytes": 15117,
+      "lines": 392,
+      "approx_tokens": 3779
     },
-    "project_entries_in_config": 84,
+    "project_entries_in_config": 85,
     "agents_dir_entries": 20,
     "skills_dir_entries": 130,
     "prompts_dir_entries": 48,
@@ -43,6 +43,21 @@
       "approx_tokens": 59
     },
     "mcp_servers_in_config_count": 8
+  },
+  "opencode": {
+    "config_file_bytes": 2087,
+    "global_rules_file": {
+      "bytes": 0,
+      "lines": 0,
+      "approx_tokens": 0
+    },
+    "mcp_server_count": 1,
+    "command_count": 3,
+    "skills_dir_entries": 54,
+    "agents_dir_entries": 29,
+    "commands_dir_entries": 3,
+    "plugins_dir_entries": 2,
+    "node_modules_entries": 24
   },
   "bytes_per_token_assumed": 4
 }

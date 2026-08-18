@@ -85,7 +85,33 @@ codex = {
   "hooks_file" => file_stat(File.join(codex_dir, "hooks.json"))
 }
 
-report = { "claude" => claude, "codex" => codex, "bytes_per_token_assumed" => BYTES_PER_TOKEN }
+# opencode follows the XDG layout: configuration, skills, agents and commands in
+# ~/.config/opencode, and credentials, sessions and a database in
+# ~/.local/share/opencode. Only the config side is counted here. The data side
+# holds live tokens and is never read by this script.
+#
+# opencode.json is not sized like the other two memory files, because it is not
+# a memory file: it is settings, and at least one of them on this machine is a
+# bearer token. The count of MCP servers is taken from it; the file is not.
+opencode_config = File.join(HOME, ".config", "opencode")
+opencode_json = File.join(opencode_config, "opencode.json")
+opencode_settings = json_or_nil(opencode_json) || {}
+
+opencode = {
+  "config_file_bytes" => File.file?(opencode_json) ? File.size(opencode_json) : nil,
+  "global_rules_file" => file_stat(File.join(opencode_config, "global-rules.md")),
+  "mcp_server_count" => (opencode_settings["mcp"] || {}).size,
+  "command_count" => (opencode_settings["command"] || {}).size,
+  "skills_dir_entries" => count_entries(File.join(opencode_config, "skills")),
+  "agents_dir_entries" => count_entries(File.join(opencode_config, "agents")),
+  "commands_dir_entries" => count_entries(File.join(opencode_config, "commands"), "**/*"),
+  "plugins_dir_entries" => count_entries(File.join(opencode_config, "plugins")),
+  "node_modules_entries" => count_entries(File.join(opencode_config, "node_modules"))
+}
+
+report = { "claude" => claude, "codex" => codex, "opencode" => opencode,
+           "bytes_per_token_assumed" => BYTES_PER_TOKEN }
+
 
 out = File.join(File.expand_path("..", __dir__), "results-raw", "inventory.json")
 Dir.mkdir(File.dirname(out)) unless Dir.exist?(File.dirname(out))

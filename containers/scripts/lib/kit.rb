@@ -13,10 +13,15 @@ module Kit
     ruby_versions: "3.4.5 4.0.1",
     node_version: "22",
     claude_code_version: "2.1.233",
-    codex_version: "0.147.0"
+    codex_version: "0.147.0",
+    opencode_version: "1.18.15"
   }.freeze
 
   BASE_IMAGE = ENV.fetch("LLMX_BASE_IMAGE", "llmx-base:latest")
+
+  # opencode lives one thin layer above the base rather than in it; see
+  # containers/opencode/Containerfile for why.
+  OPENCODE_IMAGE = ENV.fetch("LLMX_OPENCODE_IMAGE", "llmx-base-opencode:latest")
 
   # Apple's containers get a small default envelope (992MB / 4 CPU). Rails test
   # suites and `bundle install` need more than that.
@@ -174,9 +179,15 @@ module Kit
     if mount_auth
       FileUtils.mkdir_p(File.join(AUTH_DIR, "claude"))
       FileUtils.mkdir_p(File.join(AUTH_DIR, "codex"))
+    FileUtils.mkdir_p(File.join(AUTH_DIR, "opencode"))
       args += ["--volume", "#{AUTH_DIR}:/home/#{AGENT_USER}/.agent-auth"]
       args += ["--env", "CLAUDE_CONFIG_DIR=/home/#{AGENT_USER}/.agent-auth/claude"]
       args += ["--env", "CODEX_HOME=/home/#{AGENT_USER}/.agent-auth/codex"]
+      # opencode takes no equivalent variable: it reads credentials from
+      # XDG_DATA_HOME, which also holds its sessions and its database. A runner
+      # points XDG_DATA_HOME at a private directory and copies the seed in from
+      # here, so this only ever says where the seed is.
+      args += ["--env", "LLMX_OPENCODE_AUTH=/home/#{AGENT_USER}/.agent-auth/opencode"]
     end
     args
   end

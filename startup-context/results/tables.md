@@ -17,6 +17,13 @@
 | codex | `host-no-mcp` | 3 | 28,385 | 28,239-28,669 | 2.32x | MCP servers off, everything else on |
 | codex | `host-no-config` | 3 | 25,738 | 25,738-25,885 | 2.11x | ~/.codex/config.toml not read; AGENTS.md and skills still are |
 | codex | `container` | 3 | 12,212 | 12,211-12,787 | 1.00x | a fresh container: a freshly installed CLI and nothing else |
+| opencode | `host-project` | 3 | 34,042 | 33,997-34,071 | 5.77x | the same machine, inside a real project |
+| opencode | `host-full` | 3 | 33,935 | 33,906-34,097 | 5.75x | the machine as it is, in a directory with no project files |
+| opencode | `host-no-mcp` | 7 | 35,833 | 35,430-36,502 | 6.07x | MCP servers off, everything else on |
+| opencode | `host-pure` | 3 | 32,615 | 32,557-32,675 | 5.53x | external plugins off, everything else on |
+| opencode | `host-no-config` | 3 | 20,444 | 20,380-20,477 | 3.46x | ~/.config/opencode not read: no config, skills, agents or commands |
+| opencode | `host-leanest` | 3 | 20,451 | 20,268-20,463 | 3.46x | no config directory and no external plugins |
+| opencode | `container` | 3 | 5,903 | 0 | 1.00x | a fresh container: a freshly installed CLI and nothing else |
 
 ### What Claude reports loading, per condition
 
@@ -51,6 +58,11 @@ Each row is the difference between two conditions that are identical apart from 
 | codex | MCP servers | `host-full` minus `host-no-mcp` | 25 |
 | codex | config.toml and AGENTS.md | `host-full` minus `host-no-config` | 2,672 |
 | codex | Being inside a real project | `host-project` minus `host-full` | 447 |
+| opencode | MCP servers | `host-full` minus `host-no-mcp` | -1,898 |
+| opencode | External plugins | `host-full` minus `host-pure` | 1,320 |
+| opencode | The ~/.config/opencode directory | `host-full` minus `host-no-config` | 13,491 |
+| opencode | Config directory and plugins together | `host-full` minus `host-leanest` | 13,484 |
+| opencode | Being inside a real project | `host-project` minus `host-full` | 107 |
 
 ### Cost and wall time of saying "OK"
 
@@ -73,6 +85,13 @@ Cost moves with the prompt cache, so it is reported and not compared. Token coun
 | codex | `host-no-mcp` | not reported | 58.0 |
 | codex | `host-no-config` | not reported | 43.2 |
 | codex | `container` | not reported | 57.1 |
+| opencode | `host-project` | 0.0000 | 10.1 |
+| opencode | `host-full` | 0.0000 | 20.3 |
+| opencode | `host-no-mcp` | 0.0000 | 9.6 |
+| opencode | `host-pure` | 0.0000 | 57.8 |
+| opencode | `host-no-config` | 0.0000 | 59.6 |
+| opencode | `host-leanest` | 0.0000 | 48.9 |
+| opencode | `container` | 0.0000 | 9.2 |
 
 ### Installed surface on the host, read off disk
 
@@ -83,13 +102,18 @@ Cost moves with the prompt cache, so it is reported and not compared. Token coun
 | claude | installed plugins | 20 |
 | claude | MCP servers configured by hand | 2 |
 | claude | session hooks configured | 2 |
-| claude | `~/.claude.json` | 327,378 bytes, 137 project entries |
+| claude | `~/.claude.json` | 327,089 bytes, 137 project entries |
 | codex | global memory file (`AGENTS.md`) | 28,338 bytes (~7,085 tokens) |
-| codex | `config.toml` | 15,017 bytes, 84 project entries |
+| codex | `config.toml` | 15,117 bytes, 85 project entries |
 | codex | MCP servers in config | 8 |
 | codex | skill directories | 130 |
 | codex | agent definitions | 20 |
 | codex | saved prompts | 48 |
+| opencode | `opencode.json` | 2,087 bytes |
+| opencode | skill directories | 54 |
+| opencode | agent definitions | 29 |
+| opencode | MCP servers in config | 1 |
+| opencode | plugin entries | 2 |
 
 ### What the CLIs said about their own load
 

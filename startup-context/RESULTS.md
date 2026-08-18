@@ -186,9 +186,12 @@ The reason is tool deferral. Only 5 MCP tools appear in the tool list; the rest
 are held behind `ToolSearch` and their schemas load when asked for. Advice
 written before that mechanism existed no longer describes what MCP costs.
 
-What MCP still costs is time and reliability. Of the eight servers, one failed
-outright and four needed authentication. On Codex the same picture appears in
-stderr: two servers logged transport failures on every host run.
+What MCP still costs is time and reliability. Of the eight servers exactly one
+connected: one failed outright, four needed authentication and two were still
+pending when the answer arrived. Codex shows the same unreliability in stderr,
+though less often than first reported here: two of its servers logged transport
+failures in one host run of twelve, and every host run of both agents logged
+something.
 
 ### Hooks spend context nobody asked for
 
@@ -260,8 +263,9 @@ than half what Codex sends from the same kind of container and a fifth of
 Claude's floor. Whatever opencode ships as its own system prompt and built-in
 tools, it is small.
 
-On this machine the same command sends **33,935**. The configuration is 5.75
-times the size of the program it configures.
+On this machine the same command sends **33,935**. The configuration is 4.75
+times the size of the program it configures, which makes the whole prompt 5.75
+times what a bare install sends.
 
 Almost all of it is one directory. Taking `~/.config/opencode` away, which
 removes the config file, 54 skills, 29 agents and 3 commands in one move, drops
@@ -414,10 +418,12 @@ version is guessing.
   nothing about whether 175 skills and 38 subagents make the agent better at
   real work. A skill that saves one wrong turn can be worth its weight many
   times over.
-- **Whether the cost is real money.** Prompt caching means an identical prompt
-  can cost 24 times more or less depending on whether an earlier run warmed the
-  cache. The token counts are stable; the dollar figures in the table are not
-  comparable across rows and are printed only to show the range.
+- **Whether the cost is real money.** Three runs of `claude/host-leanest` sent
+  28,686, 28,686 and 28,687 tokens and cost $0.1722, $0.0526 and $0.0526: the
+  same prompt at the same size for three times the price, with nothing between
+  the runs except whether an earlier one had warmed the cache. The token counts
+  are stable; the dollar figures in the table are not comparable across rows and
+  are printed only to show the range.
 - **Anything about other machines.** One developer, one day, one set of
   installed plugins and skills.
 - **How far the path-length finding generalises.** It is established here, on

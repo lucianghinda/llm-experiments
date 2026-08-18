@@ -9,6 +9,7 @@ results, so anyone can check the numbers instead of trusting the summary.
 | Folder | Question | Runs |
 |---|---|---|
 | [`simplified-technical-english/`](simplified-technical-english/) | Does asking an agent for "Simple Technical English" change how it explains code, and what does that cost in content? | 60 |
+| [`statusline-per-project/`](statusline-per-project/) | Can a Claude Code status line be set per project, so two folders show different bars? | demonstration, no runs |
 
 ## Conventions
 

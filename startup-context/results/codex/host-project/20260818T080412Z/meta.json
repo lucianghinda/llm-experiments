@@ -1,0 +1,28 @@
+{
+  "agent": "codex",
+  "condition": "host-project",
+  "where": "host",
+  "note": "the same machine, inside a real project",
+  "repeat": 1,
+  "model_requested": "gpt-5.6-sol",
+  "recorded_at": "2026-08-18T08:05:05Z",
+  "project_label": "<project>",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 52.87,
+  "argv": [
+    "<home>/.nodenv/versions/22.15.1/bin/codex",
+    "exec",
+    "--json",
+    "--skip-git-repo-check",
+    "--ephemeral",
+    "-s",
+    "read-only",
+    "-m",
+    "gpt-5.6-sol",
+    "-C",
+    "<project>",
+    "-"
+  ],
+  "cwd_kind": "project"
+}

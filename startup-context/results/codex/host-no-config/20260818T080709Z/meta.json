@@ -1,0 +1,29 @@
+{
+  "agent": "codex",
+  "condition": "host-no-config",
+  "where": "host",
+  "note": "~/.codex/config.toml and AGENTS.md not read",
+  "repeat": 2,
+  "model_requested": "gpt-5.6-sol",
+  "recorded_at": "2026-08-18T08:07:53Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 43.15,
+  "argv": [
+    "<home>/.nodenv/versions/22.15.1/bin/codex",
+    "exec",
+    "--json",
+    "--skip-git-repo-check",
+    "--ephemeral",
+    "-s",
+    "read-only",
+    "-m",
+    "gpt-5.6-sol",
+    "-C",
+    "<tmp>/llmx-probe-20260818-45425-76zuyy",
+    "--ignore-user-config",
+    "-"
+  ],
+  "cwd_kind": "neutral"
+}

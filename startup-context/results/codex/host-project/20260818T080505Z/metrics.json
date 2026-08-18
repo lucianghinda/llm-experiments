@@ -1,0 +1,43 @@
+{
+  "agent": "codex",
+  "condition": "host-project",
+  "where": "host",
+  "note": "the same machine, inside a real project",
+  "repeat": 2,
+  "model_requested": "gpt-5.6-sol",
+  "recorded_at": "2026-08-18T08:05:46Z",
+  "project_label": "<project>",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 40.85,
+  "argv": [
+    "<home>/.nodenv/versions/22.15.1/bin/codex",
+    "exec",
+    "--json",
+    "--skip-git-repo-check",
+    "--ephemeral",
+    "-s",
+    "read-only",
+    "-m",
+    "gpt-5.6-sol",
+    "-C",
+    "<project>",
+    "-"
+  ],
+  "cwd_kind": "project",
+  "cli_version": null,
+  "model_reported": null,
+  "startup_context_tokens": 28858,
+  "output_tokens": 5,
+  "reasoning_tokens": 0,
+  "cost_usd": null,
+  "num_turns": 1,
+  "answer": "OK",
+  "tool_calls": [],
+  "cli_notices": [
+    "Skill descriptions were shortened to fit the 2% skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+  ],
+  "raw_events": 5,
+  "clean_probe": true,
+  "run_dir": "results-raw/codex/host-project/20260818T080505Z"
+}

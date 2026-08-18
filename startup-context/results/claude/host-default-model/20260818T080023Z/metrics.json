@@ -1,0 +1,53 @@
+{
+  "agent": "claude",
+  "condition": "host-default-model",
+  "where": "host",
+  "note": "the machine as it is, on whatever model the machine picks by default",
+  "repeat": 2,
+  "model_requested": "machine default",
+  "recorded_at": "2026-08-18T08:00:32Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 8.55,
+  "argv": [
+    "/opt/homebrew/bin/claude",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--no-session-persistence",
+    "--permission-mode",
+    "bypassPermissions"
+  ],
+  "cwd_kind": "neutral",
+  "cli_version": "2.1.234",
+  "model_reported": "claude-opus-5[1m]",
+  "startup_context_tokens": 48537,
+  "output_tokens": 1,
+  "cost_usd": 0.33441,
+  "num_turns": 1,
+  "answer": "OK",
+  "tool_calls": [],
+  "tools_available": 34,
+  "mcp_servers": 8,
+  "mcp_by_status": {
+    "connected": 2,
+    "failed": 1,
+    "pending": 1,
+    "needs-auth": 4
+  },
+  "skills": 175,
+  "slash_commands": 238,
+  "subagents": 38,
+  "plugins": 17,
+  "hooks_fired": 5,
+  "hook_injected_bytes": 12099,
+  "memory_paths": {
+    "auto": "<home>/.claude/projects/<tmp>-llmx-probe-20260818-44432-v3vwfs/memory/"
+  },
+  "output_style": "default",
+  "raw_events": 14,
+  "clean_probe": true,
+  "run_dir": "results-raw/claude/host-default-model/20260818T080023Z"
+}

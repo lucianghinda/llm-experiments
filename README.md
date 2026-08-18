@@ -11,14 +11,16 @@ results, so anyone can check the numbers instead of trusting the summary.
 | [`simplified-technical-english/`](simplified-technical-english/) | Does asking an agent for "Simple Technical English" change how it explains code, and what does that cost in content? | 60 |
 | [`statusline-per-project/`](statusline-per-project/) | Can a Claude Code status line be set per project, so two folders show different bars? | 2 sessions |
 | [`at-file-mentions/`](at-file-mentions/) | Does writing a file path as `@path/to/file.rb` instead of `path/to/file.rb` change what an agent does and what it costs? | harness built, not yet run |
+| [`startup-context/`](startup-context/) | What does an agent load before it starts work, where does it come from, and which parts can be turned off? | 45 |
 
 ## Shared tooling
 
 [`containers/`](containers/) is a reusable clean room: each trial runs in a fresh
 Apple container with freshly installed agent CLIs and no host state. It exists
 because a plain `claude -p "reply OK"` on my Mac arrives carrying 8 MCP servers,
-39 tools and roughly 48,000 tokens of context before the task starts, which is
-larger than most effects worth measuring.
+32 tools and about 59,000 tokens of context before the task starts, which is
+larger than most effects worth measuring. `startup-context/` is the experiment
+that measured that number and took it apart.
 
 ## Conventions
 

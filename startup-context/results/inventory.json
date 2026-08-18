@@ -1,0 +1,48 @@
+{
+  "claude": {
+    "global_memory_file": {
+      "bytes": 1378,
+      "lines": 25,
+      "approx_tokens": 345
+    },
+    "skills_dir_entries": 87,
+    "commands_dir_entries": 3,
+    "agents_dir_entries": 0,
+    "plugin_repos": 0,
+    "claude_json_bytes": 327378,
+    "claude_json_project_entries": 137,
+    "settings_hook_events": [
+      "SessionEnd",
+      "SessionStart"
+    ],
+    "settings_hook_count": 2,
+    "settings_bytes": 7145,
+    "installed_plugins_count": 20,
+    "mcp_servers_in_claude_json_count": 2
+  },
+  "codex": {
+    "global_memory_file": {
+      "bytes": 28338,
+      "lines": 456,
+      "approx_tokens": 7085
+    },
+    "config_file": {
+      "bytes": 15017,
+      "lines": 389,
+      "approx_tokens": 3754
+    },
+    "project_entries_in_config": 84,
+    "agents_dir_entries": 20,
+    "skills_dir_entries": 130,
+    "prompts_dir_entries": 48,
+    "plugins_dir_entries": 1,
+    "rules_dir_entries": 1,
+    "hooks_file": {
+      "bytes": 235,
+      "lines": 15,
+      "approx_tokens": 59
+    },
+    "mcp_servers_in_config_count": 8
+  },
+  "bytes_per_token_assumed": 4
+}

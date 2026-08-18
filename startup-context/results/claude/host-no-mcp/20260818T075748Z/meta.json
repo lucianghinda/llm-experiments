@@ -1,0 +1,29 @@
+{
+  "agent": "claude",
+  "condition": "host-no-mcp",
+  "where": "host",
+  "note": "MCP servers off, everything else on",
+  "repeat": 3,
+  "model_requested": "sonnet",
+  "recorded_at": "2026-08-18T07:57:55Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 6.75,
+  "argv": [
+    "/opt/homebrew/bin/claude",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--model",
+    "sonnet",
+    "--no-session-persistence",
+    "--permission-mode",
+    "bypassPermissions",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}"
+  ],
+  "cwd_kind": "neutral"
+}

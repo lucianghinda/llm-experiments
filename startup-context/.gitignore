@@ -1,0 +1,3 @@
+# Unsanitized probe output. Transcripts carry host paths and the full local
+# configuration surface. Only sanitize.rb decides what reaches results/.
+results-raw/

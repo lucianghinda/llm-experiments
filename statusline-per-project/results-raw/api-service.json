@@ -1,0 +1,61 @@
+{
+  "project": "api-service",
+  "captured_by": "capture-payload.rb, real interactive session",
+  "probe_cwd": "<project-dir>",
+  "env": {
+    "CLAUDE_PROJECT_DIR": "<project-dir>",
+    "PWD": "<project-dir>",
+    "COLUMNS": null,
+    "LINES": null
+  },
+  "payload": {
+    "session_id": "<session-id>",
+    "transcript_path": "<transcript-path>",
+    "cwd": "<project-dir>",
+    "effort": {
+      "level": "xhigh"
+    },
+    "model": {
+      "id": "claude-opus-5[1m]",
+      "display_name": "Opus 5 (1M context)"
+    },
+    "workspace": {
+      "current_dir": "<project-dir>",
+      "project_dir": "<project-dir>",
+      "added_dirs": [],
+      "git_worktree": "llmx-statusline-per-project",
+      "repo": {
+        "host": "github.com",
+        "owner": "lucianghinda",
+        "name": "llm-experiments"
+      }
+    },
+    "version": "2.1.234",
+    "output_style": {
+      "name": "default"
+    },
+    "cost": {
+      "total_cost_usd": 0,
+      "total_duration_ms": 1054,
+      "total_api_duration_ms": 0,
+      "total_lines_added": 0,
+      "total_lines_removed": 0
+    },
+    "context_window": {
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "context_window_size": 1000000,
+      "current_usage": null,
+      "used_percentage": null,
+      "remaining_percentage": null
+    },
+    "exceeds_200k_tokens": false,
+    "fast_mode": false,
+    "thinking": {
+      "enabled": true
+    },
+    "vim": {
+      "mode": "INSERT"
+    }
+  }
+}

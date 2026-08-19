@@ -1,61 +1,98 @@
 # statusline-per-project
 
 **Question:** can a Claude Code status line be set per project, so different
-folders show different bars?
+folders show different bars, and can that setting be committed and shared?
 
-**Answer:** yes. `statusLine` is a normal top level key in `settings.json`, so
-it follows the same precedence chain as every other setting:
+**Answer:** yes to both. The second half is the interesting part, because the
+obvious reading of the docs says no.
 
-    managed  >  command line  >  .claude/settings.local.json
-             >  .claude/settings.json  >  ~/.claude/settings.json
+Measured on Claude Code `2.1.234`, two real interactive sessions.
 
-A global bar in `~/.claude/settings.json` is the lowest layer. Any project that
-ships its own `.claude/settings.json` with a `statusLine` key wins inside that
-folder. The [status line docs](https://code.claude.com/docs/en/statusline) say
-it directly: add the field to your user settings "or project settings".
+## Result
 
-This is a demonstration, not a measurement. There are no runs and no numbers.
-
-## What is here
-
-Two throwaway projects, each with its own bar, so the difference is visible
-rather than asserted.
-
-| Folder | Shape | Payload fields it reads |
+| Claim | Method | Result |
 |---|---|---|
-| [`api-service/`](api-service/) | one line, git flavoured | `model.display_name`, `workspace.current_dir`, `cost.total_lines_added`, `cost.total_lines_removed`, `cost.total_cost_usd` |
-| [`docs-site/`](docs-site/) | two lines, context meter | `model.display_name`, `output_style.name`, `effort.level`, `context_window.*`, `cost.total_duration_ms` |
+| A project `.claude/settings.json` overrides the global `statusLine` | opened a session in each folder | **confirmed**, the project bar drew and the global bar did not |
+| `claude -p` runs the status line | ran `claude -p` with a capture probe | **no**, the probe never fired, so a headless run cannot test a bar |
+| `"command": "./.claude/statusline.rb"` (relative) | marker probe at a relative path | **resolves**, `Dir.pwd` is the project directory |
+| `"command": "ruby \"$CLAUDE_PROJECT_DIR/...\""` | marker probe behind the variable | **resolves**, the variable is set to the project directory |
+| `padding: 2` indents the bar | compared rendered output | **confirmed**, two leading spaces on `docs-site` |
+| `COLUMNS` and `LINES` are set | read from the probe environment | **not seen**, both were nil, see caveats |
 
-Rendered from the same payload:
+The two bars, captured from the real sessions:
 
-    api-service │ Opus · api-service · experiment/statusline-per-project* · +156/-23 · $0.0731
+    api-service │ Opus 5 (1M context) · api-service · experiment/statusline-per-project*
 
-    docs-site   │ docs-site | Opus | high effort | explanatory
-                │ █████░░░░░░░░░░░ 31% ctx 312.4k/1M 4:12
+    docs-site   │   docs-site | Opus 5 (1M context) | xhigh effort | default
+                │ ░░░░░░░░░░░░░░░░ 0% ctx 0/1M 0:01
 
-## Running it
+## Why the portable form matters
 
-    ruby setup.rb
+A status line command runs through a shell, so the natural assumption is that
+it needs an absolute path. That would make a project level `statusLine`
+unshareable, because a committed `settings.json` would carry one machine's home
+directory into everyone else's checkout.
 
-`setup.rb` writes each `.claude/settings.json` from the committed
-`.example` file, expanding `<experiment-root>` into the absolute path on this
-machine. Then open either folder and trust it when asked:
+Measuring it says otherwise. Claude Code runs the command with the working
+directory set to the project directory **and** exports `$CLAUDE_PROJECT_DIR`.
+So this is committable as is, with no absolute path anywhere:
 
-    cd api-service && claude
-    cd docs-site   && claude
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "ruby \"$CLAUDE_PROJECT_DIR/.claude/statusline.rb\""
+  }
+}
+```
 
-`statusLine` runs a shell command, so it sits behind the same workspace trust
-gate as hooks.
+Both projects here use exactly that. `$CLAUDE_PROJECT_DIR` is preferred over the
+relative form because `workspace.current_dir` can move during a session while
+`workspace.project_dir` does not, so a relative path has a failure mode the
+variable does not.
 
-## Running a bar without starting Claude Code
+Worth flagging: the status line docs never mention `$CLAUDE_PROJECT_DIR`. They
+document it for hooks only. This result is observed behaviour, not a promise,
+so it could change.
 
-The contract is stdin in, stdout out, so a pipe is enough. Nothing goes back to
-the model, the status line is display only.
+## What the payload really looks like
 
-    echo '{"model":{"display_name":"Opus"},
+Full captures in [`results-raw/`](results-raw/), paths and session ids redacted.
+Differences from what the docs example led me to expect:
+
+- `used_percentage`, `remaining_percentage` and `current_usage` are all `null`
+  at session start, not `0`. A bar that does arithmetic on them straight away
+  gets a `NoMethodError`, which is why both scripts fall back to computing the
+  percentage themselves.
+- `model.display_name` is `"Opus 5 (1M context)"`, not a short `"Opus"`. Long
+  enough to change how a bar is laid out.
+- `workspace.git_worktree` and `workspace.repo` are populated here, because
+  this experiment lives in a linked worktree.
+- Absent in these captures: `session_name`, `prompt_id`, `pr`, `agent`,
+  `worktree`, `rate_limits`. Do not assume any field exists.
+
+## Harness
+
+`capture-payload.rb` writes the raw payload plus the environment to
+`results-raw/`, then delegates to the project's own status line so the session
+still looks normal. Point a project's `settings.json` at it:
+
+    "command": "<experiment-root>/capture-payload.rb <project-folder>"
+
+Sessions were driven non-interactively under a pty, because the bar does not
+render under `claude -p`:
+
+    cd api-service && timeout 40 script -q /dev/null claude </dev/null
+
+## Running the bars without a session
+
+The contract is stdin in, stdout out, and nothing goes back to the model, so a
+pipe is enough to iterate on a bar:
+
+    echo '{"model":{"display_name":"Opus 5 (1M context)"},
            "workspace":{"current_dir":"'"$PWD"'"},
-           "output_style":{"name":"explanatory"},
-           "effort":{"level":"high"},
+           "output_style":{"name":"default"},
+           "effort":{"level":"xhigh"},
            "cost":{"total_cost_usd":0.0731,"total_duration_ms":252000,
                    "total_lines_added":156,"total_lines_removed":23},
            "context_window":{"total_input_tokens":312450,
@@ -63,47 +100,20 @@ the model, the status line is display only.
                              "used_percentage":31}}' \
       | ./.claude/statusline.rb
 
-## The absolute path problem
-
-This is the part worth knowing before you commit a project status line.
-
-The `command` value is run through a shell whose working directory you do not
-control, so an absolute path is the only form I can show working. That fights
-with sharing: a committed `.claude/settings.json` carries one machine's paths
-into everyone else's checkout.
-
-Three ways around it, only one of them verified:
-
-| Form | Status |
-|---|---|
-| `"/abs/path/statusline.rb"` | verified, and what `setup.rb` generates |
-| `"./.claude/statusline.rb"` | not verified, depends on the working directory the command inherits |
-| `"ruby \"$CLAUDE_PROJECT_DIR/.claude/statusline.rb\""` | not verified, the docs promise this variable for hooks but never mention it for `statusLine` |
-
-So this repo commits `settings.json.example` with an `<experiment-root>`
-placeholder and generates the real file, the same shape as
-`at-file-mentions/apps.local.example`.
-
-Testing the two unverified forms needs a live interactive session, because the
-status line does not render under `claude -p`. That is the obvious next step
-if this becomes a real experiment.
-
 ## Caveats
 
-- Both scripts are `chmod +x` with a `#!/usr/bin/env ruby` shebang, so
-  `command` points straight at the `.rb` file. Without the executable bit the
-  setting has to become `"command": "ruby /abs/path/statusline.rb"`.
-- Both parse stdin inside a `rescue` and fall back to `Dir.pwd`. A status line
-  that raises gives you a broken bar on every single turn, so swallowing the
-  error is the right trade here. Tested with empty stdin.
-- `api-service` shells out to `git` twice per render. That is cheap locally and
-  slow on a network mount, and Claude Code cancels a command that runs long.
-- `padding` is a knob that exists only on `statusLine`, not on hooks. It is
-  relative indentation on top of the built in spacing, not distance from the
-  terminal edge. `docs-site` sets it to 2.
-- The branch `api-service` shows is this repo's branch, because the folder
-  lives inside the worktree. Both demo projects report the same branch here.
-  Outside a repo the segment falls back to `no-git`.
+- `COLUMNS` and `LINES` came back nil, though the docs say they carry the
+  terminal size from v2.1.153 and this ran on 2.1.234. The sessions were driven
+  under `script -q /dev/null` with stdin closed, so this is more likely an
+  artefact of the harness than a real gap. Untested in a human driven terminal.
+- Both sessions were empty. Every cost field was zero and the context window was
+  zero, so the coloured thresholds in the bars were never exercised with real
+  numbers.
+- Two runs, one machine, one Claude Code version, macOS only.
+- A custom status line suppresses most footer keyboard hints, including
+  `esc to interrupt` and `? for shortcuts`. That is a real cost of running one.
+- `api-service` shells out to `git` twice per render. Cheap locally, slow on a
+  network mount, and Claude Code cancels a command that runs long.
 
 ## Docs
 

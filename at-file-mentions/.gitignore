@@ -1,0 +1,6 @@
+# Host checkout locations. Absolute paths never enter the repo.
+.apps.local
+
+# Unsanitized trial output. Only sanitize.rb decides what reaches results/.
+results-raw/
+results-manual/

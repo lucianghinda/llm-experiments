@@ -1,0 +1,64 @@
+{
+  "bug_id": "postcraftstudio-01",
+  "app": "postcraftstudio",
+  "agent": "codex",
+  "condition": "bare_noline",
+  "branch": "trial/postcraftstudio-01",
+  "model_requested": null,
+  "impl_files": [
+    "app/controllers/concerns/api_auth.rb"
+  ],
+  "test_file": "test/controllers/api/base_controller_test.rb",
+  "started_at": "2026-08-18T07:57:41Z",
+  "history_visible_to_agent": "5d2ad21 Import application source\ne264e1e Import application source",
+  "branches_visible_to_agent": [],
+  "clean_tree_before": true,
+  "db_prepare_exit": 0,
+  "test_before": {
+    "exit": 1,
+    "seconds": 29.671
+  },
+  "suite_ran_before": true,
+  "bug_reproduces": true,
+  "config_dir": "/home/agent/.codex-trial",
+  "agent_argv": [
+    "codex",
+    "exec",
+    "--json",
+    "--dangerously-bypass-approvals-and-sandbox",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ephemeral",
+    "-C",
+    "/workspace/app",
+    "-"
+  ],
+  "agent_exit": 0,
+  "timed_out": false,
+  "wall_seconds": 160.89,
+  "changed_files": [
+    "app/controllers/concerns/api_auth.rb"
+  ],
+  "untracked_files": [],
+  "touched_impl_file": true,
+  "edited_test_dir": false,
+  "test_after": {
+    "exit": 0,
+    "seconds": 29.706
+  },
+  "fix_verified": true,
+  "toolchain": {
+    "image_built_at": "2026-08-17T10:22:37Z",
+    "ubuntu": "24.04",
+    "arch": "aarch64",
+    "mise": "2026.8.6 linux-arm64 (2026-08-14)",
+    "rubies": "3.4.5 4.0.1",
+    "node": "v22.23.2",
+    "claude_code": "2.1.233 (Claude Code)",
+    "codex": "codex-cli 0.147.0",
+    "postgres": "postgres (PostgreSQL) 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)"
+  },
+  "finished_at": "2026-08-18T08:01:25Z",
+  "host_wall_seconds": 225.9,
+  "container_ok": true
+}

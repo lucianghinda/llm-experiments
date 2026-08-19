@@ -1,0 +1,231 @@
+# Ground truth for every planted bug.
+#
+# Each bug is a real merged fix commit from the app's own history. Planting
+# applies that commit's implementation diff backwards and keeps its regression
+# test, so the failing test is the one the maintainer actually wrote for the
+# defect.
+#
+# Every fix_sha here was checked with probe_candidates.rb: its implementation
+# hunks still apply backwards to the base branch. Commits whose files were
+# rewritten later cannot be planted and are not listed, however good the bug.
+#
+# domain_hint is the whole cond-none hint block. Rule: no path fragment, and no
+# word that matches a defect-file or test-file basename.
+# hint_paths is what cond-bare and cond-at list, in this order. The line numbers
+# are computed at render time from the planted branch, never hand-written.
+
+bugs:
+  - id: campfire-01
+    app: campfire
+    slug: nat64-recheck
+    fix_sha: 4cfcc2a
+    impl_files:
+      - lib/restricted_http/private_network_guard.rb
+    test_file: test/lib/restricted_http/private_network_guard_test.rb
+    domain_hint: "The outbound fetch safety check refuses a destination it should allow: one whose address embeds a reachable public target inside a transition-prefix form."
+    hint_paths:
+      - test/lib/restricted_http/private_network_guard_test.rb
+      - lib/restricted_http/private_network_guard.rb
+
+  - id: postcraftstudio-01
+    app: postcraftstudio
+    slug: bearer-401-message
+    fix_sha: c337218
+    impl_files:
+      - app/controllers/concerns/api_auth.rb
+    test_file: test/controllers/api/base_controller_test.rb
+    domain_hint: "Turning away a request that carries a badly formed credential does not answer the same way as turning away one that carries an unrecognised credential."
+    hint_paths:
+      - test/controllers/api/base_controller_test.rb
+      - app/controllers/concerns/api_auth.rb
+
+  # Replaces fix_sha 9c46157 (array-shaped tweet entities), which applied
+  # backwards cleanly and still left the suite green: later code covered the
+  # same case independently, so there was no defect to find. plant_check.rb
+  # caught it before any trial was spent on it. 56ad37c was picked from
+  # probe_candidates.rb's non-mirrored candidates, so the test file's name does
+  # not hand over the implementation file the way tweets_helper_test.rb did.
+  - id: bookmarks-01
+    app: bookmarks
+    slug: session-recovery-400
+    fix_sha: 56ad37c
+    impl_files:
+      - app/services/bluesky/client.rb
+    test_file: test/services/bluesky/client_post_by_uri_test.rb
+    domain_hint: "Recovering an expired credential works only when the upstream API labels the rejection in one exact way. The same refusal worded differently goes untreated, so the lookup yields nothing and the item is reported as missing."
+    hint_paths:
+      - test/services/bluesky/client_post_by_uri_test.rb
+      - app/services/bluesky/client.rb
+
+  # ---------------------------------------------------------------------------
+  # Grid expansion, 2026-08-18: four more bugs per app, for five per app.
+  #
+  # Every candidate below was read before it was listed. Four commits that
+  # probe_candidates.rb reported as plantable were rejected on inspection
+  # because they bundled an unrelated test change with the implementation
+  # change, so reverting the implementation would not have failed the test:
+  #
+  #   campfire        c0cade5  only adds `require "ipaddr"`; the test change
+  #                            tightens a port assertion the impl already meets
+  #   postcraftstudio 9956b1a  impl changes insight-card rendering, test change
+  #                            edits an unrelated samples-length assertion
+  #   bookmarks       e51af84  impl drops .html_safe from an Avo resource, test
+  #                            change is about twitter import return shapes
+  #   bookmarks       37eff5b  impl adds persisted? guards, test change is blank
+  #                            lines plus one unrelated CSS selector
+  #
+  # That is the same shape as the commit plant_check.rb caught as "NOT A BUG"
+  # last run. Reading the diff is the cheap filter; plant_check is still the
+  # one that decides.
+  #
+  # bookmarks has no usable non-mirrored candidate left: of its 19 plantable
+  # commits only 3 withhold the defect path, one is already bookmarks-01 and
+  # the other two are the rejects above. Its four new bugs are all mirrored, so
+  # cond-none is weakest on this app. Recorded rather than papered over.
+  # ---------------------------------------------------------------------------
+
+  - id: campfire-02
+    app: campfire
+    slug: bot-auth-scope
+    fix_sha: 3d0a10d
+    impl_files:
+      - app/models/user/bot.rb
+    test_file: test/controllers/messages/by_bots_controller_test.rb
+    domain_hint: "The credential check that lets an automated poster identify itself is matched against every enabled account rather than only the automated ones, so a caller holding one key can act as somebody else entirely."
+    hint_paths:
+      - test/controllers/messages/by_bots_controller_test.rb
+      - app/models/user/bot.rb
+
+  - id: campfire-03
+    app: campfire
+    slug: settings-object-permission
+    fix_sha: 5266ffc
+    impl_files:
+      - app/controllers/rooms_controller.rb
+    test_file: test/controllers/rooms/closeds_controller_test.rb
+    domain_hint: "An account can be set so that only administrators may create a new chat space. That restriction is read from the wrong object, so ordinary members are let through anyway."
+    hint_paths:
+      - test/controllers/rooms/closeds_controller_test.rb
+      - app/controllers/rooms_controller.rb
+
+  - id: campfire-04
+    app: campfire
+    slug: involvement-admin-guard
+    fix_sha: b891916
+    impl_files:
+      - app/controllers/rooms/involvements_controller.rb
+    test_file: test/controllers/rooms/involvements_controller_test.rb
+    domain_hint: "Adjusting how closely you follow a conversation you are part of is refused unless you also administer it, although anyone taking part should be free to change their own preference."
+    hint_paths:
+      - test/controllers/rooms/involvements_controller_test.rb
+      - app/controllers/rooms/involvements_controller.rb
+
+  - id: campfire-05
+    app: campfire
+    slug: global-activity-stream
+    fix_sha: 3b509f5
+    impl_files:
+      - app/channels/unread_rooms_channel.rb
+      - app/models/message/broadcasts.rb
+    test_file: test/channels/unread_rooms_channel_test.rb
+    domain_hint: "Word of fresh activity is published on a single shared stream that every signed-in connection subscribes to, so people are told about traffic in places they have no part in. It should reach only those who belong there."
+    hint_paths:
+      - test/channels/unread_rooms_channel_test.rb
+      - app/channels/unread_rooms_channel.rb
+      - app/models/message/broadcasts.rb
+
+  - id: postcraftstudio-02
+    app: postcraftstudio
+    slug: asset-host-normalisation
+    fix_sha: 897bf7c
+    impl_files:
+      - lib/active_storage/service/r2_service.rb
+    test_file: test/services/active_storage/r2_service_test.rb
+    domain_hint: "A configured asset host is used exactly as written, so one entered without a scheme, or with a trailing slash, yields a malformed public link."
+    hint_paths:
+      - test/services/active_storage/r2_service_test.rb
+      - lib/active_storage/service/r2_service.rb
+
+  - id: postcraftstudio-03
+    app: postcraftstudio
+    slug: dashboard-basic-auth
+    fix_sha: a47b839
+    impl_files:
+      - config/initializers/mission_control.rb
+    test_file: test/controllers/mission_control_jobs_access_test.rb
+    domain_hint: "A setting for the queued-work dashboard is applied to an object that is discarded before anything reads it, so the value never takes effect."
+    hint_paths:
+      - test/controllers/mission_control_jobs_access_test.rb
+      - config/initializers/mission_control.rb
+
+  - id: postcraftstudio-04
+    app: postcraftstudio
+    slug: api-schema-fields
+    fix_sha: 84abf3e
+    impl_files:
+      - app/controllers/api/v1/url_quote_extractions_controller.rb
+    test_file: test/integration/api/openapi_spec_test.rb
+    domain_hint: "The machine-readable description this API publishes for the endpoints that pull notable lines out of a page omits several fields those endpoints actually return."
+    hint_paths:
+      - test/integration/api/openapi_spec_test.rb
+      - app/controllers/api/v1/url_quote_extractions_controller.rb
+
+  - id: postcraftstudio-05
+    app: postcraftstudio
+    slug: throttle-not-distinguished
+    fix_sha: 75df853
+    impl_files:
+      - app/services/cloudflare_screenshotter.rb
+    test_file: test/services/cloudflare_screenshotter_test.rb
+    domain_hint: "When the remote image-capture provider answers that too many requests are being sent, that answer is handled like any other failure instead of being raised as a distinct throttling condition callers can retry on."
+    hint_paths:
+      - test/services/cloudflare_screenshotter_test.rb
+      - app/services/cloudflare_screenshotter.rb
+
+  - id: bookmarks-02
+    app: bookmarks
+    slug: media-links-array-shape
+    fix_sha: 9c46157
+    impl_files:
+      - app/helpers/tweets_helper.rb
+    test_file: test/helpers/tweets_helper_test.rb
+    domain_hint: "Gathering the media links attached to a saved item assumes its attachment metadata is always a keyed structure. When it arrives as a plain list instead, the lookup raises."
+    hint_paths:
+      - test/helpers/tweets_helper_test.rb
+      - app/helpers/tweets_helper.rb
+
+  - id: bookmarks-03
+    app: bookmarks
+    slug: display-body-array-shape
+    fix_sha: 9162e9f
+    impl_files:
+      - app/models/twitter/tweet.rb
+    test_file: test/models/twitter/tweet_test.rb
+    domain_hint: "Rendering the visible text of a saved item strips its media links out first, and that step assumes the attachment metadata is a keyed structure. Given a plain list it raises instead of returning the text unchanged."
+    hint_paths:
+      - test/models/twitter/tweet_test.rb
+      - app/models/twitter/tweet.rb
+
+  - id: bookmarks-04
+    app: bookmarks
+    slug: importable-categories
+    fix_sha: 5084c82
+    impl_files:
+      - app/models/readwise/digest_tweet.rb
+    test_file: test/models/readwise/digest_tweet_test.rb
+    domain_hint: "The set of subject categories eligible for import still admits the AI and large-language-model one, which should no longer be pulled in; only the Ruby and Rails categories belong there."
+    hint_paths:
+      - test/models/readwise/digest_tweet_test.rb
+      - app/models/readwise/digest_tweet.rb
+
+  - id: bookmarks-05
+    app: bookmarks
+    slug: summarisation-not-enqueued
+    fix_sha: 7549b9d
+    impl_files:
+      - app/models/edition.rb
+    test_file: test/models/edition_test.rb
+    domain_hint: "Creating a new newsletter issue never schedules the background summarising of the items it gathers, so that work simply never starts."
+    hint_paths:
+      - test/models/edition_test.rb
+      - app/models/edition.rb

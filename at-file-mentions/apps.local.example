@@ -1,0 +1,12 @@
+# Copy to .apps.local (gitignored) and point at your own checkouts:
+#
+#   cp at-file-mentions/apps.local.example at-file-mentions/.apps.local
+#   $EDITOR at-file-mentions/.apps.local
+#   set -a; . at-file-mentions/.apps.local; set +a
+#
+# The scripts only ever read these repos; they create local branches and never
+# push, never open a pull request and never merge.
+
+LLMX_APP_CAMPFIRE=/path/to/once-campfire
+LLMX_APP_POSTCRAFTSTUDIO=/path/to/postcraftstudio
+LLMX_APP_BOOKMARKS=/path/to/short-ruby-bookmarks

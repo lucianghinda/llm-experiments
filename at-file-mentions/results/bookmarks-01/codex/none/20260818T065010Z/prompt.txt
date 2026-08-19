@@ -1,0 +1,9 @@
+A test in this Rails application fails:
+
+    bin/rails test test/services/bluesky/client_post_by_uri_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+Recovering an expired credential works only when the upstream API labels the rejection in one exact way. The same refusal worded differently goes untreated, so the lookup yields nothing and the item is reported as missing.

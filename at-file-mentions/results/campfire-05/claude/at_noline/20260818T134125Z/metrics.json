@@ -1,0 +1,169 @@
+{
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 9,
+  "duration_ms": 38296,
+  "duration_api_ms": 35371,
+  "total_cost_usd": 0.270946,
+  "stop_reason": "end_turn",
+  "is_error": false,
+  "input_tokens": 12,
+  "output_tokens": 2609,
+  "cache_creation_input_tokens": 13252,
+  "cache_read_input_tokens": 146282,
+  "thinking_tokens": 1101,
+  "total_tool_calls": 8,
+  "tool_call_names": [
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Write",
+    "Edit",
+    "Bash"
+  ],
+  "tool_calls_to_first_defect_read": 5,
+  "tool_calls_to_first_edit": 5,
+  "read_before_edit": false,
+  "context_before_first_tool_call": 20324,
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 3754,
+      "cache_read_input_tokens": 16568,
+      "context_tokens": 20324,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 3754,
+      "cache_read_input_tokens": 16568,
+      "context_tokens": 20324,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 3754,
+      "cache_read_input_tokens": 16568,
+      "context_tokens": 20324,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 4137,
+      "cache_read_input_tokens": 20322,
+      "context_tokens": 24461,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 4137,
+      "cache_read_input_tokens": 20322,
+      "context_tokens": 24461,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 4137,
+      "cache_read_input_tokens": 20322,
+      "context_tokens": 24461,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2524,
+      "cache_read_input_tokens": 24459,
+      "context_tokens": 26985,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2524,
+      "cache_read_input_tokens": 24459,
+      "context_tokens": 26985,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 26983,
+      "context_tokens": 28375,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 26983,
+      "context_tokens": 28375,
+      "tool_calls": [
+        "Write"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 26983,
+      "context_tokens": 28375,
+      "tool_calls": [
+        "Edit"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 1204,
+      "cache_read_input_tokens": 28373,
+      "context_tokens": 29579,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 243,
+      "cache_read_input_tokens": 29577,
+      "context_tokens": 29822,
+      "tool_calls": []
+    }
+  ],
+  "test_file": "test/channels/unread_rooms_channel_test.rb",
+  "unparsable_lines": 0,
+  "raw_events": 37,
+  "bug_id": "campfire-05",
+  "condition": "at_noline",
+  "app": "campfire",
+  "fix_verified": true,
+  "wall_seconds": 39.365,
+  "timed_out": false,
+  "bug_reproduces": true,
+  "trial_dir": "results-raw/campfire-05/claude/at_noline/20260818T134125Z"
+}

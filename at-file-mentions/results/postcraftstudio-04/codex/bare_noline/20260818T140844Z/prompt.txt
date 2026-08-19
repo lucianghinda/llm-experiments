@@ -1,0 +1,11 @@
+A test in this Rails application fails:
+
+    bin/rails test test/integration/api/openapi_spec_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+Relevant files:
+test/integration/api/openapi_spec_test.rb
+app/controllers/api/v1/url_quote_extractions_controller.rb

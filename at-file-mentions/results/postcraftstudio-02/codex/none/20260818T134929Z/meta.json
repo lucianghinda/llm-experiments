@@ -1,0 +1,66 @@
+{
+  "bug_id": "postcraftstudio-02",
+  "app": "postcraftstudio",
+  "agent": "codex",
+  "condition": "none",
+  "branch": "trial/postcraftstudio-02",
+  "model_requested": "gpt-5.6-sol",
+  "impl_files": [
+    "lib/active_storage/service/r2_service.rb"
+  ],
+  "test_file": "test/services/active_storage/r2_service_test.rb",
+  "started_at": "2026-08-18T13:49:30Z",
+  "history_visible_to_agent": "a0a4a86 Import application source\ne3ce430 Import application source\n629066e Import application source\n2368740 Import application source\nec27d7b Import application source\nc0352f9 Import application source",
+  "branches_visible_to_agent": [],
+  "clean_tree_before": true,
+  "db_prepare_exit": 0,
+  "test_before": {
+    "exit": 1,
+    "seconds": 6.347
+  },
+  "suite_ran_before": true,
+  "bug_reproduces": true,
+  "config_dir": "/home/agent/.codex-trial",
+  "agent_argv": [
+    "codex",
+    "exec",
+    "--json",
+    "--dangerously-bypass-approvals-and-sandbox",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ephemeral",
+    "-C",
+    "/workspace/app",
+    "--model",
+    "gpt-5.6-sol",
+    "-"
+  ],
+  "agent_exit": 0,
+  "timed_out": false,
+  "wall_seconds": 40.66,
+  "changed_files": [
+    "lib/active_storage/service/r2_service.rb"
+  ],
+  "untracked_files": [],
+  "touched_impl_file": true,
+  "edited_test_dir": false,
+  "test_after": {
+    "exit": 0,
+    "seconds": 5.978
+  },
+  "fix_verified": true,
+  "toolchain": {
+    "image_built_at": "2026-08-17T10:22:37Z",
+    "ubuntu": "24.04",
+    "arch": "aarch64",
+    "mise": "2026.8.6 linux-arm64 (2026-08-14)",
+    "rubies": "3.4.5 4.0.1",
+    "node": "v22.23.2",
+    "claude_code": "2.1.233 (Claude Code)",
+    "codex": "codex-cli 0.147.0",
+    "postgres": "postgres (PostgreSQL) 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)"
+  },
+  "finished_at": "2026-08-18T13:50:27Z",
+  "host_wall_seconds": 58.6,
+  "container_ok": true
+}

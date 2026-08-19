@@ -1,0 +1,17 @@
+Running 23 tests in a single process (parallelization threshold is 50)
+Run options: --seed 59526
+
+# Running:
+
+..............F
+
+Failure:
+RestrictedHTTP::PrivateNetworkGuardTest#test_private_ip?_returns_false_for_local-use_NAT64_addresses_embedding_a_public_IPv4_(RFC8215) [test/lib/restricted_http/private_network_guard_test.rb:82]:
+Expected true to be nil or false
+
+bin/rails test test/lib/restricted_http/private_network_guard_test.rb:81
+
+........
+
+Finished in 1.410904s, 16.3016 runs/s, 31.8945 assertions/s.
+23 runs, 45 assertions, 1 failures, 0 errors, 0 skips

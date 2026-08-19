@@ -1,0 +1,9 @@
+A test in this Rails application fails:
+
+    bin/rails test test/channels/unread_rooms_channel_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+Word of fresh activity is published on a single shared stream that every signed-in connection subscribes to, so people are told about traffic in places they have no part in. It should reach only those who belong there.

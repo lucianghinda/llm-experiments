@@ -1,0 +1,9 @@
+A test in this Rails application fails:
+
+    bin/rails test test/helpers/tweets_helper_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+Gathering the media links attached to a saved item assumes its attachment metadata is always a keyed structure. When it arrives as a plain list instead, the lookup raises.

@@ -1,0 +1,9 @@
+A test in this Rails application fails:
+
+    bin/rails test test/models/readwise/digest_tweet_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+The set of subject categories eligible for import still admits the AI and large-language-model one, which should no longer be pulled in; only the Ruby and Rails categories belong there.

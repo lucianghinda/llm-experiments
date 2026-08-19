@@ -1,0 +1,12 @@
+A test in this Rails application fails:
+
+    bin/rails test test/channels/unread_rooms_channel_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+Relevant files:
+test/channels/unread_rooms_channel_test.rb
+app/channels/unread_rooms_channel.rb
+app/models/message/broadcasts.rb

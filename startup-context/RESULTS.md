@@ -188,10 +188,14 @@ written before that mechanism existed no longer describes what MCP costs.
 
 What MCP still costs is time and reliability. Of the eight servers exactly one
 connected: one failed outright, four needed authentication and two were still
-pending when the answer arrived. Codex shows the same unreliability in stderr,
-though less often than first reported here: two of its servers logged transport
-failures in one host run of twelve, and every host run of both agents logged
-something.
+pending when the answer arrived. That accounting comes from Claude's `init`
+event, not from stderr: Claude wrote nothing to stderr in any of its 30 runs.
+
+Codex shows the same unreliability and is the only one of the three that
+writes it down. Two of its servers logged transport failures in one host run
+of twelve. Its other stderr lines, present in every run including the
+container, are `failed to refresh available models`, which is not MCP.
+opencode's stderr was empty in all 46 runs.
 
 ### Hooks spend context nobody asked for
 
@@ -242,19 +246,26 @@ is past the point where adding a skill makes the others easier to find.
 
 ### `--ignore-user-config` does not give you a clean Codex
 
-The flag reads as "start fresh". It removes **2,672 tokens** of the 16,199 that
+The flag reads as "start fresh". It removes **2,672 tokens** of the 16,198 that
 this machine adds. `~/.codex/AGENTS.md` is 28,338 bytes, roughly 7,000 tokens,
 and it loads anyway; so do the 130 skills, and the truncation warning still
 fires. The only condition that produced a genuinely bare Codex was the
 container.
 
-### The same project directory feeds the two agents very differently
+### Only one of the three notices which project it is in
 
-Opening the same folder cost Claude **2,243 extra tokens** and Codex about
-**six**. The project keeps its instructions in `CLAUDE.md`, which Codex does not
-read. Its `AGENTS.md` is 22 bytes long and says `Read @Claude.md file`, which is
-an instruction, not content: Codex starts the session knowing nothing about the
-project and has to spend a tool call to find out.
+Opening the same folder cost Claude **2,243 extra tokens**, and that is the
+only one of the three differences big enough to be real. Codex's is **447**
+(`host-project` 28,857 against `host-full` 28,410) and its run-to-run spread
+on those two conditions is 573 and 593, so 447 sits inside its own noise.
+opencode's is **107** against spreads of 74 and 191, and sits inside its noise
+too.
+
+What separates them is what each agent reads. The project keeps its
+instructions in `CLAUDE.md`, which Codex does not read. Its `AGENTS.md` is 22
+bytes long and says `Read @Claude.md file`, which is an instruction, not
+content: Codex starts the session knowing nothing about the project and has to
+spend a tool call to find out.
 
 ### opencode: the lightest harness carrying the heaviest load
 

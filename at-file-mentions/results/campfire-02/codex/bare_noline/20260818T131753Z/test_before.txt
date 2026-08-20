@@ -1,0 +1,28 @@
+Running 23 tests in a single process (parallelization threshold is 50)
+Run options: --seed 31699
+
+# Running:
+
+................F
+
+Failure:
+Messages::ByBotsControllerTest#test_update_can't_be_abused_to_edit_messages_as_any_user [test/controllers/messages/by_bots_controller_test.rb:206]:
+Expected response to be a <3XX: redirect>, but was a <404: Not Found>
+Response body: 
+
+bin/rails test test/controllers/messages/by_bots_controller_test.rb:199
+
+.F
+
+Failure:
+Messages::ByBotsControllerTest#test_create_can't_be_abused_to_post_messages_as_any_user [test/controllers/messages/by_bots_controller_test.rb:57]:
+`Message.count` didn't change by 0, but by 1.
+Expected: 13
+  Actual: 14
+
+bin/rails test test/controllers/messages/by_bots_controller_test.rb:53
+
+....
+
+Finished in 3.298890s, 6.9720 runs/s, 22.7349 assertions/s.
+23 runs, 75 assertions, 2 failures, 0 errors, 0 skips

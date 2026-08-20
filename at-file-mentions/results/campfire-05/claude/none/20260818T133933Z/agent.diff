@@ -1,0 +1,36 @@
+diff --git a/app/channels/unread_rooms_channel.rb b/app/channels/unread_rooms_channel.rb
+index f7fcc08..689c165 100644
+--- a/app/channels/unread_rooms_channel.rb
++++ b/app/channels/unread_rooms_channel.rb
+@@ -1,5 +1,5 @@
+ class UnreadRoomsChannel < ApplicationCable::Channel
+   def subscribed
+-    stream_from "unread_rooms"
++    stream_from "user_#{current_user.id}_unreads"
+   end
+ end
+diff --git a/app/models/message/broadcasts.rb b/app/models/message/broadcasts.rb
+index 1f909dc..117ee7d 100644
+--- a/app/models/message/broadcasts.rb
++++ b/app/models/message/broadcasts.rb
+@@ -1,10 +1,19 @@
+ module Message::Broadcasts
+   def broadcast_create
+     broadcast_append_to room, :messages, target: [ room, :messages ]
+-    ActionCable.server.broadcast("unread_rooms", { roomId: room.id })
++    broadcast_unread_room
+   end
+ 
+   def broadcast_remove
+     broadcast_remove_to room, :messages
+   end
++
++  private
++    # Unread news goes out one stream per member, not one shared stream: someone
++    # who isn't in the room has no business hearing that it saw traffic.
++    def broadcast_unread_room
++      room.memberships.pluck(:user_id).each do |user_id|
++        ActionCable.server.broadcast("user_#{user_id}_unreads", { roomId: room.id })
++      end
++    end
+ end

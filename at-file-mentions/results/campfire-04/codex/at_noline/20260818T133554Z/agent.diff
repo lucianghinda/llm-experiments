@@ -1,0 +1,13 @@
+diff --git a/app/controllers/rooms/involvements_controller.rb b/app/controllers/rooms/involvements_controller.rb
+index 0c5c1e6..7f2878b 100644
+--- a/app/controllers/rooms/involvements_controller.rb
++++ b/app/controllers/rooms/involvements_controller.rb
+@@ -1,8 +1,6 @@
+ class Rooms::InvolvementsController < ApplicationController
+   include RoomScoped
+ 
+-  before_action :ensure_can_administer, only: %i[ update ]
+-
+   def show
+     @involvement = @membership.involvement
+   end

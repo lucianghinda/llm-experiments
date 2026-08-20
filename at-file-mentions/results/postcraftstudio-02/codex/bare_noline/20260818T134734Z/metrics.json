@@ -1,0 +1,39 @@
+{
+  "agent": "codex",
+  "input_tokens": 55288,
+  "output_tokens": 462,
+  "cache_read_input_tokens": 48128,
+  "cache_creation_input_tokens": 0,
+  "thinking_tokens": 51,
+  "total_tool_calls": 3,
+  "tool_call_names": [
+    "command_execution",
+    "file_change",
+    "command_execution"
+  ],
+  "tool_calls_to_first_defect_read": 0,
+  "tool_calls_to_first_edit": 1,
+  "read_before_edit": true,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "turns": [
+    {
+      "input_tokens": 55288,
+      "output_tokens": 462,
+      "cache_read_input_tokens": 48128,
+      "cache_creation_input_tokens": 0,
+      "reasoning_output_tokens": 51,
+      "context_tokens": 55288
+    }
+  ],
+  "unparsable_lines": 0,
+  "raw_events": 12,
+  "bug_id": "postcraftstudio-02",
+  "condition": "bare_noline",
+  "app": "postcraftstudio",
+  "fix_verified": true,
+  "wall_seconds": 31.895,
+  "timed_out": false,
+  "bug_reproduces": true,
+  "trial_dir": "results-raw/postcraftstudio-02/codex/bare_noline/20260818T134734Z"
+}

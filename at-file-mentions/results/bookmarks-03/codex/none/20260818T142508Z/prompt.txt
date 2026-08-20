@@ -1,0 +1,9 @@
+A test in this Rails application fails:
+
+    bin/rails test test/models/twitter/tweet_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+Rendering the visible text of a saved item strips its media links out first, and that step assumes the attachment metadata is a keyed structure. Given a plain list it raises instead of returning the text unchanged.

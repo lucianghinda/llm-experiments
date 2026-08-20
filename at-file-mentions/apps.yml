@@ -1,0 +1,69 @@
+# The three subject apps. Host checkout paths are never committed: they come
+# from LLMX_APP_<KEY> environment variables, with the key uppercased.
+#
+# base_sha pins where the experiment branches fork from, so a re-run plants the
+# same bugs against the same code even after the app moves on.
+
+apps:
+  - key: campfire
+    repo: once-campfire
+    privacy: public
+    license: MIT
+    base_sha: f1aec6133667a7486d521430f871bc420e18ec2b
+    base_ref: main
+    ruby: 3.4.5
+    bundler: 4.0.13
+    database: sqlite3
+    test_cmd: bin/rails test
+    db_prepare: bin/rails db:test:prepare
+    commit_raw_transcripts: true
+    neutralize: []
+
+  - key: postcraftstudio
+    repo: postcraftstudio
+    privacy: private
+    license: proprietary
+    base_sha: 63f4ff5698a9459f17e03663aaa9349b4b27b51b
+    base_ref: main
+    ruby: 4.0.1
+    bundler: 4.0.6
+    database: sqlite3
+    test_cmd: bin/rails test
+    db_prepare: bin/rails db:test:prepare
+    commit_raw_transcripts: false
+    neutralize:
+      - CLAUDE.md
+      - AGENTS.md
+      - TASKS.md
+      - opencode.json
+      - .mcp.json
+      - .claude
+      - .codex
+      - .github/copilot-instructions.md
+      - .github/instructions
+
+  - key: bookmarks
+    repo: short-ruby-bookmarks
+    privacy: private
+    license: proprietary
+    base_sha: b387a1641cee0f40803effe37a76997f7c760af1
+    base_ref: main
+    ruby: 4.0.1
+    bundler: default
+    database: postgresql
+    test_cmd: bin/rails test
+    db_prepare: bin/rails db:test:prepare
+    commit_raw_transcripts: false
+    neutralize:
+      - CLAUDE.md
+      - AGENTS.md
+      - TASK.md
+      - opencode.json
+      - .mcp.json
+      - .cursorrules
+      - .rails-ai-context.yml
+      - .claude
+      - .codex
+      - .cursor
+      - .github/copilot-instructions.md
+      - .github/instructions

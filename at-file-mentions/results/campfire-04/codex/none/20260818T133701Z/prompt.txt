@@ -1,0 +1,9 @@
+A test in this Rails application fails:
+
+    bin/rails test test/controllers/rooms/involvements_controller_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+Adjusting how closely you follow a conversation you are part of is refused unless you also administer it, although anyone taking part should be free to change their own preference.

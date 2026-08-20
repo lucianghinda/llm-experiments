@@ -1,0 +1,11 @@
+A test in this Rails application fails:
+
+    bin/rails test test/services/active_storage/r2_service_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+Relevant files:
+test/services/active_storage/r2_service_test.rb:7
+lib/active_storage/service/r2_service.rb:19

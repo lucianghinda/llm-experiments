@@ -1,0 +1,103 @@
+# Base image for LLM agent experiments.
+#
+# Gives every trial a freshly installed agent CLI with no host state: no user
+# CLAUDE.md, no MCP servers, no login. Credentials arrive at run time from a
+# mounted auth volume, never from this image.
+#
+# Built by containers/scripts/build_base.rb, which owns the version pins.
+
+FROM ubuntu:24.04
+
+ARG RUBY_VERSIONS="3.4.5 4.0.1"
+ARG NODE_VERSION="22"
+ARG CLAUDE_CODE_VERSION
+ARG CODEX_VERSION
+ARG AGENT_USER=agent
+ARG AGENT_UID=1001
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    TZ=UTC
+
+# System packages: ruby build deps, the native libraries the three subject apps
+# need (libvips + ffmpeg for campfire, postgres for bookmarks, sqlite for all),
+# and git for the fixture clone.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      ca-certificates curl wget git xz-utils unzip \
+      build-essential autoconf bison patch pkg-config \
+      libssl-dev libyaml-dev libreadline-dev zlib1g-dev libncurses-dev \
+      libffi-dev libgdbm-dev libdb-dev uuid-dev libgmp-dev \
+      libsqlite3-dev sqlite3 \
+      libpq-dev postgresql postgresql-contrib \
+      libvips42 libvips-tools ffmpeg \
+      libjemalloc2 tzdata procps less ripgrep jq \
+    && rm -rf /var/lib/apt/lists/*
+
+# mise manages the rubies and node. Installed into /opt so every user sees the
+# same toolchain and the shims work in non-login shells.
+ENV MISE_DATA_DIR=/opt/mise \
+    MISE_CONFIG_DIR=/opt/mise/config \
+    MISE_CACHE_DIR=/opt/mise/cache \
+    MISE_STATE_DIR=/opt/mise/state \
+    MISE_INSTALL_PATH=/usr/local/bin/mise \
+    MISE_YES=1
+ENV PATH=/opt/mise/shims:$PATH
+
+RUN curl -fsSL https://mise.run | sh && mise --version
+
+# Rubies are compiled here once so trials never pay for it.
+RUN set -eux; \
+    for v in ${RUBY_VERSIONS}; do mise install "ruby@${v}"; done; \
+    mise install "node@${NODE_VERSION}"; \
+    first_ruby="$(echo ${RUBY_VERSIONS} | awk '{print $1}')"; \
+    mise use -g "ruby@${first_ruby}" "node@${NODE_VERSION}"; \
+    mise reshim
+
+# Agent CLIs. Pinned by build_base.rb so a rebuild is reproducible.
+RUN set -eux; \
+    npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}" "@openai/codex@${CODEX_VERSION}"; \
+    mise reshim
+
+# Never let a trial silently run a different CLI build than the one recorded.
+ENV DISABLE_AUTOUPDATER=1 \
+    DISABLE_TELEMETRY=1 \
+    DISABLE_ERROR_REPORTING=1 \
+    CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
+    npm_config_update_notifier=false
+
+# The toolchain is owned by the agent user, not root. `gem install` triggers a
+# mise reshim, and a root-owned shims directory makes that fail noisily on every
+# app image build.
+RUN useradd --create-home --uid ${AGENT_UID} --shell /bin/bash ${AGENT_USER} \
+    && chown -R ${AGENT_USER}:${AGENT_USER} /opt/mise \
+    && mkdir -p /workspace /results \
+    && chown ${AGENT_USER}:${AGENT_USER} /workspace /results
+
+# Gems live outside the checkout so `git status` in a trial stays clean and the
+# agent's edits are the only diff.
+ENV BUNDLE_PATH=/home/${AGENT_USER}/bundle \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3 \
+    GEM_HOME=/home/${AGENT_USER}/gems \
+    PATH=/home/${AGENT_USER}/gems/bin:/opt/mise/shims:$PATH
+
+# Record exactly what got installed. Trials copy this into their metadata so a
+# result can always be traced back to a toolchain.
+RUN set -eux; \
+    printf '{\n' > /etc/llmx-versions.json; \
+    printf '  "image_built_at": "%s",\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> /etc/llmx-versions.json; \
+    printf '  "ubuntu": "%s",\n' "$(. /etc/os-release; echo $VERSION_ID)" >> /etc/llmx-versions.json; \
+    printf '  "arch": "%s",\n' "$(uname -m)" >> /etc/llmx-versions.json; \
+    printf '  "mise": "%s",\n' "$(mise --version | head -1)" >> /etc/llmx-versions.json; \
+    printf '  "rubies": "%s",\n' "${RUBY_VERSIONS}" >> /etc/llmx-versions.json; \
+    printf '  "node": "%s",\n' "$(node --version)" >> /etc/llmx-versions.json; \
+    printf '  "claude_code": "%s",\n' "$(claude --version 2>&1 | head -1)" >> /etc/llmx-versions.json; \
+    printf '  "codex": "%s",\n' "$(codex --version 2>&1 | head -1)" >> /etc/llmx-versions.json; \
+    printf '  "postgres": "%s"\n' "$(/usr/lib/postgresql/*/bin/postgres --version | head -1)" >> /etc/llmx-versions.json; \
+    printf '}\n' >> /etc/llmx-versions.json; \
+    cat /etc/llmx-versions.json
+
+USER ${AGENT_USER}
+WORKDIR /workspace
+CMD ["bash"]

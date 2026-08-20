@@ -5,8 +5,11 @@ Measured on one machine on 2026-08-18. Claude Code 2.1.234 on the host and
 container; opencode 1.18.15 in both. Three runs per condition, and seven for
 each of the four opencode rows that take the config directory apart, because
 the first reading of those came out backwards and needed more evidence. 91
-runs over 25 conditions. Every number below is produced by `scripts/report.rb`
-from `results-raw/`, not typed by hand.
+runs over 25 conditions. Every token count, cost and wall time below is
+produced by `scripts/report.rb` from `results-raw/`, not typed by hand. The
+counts of what each CLI wrote to stderr are the exception: `report.rb` never
+opens those logs. They were counted by hand from the published `results/`,
+and the commands that reproduce them are in the README.
 
 ## The short version
 
@@ -188,10 +191,15 @@ written before that mechanism existed no longer describes what MCP costs.
 
 What MCP still costs is time and reliability. Of the eight servers exactly one
 connected: one failed outright, four needed authentication and two were still
-pending when the answer arrived. Codex shows the same unreliability in stderr,
-though less often than first reported here: two of its servers logged transport
-failures in one host run of twelve, and every host run of both agents logged
-something.
+pending when the answer arrived. That accounting comes from Claude's `init`
+event, not from stderr: Claude wrote nothing to stderr in any of its 30 runs.
+
+Codex shows the same unreliability and is the only one of the three that
+writes anything to stderr at all. Two of its servers logged transport
+failures in one host run of twelve. Every Codex run, host and container
+alike, also logged at least one `failed to refresh available models`, which
+is not about MCP; the three container runs open with `Reading additional
+input from stdin...` as well. opencode's stderr was empty in all 46 runs.
 
 ### Hooks spend context nobody asked for
 
@@ -242,19 +250,34 @@ is past the point where adding a skill makes the others easier to find.
 
 ### `--ignore-user-config` does not give you a clean Codex
 
-The flag reads as "start fresh". It removes **2,672 tokens** of the 16,199 that
+The flag reads as "start fresh". It removes **2,672 tokens** of the 16,198 that
 this machine adds. `~/.codex/AGENTS.md` is 28,338 bytes, roughly 7,000 tokens,
 and it loads anyway; so do the 130 skills, and the truncation warning still
 fires. The only condition that produced a genuinely bare Codex was the
 container.
 
-### The same project directory feeds the two agents very differently
+### Only Claude's project difference stood clear of its own runs
 
-Opening the same folder cost Claude **2,243 extra tokens** and Codex about
-**six**. The project keeps its instructions in `CLAUDE.md`, which Codex does not
-read. Its `AGENTS.md` is 22 bytes long and says `Read @Claude.md file`, which is
-an instruction, not content: Codex starts the session knowing nothing about the
-project and has to spend a tool call to find out.
+Opening the same folder cost Claude **2,243 extra tokens**. Codex's difference
+is **447** (`host-project` 28,857 against `host-full` 28,410) and opencode's
+is **107**.
+
+Only Claude's is larger than the range its own runs covered: its two
+conditions span 4 and 190 tokens, against 573 and 593 for Codex and 74 and
+191 for opencode. That is a description of three observations per condition
+and not a significance test. Three runs against three cannot produce a
+two-sided permutation p below 0.10 whatever the numbers say, and `probe.rb`
+runs a condition's repeats together rather than interleaving conditions, so
+whatever drifted over the afternoon is folded into the condition. Read 447
+and 107 as differences these runs could not separate from their own scatter,
+not as demonstrated zeros.
+
+What each agent reads from a project differs too, though this experiment did
+not measure it. The project keeps its instructions in `CLAUDE.md`. Its
+`AGENTS.md` is 22 bytes long and says `Read @Claude.md file`, so what Codex
+loads from the project is a pointer rather than the instructions pointed at.
+Whether following it costs a tool call is not visible here: the prompt was one
+word, and no Codex run in any condition called a tool.
 
 ### opencode: the lightest harness carrying the heaviest load
 

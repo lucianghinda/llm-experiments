@@ -169,6 +169,37 @@ ruby startup-context/scripts/sanitize.rb
 `probe.rb --list` prints the conditions. `probe.rb --agent claude --condition
 host-full` runs one of them.
 
+### Checking the numbers without re-running anything
+
+`report.rb` covers the token counts, costs and wall times. It never opens the
+stderr logs, so the claims in RESULTS.md that rest on those are checked
+against the published `results/` directly:
+
+```sh
+# which agents write to stderr at all
+for a in claude codex opencode; do
+  printf '%s ' "$a"
+  find startup-context/results/$a -name stderr.log -size +0 | wc -l
+done
+
+# what Codex writes there, by run
+grep -rc "failed to refresh available models" startup-context/results/codex/*/*/stderr.log
+grep -rl "Transport channel closed"           startup-context/results/codex/*/*/stderr.log
+grep -rl "additional input from stdin"        startup-context/results/codex/*/*/stderr.log
+```
+
+Every per-run token value behind a median or a spread comes out of the same
+directory:
+
+```sh
+ruby -rjson -e 'Dir.glob("startup-context/results/*/*/*/metrics.json")
+  .map { |f| JSON.parse(File.read(f)) }
+  .group_by { |r| [r["agent"], r["condition"]] }.sort
+  .each { |(a, c), rs|
+    t = rs.map { |r| r["startup_context_tokens"] }.sort
+    puts "#{a} #{c} n=#{t.size} #{t.inspect}" }'
+```
+
 ## What each agent lets you turn off
 
 The three CLIs expose very different amounts of control, and that shows up in

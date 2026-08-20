@@ -1,0 +1,11 @@
+A test in this Rails application fails:
+
+    bin/rails test test/models/twitter/tweet_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+Relevant files:
+@test/models/twitter/tweet_test.rb
+@app/models/twitter/tweet.rb

@@ -1,0 +1,13 @@
+diff --git a/app/controllers/rooms_controller.rb b/app/controllers/rooms_controller.rb
+index 08edd65..1f1d28e 100644
+--- a/app/controllers/rooms_controller.rb
++++ b/app/controllers/rooms_controller.rb
+@@ -38,7 +38,7 @@ class RoomsController < ApplicationController
+     end
+ 
+     def ensure_permission_to_create_rooms
+-      if Current.account.restrict_room_creation_to_administrators? && !Current.user.administrator?
++      if Current.account.settings.restrict_room_creation_to_administrators? && !Current.user.administrator?
+         head :forbidden
+       end
+     end

@@ -1,0 +1,155 @@
+{
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 7,
+  "duration_ms": 45324,
+  "duration_api_ms": 22138,
+  "total_cost_usd": 0.17122099999999998,
+  "stop_reason": "end_turn",
+  "is_error": false,
+  "input_tokens": 12,
+  "output_tokens": 1261,
+  "cache_creation_input_tokens": 7584,
+  "cache_read_input_tokens": 127592,
+  "thinking_tokens": 262,
+  "total_tool_calls": 6,
+  "tool_call_names": [
+    "Read",
+    "Read",
+    "Bash",
+    "Bash",
+    "Edit",
+    "Bash"
+  ],
+  "tool_calls_to_first_defect_read": 1,
+  "tool_calls_to_first_edit": 4,
+  "read_before_edit": true,
+  "context_before_first_tool_call": 19209,
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 2639,
+      "cache_read_input_tokens": 16568,
+      "context_tokens": 19209,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 2639,
+      "cache_read_input_tokens": 16568,
+      "context_tokens": 19209,
+      "tool_calls": [
+        "Read"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 2639,
+      "cache_read_input_tokens": 16568,
+      "context_tokens": 19209,
+      "tool_calls": [
+        "Read"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 2737,
+      "cache_read_input_tokens": 19207,
+      "context_tokens": 21946,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 2737,
+      "cache_read_input_tokens": 19207,
+      "context_tokens": 21946,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 587,
+      "cache_read_input_tokens": 21944,
+      "context_tokens": 22533,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 587,
+      "cache_read_input_tokens": 21944,
+      "context_tokens": 22533,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 22531,
+      "context_tokens": 23443,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 22531,
+      "context_tokens": 23443,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 22531,
+      "context_tokens": 23443,
+      "tool_calls": [
+        "Edit"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 460,
+      "cache_read_input_tokens": 23441,
+      "context_tokens": 23903,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 23901,
+      "context_tokens": 24154,
+      "tool_calls": []
+    }
+  ],
+  "test_file": "test/controllers/rooms/involvements_controller_test.rb",
+  "unparsable_lines": 0,
+  "raw_events": 31,
+  "bug_id": "campfire-04",
+  "condition": "bare_noline",
+  "app": "campfire",
+  "fix_verified": true,
+  "wall_seconds": 46.384,
+  "timed_out": false,
+  "bug_reproduces": true,
+  "trial_dir": "results-raw/campfire-04/claude/bare_noline/20260818T133438Z"
+}

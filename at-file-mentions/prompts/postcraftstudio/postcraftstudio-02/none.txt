@@ -1,0 +1,9 @@
+A test in this Rails application fails:
+
+    bin/rails test test/services/active_storage/r2_service_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+A configured asset host is used exactly as written, so one entered without a scheme, or with a trailing slash, yields a malformed public link.

@@ -1,0 +1,9 @@
+A test in this Rails application fails:
+
+    bin/rails test test/lib/restricted_http/private_network_guard_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+The outbound fetch safety check refuses a destination it should allow: one whose address embeds a reachable public target inside a transition-prefix form.

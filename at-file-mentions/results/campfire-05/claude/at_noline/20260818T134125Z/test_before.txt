@@ -1,0 +1,25 @@
+Running 3 tests in a single process (parallelization threshold is 50)
+Run options: --seed 62975
+
+# Running:
+
+.F
+
+Failure:
+UnreadRoomsChannelTest#test_streams_only_the_subscriber's_own_unread_stream [test/channels/unread_rooms_channel_test.rb:10]:
+Stream user_773523953_unreads has not been started
+
+bin/rails test test/channels/unread_rooms_channel_test.rb:4
+
+F
+
+Failure:
+UnreadRoomsChannelTest#test_an_outsider_is_not_told_about_activity_in_a_room_they_can't_see [test/channels/unread_rooms_channel_test.rb:22]:
+Expected [{"roomId" => 340026324}] to be empty.
+
+bin/rails test test/channels/unread_rooms_channel_test.rb:14
+
+
+
+Finished in 1.551102s, 1.9341 runs/s, 3.8682 assertions/s.
+3 runs, 6 assertions, 2 failures, 0 errors, 0 skips

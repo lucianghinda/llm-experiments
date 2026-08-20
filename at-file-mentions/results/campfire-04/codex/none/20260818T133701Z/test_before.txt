@@ -1,0 +1,18 @@
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 32032
+
+# Running:
+
+.F
+
+Failure:
+Rooms::InvolvementsControllerTest#test_a_non-admin_can_update_their_room_involvement [test/controllers/rooms/involvements_controller_test.rb:52]:
+Expected response to be a <3XX: redirect>, but was a <403: Forbidden>
+Response body: 
+
+bin/rails test test/controllers/rooms/involvements_controller_test.rb:47
+
+...
+
+Finished in 10.284190s, 0.4862 runs/s, 3.1116 assertions/s.
+5 runs, 32 assertions, 1 failures, 0 errors, 0 skips

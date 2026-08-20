@@ -1,0 +1,43 @@
+{
+  "agent": "codex",
+  "input_tokens": 167096,
+  "output_tokens": 894,
+  "cache_read_input_tokens": 146944,
+  "cache_creation_input_tokens": 0,
+  "thinking_tokens": 124,
+  "total_tool_calls": 7,
+  "tool_call_names": [
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "file_change",
+    "command_execution"
+  ],
+  "tool_calls_to_first_defect_read": 0,
+  "tool_calls_to_first_edit": 5,
+  "read_before_edit": true,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "turns": [
+    {
+      "input_tokens": 167096,
+      "output_tokens": 894,
+      "cache_read_input_tokens": 146944,
+      "cache_creation_input_tokens": 0,
+      "reasoning_output_tokens": 124,
+      "context_tokens": 167096
+    }
+  ],
+  "unparsable_lines": 0,
+  "raw_events": 21,
+  "bug_id": "campfire-03",
+  "condition": "at_noline",
+  "app": "campfire",
+  "fix_verified": true,
+  "wall_seconds": 81.295,
+  "timed_out": false,
+  "bug_reproduces": true,
+  "trial_dir": "results-raw/campfire-03/codex/at_noline/20260818T132805Z"
+}

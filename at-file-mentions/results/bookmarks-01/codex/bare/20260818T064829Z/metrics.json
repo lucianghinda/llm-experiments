@@ -1,0 +1,42 @@
+{
+  "agent": "codex",
+  "input_tokens": 110170,
+  "output_tokens": 937,
+  "cache_read_input_tokens": 64256,
+  "cache_creation_input_tokens": 0,
+  "thinking_tokens": 135,
+  "total_tool_calls": 6,
+  "tool_call_names": [
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "file_change",
+    "command_execution"
+  ],
+  "tool_calls_to_first_defect_read": 0,
+  "tool_calls_to_first_edit": 4,
+  "read_before_edit": true,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "turns": [
+    {
+      "input_tokens": 110170,
+      "output_tokens": 937,
+      "cache_read_input_tokens": 64256,
+      "cache_creation_input_tokens": 0,
+      "reasoning_output_tokens": 135,
+      "context_tokens": 110170
+    }
+  ],
+  "unparsable_lines": 0,
+  "raw_events": 18,
+  "bug_id": "bookmarks-01",
+  "condition": "bare",
+  "app": "bookmarks",
+  "fix_verified": true,
+  "wall_seconds": 87.757,
+  "timed_out": false,
+  "bug_reproduces": true,
+  "trial_dir": "results-raw/bookmarks-01/codex/bare/20260818T064829Z"
+}

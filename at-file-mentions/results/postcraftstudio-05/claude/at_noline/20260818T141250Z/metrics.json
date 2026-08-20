@@ -1,0 +1,139 @@
+{
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 7,
+  "duration_ms": 47667,
+  "duration_api_ms": 25491,
+  "total_cost_usd": 0.235465,
+  "stop_reason": "end_turn",
+  "is_error": false,
+  "input_tokens": 10,
+  "output_tokens": 1876,
+  "cache_creation_input_tokens": 12632,
+  "cache_read_input_tokens": 124390,
+  "thinking_tokens": 588,
+  "total_tool_calls": 6,
+  "tool_call_names": [
+    "Bash",
+    "Bash",
+    "Read",
+    "Edit",
+    "Edit",
+    "Bash"
+  ],
+  "tool_calls_to_first_defect_read": 3,
+  "tool_calls_to_first_edit": 3,
+  "read_before_edit": false,
+  "context_before_first_tool_call": 23306,
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 6732,
+      "cache_read_input_tokens": 16572,
+      "context_tokens": 23306,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 6732,
+      "cache_read_input_tokens": 16572,
+      "context_tokens": 23306,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 6732,
+      "cache_read_input_tokens": 16572,
+      "context_tokens": 23306,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 4007,
+      "cache_read_input_tokens": 23304,
+      "context_tokens": 27313,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 4007,
+      "cache_read_input_tokens": 23304,
+      "context_tokens": 27313,
+      "tool_calls": [
+        "Read"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 938,
+      "cache_read_input_tokens": 27311,
+      "context_tokens": 28251,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 938,
+      "cache_read_input_tokens": 27311,
+      "context_tokens": 28251,
+      "tool_calls": [
+        "Edit"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 938,
+      "cache_read_input_tokens": 27311,
+      "context_tokens": 28251,
+      "tool_calls": [
+        "Edit"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 28249,
+      "context_tokens": 28956,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 250,
+      "cache_read_input_tokens": 28954,
+      "context_tokens": 29206,
+      "tool_calls": []
+    }
+  ],
+  "test_file": "test/services/cloudflare_screenshotter_test.rb",
+  "unparsable_lines": 0,
+  "raw_events": 30,
+  "bug_id": "postcraftstudio-05",
+  "condition": "at_noline",
+  "app": "postcraftstudio",
+  "fix_verified": true,
+  "wall_seconds": 48.646,
+  "timed_out": false,
+  "bug_reproduces": true,
+  "trial_dir": "results-raw/postcraftstudio-05/claude/at_noline/20260818T141250Z"
+}

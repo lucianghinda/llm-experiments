@@ -1,0 +1,40 @@
+{
+  "agent": "codex",
+  "input_tokens": 110804,
+  "output_tokens": 612,
+  "cache_read_input_tokens": 62464,
+  "cache_creation_input_tokens": 0,
+  "thinking_tokens": 48,
+  "total_tool_calls": 4,
+  "tool_call_names": [
+    "command_execution",
+    "command_execution",
+    "file_change",
+    "command_execution"
+  ],
+  "tool_calls_to_first_defect_read": 0,
+  "tool_calls_to_first_edit": 2,
+  "read_before_edit": true,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "turns": [
+    {
+      "input_tokens": 110804,
+      "output_tokens": 612,
+      "cache_read_input_tokens": 62464,
+      "cache_creation_input_tokens": 0,
+      "reasoning_output_tokens": 48,
+      "context_tokens": 110804
+    }
+  ],
+  "unparsable_lines": 0,
+  "raw_events": 15,
+  "bug_id": "postcraftstudio-01",
+  "condition": "at_noline",
+  "app": "postcraftstudio",
+  "fix_verified": true,
+  "wall_seconds": 131.039,
+  "timed_out": false,
+  "bug_reproduces": true,
+  "trial_dir": "results-raw/postcraftstudio-01/codex/at_noline/20260818T080127Z"
+}

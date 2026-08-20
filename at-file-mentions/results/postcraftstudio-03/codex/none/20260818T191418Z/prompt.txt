@@ -1,0 +1,9 @@
+A test in this Rails application fails:
+
+    bin/rails test test/controllers/mission_control_jobs_access_test.rb
+
+Find the defect in the application code and fix it so that test passes.
+
+Do not edit anything under test/. Check your work with that same command and nothing else.
+
+A setting for the queued-work dashboard is applied to an object that is discarded before anything reads it, so the value never takes effect.

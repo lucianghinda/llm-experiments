@@ -1,0 +1,66 @@
+{
+  "bug_id": "campfire-03",
+  "app": "campfire",
+  "agent": "codex",
+  "condition": "none",
+  "branch": "trial/campfire-03",
+  "model_requested": "gpt-5.6-sol",
+  "impl_files": [
+    "app/controllers/rooms_controller.rb"
+  ],
+  "test_file": "test/controllers/rooms/closeds_controller_test.rb",
+  "started_at": "2026-08-18T13:30:13Z",
+  "history_visible_to_agent": "d8a3313 Import application source\n32bfefc Import application source\n86c2c1c Import application source\nf5e4b9c Import application source\n23db5d9 Import application source\n89f4c94 Import application source",
+  "branches_visible_to_agent": [],
+  "clean_tree_before": true,
+  "db_prepare_exit": 0,
+  "test_before": {
+    "exit": 1,
+    "seconds": 19.124
+  },
+  "suite_ran_before": true,
+  "bug_reproduces": true,
+  "config_dir": "/home/agent/.codex-trial",
+  "agent_argv": [
+    "codex",
+    "exec",
+    "--json",
+    "--dangerously-bypass-approvals-and-sandbox",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ephemeral",
+    "-C",
+    "/workspace/app",
+    "--model",
+    "gpt-5.6-sol",
+    "-"
+  ],
+  "agent_exit": 0,
+  "timed_out": false,
+  "wall_seconds": 45.715,
+  "changed_files": [
+    "app/controllers/rooms_controller.rb"
+  ],
+  "untracked_files": [],
+  "touched_impl_file": true,
+  "edited_test_dir": false,
+  "test_after": {
+    "exit": 0,
+    "seconds": 19.006
+  },
+  "fix_verified": true,
+  "toolchain": {
+    "image_built_at": "2026-08-17T10:22:37Z",
+    "ubuntu": "24.04",
+    "arch": "aarch64",
+    "mise": "2026.8.6 linux-arm64 (2026-08-14)",
+    "rubies": "3.4.5 4.0.1",
+    "node": "v22.23.2",
+    "claude_code": "2.1.233 (Claude Code)",
+    "codex": "codex-cli 0.147.0",
+    "postgres": "postgres (PostgreSQL) 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)"
+  },
+  "finished_at": "2026-08-18T13:31:40Z",
+  "host_wall_seconds": 88.3,
+  "container_ok": true
+}

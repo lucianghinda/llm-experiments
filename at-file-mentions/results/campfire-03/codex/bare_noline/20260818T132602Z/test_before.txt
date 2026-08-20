@@ -1,0 +1,42 @@
+Running 9 tests in a single process (parallelization threshold is 50)
+Run options: --seed 21920
+
+# Running:
+
+.E
+
+Error:
+Rooms::ClosedsControllerTest#test_create_forbidden_by_non-admin_when_account_restricts_creation_to_admins:
+NoMethodError: undefined method 'restrict_room_creation_to_administrators?' for an instance of Account
+    app/controllers/rooms_controller.rb:41:in 'RoomsController#ensure_permission_to_create_rooms'
+    test/controllers/rooms/closeds_controller_test.rb:37:in 'block in <class:ClosedsControllerTest>'
+
+bin/rails test test/controllers/rooms/closeds_controller_test.rb:32
+
+...E
+
+Error:
+Rooms::ClosedsControllerTest#test_new:
+NoMethodError: undefined method 'restrict_room_creation_to_administrators?' for an instance of Account
+    app/controllers/rooms_controller.rb:41:in 'RoomsController#ensure_permission_to_create_rooms'
+    test/controllers/rooms/closeds_controller_test.rb:14:in 'block in <class:ClosedsControllerTest>'
+
+bin/rails test test/controllers/rooms/closeds_controller_test.rb:13
+
+.E
+
+Error:
+Rooms::ClosedsControllerTest#test_create:
+NoMethodError: undefined method 'restrict_room_creation_to_administrators?' for an instance of Account
+    app/controllers/rooms_controller.rb:41:in 'RoomsController#ensure_permission_to_create_rooms'
+    test/controllers/rooms/closeds_controller_test.rb:22:in 'block (4 levels) in <class:ClosedsControllerTest>'
+    test/controllers/rooms/closeds_controller_test.rb:21:in 'block (3 levels) in <class:ClosedsControllerTest>'
+    test/controllers/rooms/closeds_controller_test.rb:20:in 'block (2 levels) in <class:ClosedsControllerTest>'
+    test/controllers/rooms/closeds_controller_test.rb:19:in 'block in <class:ClosedsControllerTest>'
+
+bin/rails test test/controllers/rooms/closeds_controller_test.rb:18
+
+.
+
+Finished in 17.618085s, 0.5108 runs/s, 1.5325 assertions/s.
+9 runs, 27 assertions, 0 failures, 3 errors, 0 skips

@@ -1,0 +1,38 @@
+diff --git a/app/channels/unread_rooms_channel.rb b/app/channels/unread_rooms_channel.rb
+index f7fcc08..cd8b1c9 100644
+--- a/app/channels/unread_rooms_channel.rb
++++ b/app/channels/unread_rooms_channel.rb
+@@ -1,5 +1,19 @@
+ class UnreadRoomsChannel < ApplicationCable::Channel
++  class << self
++    def stream_name_for(user_id)
++      "user_#{user_id}_unreads"
++    end
++
++    # Unread news travels per-user, never on one shared stream: a room's activity is
++    # only ever announced to the people who are in it.
++    def broadcast_to_room_members(room, payload)
++      room.users.each do |user|
++        ActionCable.server.broadcast stream_name_for(user.id), payload
++      end
++    end
++  end
++
+   def subscribed
+-    stream_from "unread_rooms"
++    stream_from self.class.stream_name_for(current_user.id)
+   end
+ end
+diff --git a/app/models/message/broadcasts.rb b/app/models/message/broadcasts.rb
+index 1f909dc..9d54d2a 100644
+--- a/app/models/message/broadcasts.rb
++++ b/app/models/message/broadcasts.rb
+@@ -1,7 +1,7 @@
+ module Message::Broadcasts
+   def broadcast_create
+     broadcast_append_to room, :messages, target: [ room, :messages ]
+-    ActionCable.server.broadcast("unread_rooms", { roomId: room.id })
++    UnreadRoomsChannel.broadcast_to_room_members room, { roomId: room.id }
+   end
+ 
+   def broadcast_remove

@@ -1,0 +1,163 @@
+{
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 7,
+  "duration_ms": 46834,
+  "duration_api_ms": 23449,
+  "total_cost_usd": 0.20920250000000004,
+  "stop_reason": "end_turn",
+  "is_error": false,
+  "input_tokens": 12,
+  "output_tokens": 1602,
+  "cache_creation_input_tokens": 10052,
+  "cache_read_input_tokens": 137145,
+  "thinking_tokens": 447,
+  "total_tool_calls": 6,
+  "tool_call_names": [
+    "Read",
+    "Read",
+    "Bash",
+    "Bash",
+    "Edit",
+    "Bash"
+  ],
+  "tool_calls_to_first_defect_read": 1,
+  "tool_calls_to_first_edit": 4,
+  "read_before_edit": true,
+  "context_before_first_tool_call": 19213,
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 2639,
+      "cache_read_input_tokens": 16572,
+      "context_tokens": 19213,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 2639,
+      "cache_read_input_tokens": 16572,
+      "context_tokens": 19213,
+      "tool_calls": [
+        "Read"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 2639,
+      "cache_read_input_tokens": 16572,
+      "context_tokens": 19213,
+      "tool_calls": [
+        "Read"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 5281,
+      "cache_read_input_tokens": 19211,
+      "context_tokens": 24494,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 5281,
+      "cache_read_input_tokens": 19211,
+      "context_tokens": 24494,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 447,
+      "cache_read_input_tokens": 24492,
+      "context_tokens": 24941,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 447,
+      "cache_read_input_tokens": 24492,
+      "context_tokens": 24941,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 447,
+      "cache_read_input_tokens": 24492,
+      "context_tokens": 24941,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 608,
+      "cache_read_input_tokens": 24939,
+      "context_tokens": 25549,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 608,
+      "cache_read_input_tokens": 24939,
+      "context_tokens": 25549,
+      "tool_calls": []
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 608,
+      "cache_read_input_tokens": 24939,
+      "context_tokens": 25549,
+      "tool_calls": [
+        "Edit"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 25547,
+      "context_tokens": 26386,
+      "tool_calls": [
+        "Bash"
+      ]
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 240,
+      "cache_read_input_tokens": 26384,
+      "context_tokens": 26626,
+      "tool_calls": []
+    }
+  ],
+  "test_file": "test/integration/api/openapi_spec_test.rb",
+  "unparsable_lines": 0,
+  "raw_events": 32,
+  "bug_id": "postcraftstudio-04",
+  "condition": "bare_noline",
+  "app": "postcraftstudio",
+  "fix_verified": true,
+  "wall_seconds": 47.783,
+  "timed_out": false,
+  "bug_reproduces": true,
+  "trial_dir": "results-raw/postcraftstudio-04/claude/bare_noline/20260818T140341Z"
+}

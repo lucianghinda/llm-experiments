@@ -1,0 +1,27 @@
+{
+  "agent": "claude",
+  "condition": "host-no-skills",
+  "where": "host",
+  "note": "skills and slash commands off, everything else on",
+  "repeat": 2,
+  "model_requested": "sonnet",
+  "recorded_at": "2026-08-18T07:58:15Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 10.66,
+  "argv": [
+    "/opt/homebrew/bin/claude",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--model",
+    "sonnet",
+    "--no-session-persistence",
+    "--permission-mode",
+    "bypassPermissions",
+    "--disable-slash-commands"
+  ],
+  "cwd_kind": "neutral"
+}

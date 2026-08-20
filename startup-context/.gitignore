@@ -1,0 +1,10 @@
+# Unsanitized probe output. Transcripts carry host paths and the full local
+# configuration surface. Only sanitize.rb decides what reaches results/.
+results-raw/
+
+# A global *.log rule (~/.gitignore_global) silently dropped every sanitized
+# stderr.log from results/. RESULTS.md quotes those logs: Codex's skill
+# truncation warning and the MCP transport failures live nowhere else. Undo
+# that rule here, for results/ only. results-raw/ stays excluded above, and
+# git does not descend into an excluded directory, so this cannot reach it.
+!results/**/*.log

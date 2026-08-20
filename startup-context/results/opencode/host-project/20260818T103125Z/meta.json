@@ -1,0 +1,26 @@
+{
+  "agent": "opencode",
+  "condition": "host-project",
+  "where": "host",
+  "note": "the same machine, inside a real project",
+  "repeat": 2,
+  "model_requested": "openai/gpt-5.6-sol",
+  "recorded_at": "2026-08-18T10:31:36Z",
+  "project_label": "<project>",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 11.48,
+  "argv": [
+    "/opt/homebrew/bin/opencode",
+    "run",
+    "--format",
+    "json",
+    "-m",
+    "openai/gpt-5.6-sol",
+    "Reply with exactly: OK"
+  ],
+  "env_overrides": [
+    "XDG_DATA_HOME"
+  ],
+  "cwd_kind": "project"
+}

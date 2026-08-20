@@ -1,0 +1,28 @@
+{
+  "agent": "claude",
+  "condition": "host-no-subagents",
+  "where": "host",
+  "note": "the Task tool and the subagent catalogue it carries, off",
+  "repeat": 2,
+  "model_requested": "sonnet",
+  "recorded_at": "2026-08-18T08:04:29Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 13.83,
+  "argv": [
+    "/opt/homebrew/bin/claude",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--model",
+    "sonnet",
+    "--no-session-persistence",
+    "--permission-mode",
+    "bypassPermissions",
+    "--disallowed-tools",
+    "Task"
+  ],
+  "cwd_kind": "neutral"
+}

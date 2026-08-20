@@ -1,0 +1,28 @@
+{
+  "agent": "opencode",
+  "condition": "host-leanest",
+  "where": "host",
+  "note": "no config directory and no external plugins",
+  "repeat": 1,
+  "model_requested": "openai/gpt-5.6-sol",
+  "recorded_at": "2026-08-18T10:37:55Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 78.54,
+  "argv": [
+    "/opt/homebrew/bin/opencode",
+    "run",
+    "--format",
+    "json",
+    "-m",
+    "openai/gpt-5.6-sol",
+    "--pure",
+    "Reply with exactly: OK"
+  ],
+  "env_overrides": [
+    "XDG_CONFIG_HOME",
+    "XDG_DATA_HOME"
+  ],
+  "cwd_kind": "neutral"
+}

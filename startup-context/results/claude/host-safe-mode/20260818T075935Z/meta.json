@@ -1,0 +1,27 @@
+{
+  "agent": "claude",
+  "condition": "host-safe-mode",
+  "where": "host",
+  "note": "every customisation off: CLAUDE.md, skills, plugins, hooks, MCP, agents",
+  "repeat": 3,
+  "model_requested": "sonnet",
+  "recorded_at": "2026-08-18T07:59:41Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 6.59,
+  "argv": [
+    "/opt/homebrew/bin/claude",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--model",
+    "sonnet",
+    "--no-session-persistence",
+    "--permission-mode",
+    "bypassPermissions",
+    "--safe-mode"
+  ],
+  "cwd_kind": "neutral"
+}

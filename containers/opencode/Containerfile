@@ -1,0 +1,51 @@
+# opencode on top of the shared base. Kept for a base image built before
+# 2026-08-18, and unnecessary after the next base rebuild.
+#
+# base/Containerfile carries opencode now. This existed because adding a package
+# to the base invalidates that layer and every layer after it, and the layers
+# before it compile two rubies from source, so a one-package change cost a 20-40
+# minute rebuild plus room for a second full image while the first still
+# existed. That trade only made sense while the base was not being rebuilt for
+# any other reason.
+#
+# Kit.opencode_image prefers this image while it exists and falls back to the
+# base, so both states work and neither fails silently. Once the base is rebuilt,
+# delete this directory, delete build_opencode_image.rb, and remove the image:
+#
+#   container image delete llmx-base-opencode:latest
+#
+# Until then note that the opencode results recorded on 2026-08-18 came from
+# here, so opencode's container floor is the base plus one npm package and not
+# byte-identical to the floor Claude and Codex were measured against.
+
+ARG BASE_IMAGE=llmx-base:latest
+FROM ${BASE_IMAGE}
+
+ARG OPENCODE_VERSION
+ARG AGENT_USER=agent
+
+# The base image ends on USER agent, and agent cannot create a new package
+# directory under the global node prefix, so the install has to run as root and
+# the ownership has to be handed back afterwards. A root-owned /opt/mise makes
+# every later `mise reshim` fail, which the base image README already warns
+# about.
+#
+# mise reshim so the new binary gets a shim like every other tool here. Without
+# it `opencode` is on disk but not on PATH, which reads as a failed install.
+# The platform binary is named explicitly. opencode-ai resolves its real
+# executable through optional per-platform packages, and on this image npm picks
+# the musl build for a glibc system, then fails in the postinstall with
+# "Unsupported platform ... wanted libc musl, current glibc". Naming the glibc
+# package alongside it settles the choice instead of leaving it to detection.
+#
+# The chown is scoped to the two directories the install touches. /opt/mise also
+# holds two rubies compiled from source, and chowning all of it recursively took
+# longer than the install did.
+USER root
+RUN bash -lc "npm install -g opencode-ai@${OPENCODE_VERSION} opencode-linux-arm64@${OPENCODE_VERSION} && mise reshim" \
+    && chown -R ${AGENT_USER}:${AGENT_USER} /opt/mise/installs/node /opt/mise/shims
+
+# Back to the unprivileged user, and prove the shim resolves for that user
+# rather than only for root.
+USER ${AGENT_USER}
+RUN bash -lc "opencode --version"

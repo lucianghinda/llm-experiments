@@ -1,0 +1,24 @@
+{
+  "agent": "claude",
+  "condition": "host-default-model",
+  "where": "host",
+  "note": "the machine as it is, on whatever model the machine picks by default",
+  "repeat": 2,
+  "model_requested": "machine default",
+  "recorded_at": "2026-08-18T08:00:32Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 8.55,
+  "argv": [
+    "/opt/homebrew/bin/claude",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--no-session-persistence",
+    "--permission-mode",
+    "bypassPermissions"
+  ],
+  "cwd_kind": "neutral"
+}

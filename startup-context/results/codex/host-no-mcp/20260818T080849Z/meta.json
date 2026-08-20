@@ -1,0 +1,30 @@
+{
+  "agent": "codex",
+  "condition": "host-no-mcp",
+  "where": "host",
+  "note": "MCP servers off, everything else on",
+  "repeat": 1,
+  "model_requested": "gpt-5.6-sol",
+  "recorded_at": "2026-08-18T08:09:36Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 46.57,
+  "argv": [
+    "<home>/.nodenv/versions/22.15.1/bin/codex",
+    "exec",
+    "--json",
+    "--skip-git-repo-check",
+    "--ephemeral",
+    "-s",
+    "read-only",
+    "-m",
+    "gpt-5.6-sol",
+    "-C",
+    "<tmp>/llmx-probe-20260818-45425-dos775",
+    "-c",
+    "mcp_servers={}",
+    "-"
+  ],
+  "cwd_kind": "neutral"
+}

@@ -13,10 +13,18 @@ module Kit
     ruby_versions: "3.4.5 4.0.1",
     node_version: "22",
     claude_code_version: "2.1.233",
-    codex_version: "0.147.0"
+    codex_version: "0.147.0",
+    opencode_version: "1.18.15"
   }.freeze
 
   BASE_IMAGE = ENV.fetch("LLMX_BASE_IMAGE", "llmx-base:latest")
+
+  # opencode used to live one thin layer above the base, because adding a package
+  # to the base invalidates the layers that compile two rubies from source.
+  # base/Containerfile carries it now, so on a rebuilt base this is the base
+  # image. The derived image is still used when it is present, so a machine that
+  # has not rebuilt yet keeps working and neither state fails silently.
+  DERIVED_OPENCODE_IMAGE = "llmx-base-opencode:latest"
 
   # Apple's containers get a small default envelope (992MB / 4 CPU). Rails test
   # suites and `bundle install` need more than that.
@@ -33,6 +41,23 @@ module Kit
   CONTAINERS_DIR = File.join(ROOT, "containers")
 
   module_function
+
+  # An override that is set but empty is a mistake, not a choice: it would
+  # otherwise resolve to an image with no name and fail somewhere less obvious.
+  def env_override(name)
+    value = ENV[name].to_s.strip
+    value.empty? ? nil : value
+  end
+
+  # Resolved rather than constant, because answering it means asking the runtime
+  # which images exist, and most scripts that require this file never touch a
+  # container. Memoised so the question is asked once per process.
+  def opencode_image
+    @opencode_image ||=
+      env_override("LLMX_OPENCODE_IMAGE") ||
+      (image_exists?(DERIVED_OPENCODE_IMAGE) ? DERIVED_OPENCODE_IMAGE : BASE_IMAGE)
+  end
+
 
   def log(message)
     warn "[kit] #{message}"
@@ -174,9 +199,15 @@ module Kit
     if mount_auth
       FileUtils.mkdir_p(File.join(AUTH_DIR, "claude"))
       FileUtils.mkdir_p(File.join(AUTH_DIR, "codex"))
+    FileUtils.mkdir_p(File.join(AUTH_DIR, "opencode"))
       args += ["--volume", "#{AUTH_DIR}:/home/#{AGENT_USER}/.agent-auth"]
       args += ["--env", "CLAUDE_CONFIG_DIR=/home/#{AGENT_USER}/.agent-auth/claude"]
       args += ["--env", "CODEX_HOME=/home/#{AGENT_USER}/.agent-auth/codex"]
+      # opencode takes no equivalent variable: it reads credentials from
+      # XDG_DATA_HOME, which also holds its sessions and its database. A runner
+      # points XDG_DATA_HOME at a private directory and copies the seed in from
+      # here, so this only ever says where the seed is.
+      args += ["--env", "LLMX_OPENCODE_AUTH=/home/#{AGENT_USER}/.agent-auth/opencode"]
     end
     args
   end

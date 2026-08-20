@@ -1,0 +1,32 @@
+{
+  "agent": "claude",
+  "condition": "host-leanest",
+  "where": "host",
+  "note": "MCP, skills and subagents all off, hooks and CLAUDE.md still on",
+  "repeat": 3,
+  "model_requested": "sonnet",
+  "recorded_at": "2026-08-18T08:05:11Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 9.93,
+  "argv": [
+    "/opt/homebrew/bin/claude",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--model",
+    "sonnet",
+    "--no-session-persistence",
+    "--permission-mode",
+    "bypassPermissions",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--disable-slash-commands",
+    "--disallowed-tools",
+    "Task"
+  ],
+  "cwd_kind": "neutral"
+}

@@ -1,0 +1,41 @@
+{
+  "agent": "opencode",
+  "condition": "host-project",
+  "where": "host",
+  "note": "the same machine, inside a real project",
+  "repeat": 2,
+  "model_requested": "openai/gpt-5.6-sol",
+  "recorded_at": "2026-08-18T10:31:36Z",
+  "project_label": "<project>",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 11.48,
+  "argv": [
+    "/opt/homebrew/bin/opencode",
+    "run",
+    "--format",
+    "json",
+    "-m",
+    "openai/gpt-5.6-sol",
+    "Reply with exactly: OK"
+  ],
+  "env_overrides": [
+    "XDG_DATA_HOME"
+  ],
+  "cwd_kind": "project",
+  "cli_version": null,
+  "model_reported": null,
+  "startup_context_tokens": 33997,
+  "output_tokens": 5,
+  "reasoning_tokens": 0,
+  "cache_read_input_tokens": 11776,
+  "cache_creation_input_tokens": 0,
+  "cost_usd": 0,
+  "num_turns": 1,
+  "answer": "OK",
+  "tool_calls": [],
+  "cli_notices": [],
+  "raw_events": 3,
+  "clean_probe": true,
+  "run_dir": "results-raw/opencode/host-project/20260818T103125Z"
+}

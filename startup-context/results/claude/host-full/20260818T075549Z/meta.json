@@ -1,0 +1,26 @@
+{
+  "agent": "claude",
+  "condition": "host-full",
+  "where": "host",
+  "note": "the machine as it is, in a directory with no project files",
+  "repeat": 1,
+  "model_requested": "sonnet",
+  "recorded_at": "2026-08-18T07:56:06Z",
+  "project_label": null,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 16.93,
+  "argv": [
+    "/opt/homebrew/bin/claude",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--model",
+    "sonnet",
+    "--no-session-persistence",
+    "--permission-mode",
+    "bypassPermissions"
+  ],
+  "cwd_kind": "neutral"
+}

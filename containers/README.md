@@ -28,12 +28,27 @@ VM. Verified against 0.5.0 on Apple silicon.
 plus a BuildKit cache that reached 9.8 GB building one Rails app. `kit.rb`
 refuses to start an app image build below `LLMX_MIN_FREE_GB` (12 GB by default),
 because running out mid-build does not fail cleanly: the build dies with no
-message, and on a truly full disk even writing the error fails. To reclaim the
-cache, which is regenerable and usually the biggest single item:
+message, and on a truly full disk even writing the error fails.
+
+What an image actually costs on disk is its **unpacked snapshot**, not the layer
+sizes `container image inspect` reports. Measured on 0.5.0: deleting three app
+images returned about 16 GB, roughly 5 GB each, against the 1.2-1.6 GB that
+`inspect` sums to. Plan reclamation against the snapshot, not the manifest:
+
+```sh
+du -sh ~/Library/Application\ Support/com.apple.container/*
+container image delete llmx-app-<name>       # the big win, ~5 GB each
+container image prune                        # unreferenced and dangling only
+```
+
+To reclaim the BuildKit cache, which is regenerable:
 
 ```sh
 container builder stop && container delete buildkit   # images survive this
 ```
+
+**That command can fail silently, and did.** See the builder note below before
+trusting its exit code.
 
 ```sh
 container --version
@@ -42,6 +57,35 @@ container builder start     # BuildKit, a separate service
 ```
 
 Things worth knowing, each of which cost time to find:
+
+- **`container builder stop` can report success and do nothing.** On 0.5.0, with a
+  builder VM that had been up three days, `container builder stop`, `container
+  delete --force buildkit` and `container system stop` all returned exit 0 while
+  `container ls -a` went on reporting the builder as `running` and its 6.8 GB
+  directory stayed on disk. Earlier, at 2.9 GB free, the same `stop` hung for
+  seven minutes with no output at all, which is the full-disk failure mode above.
+  Always verify with `container ls -a` and `du -sh` rather than the exit code.
+
+  What worked was ending the VM directly, then deleting the container:
+
+  ```sh
+  ps -eo pid,etime,command | grep -E 'container-runtime-linux|Virtualization' | grep -v grep
+  kill -TERM <runtime-pid> <vm-pid>
+  container delete --force buildkit
+  ```
+
+  Read that `ps` output before killing anything. The runtime line names
+  `--uuid buildkit`, so it is unambiguous, but the VM line is a bare
+  `Virtualization.framework` XPC service that looks identical for **any** VM on the
+  Mac: Docker, UTM, Parallels, a Simulator. Match it to the runtime process rather
+  than pattern-killing on the name.
+
+  A plain `TERM` was enough and `-9` was not needed, which suggests the VM was
+  responsive and the CLI's stop path was the broken part. Both processes were
+  signalled together, so whether ending the runtime alone would do it is untested.
+  The apiserver does not need to be touched and keeps running. The builder is
+  recreated on the next build, so the first build after this re-downloads the
+  builder image.
 
 - The subcommand is `container image list`. `container images list` looks for a
   plugin that is not installed and fails with a confusing message.

@@ -11,13 +11,20 @@ else
   ARGV.map { |a| File.expand_path(a, __dir__) }
 end
 
+# ASDw is ASD-STE100 asked for in a trailing sentence that carries an escape hatch,
+# "when it doesn't detract from meaning". ASDt is the same trailing sentence without
+# the escape hatch, so the wording and the position can be told apart.
 VARIANTS = {
   "claude-1-control.md" => "cl-ctrl",
   "claude-2-simple-technical-english.md" => "cl-STE",
   "claude-3-asd-ste100.md" => "cl-ASD",
+  "claude-4-asd-ste100-escape-hatch.md" => "cl-ASDw",
+  "claude-5-asd-ste100-trailing.md" => "cl-ASDt",
   "codex-1-control.md" => "cx-ctrl",
   "codex-2-simple-technical-english.md" => "cx-STE",
-  "codex-3-asd-ste100.md" => "cx-ASD"
+  "codex-3-asd-ste100.md" => "cx-ASD",
+  "codex-4-asd-ste100-escape-hatch.md" => "cx-ASDw",
+  "codex-5-asd-ste100-trailing.md" => "cx-ASDt"
 }
 
 # Words an engineer would not say out loud when pointing at this file.
@@ -65,10 +72,12 @@ def stats(path)
   }
 end
 
-def cell(s)
-  return "       .".rjust(13) unless s
+W = 11 # column width: ten variants have to fit on one line
 
-  format("%5.1f (%2d%%)", s[:avg], s[:over_25_pct]).rjust(13)
+def cell(s)
+  return ".".rjust(W) unless s
+
+  format("%5.1f (%2d%%)", s[:avg], s[:over_25_pct]).rjust(W)
 end
 
 TARGETS.each do |target|
@@ -76,8 +85,8 @@ TARGETS.each do |target|
   next if runs.empty?
 
   puts "== #{File.basename(target)}"
-  puts format("%-8s %s", "run", VARIANTS.values.map { |v| v.rjust(13) }.join(" "))
-  puts "-" * (9 + VARIANTS.size * 14)
+  puts format("%-8s %s", "run", VARIANTS.values.map { |v| v.rjust(W) }.join(" "))
+  puts "-" * (9 + VARIANTS.size * (W + 1))
 
   collected = {}
   runs.each do |run|
@@ -92,11 +101,11 @@ TARGETS.each do |target|
 
   # words / jargon detail per run
   puts
-  puts format("%-8s %s", "words", VARIANTS.values.map { |v| v.rjust(13) }.join(" "))
+  puts format("%-8s %s", "words", VARIANTS.values.map { |v| v.rjust(W) }.join(" "))
   runs.each do |run|
     row = VARIANTS.keys.map do |file|
       s = collected[[File.basename(run), file]]
-      (s ? "#{s[:words]}w j#{s[:jargon]}" : ".").rjust(13)
+      (s ? "#{s[:words]}w j#{s[:jargon]}" : ".").rjust(W)
     end
     puts format("%-8s %s", File.basename(run), row.join(" "))
   end

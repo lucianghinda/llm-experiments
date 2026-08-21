@@ -40,6 +40,13 @@ Codex content coverage, out of 24 facts:
 Both style clauses cost Codex content in all three runs, from a different driver. This is
 the Codex conclusion I held most loosely after two runs, and it now has independent support.
 
+**These are `coverage.rb` numbers, and `ADJUDICATION.md` shows that checker reads Simplified
+English outputs too harshly.** Run 3 measured the size of that bias on the Codex arm: plain
+ASD-STE100 scored 8 by the checker and 13 when read. The three columns above were never
+re-read, so the gap between the control row and the two clause rows is very likely smaller
+than it looks here. The direction of the finding is unaffected, because every cell would move
+the same way, but the magnitude should not be quoted without that caveat.
+
 ## What it corrected
 
 After two runs I wrote that Simple Technical English made Codex's sentences *longer* than its

@@ -9,13 +9,20 @@
 #
 # Usage: ruby coverage.rb
 
+# ASDw is ASD-STE100 asked for in a trailing sentence that carries an escape hatch,
+# "when it doesn't detract from meaning". ASDt is the same trailing sentence without
+# the escape hatch, so the wording and the position can be told apart.
 VARIANTS = {
   "claude-1-control.md" => "cl-ctrl",
   "claude-2-simple-technical-english.md" => "cl-STE",
   "claude-3-asd-ste100.md" => "cl-ASD",
+  "claude-4-asd-ste100-escape-hatch.md" => "cl-ASDw",
+  "claude-5-asd-ste100-trailing.md" => "cl-ASDt",
   "codex-1-control.md" => "cx-ctrl",
   "codex-2-simple-technical-english.md" => "cx-STE",
-  "codex-3-asd-ste100.md" => "cx-ASD"
+  "codex-3-asd-ste100.md" => "cx-ASD",
+  "codex-4-asd-ste100-escape-hatch.md" => "cx-ASDw",
+  "codex-5-asd-ste100-trailing.md" => "cx-ASDt"
 }
 
 CHECKS = {

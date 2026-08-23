@@ -1,15 +1,23 @@
 # Does Rails convention-over-configuration save an agent tokens?
 
-**Status: harness built, scramble verified, pilot not yet run.**
+**Status: pilot run. 80 trials, all passed. The answer is in
+[`RESULTS.md`](RESULTS.md).**
 
 The two layouts are built and proven equivalent — same code, same gems, same
-routes, same 348 passing tests — and a trial runs end to end from prompt to
-scripted verdict. All four acceptance checks have been exercised against real
-agent runs. What has not happened is the grid.
+routes, same 348 passing tests — and the full grid of 4 tasks × 2 conditions ×
+2 agents × 5 repeats has been run end to end.
 
-**Nothing below is a result.** The numbers quoted from validation trials are
-n=1, were run to prove the harness works rather than to answer the question, and
-are not published in `results/`. They stay in the gitignored `results-raw/`.
+**This file is the design; `RESULTS.md` is the answer.** Everything below
+describes how the experiment was built and what it pre-registered, including a
+design error the results section owns up to. The numbers quoted in "What the
+validation trials showed about the harness" are still n=1 from before the grid
+and are about the harness, not the question.
+
+The short version of the answer: agents never navigated without searching, in
+either layout, in any of the 80 trials — so the assumption's mechanism is wrong.
+But changing code across layers cost 25–44% more on the scrambled layout in
+three cells of four. Convention does not save an agent from searching; it saves
+it from searching repeatedly.
 
 ## The question
 
@@ -160,6 +168,12 @@ Fixed before any trial runs:
 - If token totals split but search counts do not, or the reverse, that mismatch
   is the finding and is reported as one.
 
+**This rule has a flaw, found after the fact.** With four tasks, a perfect
+4-for-4 sweep gives an exact two-sided sign-test p of 0.125 — so the primary
+analysis could not have reached 0.05 whatever the trials showed. Six to eight
+tasks would fix it. The rule is left here as written rather than quietly
+repaired, and [`RESULTS.md`](RESULTS.md) reports the consequence.
+
 ## What gets measured
 
 Per trial: total input tokens, output tokens, wall time, tool calls split into
@@ -200,9 +214,10 @@ test by name so the mutation is judged against the agent's work rather than
 against the suite's own coverage of the same rule.
 
 **Neither locate trial navigated without searching.** Both went `rg` first, then
-read. That is one data point per condition and settles nothing, but it is the
-counter-hypothesis showing up immediately, and it is why
-`zero_search_navigation` is recorded at all.
+read. That was one data point per condition and settled nothing at the time, but
+it was the counter-hypothesis showing up immediately, and it is why
+`zero_search_navigation` is recorded at all. The grid settled it: **0 of 80**,
+in both layouts.
 
 ## Things that would have quietly ruined this
 

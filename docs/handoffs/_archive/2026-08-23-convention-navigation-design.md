@@ -3,7 +3,8 @@ created: 2026-08-23T05:03:43Z
 updated: 2026-08-23T17:06:39Z
 branch: experiment/convention-navigation
 trigger: manual
-restored: false
+restored: true
+restored_at: 2026-08-23T20:15:00Z
 topic: convention-navigation-design
 ---
 

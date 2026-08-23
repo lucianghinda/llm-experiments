@@ -1,0 +1,21 @@
+Done. Everything is green: **366 tests, 0 failures** (baseline was 348 — the 348 existing ones all still pass), RuboCop clean, Brakeman clean, seeds task runs.
+
+## What I added
+
+**Database** — `db/changes/20260823120000_add_topic_to_rooms.rb` adds a nullable `topic` string column to `rooms` (schema.rb regenerated).
+
+**Model** (`platform/core/entities/room.rb:25`) — `MAXIMUM_TOPIC_LENGTH = 120` and `validates :topic, length: { maximum: 120 }`. A maximum-only length validation lets `nil` through, so a room without a topic stays valid.
+
+**Editing — same screen, same request as renaming** (`delivery/http/render/rooms/layouts/_form.html.erb:19`) — that partial *is* the rename form, shared by the open- and closed-room new/edit screens, so the topic field sits directly under the name field inside the same `form_with`, behind the same `can_administer?` gate that guards renaming. One submit saves both. Non-admins, who see the name as static text, now see the topic the same way. `room_params` permits `:topic` in `RoomsController`, which both subclasses inherit. Direct rooms have no rename UI, so they get no topic UI either.
+
+**Rejecting over-long topics** — the two controllers used `update!`/`create!`, which would have turned a 121-character topic into a 500. They now branch on the result and re-render the form with `422 Unprocessable Content`, saving nothing — for closed rooms that also means the membership revisions in the same request are skipped, so a rejected topic can't half-apply.
+
+**Display** (`delivery/http/render/rooms/show/_nav.html.erb:13`) — the topic renders next to the room name in the room's nav bar, prefixed with a screen-reader-only "Topic:". CSS in `sidebar.css` makes it shrink and ellipsize before the name does, and hide entirely below 100ch so it never crowds the name on narrow screens.
+
+Also added a `room_topic` entry to `TranslationsHelper::TRANSLATIONS` so the field gets the same globe/translate popup as every other labelled field.
+
+## Notes
+
+- **New tests** (18): model-level optionality/limit/boundary, plus controller tests for both room types covering rename+topic in one request, clearing a topic, rejection at 121 characters, the non-admin `403`, and the topic rendering in the nav.
+- **System tests could not be run here** — `bin/rails test:system` fails in this environment before loading any test, because the bundled `selenium-manager` binary is broken (`Syntax error: Unterminated quoted string`). That's pre-existing and unrelated to this change; no existing system test touches room editing.
+- **Known limit, matching existing behaviour:** changing a topic doesn't live-update the nav for people already sitting in the room — they see it on their next load. Room *names* behave the same way today (only the sidebar list is broadcast), so I didn't change that.

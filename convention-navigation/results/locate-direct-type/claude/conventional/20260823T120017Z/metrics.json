@@ -1,0 +1,191 @@
+{
+  "total_tool_calls": 8,
+  "total_shell_segments": 28,
+  "search_segments": 9,
+  "read_segments": 6,
+  "search_calls": 4,
+  "read_calls": 2,
+  "edit_calls": 0,
+  "bash_calls": 2,
+  "other_calls": 0,
+  "distinct_files_read": 5,
+  "tool_calls_to_first_target_read": 2,
+  "tool_calls_to_first_edit": null,
+  "searches_before_first_target": 2,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "read",
+    "search",
+    "read",
+    "search",
+    "bash",
+    "bash"
+  ],
+  "tool_call_names": [
+    "Bash",
+    "Bash",
+    "Read",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash"
+  ],
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 5318,
+      "cache_read_input_tokens": 13842,
+      "context_tokens": 19162
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 5318,
+      "cache_read_input_tokens": 13842,
+      "context_tokens": 19162
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 1407,
+      "cache_read_input_tokens": 19160,
+      "context_tokens": 20569
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 1484,
+      "cache_read_input_tokens": 20567,
+      "context_tokens": 22053
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 1484,
+      "cache_read_input_tokens": 20567,
+      "context_tokens": 22053
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 1484,
+      "cache_read_input_tokens": 20567,
+      "context_tokens": 22053
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2024,
+      "cache_read_input_tokens": 22051,
+      "context_tokens": 24077
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2024,
+      "cache_read_input_tokens": 22051,
+      "context_tokens": 24077
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 3712,
+      "cache_read_input_tokens": 24075,
+      "context_tokens": 27789
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 3712,
+      "cache_read_input_tokens": 24075,
+      "context_tokens": 27789
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 3279,
+      "cache_read_input_tokens": 27787,
+      "context_tokens": 31068
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 3279,
+      "cache_read_input_tokens": 27787,
+      "context_tokens": 31068
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 31066,
+      "context_tokens": 32022
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 31066,
+      "context_tokens": 32022
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 273,
+      "cache_read_input_tokens": 32020,
+      "context_tokens": 32295
+    }
+  ],
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 9,
+  "duration_ms": 48213,
+  "total_cost_usd": 0.35662400000000005,
+  "is_error": false,
+  "input_tokens": 16,
+  "output_tokens": 3070,
+  "cache_creation_input_tokens": 18451,
+  "cache_read_input_tokens": 190568,
+  "total_input_tokens": 209035,
+  "context_before_first_tool_call": 19162,
+  "unparsable_lines": 0,
+  "raw_events": 46,
+  "task": "locate-direct-type",
+  "app": "campfire",
+  "condition": "conventional",
+  "variant": "conventional",
+  "targets": [
+    "app/models/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "cited_paths": [
+      "app/models/room.rb"
+    ],
+    "cited_lines": [
+      73
+    ],
+    "expected_lines": [
+      25,
+      73
+    ],
+    "line_correct": true,
+    "left_tree_dirty": false,
+    "answer": "app/models/room.rb:73"
+  },
+  "wall_seconds": 49.475,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [],
+  "trial_dir": "results-raw/locate-direct-type/claude/conventional/20260823T120017Z"
+}

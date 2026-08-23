@@ -1,0 +1,390 @@
+diff --git a/app/assets/stylesheets/sidebar.css b/app/assets/stylesheets/sidebar.css
+index 94f0983..fbb72b0 100644
+--- a/app/assets/stylesheets/sidebar.css
++++ b/app/assets/stylesheets/sidebar.css
+@@ -237,6 +237,10 @@
+ 
+   min-block-size: var(--btn-size);
+ 
++  .room__topic {
++    font-weight: 400;
++  }
++
+   .room__contents {
+     .account-has-logo & {
+       --num-buttons: 2;
+diff --git a/app/controllers/rooms/closeds_controller.rb b/app/controllers/rooms/closeds_controller.rb
+index c0d01d4..42633b7 100644
+--- a/app/controllers/rooms/closeds_controller.rb
++++ b/app/controllers/rooms/closeds_controller.rb
+@@ -21,11 +21,14 @@ class Rooms::ClosedsController < RoomsController
+ 
+     broadcast_create_room(room)
+     redirect_to room_url(room)
++  rescue ActiveRecord::RecordInvalid => error
++    reject_room error.record
++    @users = User.active.ordered
++    render :new, status: :unprocessable_entity
+   end
+ 
+   def edit
+-    selected_user_ids = @room.users.pluck(:id)
+-    @selected_users, @unselected_users = User.active.ordered.partition { |user| selected_user_ids.include?(user.id) }
++    set_partitioned_users
+   end
+ 
+   def update
+@@ -34,9 +37,18 @@ class Rooms::ClosedsController < RoomsController
+ 
+     broadcast_update_room
+     redirect_to room_url(@room)
++  rescue ActiveRecord::RecordInvalid => error
++    reject_room error.record
++    set_partitioned_users
++    render :edit, status: :unprocessable_entity
+   end
+ 
+   private
++    def set_partitioned_users
++      selected_user_ids = @room.users.pluck(:id)
++      @selected_users, @unselected_users = User.active.ordered.partition { |user| selected_user_ids.include?(user.id) }
++    end
++
+     # Allows us to edit an open room and turn it into a closed one on saving.
+     def force_room_type
+       @room = @room.becomes!(Rooms::Closed)
+diff --git a/app/controllers/rooms/opens_controller.rb b/app/controllers/rooms/opens_controller.rb
+index 2605d22..cd5dfad 100644
+--- a/app/controllers/rooms/opens_controller.rb
++++ b/app/controllers/rooms/opens_controller.rb
+@@ -21,6 +21,10 @@ class Rooms::OpensController < RoomsController
+ 
+     broadcast_create_room(room)
+     redirect_to room_url(room)
++  rescue ActiveRecord::RecordInvalid => error
++    reject_room error.record
++    @users = User.active.ordered
++    render :new, status: :unprocessable_entity
+   end
+ 
+   def edit
+@@ -32,6 +36,10 @@ class Rooms::OpensController < RoomsController
+ 
+     broadcast_update_room
+     redirect_to room_url(@room)
++  rescue ActiveRecord::RecordInvalid => error
++    reject_room error.record
++    @users = User.active.ordered
++    render :edit, status: :unprocessable_entity
+   end
+ 
+   private
+diff --git a/app/controllers/rooms_controller.rb b/app/controllers/rooms_controller.rb
+index 1f1d28e..463e2f0 100644
+--- a/app/controllers/rooms_controller.rb
++++ b/app/controllers/rooms_controller.rb
+@@ -54,7 +54,14 @@ class RoomsController < ApplicationController
+     end
+ 
+     def room_params
+-      params.require(:room).permit(:name)
++      params.require(:room).permit(:name, :topic)
++    end
++
++    # Renaming a room and setting its topic happen in the same request, so a rejected
++    # topic sends the whole form back with what was typed still in it.
++    def reject_room(room)
++      @room = room
++      flash.now[:alert] = room.errors.full_messages.to_sentence
+     end
+ 
+     def broadcast_remove_room
+diff --git a/app/helpers/translations_helper.rb b/app/helpers/translations_helper.rb
+index 6142ab4..0278d59 100644
+--- a/app/helpers/translations_helper.rb
++++ b/app/helpers/translations_helper.rb
+@@ -6,6 +6,7 @@ module TranslationsHelper
+     user_name: { "🇺🇸": "Enter your name", "🇪🇸": "Introduce tu nombre", "🇫🇷": "Entrez votre nom", "🇮🇳": "अपना नाम दर्ज करें", "🇩🇪": "Geben Sie Ihren Namen ein", "🇧🇷": "Insira seu nome", "🇯🇵": "お名前を入力してください" },
+     account_name: { "🇺🇸": "Name this account", "🇪🇸": "Nombre de esta cuenta", "🇫🇷": "Nommez ce compte", "🇮🇳": "इस खाते का नाम दें", "🇩🇪": "Benennen Sie dieses Konto", "🇧🇷": "Dê um nome a essa conta", "🇯🇵": "アカウントに名前を付ける" },
+     room_name: { "🇺🇸": "Name the room", "🇪🇸": "Nombrar la sala", "🇫🇷": "Nommez la salle", "🇮🇳": "कमरे का नाम दें", "🇩🇪": "Geben Sie dem Raum einen Namen", "🇧🇷": "Dê um nome a essa sala", "🇯🇵": "ルームに名前を付ける" },
++    room_topic: { "🇺🇸": "What's this room about?", "🇪🇸": "¿De qué trata esta sala?", "🇫🇷": "De quoi parle cette salle ?", "🇮🇳": "यह कमरा किस बारे में है?", "🇩🇪": "Worum geht es in diesem Raum?", "🇧🇷": "Sobre o que é essa sala?", "🇯🇵": "このルームは何について話す場所ですか？" },
+     invite_message: { "🇺🇸": "Welcome to Campfire. To invite some people to chat with you, share the join link below.", "🇪🇸": "Bienvenido a Campfire. Para invitar a algunas personas a chatear contigo, comparte el enlace de unión que se encuentra a continuación.", "🇫🇷": "Bienvenue sur Campfire. Pour inviter des personnes à discuter avec vous, partagez le lien pour rejoindre ci-dessous.", "🇮🇳": "Campfire में आपका स्वागत है। अधिक लोगों को चैट के लिए आमंत्रित करने के लिए, नीचे जुड़ने का लिंक साझा करें।", "🇩🇪": "Willkommen bei Campfire. Um einige Personen zum Chatten einzuladen, teilen Sie den unten stehenden Beitrittslink.", "🇧🇷": "Boas vindas ao Campfire. Para convidar pessoas para conversarem com você, compartilhe o link de convite abaixo.", "🇯🇵": "Campfireへようこそ。他の人をチャットに招待するには、下記の参加リンクを共有してください。" },
+     incompatible_browser_messsage: { "🇺🇸": "Upgrade to a supported web browser. Campfire requires a modern web browser. Please use one of the browsers listed below and make sure auto-updates are enabled.", "🇪🇸": "Actualiza a un navegador web compatible. Campfire requiere un navegador web moderno. Utiliza uno de los navegadores listados a continuación y asegúrate de que las actualizaciones automáticas estén habilitadas.", "🇫🇷": "Mettez à jour vers un navigateur web pris en charge. Campfire nécessite un navigateur web moderne. Veuillez utiliser l'un des navigateurs répertoriés ci-dessous et assurez-vous que les mises à jour automatiques sont activées.", "🇮🇳": "समर्थित वेब ब्राउज़र में अपग्रेड करें। Campfire को एक आधुनिक वेब ब्राउज़र की आवश्यकता है। कृपया नीचे सूचीबद्ध ब्राउज़रों में से कोई एक का उपयोग करें और सुनिश्चित करें कि स्वचालित अपडेट्स सक्षम हैं।", "🇩🇪": "Aktualisieren Sie auf einen unterstützten Webbrowser. Campfire erfordert einen modernen Webbrowser. Verwenden Sie bitte einen der unten aufgeführten Browser und stellen Sie sicher, dass automatische Updates aktiviert sind.", "🇧🇷": "Atualize para um navegador compatível. O Campfire requer um navegador moderno. Por favor, use um dos navegadores listados abaixo e certifique-se de que as atualizações automáticas estão ativadas.", "🇯🇵": "サポートされたウェブブラウザーにアップグレードしてください。Campfireはモダンなウェブブラウザーが必要です。下記のブラウザーのいずれかを使用し、自動更新が有効になっていることを確認してください。" },
+     bio: { "🇺🇸": "Enter a few words about yourself.", "🇪🇸": "Ingresa algunas palabras sobre ti mismo.", "🇫🇷": "Saisissez quelques mots à propos de vous-même.", "🇮🇳": "अपने बारे में कुछ शब्द लिखें.", "🇩🇪": "Geben Sie ein paar Worte über sich selbst ein.", "🇧🇷": "Insira alguma palavras sobre você.", "🇯🇵": "ご自分について簡単に記入してください。" },
+diff --git a/app/models/room.rb b/app/models/room.rb
+index 20865fc..14463dd 100644
+--- a/app/models/room.rb
++++ b/app/models/room.rb
+@@ -1,4 +1,6 @@
+ class Room < ApplicationRecord
++  MAXIMUM_TOPIC_LENGTH = 120
++
+   has_many :memberships, dependent: :delete_all do
+     def grant_to(users)
+       room = proxy_association.owner
+@@ -22,6 +24,11 @@ class Room < ApplicationRecord
+ 
+   belongs_to :creator, class_name: "User", default: -> { Current.user }
+ 
++  # A room doesn't need a topic, but a blank one is no topic at all, so it's stored as none.
++  normalizes :topic, with: ->(topic) { topic.strip.presence }
++
++  validates :topic, length: { maximum: MAXIMUM_TOPIC_LENGTH }
++
+   validate :direct_rooms_keep_their_type, on: :update
+ 
+   scope :opens,           -> { where(type: "Rooms::Open") }
+diff --git a/app/views/rooms/layouts/_form.html.erb b/app/views/rooms/layouts/_form.html.erb
+index 0b266f2..10c7f7c 100644
+--- a/app/views/rooms/layouts/_form.html.erb
++++ b/app/views/rooms/layouts/_form.html.erb
+@@ -16,6 +16,23 @@
+     <% end %>
+   </div>
+ 
++  <% if Current.user.can_administer?(room) %>
++    <div class="flex align-center gap margin-block-start-half">
++      <%= translation_button(:room_topic) %>
++
++      <label class="flex-item-grow">
++        <%= form.text_field :topic, name: "room[topic]", id: "room_topic", class: "input full-width",
++              maxlength: Room::MAXIMUM_TOPIC_LENGTH, placeholder: "What's this room about? (optional)",
++              data: { turbo_permanent: true, action: "keydown.enter->form#submit:prevent" } %>
++        <span class="for-screen-reader">Set a topic for this room</span>
++      </label>
++    </div>
++  <% elsif room.topic.present? %>
++    <p class="txt-small translucent margin-block-start-half">
++      <%= room.topic %>
++    </p>
++  <% end %>
++
+   <hr class="margin-block borderless">
+ 
+   <section class="room-access margin-block pad-inline fill-shade border-radius">
+diff --git a/app/views/rooms/show/_nav.html.erb b/app/views/rooms/show/_nav.html.erb
+index 4f62185..d1ab11f 100644
+--- a/app/views/rooms/show/_nav.html.erb
++++ b/app/views/rooms/show/_nav.html.erb
+@@ -2,13 +2,21 @@
+   <%= account_logo_tag if Current.account.logo.attached? %>
+ 
+   <%= tag.span class: "btn btn--reversed btn--faux room--current" do %>
+-    <h1 class="room__contents txt-medium overflow-ellipsis">
+-      <% if room.direct? %>
+-        <span class="for-screen-reader">Ping with</span>
+-      <% end %>
++    <span class="flex flex-column align-start min-width">
++      <h1 class="room__contents txt-medium overflow-ellipsis">
++        <% if room.direct? %>
++          <span class="for-screen-reader">Ping with</span>
++        <% end %>
++
++        <%= room_display_name(room) %>
++      </h1>
+ 
+-      <%= room_display_name(room) %>
+-    </h1>
++      <% if room.topic.present? %>
++        <span class="room__contents room__topic txt-small overflow-ellipsis translucent">
++          <%= room.topic %>
++        </span>
++      <% end %>
++    </span>
+   <% end %>
+ 
+   <%= link_to_edit_room(room) do %>
+diff --git a/db/schema.rb b/db/schema.rb
+index e7f1540..ec7390f 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
++ActiveRecord::Schema[8.2].define(version: 2026_08_23_123403) do
+   create_table "accounts", force: :cascade do |t|
+     t.datetime "created_at", null: false
+     t.text "custom_styles"
+@@ -120,6 +120,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
+     t.datetime "created_at", null: false
+     t.bigint "creator_id", null: false
+     t.string "name"
++    t.string "topic", limit: 120
+     t.string "type", null: false
+     t.datetime "updated_at", null: false
+   end
+diff --git a/test/controllers/rooms/closeds_controller_test.rb b/test/controllers/rooms/closeds_controller_test.rb
+index 504745d..311ca2a 100644
+--- a/test/controllers/rooms/closeds_controller_test.rb
++++ b/test/controllers/rooms/closeds_controller_test.rb
+@@ -50,6 +50,62 @@ class Rooms::ClosedsControllerTest < ActionDispatch::IntegrationTest
+     assert rooms(:designers).reload.name, "New Name"
+   end
+ 
++  test "edit offers the topic on the same form as the name" do
++    get edit_rooms_closed_url(rooms(:designers))
++
++    assert_response :success
++    assert_select "form" do
++      assert_select "input#room_name"
++      assert_select "input#room_topic"
++    end
++  end
++
++  test "a member who can't administer the room sees the topic but can't edit it" do
++    sign_in :jz
++    rooms(:designers).update! topic: "Type crimes"
++
++    get edit_rooms_closed_url(rooms(:designers))
++
++    assert_response :success
++    assert_select "input#room_topic", count: 0
++    assert_select "p", text: /Type crimes/
++  end
++
++  test "update the name and topic together" do
++    put rooms_closed_url(rooms(:designers)), params: {
++      room: { name: "New Name", topic: "Type crimes" }, user_ids: rooms(:designers).users.collect(&:id)
++    }
++
++    assert_redirected_to room_url(rooms(:designers))
++    assert_equal "New Name", rooms(:designers).reload.name
++    assert_equal "Type crimes", rooms(:designers).topic
++  end
++
++  test "update rejects a topic that's too long without renaming the room or revising memberships" do
++    assert_no_difference -> { rooms(:designers).reload.users.count } do
++      put rooms_closed_url(rooms(:designers)), params: {
++        room: { name: "New Name", topic: "T" * 121 }, user_ids: rooms(:designers).users.without(users(:jason)).collect(&:id)
++      }
++    end
++
++    assert_response :unprocessable_entity
++    assert_equal "Designers", rooms(:designers).reload.name
++    assert_nil rooms(:designers).topic
++  end
++
++  test "create with a topic" do
++    post rooms_closeds_url, params: { room: { name: "My New Room", topic: "Type crimes" }, user_ids: [ users(:david).id ] }
++    assert_equal "Type crimes", Room.last.topic
++  end
++
++  test "create rejects a topic that's too long" do
++    assert_no_difference -> { Room.count } do
++      post rooms_closeds_url, params: { room: { name: "My New Room", topic: "T" * 121 }, user_ids: [ users(:david).id ] }
++    end
++
++    assert_response :unprocessable_entity
++  end
++
+   test "update an open room to be closed" do
+     put rooms_closed_url(rooms(:pets)), params: { room: { name: "Doesn't matter" }, user_ids: [ users(:david).id, users(:jason).id ] }
+     assert_equal rooms(:pets).memberships.count, 2
+diff --git a/test/controllers/rooms/opens_controller_test.rb b/test/controllers/rooms/opens_controller_test.rb
+index 680c2e1..1488e5c 100644
+--- a/test/controllers/rooms/opens_controller_test.rb
++++ b/test/controllers/rooms/opens_controller_test.rb
+@@ -53,6 +53,47 @@ class Rooms::OpensControllerTest < ActionDispatch::IntegrationTest
+     assert rooms(:pets).reload.name, "New Name"
+   end
+ 
++  test "edit offers the topic on the same form as the name" do
++    get edit_rooms_open_url(rooms(:pets))
++
++    assert_response :success
++    assert_select "form" do
++      assert_select "input#room_name"
++      assert_select "input#room_topic"
++    end
++  end
++
++  test "update the name and topic together" do
++    put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name", topic: "Pet pictures, mostly" } }
++
++    assert_redirected_to room_url(rooms(:pets))
++    assert_equal "New Name", rooms(:pets).reload.name
++    assert_equal "Pet pictures, mostly", rooms(:pets).topic
++  end
++
++  test "update rejects a topic that's too long without renaming the room" do
++    assert_turbo_stream_broadcasts :rooms, count: 0 do
++      put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name", topic: "T" * 121 } }
++    end
++
++    assert_response :unprocessable_entity
++    assert_equal "All Pets", rooms(:pets).reload.name
++    assert_nil rooms(:pets).topic
++  end
++
++  test "create with a topic" do
++    post rooms_opens_url, params: { room: { name: "My New Room", topic: "Everything and nothing" } }
++    assert_equal "Everything and nothing", Room.last.topic
++  end
++
++  test "create rejects a topic that's too long" do
++    assert_no_difference -> { Room.count } do
++      post rooms_opens_url, params: { room: { name: "My New Room", topic: "T" * 121 } }
++    end
++
++    assert_response :unprocessable_entity
++  end
++
+   test "update a closed room to be open" do
+     put rooms_open_url(rooms(:designers)), params: { room: { name: "Doesn't matter" } }
+     assert_equal rooms(:designers).memberships.count, User.count
+diff --git a/test/controllers/rooms_controller_test.rb b/test/controllers/rooms_controller_test.rb
+index 69b2add..c7de004 100644
+--- a/test/controllers/rooms_controller_test.rb
++++ b/test/controllers/rooms_controller_test.rb
+@@ -15,6 +15,13 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
+     assert_response :success
+   end
+ 
++  test "show displays the room's topic" do
++    rooms(:pets).update! topic: "Pet pictures, mostly"
++
++    get room_url(rooms(:pets))
++    assert_select ".room--current", text: /Pet pictures, mostly/
++  end
++
+   test "shows records the last room visited in a cookie" do
+     get room_url(users(:david).rooms.last)
+     assert response.cookies[:last_room] = users(:david).rooms.last.id
+diff --git a/test/models/room_test.rb b/test/models/room_test.rb
+index b113726..e8bc828 100644
+--- a/test/models/room_test.rb
++++ b/test/models/room_test.rb
+@@ -34,4 +34,31 @@ class RoomTest < ActiveSupport::TestCase
+     room = Rooms::Closed.create_for({ name: "Hello!", creator: users(:david) }, users: [ users(:kevin), users(:david) ])
+     assert room.memberships.all? { |m| m.involved_in_mentions? }
+   end
++
++  test "topic is optional" do
++    room = rooms(:pets)
++
++    assert_nil room.topic
++    assert room.valid?
++
++    room.update!(topic: "Pet pictures, mostly")
++    assert_equal "Pet pictures, mostly", room.reload.topic
++  end
++
++  test "a blank topic is stored as no topic" do
++    room = rooms(:pets)
++
++    room.update!(topic: "   ")
++    assert_nil room.reload.topic
++  end
++
++  test "a topic longer than the maximum is rejected" do
++    room = rooms(:pets)
++
++    assert_not room.update(topic: "T" * (Room::MAXIMUM_TOPIC_LENGTH + 1))
++    assert room.errors[:topic].present?
++    assert_nil room.reload.topic
++
++    assert room.update(topic: "T" * Room::MAXIMUM_TOPIC_LENGTH)
++  end
+ end

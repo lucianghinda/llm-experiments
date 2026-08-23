@@ -1,0 +1,16 @@
+diff --git a/test/suite/persistence/rooms/direct_test.rb b/test/suite/persistence/rooms/direct_test.rb
+index ab74efa..7f095c7 100644
+--- a/test/suite/persistence/rooms/direct_test.rb
++++ b/test/suite/persistence/rooms/direct_test.rb
+@@ -18,4 +18,11 @@ class Rooms::DirectTest < ActiveSupport::TestCase
+     room = Rooms::Direct.find_or_create_for([ users(:david), users(:kevin) ])
+     assert room.memberships.all? { |m| m.involved_in_everything? }
+   end
++
++  test "can't be converted to an open room" do
++    room = rooms(:david_and_kevin).becomes!(Rooms::Open)
++
++    assert_not room.save
++    assert_equal "Rooms::Direct", Room.find(room.id).type
++  end
+ end

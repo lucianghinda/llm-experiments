@@ -1,0 +1,15 @@
+Done. Here's what changed:
+
+**Storage** — `db/migrate/20260823120000_add_topic_to_rooms.rb` adds a nullable `topic` string column to `rooms` (schema.rb regenerated).
+
+**Model** (`app/models/room.rb:2`)
+- `MAX_TOPIC_LENGTH = 120` and `validates :topic, length: { maximum: MAX_TOPIC_LENGTH }` — an over-long topic fails validation, so it's never written.
+- `normalizes :topic` strips whitespace and turns a blank value into `nil`, so clearing the field means "no topic" rather than an empty-string topic. Stripping happens before validation, so trailing spaces don't push a valid topic over the limit.
+
+**Same screen, same request** (`app/views/rooms/layouts/_form.html.erb`) — the topic field sits right under the name field in the shared room form, so it's on the new-room and edit-room screens for both open and closed rooms, and it posts in the same `room[...]` params as the rename. `room_params` now permits `:topic` (`app/controllers/rooms_controller.rb:57`), which is the single place both `Rooms::OpensController` and `Rooms::ClosedsController` read. The field is gated on the same `Current.user.can_administer?(room)` check that already gates renaming — no new permission concept; non-admins see the topic as read-only text. Direct rooms have no rename path at all, so they get no topic field.
+
+**Rejection handling** — `update!`/`create!` would have turned an over-long topic into a 500. Both controllers now use the non-bang form (create rescues `RecordInvalid`) and re-render the form with the error message and a 422, leaving the room untouched. In `ClosedsController#update` the membership revision now only runs after the save succeeds, so a rejected topic can't silently change who's in the room.
+
+**Display** (`app/views/rooms/show/_nav.html.erb`) — the topic renders under the room name in the header when present. This wasn't in your bullets; a topic nobody can read seemed pointless, so I added the minimal version. The name `<h1>` moved inside a flex-column wrapper that carries the existing `.room__contents` width constraint, so the ellipsis truncation still applies. Say the word if you'd rather it live somewhere else (or nowhere).
+
+**Tests** — 364 pass, 0 failures (348 before, 16 new); rubocop clean. New coverage: topic optional, exactly 120 saved, 121 rejected with the record unchanged, blank clears it, whitespace stripped; create/update with a topic and rejection of an over-long one on both open and closed rooms; non-admins still can't set it; memberships untouched on rejection; and the topic appearing in the room header. System tests weren't run — they need a browser — but they don't touch the markup I changed.

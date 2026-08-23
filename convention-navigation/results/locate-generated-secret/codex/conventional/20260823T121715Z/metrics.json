@@ -1,0 +1,71 @@
+{
+  "total_tool_calls": 2,
+  "total_shell_segments": 7,
+  "search_segments": 2,
+  "read_segments": 2,
+  "search_calls": 1,
+  "read_calls": 1,
+  "edit_calls": 0,
+  "bash_calls": 0,
+  "other_calls": 0,
+  "distinct_files_read": 1,
+  "tool_calls_to_first_target_read": 1,
+  "tool_calls_to_first_edit": null,
+  "searches_before_first_target": 1,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "read"
+  ],
+  "tool_call_names": [
+    "command_execution",
+    "command_execution"
+  ],
+  "turns": [
+    {
+      "input_tokens": 47141,
+      "output_tokens": 171,
+      "cache_read_input_tokens": 29952,
+      "reasoning_output_tokens": 0,
+      "context_tokens": 47141
+    }
+  ],
+  "agent": "codex",
+  "input_tokens": 47141,
+  "output_tokens": 171,
+  "cache_read_input_tokens": 29952,
+  "thinking_tokens": 0,
+  "total_input_tokens": 47141,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "unparsable_lines": 0,
+  "raw_events": 9,
+  "task": "locate-generated-secret",
+  "app": "campfire",
+  "condition": "conventional",
+  "variant": "conventional",
+  "targets": [
+    "app/models/user/bot.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "reported_length": 12,
+    "cited_paths": [
+      "app/models/user/bot.rb"
+    ],
+    "cited_lines": [
+      26
+    ],
+    "expected_lines": [
+      26
+    ],
+    "line_correct": true,
+    "left_tree_dirty": false,
+    "answer": "12\napp/models/user/bot.rb:26"
+  },
+  "wall_seconds": 20.657,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [],
+  "trial_dir": "results-raw/locate-generated-secret/codex/conventional/20260823T121715Z"
+}

@@ -1,0 +1,9 @@
+In this application a direct room, which exists for a fixed pair of people,
+cannot be turned into a room that other people can join.
+
+Find where that rule is enforced and report where it lives. Reply with exactly
+one line and nothing else, in this form:
+
+path/to/file.rb:LINE
+
+Do not change any files.

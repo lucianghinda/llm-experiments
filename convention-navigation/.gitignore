@@ -1,0 +1,8 @@
+# Everything a trial produced, unfiltered. sanitize.rb is what decides which
+# parts of this become results/.
+results-raw/
+
+# Host checkout paths. Never committed; see apps.local.example.
+.apps.local
+
+.DS_Store

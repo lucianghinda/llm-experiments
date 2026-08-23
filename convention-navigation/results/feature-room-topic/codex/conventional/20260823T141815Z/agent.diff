@@ -1,0 +1,122 @@
+diff --git a/app/controllers/rooms_controller.rb b/app/controllers/rooms_controller.rb
+index 1f1d28e..6d77969 100644
+--- a/app/controllers/rooms_controller.rb
++++ b/app/controllers/rooms_controller.rb
+@@ -54,7 +54,7 @@ class RoomsController < ApplicationController
+     end
+ 
+     def room_params
+-      params.require(:room).permit(:name)
++      params.require(:room).permit(:name, :topic)
+     end
+ 
+     def broadcast_remove_room
+diff --git a/app/models/room.rb b/app/models/room.rb
+index 20865fc..75a399e 100644
+--- a/app/models/room.rb
++++ b/app/models/room.rb
+@@ -22,6 +22,7 @@ class Room < ApplicationRecord
+ 
+   belongs_to :creator, class_name: "User", default: -> { Current.user }
+ 
++  validates :topic, length: { maximum: 120 }, allow_nil: true
+   validate :direct_rooms_keep_their_type, on: :update
+ 
+   scope :opens,           -> { where(type: "Rooms::Open") }
+diff --git a/app/views/rooms/layouts/_form.html.erb b/app/views/rooms/layouts/_form.html.erb
+index 0b266f2..2d43ac9 100644
+--- a/app/views/rooms/layouts/_form.html.erb
++++ b/app/views/rooms/layouts/_form.html.erb
+@@ -9,6 +9,12 @@
+               data: { turbo_permanent: true, action: "keydown.enter->form#submit:prevent" } %>
+         <span class="for-screen-reader">Name this room</span>
+       </label>
++
++      <label class="flex-item-grow">
++        <%= form.text_field :topic, name: "room[topic]", id: "room_topic", class: "input full-width",
++              maxlength: 120, placeholder: "What is this room about?" %>
++        <span class="for-screen-reader">Topic for this room</span>
++      </label>
+     <% else %>
+       <h1 class="flex-item-grow txt-x-large">
+         <%= room.name %>
+diff --git a/app/views/rooms/show/_nav.html.erb b/app/views/rooms/show/_nav.html.erb
+index 4f62185..786b1cc 100644
+--- a/app/views/rooms/show/_nav.html.erb
++++ b/app/views/rooms/show/_nav.html.erb
+@@ -9,6 +9,9 @@
+ 
+       <%= room_display_name(room) %>
+     </h1>
++    <% if room.topic.present? %>
++      <span class="room__topic txt-small overflow-ellipsis"><%= room.topic %></span>
++    <% end %>
+   <% end %>
+ 
+   <%= link_to_edit_room(room) do %>
+diff --git a/db/schema.rb b/db/schema.rb
+index e7f1540..93ec80c 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
++ActiveRecord::Schema[8.2].define(version: 2026_08_23_141800) do
+   create_table "accounts", force: :cascade do |t|
+     t.datetime "created_at", null: false
+     t.text "custom_styles"
+@@ -120,6 +120,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
+     t.datetime "created_at", null: false
+     t.bigint "creator_id", null: false
+     t.string "name"
++    t.string "topic", limit: 120
+     t.string "type", null: false
+     t.datetime "updated_at", null: false
+   end
+diff --git a/test/controllers/rooms/opens_controller_test.rb b/test/controllers/rooms/opens_controller_test.rb
+index 680c2e1..0db3e54 100644
+--- a/test/controllers/rooms/opens_controller_test.rb
++++ b/test/controllers/rooms/opens_controller_test.rb
+@@ -46,11 +46,20 @@ class Rooms::OpensControllerTest < ActionDispatch::IntegrationTest
+ 
+   test "update" do
+     assert_turbo_stream_broadcasts :rooms, count: 1 do
+-      put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name" } }
++      put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name", topic: "Pet photos and stories" } }
+     end
+ 
+     assert_redirected_to room_url(rooms(:pets))
+     assert rooms(:pets).reload.name, "New Name"
++    assert_equal "Pet photos and stories", rooms(:pets).topic
++  end
++
++  test "rejects a topic longer than 120 characters" do
++    assert_raises ActiveRecord::RecordInvalid do
++      put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name", topic: "A" * 121 } }
++    end
++
++    assert_nil rooms(:pets).reload.topic
+   end
+ 
+   test "update a closed room to be open" do
+diff --git a/test/models/room_test.rb b/test/models/room_test.rb
+index b113726..bd80293 100644
+--- a/test/models/room_test.rb
++++ b/test/models/room_test.rb
+@@ -1,6 +1,14 @@
+ require "test_helper"
+ 
+ class RoomTest < ActiveSupport::TestCase
++  test "topic is optional and limited to 120 characters" do
++    room = rooms(:pets)
++
++    assert room.update(topic: nil)
++    assert room.update(topic: "A" * 120)
++    assert_not room.update(topic: "A" * 121)
++  end
++
+   test "grant membership to user" do
+     rooms(:watercooler).memberships.grant_to(users(:kevin))
+     assert rooms(:watercooler).users.include?(users(:kevin))

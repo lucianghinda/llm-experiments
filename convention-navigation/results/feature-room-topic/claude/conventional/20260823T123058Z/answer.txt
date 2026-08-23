@@ -1,0 +1,15 @@
+Done. Rooms now have a topic.
+
+**Database** — `db/migrate/20260823123403_add_topic_to_rooms.rb` adds a nullable `topic` string column (`limit: 120`, matching the `boosts.content` convention in this schema). Migrated; `db/schema.rb` updated.
+
+**Model** (`app/models/room.rb:27`)
+- `MAXIMUM_TOPIC_LENGTH = 120` and `validates :topic, length: { maximum: 120 }` — no presence validation, so a room without a topic is valid.
+- `normalizes :topic` strips and converts blank to `nil`, so clearing the field in the form means "no topic" rather than an empty string.
+
+**Same screen, same request** — the name field lives in the shared `rooms/layouts/_form.html.erb`, rendered by both the open- and closed-room new/edit screens. The topic input sits right under it inside that same `form_with`, submitted as `room[topic]` in the one PUT that renames the room, and gated by the identical `Current.user.can_administer?(room)` check that gates the name field. Non-administrators see the topic as read-only text where they already see the name as read-only. `room_params` now permits `:topic`. Direct rooms are untouched — they have no name and no rename screen.
+
+**Rejecting over-length topics** — `update!`/`create!` would have raised into a 500. Both `Rooms::OpensController` and `Rooms::ClosedsController` now rescue `RecordInvalid`, re-render the form with what was typed still in it, put the error in the existing flash mechanism, and return 422. Nothing is saved: the rename doesn't go through, membership revisions don't run, and no sidebar broadcast fires. The input also carries `maxlength=120` as a client-side guard.
+
+**Display** — the topic renders as a small second line under the room name in the room header (`rooms/show/_nav.html.erb`), plus a `font-weight: 400` rule so it reads as subordinate to the name. A translation entry `room_topic` was added for parity with `room_name`, since the two fields now sit side by side.
+
+**Tests** — 12 new tests (model validation/optionality/normalization, name+topic in one request, rejection on create and update, the field's presence on the edit screen, the read-only variant, and header display). Full suite: 363 runs, 0 failures, 2 pre-existing skips; rubocop clean across 270 files. System tests were not run — there's no browser installed in this environment.

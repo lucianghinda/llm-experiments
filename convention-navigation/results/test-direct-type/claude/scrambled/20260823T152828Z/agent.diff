@@ -1,0 +1,44 @@
+diff --git a/test/suite/persistence/room_test.rb b/test/suite/persistence/room_test.rb
+index b113726..cc80835 100644
+--- a/test/suite/persistence/room_test.rb
++++ b/test/suite/persistence/room_test.rb
+@@ -34,4 +34,39 @@ class RoomTest < ActiveSupport::TestCase
+     room = Rooms::Closed.create_for({ name: "Hello!", creator: users(:david) }, users: [ users(:kevin), users(:david) ])
+     assert room.memberships.all? { |m| m.involved_in_mentions? }
+   end
++
++  test "a direct room can't be turned into a room others can join" do
++    direct = rooms(:david_and_kevin)
++    participants = direct.user_ids.sort
++
++    [ Rooms::Open, Rooms::Closed ].each do |joinable|
++      assert_not direct.update(type: joinable.name), "expected becoming a #{joinable.name} to be rejected"
++      assert_includes direct.errors.attribute_names, :type
++
++      reloaded = Room.find(direct.id)
++      assert_equal "Rooms::Direct", reloaded.type
++      assert_equal participants, reloaded.user_ids.sort
++    end
++  end
++
++  test "a direct room keeps its type even when saved as another class" do
++    direct = rooms(:bender_and_kevin)
++    participants = direct.user_ids.sort
++
++    [ Rooms::Open, Rooms::Closed ].each do |joinable|
++      assert_not rooms(:bender_and_kevin).becomes!(joinable).save, "expected saving as a #{joinable.name} to be rejected"
++
++      reloaded = Room.find(direct.id)
++      assert_equal "Rooms::Direct", reloaded.type
++      assert_equal participants, reloaded.user_ids.sort
++    end
++  end
++
++  test "open and closed rooms still convert into each other" do
++    assert rooms(:watercooler).becomes!(Rooms::Open).save
++    assert_equal "Rooms::Open", Room.find(rooms(:watercooler).id).type
++
++    assert rooms(:pets).becomes!(Rooms::Closed).save
++    assert_equal "Rooms::Closed", Room.find(rooms(:pets).id).type
++  end
+ end

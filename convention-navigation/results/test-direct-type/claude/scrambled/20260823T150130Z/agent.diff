@@ -1,0 +1,29 @@
+diff --git a/test/suite/persistence/rooms/direct_test.rb b/test/suite/persistence/rooms/direct_test.rb
+index ab74efa..c735d30 100644
+--- a/test/suite/persistence/rooms/direct_test.rb
++++ b/test/suite/persistence/rooms/direct_test.rb
+@@ -18,4 +18,24 @@ class Rooms::DirectTest < ActiveSupport::TestCase
+     room = Rooms::Direct.find_or_create_for([ users(:david), users(:kevin) ])
+     assert room.memberships.all? { |m| m.involved_in_everything? }
+   end
++
++  # A direct room belongs to the fixed pair who agreed to it. Converting it to an open or
++  # closed room would hand someone the ability to widen that audience after the fact, so
++  # the type is refused on update no matter who's asking.
++  test "can't be converted into a room other people can join" do
++    [ Rooms::Open, Rooms::Closed ].each do |type|
++      direct = Rooms::Direct.find_or_create_for([ users(:david), users(:kevin) ])
++      converted = Room.find(direct.id).becomes!(type)
++
++      assert_not converted.save, "a direct room was allowed to become #{type.name}"
++      assert_equal [ "can't be changed for a direct room" ], converted.errors[:type]
++
++      assert_raises ActiveRecord::RecordInvalid do
++        Room.find(direct.id).becomes!(type).update!(name: "Watercooler")
++      end
++
++      assert_equal "Rooms::Direct", Room.find(direct.id).type
++      assert_equal [ users(:david).id, users(:kevin).id ].sort, Room.find(direct.id).user_ids.sort
++    end
++  end
+ end

@@ -1,0 +1,13 @@
+# Copy to .apps.local (gitignored) and point at your own checkout:
+#
+#   cp convention-navigation/apps.local.example convention-navigation/.apps.local
+#   $EDITOR convention-navigation/.apps.local
+#   set -a; . convention-navigation/.apps.local; set +a
+#
+# The scripts only ever read this repository. They create local branches and
+# never push, never open a pull request and never merge.
+#
+# at-file-mentions/.apps.local uses the same variable names, so if you already
+# have one, sourcing it works for this experiment too.
+
+LLMX_APP_CAMPFIRE=/path/to/once-campfire

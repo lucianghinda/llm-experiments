@@ -1,0 +1,3 @@
+Added the focused regression test in [direct_test.rb](/workspace/app/test/suite/persistence/rooms/direct_test.rb:22).
+
+Verified: 4 tests pass with 0 failures. No production code changed.

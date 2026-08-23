@@ -1,0 +1,83 @@
+{
+  "total_tool_calls": 5,
+  "total_shell_segments": 20,
+  "search_segments": 2,
+  "read_segments": 9,
+  "search_calls": 2,
+  "read_calls": 1,
+  "edit_calls": 1,
+  "bash_calls": 1,
+  "other_calls": 0,
+  "distinct_files_read": 7,
+  "tool_calls_to_first_target_read": 2,
+  "tool_calls_to_first_edit": 3,
+  "searches_before_first_target": 2,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "read",
+    "edit",
+    "bash"
+  ],
+  "tool_call_names": [
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "file_change",
+    "command_execution"
+  ],
+  "turns": [
+    {
+      "input_tokens": 110725,
+      "output_tokens": 924,
+      "cache_read_input_tokens": 95744,
+      "reasoning_output_tokens": 232,
+      "context_tokens": 110725
+    }
+  ],
+  "agent": "codex",
+  "input_tokens": 110725,
+  "output_tokens": 924,
+  "cache_read_input_tokens": 95744,
+  "thinking_tokens": 232,
+  "total_input_tokens": 110725,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "unparsable_lines": 0,
+  "raw_events": 16,
+  "task": "test-direct-type",
+  "app": "campfire",
+  "condition": "conventional",
+  "variant": "conventional",
+  "targets": [
+    "app/models/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "new_test_files": [],
+    "modified_test_files": [
+      "test/models/rooms/direct_test.rb"
+    ],
+    "added_test_methods": [
+      "test_cannot_be_changed_into_an_open_room"
+    ],
+    "command": "bin/rails test test/models/rooms/direct_test.rb -n \"/test_cannot_be_changed_into_an_open_room/\"",
+    "mutation_killed": true,
+    "green_summary": "1 runs, 2 assertions, 0 failures, 0 errors, 0 skips",
+    "mutated_summary": "1 runs, 1 assertions, 1 failures, 0 errors, 0 skips",
+    "mutation_sites": [
+      "app/models/room.rb",
+      "app/controllers/rooms/closeds_controller.rb",
+      "app/controllers/rooms/opens_controller.rb"
+    ],
+    "edited_non_test_files": []
+  },
+  "wall_seconds": 43.491,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [
+    "test/models/rooms/direct_test.rb"
+  ],
+  "trial_dir": "results-raw/test-direct-type/codex/conventional/20260823T150425Z"
+}

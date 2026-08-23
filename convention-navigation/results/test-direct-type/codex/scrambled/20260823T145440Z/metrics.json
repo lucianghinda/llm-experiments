@@ -1,0 +1,90 @@
+{
+  "total_tool_calls": 9,
+  "total_shell_segments": 50,
+  "search_segments": 9,
+  "read_segments": 12,
+  "search_calls": 4,
+  "read_calls": 1,
+  "edit_calls": 2,
+  "bash_calls": 2,
+  "other_calls": 0,
+  "distinct_files_read": 7,
+  "tool_calls_to_first_target_read": 4,
+  "tool_calls_to_first_edit": 5,
+  "searches_before_first_target": 4,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "search",
+    "search",
+    "read",
+    "edit",
+    "bash",
+    "edit",
+    "bash"
+  ],
+  "tool_call_names": [
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "file_change",
+    "command_execution",
+    "file_change",
+    "command_execution"
+  ],
+  "turns": [
+    {
+      "input_tokens": 263280,
+      "output_tokens": 1488,
+      "cache_read_input_tokens": 233984,
+      "reasoning_output_tokens": 218,
+      "context_tokens": 263280
+    }
+  ],
+  "agent": "codex",
+  "input_tokens": 263280,
+  "output_tokens": 1488,
+  "cache_read_input_tokens": 233984,
+  "thinking_tokens": 218,
+  "total_input_tokens": 263280,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "unparsable_lines": 0,
+  "raw_events": 25,
+  "task": "test-direct-type",
+  "app": "campfire",
+  "condition": "scrambled",
+  "variant": "scrambled",
+  "targets": [
+    "platform/core/entities/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "new_test_files": [],
+    "modified_test_files": [
+      "test/suite/persistence/rooms/direct_test.rb"
+    ],
+    "added_test_methods": [
+      "test_can"
+    ],
+    "command": "bin/rails test test/suite/persistence/rooms/direct_test.rb -n \"/test_can/\"",
+    "mutation_killed": true,
+    "green_summary": "1 runs, 2 assertions, 0 failures, 0 errors, 0 skips",
+    "mutated_summary": "1 runs, 1 assertions, 1 failures, 0 errors, 0 skips",
+    "mutation_sites": [
+      "platform/core/entities/room.rb",
+      "delivery/http/handlers/rooms/opens_controller.rb"
+    ],
+    "edited_non_test_files": []
+  },
+  "wall_seconds": 70.369,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [
+    "test/suite/persistence/rooms/direct_test.rb"
+  ],
+  "trial_dir": "results-raw/test-direct-type/codex/scrambled/20260823T145440Z"
+}

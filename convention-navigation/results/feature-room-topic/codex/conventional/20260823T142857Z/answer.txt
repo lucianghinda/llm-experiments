@@ -1,0 +1,9 @@
+Implemented room topics.
+
+- Added nullable `rooms.topic` database column.
+- Added a 120-character model validation.
+- Permitted `topic` in the same request as room renaming.
+- Added an optional topic field to the existing room settings form.
+- Added regression tests for optional topics, boundary length, rejection, and persistence.
+
+Verification: 349 tests passed, 0 failures, 2 existing skips.

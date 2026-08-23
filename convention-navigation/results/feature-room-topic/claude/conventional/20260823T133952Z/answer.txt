@@ -1,0 +1,16 @@
+Done. Rooms now have a topic.
+
+**Storage** — `db/migrate/20260823140000_add_topic_to_rooms.rb` adds a nullable `topic` string column to `rooms`; `db/schema.rb` is regenerated.
+
+**Optional** — no presence validation. `app/models/room.rb:27` normalizes the value with `topic.strip.presence`, so a submitted blank clears back to `NULL` rather than storing an empty string standing in for a topic.
+
+**Length** — `MAX_TOPIC_LENGTH = 120` with `validates :topic, length: { maximum: 120 }`. Over-long topics are rejected: the record doesn't save, and nothing else in the request saves either (the rename in the same submission is rolled into the same `save`, so it's all-or-nothing). The form field also carries `maxlength` so browsers cap input before it's sent.
+
+**Same screen, same request as rename** — the topic field lives in `app/views/rooms/layouts/_form.html.erb`, the partial shared by the open- and closed-room new/edit screens, directly under the name field and behind the same `Current.user.can_administer?(room)` check that gates renaming. `RoomsController#room_params` permits `:topic` alongside `:name`, so one form submission carries both. Members who can't rename see the topic as read-only text instead. Direct rooms have no rename screen, so they get no topic editing.
+
+Two supporting changes this required:
+
+- `Rooms::OpensController` and `Rooms::ClosedsController` previously used `update!`/`create!`, which would have turned a rejected topic into a 500. They now re-render the form with `:unprocessable_content` and an inline error. For closed rooms the re-render preserves the membership revisions submitted alongside the rejected topic, so only the bad field needs fixing.
+- The topic is displayed after the room name in the room header (`rooms/show/_nav.html.erb`), inside the existing ellipsis-truncated `h1` so the nav layout is unaffected.
+
+**Tests**: full suite green — 363 runs, 0 failures (348 before, 15 added covering the model validation, normalization, the combined rename+topic request, clearing, rejection, and the admin-only gate). RuboCop clean. The three system tests can't run in this sandbox — Selenium fails to resolve a Chrome driver at setup, before any test code loads, which is a pre-existing environment limitation rather than something my change introduced.

@@ -1,0 +1,9 @@
+Implemented room topics end to end:
+
+- Added optional `rooms.topic` database column.
+- Added server-side 120-character maximum validation.
+- Permitted `topic` in the same request used to rename rooms.
+- Added an optional, single-line topic field to the shared room settings form.
+- Added model and endpoint test coverage.
+
+Validation: `349` tests passed with `1016` assertions, `0` failures, and `0` errors.

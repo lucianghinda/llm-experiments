@@ -1,0 +1,45 @@
+{
+  "task": "feature-room-topic",
+  "variant": "scrambled",
+  "passed": true,
+  "checks": [
+    {
+      "label": "topic works end to end (5 runs, 11 assertions, 0 failures, 0 errors, 0 skips)",
+      "ok": true,
+      "detail": "Running 5 tests in a single process (parallelization threshold is 50)\nRun options: --seed 22525\n\n# Running:\n\n.....\n\nFinished in 9.134866s, 0.5474 runs/s, 1.2042 assertions/s.\n5 runs, 11 assertions, 0 failures, 0 errors, 0 skips\n"
+    }
+  ],
+  "facts": {
+    "migration_files": [
+      "db/changes/20260823120000_add_topic_to_rooms.rb"
+    ],
+    "migration_exit": 0,
+    "migration_output": "",
+    "acceptance_summary": "5 runs, 11 assertions, 0 failures, 0 errors, 0 skips",
+    "regression_suite": {
+      "ran": true,
+      "ok": true,
+      "summary": "371 runs, 1080 assertions, 0 failures, 0 errors, 2 skips",
+      "seconds": 56.9
+    },
+    "changed_files": [
+      "app/assets/stylesheets/sidebar.css",
+      "db/schema.rb",
+      "delivery/http/handlers/rooms/closeds_controller.rb",
+      "delivery/http/handlers/rooms/opens_controller.rb",
+      "delivery/http/handlers/rooms_controller.rb",
+      "delivery/http/render/rooms/layouts/_form.html.erb",
+      "delivery/http/render/rooms/show/_nav.html.erb",
+      "delivery/http/render_support/translations_helper.rb",
+      "platform/core/entities/room.rb",
+      "test/suite/endpoints/rooms/closeds_controller_test.rb",
+      "test/suite/endpoints/rooms/opens_controller_test.rb",
+      "test/suite/endpoints/rooms_controller_test.rb",
+      "test/suite/persistence/room_test.rb"
+    ],
+    "new_files": [
+      "db/changes/20260823120000_add_topic_to_rooms.rb"
+    ]
+  },
+  "finished_at": "2026-08-23T13:24:18Z"
+}

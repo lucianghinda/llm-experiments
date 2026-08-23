@@ -1,0 +1,314 @@
+{
+  "total_tool_calls": 17,
+  "total_shell_segments": 44,
+  "search_segments": 5,
+  "read_segments": 16,
+  "search_calls": 5,
+  "read_calls": 9,
+  "edit_calls": 1,
+  "bash_calls": 2,
+  "other_calls": 0,
+  "distinct_files_read": 12,
+  "tool_calls_to_first_target_read": 2,
+  "tool_calls_to_first_edit": 10,
+  "searches_before_first_target": 2,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "read",
+    "search",
+    "search",
+    "search",
+    "read",
+    "read",
+    "read",
+    "read",
+    "edit",
+    "read",
+    "bash",
+    "read",
+    "read",
+    "bash",
+    "read"
+  ],
+  "tool_call_names": [
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Read",
+    "Edit",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash"
+  ],
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 19184
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 19184
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 2501,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 21685
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 2501,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 21685
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 21683,
+      "context_tokens": 22562
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 22560,
+      "context_tokens": 23979
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 1417,
+      "cache_read_input_tokens": 22560,
+      "context_tokens": 23979
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 1090,
+      "cache_read_input_tokens": 23977,
+      "context_tokens": 25069
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 1562,
+      "cache_read_input_tokens": 25067,
+      "context_tokens": 26631
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2135,
+      "cache_read_input_tokens": 26629,
+      "context_tokens": 28766
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2135,
+      "cache_read_input_tokens": 26629,
+      "context_tokens": 28766
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 4182,
+      "cache_read_input_tokens": 28764,
+      "context_tokens": 32948
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 4182,
+      "cache_read_input_tokens": 28764,
+      "context_tokens": 32948
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 2241,
+      "cache_read_input_tokens": 32946,
+      "context_tokens": 35189
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 248,
+      "cache_read_input_tokens": 35187,
+      "context_tokens": 35437
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 248,
+      "cache_read_input_tokens": 35187,
+      "context_tokens": 35437
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 248,
+      "cache_read_input_tokens": 35187,
+      "context_tokens": 35437
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 16,
+      "cache_creation_input_tokens": 544,
+      "cache_read_input_tokens": 35435,
+      "context_tokens": 35981
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 35979,
+      "context_tokens": 36750
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 36748,
+      "context_tokens": 37001
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 36748,
+      "context_tokens": 37001
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 36748,
+      "context_tokens": 37001
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 333,
+      "cache_read_input_tokens": 36999,
+      "context_tokens": 37334
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 478,
+      "cache_read_input_tokens": 37332,
+      "context_tokens": 37812
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 478,
+      "cache_read_input_tokens": 37332,
+      "context_tokens": 37812
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 370,
+      "cache_read_input_tokens": 37810,
+      "context_tokens": 38182
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 370,
+      "cache_read_input_tokens": 37810,
+      "context_tokens": 38182
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 16,
+      "cache_creation_input_tokens": 270,
+      "cache_read_input_tokens": 38180,
+      "context_tokens": 38452
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 238,
+      "cache_read_input_tokens": 38450,
+      "context_tokens": 38690
+    }
+  ],
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 18,
+  "duration_ms": 160253,
+  "total_cost_usd": 0.6244950000000001,
+  "is_error": false,
+  "input_tokens": 36,
+  "output_tokens": 6128,
+  "cache_creation_input_tokens": 19506,
+  "cache_read_input_tokens": 552110,
+  "total_input_tokens": 571652,
+  "context_before_first_tool_call": 19184,
+  "unparsable_lines": 0,
+  "raw_events": 89,
+  "task": "test-direct-type",
+  "app": "campfire",
+  "condition": "conventional",
+  "variant": "conventional",
+  "targets": [
+    "app/models/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "new_test_files": [],
+    "modified_test_files": [
+      "test/models/rooms/direct_test.rb"
+    ],
+    "added_test_methods": [
+      "test_can't_be_turned_into_a_room_that_other_people_can_join",
+      "test_can't_be_turned_into_a_room_that_other_people_can_join_by_writing_its_type_directly"
+    ],
+    "command": "bin/rails test test/models/rooms/direct_test.rb -n \"/test_can't_be_turned_into_a_room_that_other_people_can_join|test_can't_be_turned_into_a_room_that_other_people_can_join_by_writing_its_type_directly/\"",
+    "mutation_killed": true,
+    "green_summary": "2 runs, 13 assertions, 0 failures, 0 errors, 0 skips",
+    "mutated_summary": "2 runs, 2 assertions, 2 failures, 0 errors, 0 skips",
+    "mutation_sites": [
+      "app/models/room.rb",
+      "app/controllers/rooms/closeds_controller.rb",
+      "app/controllers/rooms/opens_controller.rb"
+    ],
+    "edited_non_test_files": []
+  },
+  "wall_seconds": 161.418,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [
+    "test/models/rooms/direct_test.rb"
+  ],
+  "trial_dir": "results-raw/test-direct-type/claude/conventional/20260823T151120Z"
+}

@@ -1,0 +1,37 @@
+{
+  "task": "test-direct-type",
+  "variant": "conventional",
+  "passed": true,
+  "checks": [
+    {
+      "label": "the new test passes as written (1 runs, 2 assertions, 0 failures, 0 errors, 0 skips)",
+      "ok": true,
+      "detail": "Running 4 tests in a single process (parallelization threshold is 50)\nRun options: -n /test_cannot_be_changed_into_an_open_room/ --seed 690\n\n# Running:\n\n.\n\nFinished in 1.441378s, 0.6938 runs/s, 1.3876 assertions/s.\n1 runs, 2 assertions, 0 failures, 0 errors, 0 skips\n"
+    },
+    {
+      "label": "the new test fails once the rule is removed",
+      "ok": true,
+      "detail": "after mutation: 1 runs, 1 assertions, 1 failures, 0 errors, 0 skips"
+    }
+  ],
+  "facts": {
+    "new_test_files": [],
+    "modified_test_files": [
+      "test/models/rooms/direct_test.rb"
+    ],
+    "added_test_methods": [
+      "test_cannot_be_changed_into_an_open_room"
+    ],
+    "command": "bin/rails test test/models/rooms/direct_test.rb -n \"/test_cannot_be_changed_into_an_open_room/\"",
+    "mutation_killed": true,
+    "green_summary": "1 runs, 2 assertions, 0 failures, 0 errors, 0 skips",
+    "mutated_summary": "1 runs, 1 assertions, 1 failures, 0 errors, 0 skips",
+    "mutation_sites": [
+      "app/models/room.rb",
+      "app/controllers/rooms/closeds_controller.rb",
+      "app/controllers/rooms/opens_controller.rb"
+    ],
+    "edited_non_test_files": []
+  },
+  "finished_at": "2026-08-23T15:05:20Z"
+}

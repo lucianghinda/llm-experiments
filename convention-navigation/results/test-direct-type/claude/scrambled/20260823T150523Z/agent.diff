@@ -1,0 +1,35 @@
+diff --git a/test/suite/persistence/rooms/direct_test.rb b/test/suite/persistence/rooms/direct_test.rb
+index ab74efa..5158f1c 100644
+--- a/test/suite/persistence/rooms/direct_test.rb
++++ b/test/suite/persistence/rooms/direct_test.rb
+@@ -18,4 +18,30 @@ class Rooms::DirectTest < ActiveSupport::TestCase
+     room = Rooms::Direct.find_or_create_for([ users(:david), users(:kevin) ])
+     assert room.memberships.all? { |m| m.involved_in_everything? }
+   end
++
++  # A direct room exists for the fixed pair of people who agreed to it. Open and closed
++  # rooms both have an audience someone gets to widen afterwards, so neither is a legal
++  # destination for a direct room. becomes! is the conversion the room controllers use.
++  test "can't be converted into an open room" do
++    assert_conversion_refused Rooms::Open
++  end
++
++  test "can't be converted into a closed room" do
++    assert_conversion_refused Rooms::Closed
++  end
++
++  private
++    def assert_conversion_refused(joinable_type)
++      room = rooms(:david_and_kevin)
++      participant_ids = room.user_ids.sort
++
++      converted = room.becomes!(joinable_type)
++
++      assert_not converted.save, "expected the conversion to #{joinable_type} to be refused"
++      assert converted.errors.include?(:type)
++
++      room = Room.find(room.id)
++      assert_equal "Rooms::Direct", room.type
++      assert_equal participant_ids, room.user_ids.sort
++    end
+ end

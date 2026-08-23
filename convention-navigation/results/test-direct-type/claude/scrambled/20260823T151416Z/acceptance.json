@@ -1,0 +1,37 @@
+{
+  "task": "test-direct-type",
+  "variant": "scrambled",
+  "passed": true,
+  "checks": [
+    {
+      "label": "the new test passes as written (1 runs, 5 assertions, 0 failures, 0 errors, 0 skips)",
+      "ok": true,
+      "detail": "Running 4 tests in a single process (parallelization threshold is 50)\nRun options: -n /test_can't_be_converted_into_a_room_others_can_join/ --seed 27513\n\n# Running:\n\n.\n\nFinished in 1.437753s, 0.6955 runs/s, 3.4776 assertions/s.\n1 runs, 5 assertions, 0 failures, 0 errors, 0 skips\n"
+    },
+    {
+      "label": "the new test fails once the rule is removed",
+      "ok": true,
+      "detail": "after mutation: 1 runs, 1 assertions, 1 failures, 0 errors, 0 skips"
+    }
+  ],
+  "facts": {
+    "new_test_files": [],
+    "modified_test_files": [
+      "test/suite/persistence/rooms/direct_test.rb"
+    ],
+    "added_test_methods": [
+      "test_can't_be_converted_into_a_room_others_can_join"
+    ],
+    "command": "bin/rails test test/suite/persistence/rooms/direct_test.rb -n \"/test_can't_be_converted_into_a_room_others_can_join/\"",
+    "mutation_killed": true,
+    "green_summary": "1 runs, 5 assertions, 0 failures, 0 errors, 0 skips",
+    "mutated_summary": "1 runs, 1 assertions, 1 failures, 0 errors, 0 skips",
+    "mutation_sites": [
+      "platform/core/entities/room.rb",
+      "delivery/http/handlers/rooms/closeds_controller.rb",
+      "delivery/http/handlers/rooms/opens_controller.rb"
+    ],
+    "edited_non_test_files": []
+  },
+  "finished_at": "2026-08-23T15:16:53Z"
+}

@@ -1,0 +1,38 @@
+{
+  "task": "feature-room-topic",
+  "variant": "conventional",
+  "passed": true,
+  "checks": [
+    {
+      "label": "topic works end to end (5 runs, 11 assertions, 0 failures, 0 errors, 0 skips)",
+      "ok": true,
+      "detail": "Running 5 tests in a single process (parallelization threshold is 50)\nRun options: --seed 17218\n\n# Running:\n\n.....\n\nFinished in 9.181331s, 0.5446 runs/s, 1.1981 assertions/s.\n5 runs, 11 assertions, 0 failures, 0 errors, 0 skips\n"
+    }
+  ],
+  "facts": {
+    "migration_files": [
+      "db/migrate/20260823000000_add_topic_to_rooms.rb"
+    ],
+    "migration_exit": 0,
+    "migration_output": "",
+    "acceptance_summary": "5 runs, 11 assertions, 0 failures, 0 errors, 0 skips",
+    "regression_suite": {
+      "ran": true,
+      "ok": true,
+      "summary": "354 runs, 1026 assertions, 0 failures, 0 errors, 2 skips",
+      "seconds": 51.5
+    },
+    "changed_files": [
+      "app/controllers/rooms_controller.rb",
+      "app/models/room.rb",
+      "app/views/rooms/layouts/_form.html.erb",
+      "db/schema.rb",
+      "test/controllers/rooms/opens_controller_test.rb",
+      "test/models/room_test.rb"
+    ],
+    "new_files": [
+      "db/migrate/20260823000000_add_topic_to_rooms.rb"
+    ]
+  },
+  "finished_at": "2026-08-23T14:33:01Z"
+}

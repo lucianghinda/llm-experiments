@@ -1,0 +1,13 @@
+Done. Rooms now have a topic.
+
+**Schema** — `db/migrate/20260823120000_add_topic_to_rooms.rb` adds a nullable `topic` string column to `rooms`; `db/schema.rb` regenerated.
+
+**Model** (`app/models/room.rb:1`) — `MAX_TOPIC_LENGTH = 120`, `validates :topic, length: { maximum: MAX_TOPIC_LENGTH }`, and `normalizes :topic` so a blank/whitespace-only topic is stored as `nil` rather than `""`. No presence validation, so a topic-less room stays valid.
+
+**Same screen, same request as renaming** — the topic input lives in `app/views/rooms/layouts/_form.html.erb`, the shared form both the open- and closed-room new/edit screens render, right under the name field and behind the same `can_administer?` check that gates renaming. `room_params` now permits `:name, :topic` (`app/controllers/rooms_controller.rb:57`), so one PUT sets both. Members who can't rename see the topic as read-only text, as they already do the name. Direct rooms have no rename screen, so nothing changed there.
+
+**Rejection** — `Rooms::OpensController` and `Rooms::ClosedsController` switched from `update!`/bare `create!` to checking the result: on failure they re-render the form with `422 Unprocessable Content` and an inline error, leaving the old name/topic and (for closed rooms) the membership list untouched, and skipping the sidebar broadcast. Previously a validation failure would have raised a 500-style exception mid-request. The field also carries `maxlength=120` so the browser stops it first.
+
+**Display** — the topic renders next to the room name in the room header (`app/views/rooms/show/_nav.html.erb`), truncated with an ellipsis and hidden on narrow screens (`nav.css`), plus a `room_topic` entry in the translations popover alongside `room_name`.
+
+Tests: added model tests (optional, squished, length limit) and controller tests (edit form carries both fields, name+topic in one request, clearing, over-long rejected on create and update, non-admin forbidden, topic shown on the room page). Full suite: 364 runs, 0 failures, 2 pre-existing skips; rubocop and brakeman clean. System tests can't run here — selenium-manager has no browser in this environment, which predates my change; I touched no system test.

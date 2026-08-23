@@ -12,6 +12,7 @@ results, so anyone can check the numbers instead of trusting the summary.
 | [`statusline-per-project/`](statusline-per-project/) | Can a Claude Code status line be set per project, so two folders show different bars? | 2 sessions |
 | [`at-file-mentions/`](at-file-mentions/) | Does writing a file path as `@path/to/file.rb` instead of `path/to/file.rb` change what an agent does and what it costs? | harness built, not yet run |
 | [`startup-context/`](startup-context/) | What does an agent load before it starts work, where does it come from, and which parts can be turned off? | 91 |
+| [`convention-navigation/`](convention-navigation/) | Does Rails convention-over-configuration save an agent tokens, compared to the same app in a nonstandard layout? | 80  |
 
 ## Shared tooling
 

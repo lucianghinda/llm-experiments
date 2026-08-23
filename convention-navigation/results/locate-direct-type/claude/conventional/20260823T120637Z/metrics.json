@@ -1,0 +1,252 @@
+{
+  "total_tool_calls": 14,
+  "total_shell_segments": 17,
+  "search_segments": 8,
+  "read_segments": 3,
+  "search_calls": 6,
+  "read_calls": 6,
+  "edit_calls": 0,
+  "bash_calls": 2,
+  "other_calls": 0,
+  "distinct_files_read": 6,
+  "tool_calls_to_first_target_read": 3,
+  "tool_calls_to_first_edit": null,
+  "searches_before_first_target": 2,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "read",
+    "read",
+    "read",
+    "read",
+    "read",
+    "read",
+    "search",
+    "search",
+    "search",
+    "search",
+    "bash",
+    "bash"
+  ],
+  "tool_call_names": [
+    "Bash",
+    "Bash",
+    "Read",
+    "Read",
+    "Read",
+    "Read",
+    "Read",
+    "Read",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash"
+  ],
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19160,
+      "context_tokens": 19162
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19160,
+      "context_tokens": 19162
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19160,
+      "context_tokens": 19162
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 14,
+      "cache_creation_input_tokens": 2749,
+      "cache_read_input_tokens": 19160,
+      "context_tokens": 21911
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 14,
+      "cache_creation_input_tokens": 2749,
+      "cache_read_input_tokens": 19160,
+      "context_tokens": 21911
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 14,
+      "cache_creation_input_tokens": 2749,
+      "cache_read_input_tokens": 19160,
+      "context_tokens": 21911
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2368,
+      "cache_read_input_tokens": 21909,
+      "context_tokens": 24279
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2368,
+      "cache_read_input_tokens": 21909,
+      "context_tokens": 24279
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2368,
+      "cache_read_input_tokens": 21909,
+      "context_tokens": 24279
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2368,
+      "cache_read_input_tokens": 21909,
+      "context_tokens": 24279
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 24277,
+      "context_tokens": 27078
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 24277,
+      "context_tokens": 27078
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2799,
+      "cache_read_input_tokens": 24277,
+      "context_tokens": 27078
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 5,
+      "cache_creation_input_tokens": 1475,
+      "cache_read_input_tokens": 27076,
+      "context_tokens": 28553
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 5,
+      "cache_creation_input_tokens": 1475,
+      "cache_read_input_tokens": 27076,
+      "context_tokens": 28553
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2132,
+      "cache_read_input_tokens": 28551,
+      "context_tokens": 30685
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2132,
+      "cache_read_input_tokens": 28551,
+      "context_tokens": 30685
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 1021,
+      "cache_read_input_tokens": 30683,
+      "context_tokens": 31706
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 1021,
+      "cache_read_input_tokens": 30683,
+      "context_tokens": 31706
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 31704,
+      "context_tokens": 32363
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 31704,
+      "context_tokens": 32363
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 301,
+      "cache_read_input_tokens": 32361,
+      "context_tokens": 32664
+    }
+  ],
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 15,
+  "duration_ms": 52010,
+  "total_cost_usd": 0.33682549999999994,
+  "is_error": false,
+  "input_tokens": 18,
+  "output_tokens": 3371,
+  "cache_creation_input_tokens": 13502,
+  "cache_read_input_tokens": 234881,
+  "total_input_tokens": 248401,
+  "context_before_first_tool_call": 19162,
+  "unparsable_lines": 0,
+  "raw_events": 61,
+  "task": "locate-direct-type",
+  "app": "campfire",
+  "condition": "conventional",
+  "variant": "conventional",
+  "targets": [
+    "app/models/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "cited_paths": [
+      "app/models/room.rb"
+    ],
+    "cited_lines": [
+      73
+    ],
+    "expected_lines": [
+      25,
+      73
+    ],
+    "line_correct": true,
+    "left_tree_dirty": false,
+    "answer": "app/models/room.rb:73"
+  },
+  "wall_seconds": 53.342,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [],
+  "trial_dir": "results-raw/locate-direct-type/claude/conventional/20260823T120637Z"
+}

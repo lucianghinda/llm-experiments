@@ -1,0 +1,56 @@
+{
+  "task": "test-direct-type",
+  "app": "campfire",
+  "agent": "claude",
+  "condition": "scrambled",
+  "variant": "scrambled",
+  "model_requested": "claude-opus-5",
+  "targets": [
+    "platform/core/entities/room.rb"
+  ],
+  "started_at": "2026-08-23T15:28:31Z",
+  "history_visible_to_agent": "085075c Import application source",
+  "branches_visible_to_agent": [
+    "main"
+  ],
+  "clean_tree_before": true,
+  "db_prepare_exit": 0,
+  "config_dir": "/home/agent/.claude-trial",
+  "agent_argv": [
+    "claude",
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--permission-mode",
+    "bypassPermissions",
+    "--model",
+    "claude-opus-5"
+  ],
+  "agent_exit": 0,
+  "timed_out": false,
+  "wall_seconds": 162.598,
+  "credentials_refreshed": [],
+  "changed_files": [
+    "test/suite/persistence/room_test.rb"
+  ],
+  "untracked_files": [],
+  "touched_target": false,
+  "acceptance_exit": 0,
+  "acceptance_seconds": 5.666,
+  "passed": true,
+  "toolchain": {
+    "image_built_at": "2026-08-17T10:22:37Z",
+    "ubuntu": "24.04",
+    "arch": "aarch64",
+    "mise": "2026.8.6 linux-arm64 (2026-08-14)",
+    "rubies": "3.4.5 4.0.1",
+    "node": "v22.23.2",
+    "claude_code": "2.1.233 (Claude Code)",
+    "codex": "codex-cli 0.147.0",
+    "postgres": "postgres (PostgreSQL) 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)"
+  },
+  "finished_at": "2026-08-23T15:31:22Z",
+  "host_wall_seconds": 173.7,
+  "container_ok": true
+}

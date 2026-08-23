@@ -243,6 +243,27 @@ same directory also carried per-project onboarding state, so the first trial
 of a grid did not start where the rest did. Each trial now gets a private copy
 seeded with credentials only.
 
+**The branch isolation never ran, and nothing said so.** `runner.rb` deletes
+every branch except the one under test, so `git diff trial/base` cannot reveal
+the planted change. It listed those branches with
+`git branch --format=%(refname:short)`, passed to Open3 as a string — and the
+parentheses make Open3 route it through `sh`, where `(` is a syntax error. The
+command failed, the list came back empty, nothing was deleted, and the trial
+carried on looking completely normal. All 102 published trials ran with both
+`trial/base` and their own bug branch present.
+
+Found in 2026-08 while building `convention-navigation/`, which copied this
+runner and inherited the bug. Every published transcript was then re-scanned:
+five trials ran a history command, all `git log --oneline`, which reveals
+nothing because flattening gave every commit the same message. **No trial ran
+`git diff`, `git show`, `git branch` or anything else that can compare two
+refs**, so no result changes. The guarantee was still false while it held, which
+is the part worth recording — `meta.json` reported
+`branches_visible_to_agent: []` on every trial, and an empty list read as "the
+agent saw no branches" when it meant "the question failed to be asked". The
+runner now single-quotes the format string and aborts the trial if more than the
+branch under test survives.
+
 **A hermeticity check that always fires teaches you to ignore it.** The
 original guard flagged a trial if any memory path existed. The CLI always
 reports one, so it fired on clean runs — and would have fired on all 90. It

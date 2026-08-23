@@ -1,0 +1,27 @@
+Added one test to `test/suite/persistence/rooms/direct_test.rb:22` — the persistence-layer test file that already covers `Rooms::Direct` behaviour:
+
+```ruby
+test "can't be converted into a room others can join" do
+  room = rooms(:david_and_kevin)
+
+  assert_not room.update(type: "Rooms::Open"), "expected converting a direct room into an open one to be rejected"
+  assert room.errors.added?(:type, "can't be changed for a direct room")
+
+  assert_raises ActiveRecord::RecordInvalid do
+    room.becomes!(Rooms::Closed).save!
+  end
+
+  reloaded = Room.find(room.id)
+  assert reloaded.direct?
+  assert_equal [ users(:david).id, users(:kevin).id ].sort, reloaded.user_ids.sort
+end
+```
+
+Why this level: the rule is enforced by `Room#direct_rooms_keep_their_type` (`platform/core/entities/room.rb:70`). `Rooms::ClosedsController` also scopes to `without_directs`, so a request-level test would still pass if the model validation were deleted — it wouldn't detect removal of the rule. Testing the record directly pins the rule itself.
+
+It covers both widening paths (direct → open, and direct → closed via `becomes!`), and asserts the room's type and membership set are untouched in the database afterward — the actual harm the rule prevents is someone else being added to a fixed pair's conversation.
+
+Verified:
+- Passes as-is: `bin/rails test test/suite/persistence/rooms/direct_test.rb` → 4 runs, 0 failures; full `test/suite/persistence` → 98 runs, 0 failures.
+- Fails if the rule is removed: I temporarily deleted the `validate :direct_rooms_keep_their_type, on: :update` line and the test failed with "expected converting a direct room into an open one to be rejected", then restored the file. `git status` now shows only the test file modified.
+- `bin/rubocop` clean on the new file.

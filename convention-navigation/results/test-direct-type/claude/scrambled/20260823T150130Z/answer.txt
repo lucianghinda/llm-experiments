@@ -1,0 +1,24 @@
+Added one test to `test/suite/persistence/rooms/direct_test.rb:25`.
+
+**What the rule is and where it lives.** It's enforced in two layers:
+- `Room#direct_rooms_keep_their_type` (`platform/core/entities/room.rb:22`, `:71`) — a validation on update that rejects any type change away from `Rooms::Direct`.
+- `room_scope` in `Rooms::OpensController` / `Rooms::ClosedsController`, narrowed to `without_directs` so a direct room can't even be reached through those endpoints.
+
+**Why the test targets the model layer.** The controller layer is already covered (e.g. "a direct room can't be promoted to open by its creator"). The validation was not. I confirmed this empirically: with `validate :direct_rooms_keep_their_type` deleted, all 41 existing room tests still pass — the controller scope masks its absence entirely. So that was the undefended half of the rule.
+
+**The test:**
+
+```ruby
+test "can't be converted into a room other people can join" do
+  [ Rooms::Open, Rooms::Closed ].each do |type|
+    direct = Rooms::Direct.find_or_create_for([ users(:david), users(:kevin) ])
+    converted = Room.find(direct.id).becomes!(type)
+
+    assert_not converted.save, "a direct room was allowed to become #{type.name}"
+    assert_equal [ "can't be changed for a direct room" ], converted.errors[:type]
+    ...
+```
+
+It drives conversion the same way the controllers do (`becomes!` then save), covers both target types, and asserts on the persisted record that the type and the fixed pair of participants are unchanged.
+
+**Verification:** passes as-is (4 runs, 15 assertions, 0 failures); with the validation line removed it fails on `a direct room was allowed to become Rooms::Open`. The model file was restored — `git status` shows only the test file modified, and rubocop is clean.

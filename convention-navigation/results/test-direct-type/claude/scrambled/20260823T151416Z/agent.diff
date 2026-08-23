@@ -1,0 +1,24 @@
+diff --git a/test/suite/persistence/rooms/direct_test.rb b/test/suite/persistence/rooms/direct_test.rb
+index ab74efa..bf37fe5 100644
+--- a/test/suite/persistence/rooms/direct_test.rb
++++ b/test/suite/persistence/rooms/direct_test.rb
+@@ -18,4 +18,19 @@ class Rooms::DirectTest < ActiveSupport::TestCase
+     room = Rooms::Direct.find_or_create_for([ users(:david), users(:kevin) ])
+     assert room.memberships.all? { |m| m.involved_in_everything? }
+   end
++
++  test "can't be converted into a room others can join" do
++    room = rooms(:david_and_kevin)
++
++    assert_not room.update(type: "Rooms::Open"), "expected converting a direct room into an open one to be rejected"
++    assert room.errors.added?(:type, "can't be changed for a direct room")
++
++    assert_raises ActiveRecord::RecordInvalid do
++      room.becomes!(Rooms::Closed).save!
++    end
++
++    reloaded = Room.find(room.id)
++    assert reloaded.direct?
++    assert_equal [ users(:david).id, users(:kevin).id ].sort, reloaded.user_ids.sort
++  end
+ end

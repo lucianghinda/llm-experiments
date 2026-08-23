@@ -1,0 +1,12 @@
+Added the test to `test/models/rooms/direct_test.rb:22` — alongside the other direct-room behavior tests, matching the codebase's Minitest/fixtures style.
+
+**The rule** lives in `app/models/room.rb:73` (`direct_rooms_keep_their_type`), a validation on update that rejects any type change away from `Rooms::Direct`.
+
+**The test** takes a fixture direct room, does `becomes!` into each joinable type (`Rooms::Open` and `Rooms::Closed` — the exact move the `OpensController`/`ClosedsController` `force_room_type` callbacks make), and asserts three things: the save is refused, the error is on `:type`, and the row in the database is still `Rooms::Direct` afterwards. I also added a companion test that an ordinary attribute update on a direct room still succeeds, so the rule can't be "passed" by something that simply blocks all updates to direct rooms.
+
+**Verification:**
+- Passes as-is: 5 runs, 15 assertions, 0 failures.
+- Fails when the rule is removed: commenting out the `validate` line produces `expected a direct room to refuse becoming a Rooms::Open`. I restored `room.rb` immediately after; `git diff --stat` confirms the test file is the only change.
+- Full `test/models` suite: 99 runs, 0 failures.
+
+One thing worth flagging: the controllers enforce this a second time via `room_scope` returning `Current.user.rooms.without_directs`, so a direct room isn't even findable there. This test targets the model rule, which is the layer that holds regardless of entry point — if someone drops `without_directs` from a controller, the model validation still stops the conversion and this test keeps guarding it. A controller test alone would not have failed when the model rule was removed.

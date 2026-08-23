@@ -1,0 +1,12 @@
+When this application registers an account that posts through its API instead of
+through the web interface, it issues that account a randomly generated secret.
+The secret is joined to an identifier to make the credential the account
+authenticates with.
+
+Reply with exactly two lines and nothing else. The first line is how many
+characters long the generated secret is, written as a plain number. The second
+line is where that length is decided, in this form:
+
+path/to/file.rb:LINE
+
+Do not change any files.

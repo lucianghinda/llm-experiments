@@ -95,17 +95,50 @@ end
 # `git diff trial/base` show the planted change, which is the answer. Delete
 # everything except the branch being tested, then drop the objects so the trees
 # are not merely unreferenced but gone.
+# The format string is SINGLE QUOTED, and that is not style. `run` hands a
+# string to Open3, which sees the parentheses in %(refname:short), decides the
+# command needs a shell, and hands it to sh -- where `(` is a syntax error:
+#
+#   sh: 1: Syntax error: "(" unexpected
+#
+# Unquoted, the command fails, `others` comes back empty, nothing is deleted,
+# and this block silently does not do the one thing it exists to do. All 102
+# trials of the published grid ran that way, each with both trial/base and its
+# own bug branch present, so `git diff trial/base` would have shown the planted
+# defect to any agent that asked.
+#
+# None asked. Every published transcript was re-scanned afterwards: five trials
+# ran a history command, all of them `git log --oneline`, which reveals nothing
+# because flattening gave every commit the same message; no trial ran git diff,
+# git show, git branch or anything else that can compare two refs. The results
+# stand. The guarantee did not, and the difference between those two statements
+# is why the check below now runs.
+def branches(runner)
+  runner.call("git branch --format='%(refname:short)'")["stdout"]
+        .split("\n").map(&:strip).reject(&:empty?)
+end
+
 log "isolating #{branch}"
 run("git checkout -q #{branch}")
-others = run("git branch --format=%(refname:short)")["stdout"].split("\n").map(&:strip)
-              .reject { |b| b.empty? || b == branch }
-others.each { |b| run("git branch -q -D #{b}") }
+
+lister = method(:run)
+branches(lister).reject { |b| b == branch }.each { |b| run("git branch -q -D #{b}") }
 run("git reflog expire --expire=now --all")
 run("git gc --prune=now --quiet")
 
 visible = run("git log --all --oneline")["stdout"].strip
 meta["history_visible_to_agent"] = visible
-meta["branches_visible_to_agent"] = run("git branch --format=%(refname:short)")["stdout"].split("\n").map(&:strip)
+meta["branches_visible_to_agent"] = branches(lister)
+
+# Verified rather than assumed, because the failure above was invisible: the
+# trial ran, the agent worked, the results looked ordinary.
+remaining = meta["branches_visible_to_agent"]
+if remaining.sort != [branch].sort
+  log "FATAL: expected only #{branch} after isolation, found #{remaining.inspect}"
+  meta["aborted"] = "branch_isolation_failed"
+  File.write(File.join(RESULTS, "meta.json"), JSON.pretty_generate(meta))
+  exit 6
+end
 
 dirty = run("git status --porcelain")["stdout"].strip
 meta["clean_tree_before"] = dirty.empty?

@@ -1,0 +1,216 @@
+{
+  "total_tool_calls": 10,
+  "total_shell_segments": 44,
+  "search_segments": 9,
+  "read_segments": 9,
+  "search_calls": 7,
+  "read_calls": 3,
+  "edit_calls": 0,
+  "bash_calls": 0,
+  "other_calls": 0,
+  "distinct_files_read": 10,
+  "tool_calls_to_first_target_read": 4,
+  "tool_calls_to_first_edit": null,
+  "searches_before_first_target": 4,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "search",
+    "search",
+    "read",
+    "read",
+    "search",
+    "read",
+    "search",
+    "search"
+  ],
+  "tool_call_names": [
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash"
+  ],
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 5316,
+      "cache_read_input_tokens": 13842,
+      "context_tokens": 19160
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 5316,
+      "cache_read_input_tokens": 13842,
+      "context_tokens": 19160
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 5316,
+      "cache_read_input_tokens": 13842,
+      "context_tokens": 19160
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 19158,
+      "context_tokens": 22117
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 19158,
+      "context_tokens": 22117
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 19158,
+      "context_tokens": 22117
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 958,
+      "cache_read_input_tokens": 22115,
+      "context_tokens": 23075
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2414,
+      "cache_read_input_tokens": 23073,
+      "context_tokens": 25489
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2414,
+      "cache_read_input_tokens": 23073,
+      "context_tokens": 25489
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 3090,
+      "cache_read_input_tokens": 25487,
+      "context_tokens": 28579
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 3090,
+      "cache_read_input_tokens": 25487,
+      "context_tokens": 28579
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 3090,
+      "cache_read_input_tokens": 25487,
+      "context_tokens": 28579
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 3475,
+      "cache_read_input_tokens": 28577,
+      "context_tokens": 32054
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 3475,
+      "cache_read_input_tokens": 28577,
+      "context_tokens": 32054
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 1231,
+      "cache_read_input_tokens": 32052,
+      "context_tokens": 33285
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 1231,
+      "cache_read_input_tokens": 32052,
+      "context_tokens": 33285
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 33283,
+      "context_tokens": 34398
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 33283,
+      "context_tokens": 34398
+    }
+  ],
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 11,
+  "duration_ms": 66168,
+  "total_cost_usd": 0.4118135,
+  "is_error": false,
+  "input_tokens": 16,
+  "output_tokens": 4296,
+  "cache_creation_input_tokens": 20554,
+  "cache_read_input_tokens": 197587,
+  "total_input_tokens": 218157,
+  "context_before_first_tool_call": 19160,
+  "unparsable_lines": 0,
+  "raw_events": 60,
+  "task": "locate-direct-type",
+  "app": "campfire",
+  "condition": "scrambled",
+  "variant": "scrambled",
+  "targets": [
+    "platform/core/entities/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "cited_paths": [
+      "platform/core/entities/room.rb"
+    ],
+    "cited_lines": [
+      25
+    ],
+    "expected_lines": [
+      25,
+      73
+    ],
+    "line_correct": true,
+    "left_tree_dirty": false,
+    "answer": "platform/core/entities/room.rb:25"
+  },
+  "wall_seconds": 67.53,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [],
+  "trial_dir": "results-raw/locate-direct-type/claude/scrambled/20260823T115818Z"
+}

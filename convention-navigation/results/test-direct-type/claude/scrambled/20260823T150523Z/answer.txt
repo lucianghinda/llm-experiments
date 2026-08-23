@@ -1,0 +1,15 @@
+Added the test to `test/suite/persistence/rooms/direct_test.rb` — the existing home for direct-room model tests.
+
+**The rule** lives in `platform/core/entities/room.rb:73`, `direct_rooms_keep_their_type`: an `on: :update` validation that rejects any type change away from `Rooms::Direct`. (`Rooms::Opens/ClosedsController#room_scope` scoping to `without_directs` is a second line of defense at the HTTP layer.)
+
+**The test** attempts the conversion the way the app itself does it — `becomes!` is exactly what `Rooms::OpensController#force_room_type` and its closed counterpart call — for both joinable destinations, and asserts:
+
+- the save is refused, with the error on `:type` (attribute only, not the message text, so a reword doesn't cause a false failure);
+- re-read from the database, the room is still `Rooms::Direct` and its participant set is unchanged — so nothing widened the audience even partway. That second assertion matters for the `Rooms::Open` case, where an `after_save_commit` grants membership to every user on the account.
+
+**Verification:**
+- Passes as-is: 5 runs, 13 assertions, 0 failures.
+- Deleting the `validate :direct_rooms_keep_their_type, on: :update` line makes both new tests fail (`expected the conversion to Rooms::Open to be refused`) while the three pre-existing tests still pass — so the failure is attributable to the rule, not collateral damage. I restored the model with `git checkout` afterwards.
+- Ran the surrounding room model and controller suites together: 37 runs, 0 failures. Rubocop is clean.
+
+`git status` shows one modified file, `test/suite/persistence/rooms/direct_test.rb`; no other code changed.

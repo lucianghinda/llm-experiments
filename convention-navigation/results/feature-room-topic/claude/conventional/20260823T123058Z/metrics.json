@@ -1,0 +1,820 @@
+{
+  "total_tool_calls": 54,
+  "total_shell_segments": 136,
+  "search_segments": 32,
+  "read_segments": 44,
+  "search_calls": 20,
+  "read_calls": 14,
+  "edit_calls": 19,
+  "bash_calls": 1,
+  "other_calls": 0,
+  "distinct_files_read": 34,
+  "tool_calls_to_first_target_read": 2,
+  "tool_calls_to_first_edit": 24,
+  "searches_before_first_target": 2,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "search",
+    "read",
+    "read",
+    "search",
+    "search",
+    "search",
+    "search",
+    "search",
+    "search",
+    "search",
+    "search",
+    "search",
+    "search",
+    "search",
+    "read",
+    "search",
+    "search",
+    "search",
+    "search",
+    "search",
+    "read",
+    "read",
+    "edit",
+    "search",
+    "edit",
+    "edit",
+    "edit",
+    "edit",
+    "edit",
+    "read",
+    "edit",
+    "edit",
+    "edit",
+    "edit",
+    "read",
+    "edit",
+    "edit",
+    "edit",
+    "read",
+    "edit",
+    "edit",
+    "edit",
+    "read",
+    "read",
+    "read",
+    "read",
+    "edit",
+    "edit",
+    "edit",
+    "read",
+    "bash",
+    "read"
+  ],
+  "tool_call_names": [
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Write",
+    "Bash",
+    "Edit",
+    "Edit",
+    "Edit",
+    "Edit",
+    "Edit",
+    "Read",
+    "Edit",
+    "Edit",
+    "Edit",
+    "Edit",
+    "Read",
+    "Edit",
+    "Edit",
+    "Edit",
+    "Read",
+    "Edit",
+    "Edit",
+    "Edit",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Read",
+    "Edit",
+    "Edit",
+    "Edit",
+    "Bash",
+    "Bash",
+    "Bash"
+  ],
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19208,
+      "context_tokens": 19210
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19208,
+      "context_tokens": 19210
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2492,
+      "cache_read_input_tokens": 19208,
+      "context_tokens": 21702
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2492,
+      "cache_read_input_tokens": 19208,
+      "context_tokens": 21702
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 1786,
+      "cache_read_input_tokens": 21700,
+      "context_tokens": 23488
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 1786,
+      "cache_read_input_tokens": 21700,
+      "context_tokens": 23488
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 2357,
+      "cache_read_input_tokens": 23486,
+      "context_tokens": 25845
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 2661,
+      "cache_read_input_tokens": 25843,
+      "context_tokens": 28506
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 2661,
+      "cache_read_input_tokens": 25843,
+      "context_tokens": 28506
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 4055,
+      "cache_read_input_tokens": 28504,
+      "context_tokens": 32561
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 4055,
+      "cache_read_input_tokens": 28504,
+      "context_tokens": 32561
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 2603,
+      "cache_read_input_tokens": 32559,
+      "context_tokens": 35164
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 2851,
+      "cache_read_input_tokens": 35162,
+      "context_tokens": 38015
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 2851,
+      "cache_read_input_tokens": 35162,
+      "context_tokens": 38015
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 5,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 38013,
+      "context_tokens": 38627
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 5,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 38013,
+      "context_tokens": 38627
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 38625,
+      "context_tokens": 39447
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 39445,
+      "context_tokens": 40106
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 39445,
+      "context_tokens": 40106
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 5,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 40104,
+      "context_tokens": 40626
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 5,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 40104,
+      "context_tokens": 40626
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 3546,
+      "cache_read_input_tokens": 40624,
+      "context_tokens": 44172
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 3741,
+      "cache_read_input_tokens": 44170,
+      "context_tokens": 47913
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 3741,
+      "cache_read_input_tokens": 44170,
+      "context_tokens": 47913
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 472,
+      "cache_read_input_tokens": 47911,
+      "context_tokens": 48385
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 48383,
+      "context_tokens": 49411
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 48383,
+      "context_tokens": 49411
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 538,
+      "cache_read_input_tokens": 49409,
+      "context_tokens": 49949
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 49947,
+      "context_tokens": 51064
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 49947,
+      "context_tokens": 51064
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 51062,
+      "context_tokens": 51919
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 51062,
+      "context_tokens": 51919
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 1622,
+      "cache_read_input_tokens": 51917,
+      "context_tokens": 53541
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 1622,
+      "cache_read_input_tokens": 51917,
+      "context_tokens": 53541
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 4493,
+      "cache_read_input_tokens": 53539,
+      "context_tokens": 58034
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 4493,
+      "cache_read_input_tokens": 53539,
+      "context_tokens": 58034
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 58032,
+      "context_tokens": 58488
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 58032,
+      "context_tokens": 58488
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 588,
+      "cache_read_input_tokens": 58486,
+      "context_tokens": 59076
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 59074,
+      "context_tokens": 59315
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 59074,
+      "context_tokens": 59315
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 181,
+      "cache_read_input_tokens": 59313,
+      "context_tokens": 59496
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 246,
+      "cache_read_input_tokens": 59494,
+      "context_tokens": 59742
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 405,
+      "cache_read_input_tokens": 59740,
+      "context_tokens": 60147
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 405,
+      "cache_read_input_tokens": 59740,
+      "context_tokens": 60147
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 296,
+      "cache_read_input_tokens": 60145,
+      "context_tokens": 60443
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 343,
+      "cache_read_input_tokens": 60441,
+      "context_tokens": 60786
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 343,
+      "cache_read_input_tokens": 60441,
+      "context_tokens": 60786
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 368,
+      "cache_read_input_tokens": 60784,
+      "context_tokens": 61154
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 61152,
+      "context_tokens": 61841
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 61839,
+      "context_tokens": 62619
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 61839,
+      "context_tokens": 62619
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 643,
+      "cache_read_input_tokens": 62617,
+      "context_tokens": 63262
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 63260,
+      "context_tokens": 63834
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 63260,
+      "context_tokens": 63834
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 1085,
+      "cache_read_input_tokens": 63832,
+      "context_tokens": 64919
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 1085,
+      "cache_read_input_tokens": 63832,
+      "context_tokens": 64919
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 16,
+      "cache_creation_input_tokens": 405,
+      "cache_read_input_tokens": 64917,
+      "context_tokens": 65324
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 564,
+      "cache_read_input_tokens": 65322,
+      "context_tokens": 65888
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 564,
+      "cache_read_input_tokens": 65322,
+      "context_tokens": 65888
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 693,
+      "cache_read_input_tokens": 65886,
+      "context_tokens": 66581
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 402,
+      "cache_read_input_tokens": 66579,
+      "context_tokens": 66983
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 423,
+      "cache_read_input_tokens": 66981,
+      "context_tokens": 67406
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 423,
+      "cache_read_input_tokens": 66981,
+      "context_tokens": 67406
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 8,
+      "cache_creation_input_tokens": 518,
+      "cache_read_input_tokens": 67404,
+      "context_tokens": 67924
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 8,
+      "cache_creation_input_tokens": 518,
+      "cache_read_input_tokens": 67404,
+      "context_tokens": 67924
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 16,
+      "cache_creation_input_tokens": 369,
+      "cache_read_input_tokens": 67922,
+      "context_tokens": 68293
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 16,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 68291,
+      "context_tokens": 68998
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 723,
+      "cache_read_input_tokens": 68996,
+      "context_tokens": 69721
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 815,
+      "cache_read_input_tokens": 69719,
+      "context_tokens": 70536
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 815,
+      "cache_read_input_tokens": 69719,
+      "context_tokens": 70536
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 320,
+      "cache_read_input_tokens": 70534,
+      "context_tokens": 70856
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 320,
+      "cache_read_input_tokens": 70534,
+      "context_tokens": 70856
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 70854,
+      "context_tokens": 71326
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 6,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 70854,
+      "context_tokens": 71326
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 431,
+      "cache_read_input_tokens": 71324,
+      "context_tokens": 71757
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 431,
+      "cache_read_input_tokens": 71324,
+      "context_tokens": 71757
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 1200,
+      "cache_read_input_tokens": 71755,
+      "context_tokens": 72957
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 16,
+      "cache_creation_input_tokens": 341,
+      "cache_read_input_tokens": 72955,
+      "context_tokens": 73298
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 343,
+      "cache_read_input_tokens": 73296,
+      "context_tokens": 73641
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 473,
+      "cache_read_input_tokens": 73639,
+      "context_tokens": 74114
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 278,
+      "cache_read_input_tokens": 74112,
+      "context_tokens": 74392
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 278,
+      "cache_read_input_tokens": 74112,
+      "context_tokens": 74392
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 8658,
+      "cache_read_input_tokens": 74390,
+      "context_tokens": 83050
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 8658,
+      "cache_read_input_tokens": 74390,
+      "context_tokens": 83050
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 83048,
+      "context_tokens": 83712
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 83048,
+      "context_tokens": 83712
+    }
+  ],
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 55,
+  "duration_ms": 601377,
+  "total_cost_usd": 2.8035959999999993,
+  "is_error": false,
+  "input_tokens": 110,
+  "output_tokens": 25222,
+  "cache_creation_input_tokens": 64502,
+  "cache_read_input_tokens": 3054952,
+  "total_input_tokens": 3119564,
+  "context_before_first_tool_call": 19210,
+  "unparsable_lines": 0,
+  "raw_events": 283,
+  "task": "feature-room-topic",
+  "app": "campfire",
+  "condition": "conventional",
+  "variant": "conventional",
+  "targets": [
+    "app/models/room.rb",
+    "app/controllers/rooms_controller.rb",
+    "app/views/rooms/opens/edit.html.erb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "migration_files": [
+      "db/migrate/20260823123403_add_topic_to_rooms.rb"
+    ],
+    "migration_exit": 0,
+    "migration_output": "",
+    "acceptance_summary": "5 runs, 11 assertions, 0 failures, 0 errors, 0 skips",
+    "regression_suite": {
+      "ran": true,
+      "ok": true,
+      "summary": "368 runs, 1078 assertions, 0 failures, 0 errors, 2 skips",
+      "seconds": 56.3
+    },
+    "changed_files": [
+      "app/assets/stylesheets/sidebar.css",
+      "app/controllers/rooms/closeds_controller.rb",
+      "app/controllers/rooms/opens_controller.rb",
+      "app/controllers/rooms_controller.rb",
+      "app/helpers/translations_helper.rb",
+      "app/models/room.rb",
+      "app/views/rooms/layouts/_form.html.erb",
+      "app/views/rooms/show/_nav.html.erb",
+      "db/schema.rb",
+      "test/controllers/rooms/closeds_controller_test.rb",
+      "test/controllers/rooms/opens_controller_test.rb",
+      "test/controllers/rooms_controller_test.rb",
+      "test/models/room_test.rb"
+    ],
+    "new_files": [
+      "db/migrate/20260823123403_add_topic_to_rooms.rb"
+    ]
+  },
+  "wall_seconds": 602.534,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [
+    "app/assets/stylesheets/sidebar.css",
+    "app/controllers/rooms/closeds_controller.rb",
+    "app/controllers/rooms/opens_controller.rb",
+    "app/controllers/rooms_controller.rb",
+    "app/helpers/translations_helper.rb",
+    "app/models/room.rb",
+    "app/views/rooms/layouts/_form.html.erb",
+    "app/views/rooms/show/_nav.html.erb",
+    "db/schema.rb",
+    "test/controllers/rooms/closeds_controller_test.rb",
+    "test/controllers/rooms/opens_controller_test.rb",
+    "test/controllers/rooms_controller_test.rb",
+    "test/models/room_test.rb"
+  ],
+  "trial_dir": "results-raw/feature-room-topic/claude/conventional/20260823T123058Z"
+}

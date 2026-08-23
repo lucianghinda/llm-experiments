@@ -1,0 +1,1 @@
+app/models/room.rb:74

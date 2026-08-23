@@ -1,0 +1,11 @@
+Added two test cases to `test/models/rooms/direct_test.rb:22` — the model test file for direct rooms.
+
+**Where the rule lives:** `Room#direct_rooms_keep_their_type` (`app/models/room.rb:26`, `app/models/room.rb:71`) — a validation that rejects any update changing a room's type away from `Rooms::Direct`.
+
+**Why the model layer:** the controllers already scope to `Current.user.rooms.without_directs` (`app/controllers/rooms/opens_controller.rb`, `closeds_controller.rb`), and existing controller tests cover that path. I verified those are not enough: with the model validation deleted, all 38 tests in `test/controllers/rooms`, `room_test.rb`, and `rooms/open_test.rb` still passed. The validation itself had no coverage, so removing it was silent.
+
+**The test:**
+- `"can't be turned into a room that other people can join"` — uses `becomes!` (the exact mechanism `force_room_type` uses) for both `Rooms::Open` and `Rooms::Closed`, asserting `save` returns false, `save!` raises, the specific error is on `:type`, and that the persisted row keeps both its type and its original two participants.
+- `"...by writing its type directly"` — covers the plain `update!(type: ...)` path, so the rule holds regardless of how the conversion is attempted.
+
+**Verified both directions:** passes against the current code; with the `validate :direct_rooms_keep_their_type` line removed, both cases fail (`"a direct room was converted into Rooms::Open"` and `"ActiveRecord::RecordInvalid expected but nothing was raised"`). `app/models/room.rb` was restored — the only change in the working tree is the test file.

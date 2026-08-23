@@ -30,9 +30,16 @@ config-wired layout. Claude Code and Codex CLI first.
 - **A trial runs end to end** with Codex: prompt → agent → answer extraction →
   scripted acceptance → meta.json. Three validation trials passed. Two more
   (the mutation check and the cross-layer check) were running at handoff time.
+- **All four acceptance checks validated against real Codex trials**, including
+  the cross-layer task on the scrambled layout (agent found `db/changes/`,
+  touched model + controller + view partial, suite green at 354 runs) and the
+  mutation check (agent's test isolated by name, green with 2 assertions, red
+  after the rule was removed). The `scrambled-mapped` condition also works: the
+  map is written as `AGENTS.md`/`CLAUDE.md` per agent, committed so the tree is
+  clean, 2,487 bytes charged to the trial.
 - **The grid has NOT been run.** No RESULTS.md exists. `results/` was
-  deliberately deleted so three n=1 validation trials could not be mistaken for
-  findings; they remain in the gitignored `results-raw/`.
+  deliberately deleted so a handful of n=1 validation trials could not be
+  mistaken for findings; they remain in the gitignored `results-raw/`.
 
 ## Blocked on
 
@@ -64,6 +71,24 @@ unaffected and works.
 - 5 repeats, not 3 (this repo has retracted three-run claims).
 - Success decided by script always. The test-writing task mutates the rule out
   of the source and requires the agent's test to go red.
+
+## Bug found in at-file-mentions (affects a published experiment)
+
+`runner.rb` listed branches with `git branch --format=%(refname:short)` passed to
+Open3 as a string. The parentheses route it through `sh`, where `(` is a syntax
+error, so the list came back empty and **no branch was ever deleted**. All 102
+published at-file-mentions trials ran with `trial/base` and their bug branch both
+present, where `git diff trial/base` would have shown the planted defect — the
+exact leak that README claims to have closed.
+
+Every published transcript was re-scanned. Five trials ran a history command, all
+`git log --oneline` (which reveals nothing: flattening gave every commit the same
+message), and **no trial ran git diff, git show, git branch or anything else that
+can compare two refs**. No published result changes.
+
+Both runners now single-quote the format string and abort the trial if more than
+the branch under test survives. Fixed in commit 234e701, with the finding
+recorded in at-file-mentions/README.md.
 
 ## Failed Approaches
 

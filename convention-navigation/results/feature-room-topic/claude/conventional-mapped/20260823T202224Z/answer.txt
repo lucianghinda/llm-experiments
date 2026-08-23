@@ -1,0 +1,13 @@
+Done. Rooms now have a topic.
+
+**Storage** — `db/migrate/20260823120000_add_topic_to_rooms.rb` adds a nullable `topic` string column (schema.rb regenerated, migration run).
+
+**Model** (`app/models/room.rb:25-30`) — `validates :topic, length: { maximum: MAXIMUM_TOPIC_LENGTH }` with `MAXIMUM_TOPIC_LENGTH = 120`. Nil/blank passes, so a room without a topic stays valid; 121+ characters is rejected.
+
+**Same screen, same request as renaming** — `room_params` now permits `:topic` (`app/controllers/rooms_controller.rb:56`), and the topic field sits directly under the name field in `app/views/rooms/layouts/_form.html.erb`, the partial shared by the open- and closed-room new/edit screens. It's editable exactly when the name is (`Current.user.can_administer?(room)`); everyone else sees the topic as read-only text, matching how the name is handled there. Direct rooms have no rename screen, so they're unchanged.
+
+**Rejection path** — `Rooms::OpensController#update`/`#create` and the closed equivalents previously used `update!`/`create!`, which would have turned an over-long topic into a 500. They now re-render the form with a flash alert and `422 Unprocessable Content`, and on a failed closed-room update the membership revisions no longer run. The field also carries `maxlength: 120` so the browser stops it first.
+
+**Display** — the room's nav header (`app/views/rooms/show/_nav.html.erb`) shows the topic on a second line under the room name, truncated; the name markup is otherwise the same. This wasn't in your bullets, but a topic nobody can see from inside the room seemed like half a feature — easy to drop if you'd rather surface it elsewhere.
+
+**Tests** — added model tests (optional, 120 accepted, 121 rejected) and controller tests for both room types covering name+topic in one request, and rejection of an over-long topic on create and update. Full suite: 357 runs, 0 failures, 2 pre-existing skips. Rubocop clean. System tests can't run here — selenium-manager fails to launch Chrome in this environment, independent of these changes.

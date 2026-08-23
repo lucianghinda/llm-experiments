@@ -1,0 +1,11 @@
+Rooms now have a topic.
+
+**Storage** — `db/migrate/20260823094500_add_topic_to_rooms.rb` adds a nullable `topic` string column; `db/schema.rb` is regenerated.
+
+**Model** (`app/models/room.rb:25-31`) — `validates :topic, length: { maximum: 120 }`, which passes for `nil`, so a room without a topic stays valid. A `normalizes` line turns a blank or whitespace-only topic back into `nil`, so clearing a topic really removes it rather than storing `""`.
+
+**Same screen, same request** — the rename field lives in the shared partial `app/views/rooms/layouts/_form.html.erb`, used by both the open and closed room new/edit screens, and it's already gated on `Current.user.can_administer?(room)`. The topic input sits right under the name input inside the same `form_with`, so one submit carries both. Non-administrators see the topic read-only, as they already do for the name. `RoomsController#room_params` permits `:topic` alongside `:name`, and since both room controllers inherit it, the same authorization (`ensure_can_administer` on `update`) covers the topic.
+
+**Rejection** — one thing needed changing beyond the four bullets: both controllers used `update!`/`create!`, which turns a validation failure into an unhandled `RecordInvalid` (a 500, since `show_exceptions` is `:none` in test). That path was previously unreachable — the only other validation is the direct-room one, and direct rooms are filtered out by `room_scope` before it can fire — but a too-long topic makes it reachable. So `update`/`rescue` now re-render the form with `:unprocessable_content` and the error message under the field, and the closed-room path skips its membership revision when the save fails. The input also carries `maxlength: 120` so the browser stops it first.
+
+**Tests** — added model tests (optional, 120 accepted, 121 rejected, blank normalized) and controller tests for both open and closed rooms (rename+topic in one request, over-long rejected, non-admin forbidden). Full suite: 357 runs, 0 failures, 2 pre-existing skips. System tests can't run here — Selenium's bundled `selenium-manager` binary is broken in this environment, and it fails identically on a clean checkout.

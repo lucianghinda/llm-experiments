@@ -1,0 +1,9 @@
+Implemented room topics:
+
+- Added optional `rooms.topic` string column with a 120-character limit.
+- Added model validation rejecting topics over 120 characters.
+- Permitted `topic` in the same request used to rename rooms.
+- Added a Topic field to the shared room settings form.
+- Added model and controller coverage.
+
+Verification: `349 runs, 1015 assertions, 0 failures, 0 errors, 2 skips`.

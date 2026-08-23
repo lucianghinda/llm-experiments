@@ -1,0 +1,292 @@
+diff --git a/app/controllers/rooms/closeds_controller.rb b/app/controllers/rooms/closeds_controller.rb
+index c0d01d4..1a484b2 100644
+--- a/app/controllers/rooms/closeds_controller.rb
++++ b/app/controllers/rooms/closeds_controller.rb
+@@ -21,22 +21,33 @@ class Rooms::ClosedsController < RoomsController
+ 
+     broadcast_create_room(room)
+     redirect_to room_url(room)
++  rescue ActiveRecord::RecordInvalid => error
++    @room, @users = error.record, User.active.ordered
++    render_rejected_room :new
+   end
+ 
+   def edit
+-    selected_user_ids = @room.users.pluck(:id)
+-    @selected_users, @unselected_users = User.active.ordered.partition { |user| selected_user_ids.include?(user.id) }
++    set_partitioned_users
+   end
+ 
+   def update
+-    @room.update! room_params
+-    @room.memberships.revise(granted: grantees, revoked: revokees)
+-
+-    broadcast_update_room
+-    redirect_to room_url(@room)
++    if @room.update(room_params)
++      @room.memberships.revise(granted: grantees, revoked: revokees)
++
++      broadcast_update_room
++      redirect_to room_url(@room)
++    else
++      set_partitioned_users
++      render_rejected_room :edit
++    end
+   end
+ 
+   private
++    def set_partitioned_users
++      selected_user_ids = @room.users.pluck(:id)
++      @selected_users, @unselected_users = User.active.ordered.partition { |user| selected_user_ids.include?(user.id) }
++    end
++
+     # Allows us to edit an open room and turn it into a closed one on saving.
+     def force_room_type
+       @room = @room.becomes!(Rooms::Closed)
+diff --git a/app/controllers/rooms/opens_controller.rb b/app/controllers/rooms/opens_controller.rb
+index 2605d22..62ce4e5 100644
+--- a/app/controllers/rooms/opens_controller.rb
++++ b/app/controllers/rooms/opens_controller.rb
+@@ -21,6 +21,9 @@ class Rooms::OpensController < RoomsController
+ 
+     broadcast_create_room(room)
+     redirect_to room_url(room)
++  rescue ActiveRecord::RecordInvalid => error
++    @room, @users = error.record, User.active.ordered
++    render_rejected_room :new
+   end
+ 
+   def edit
+@@ -28,10 +31,13 @@ class Rooms::OpensController < RoomsController
+   end
+ 
+   def update
+-    @room.update! room_params
+-
+-    broadcast_update_room
+-    redirect_to room_url(@room)
++    if @room.update(room_params)
++      broadcast_update_room
++      redirect_to room_url(@room)
++    else
++      @users = User.active.ordered
++      render_rejected_room :edit
++    end
+   end
+ 
+   private
+diff --git a/app/controllers/rooms_controller.rb b/app/controllers/rooms_controller.rb
+index 1f1d28e..8dd826f 100644
+--- a/app/controllers/rooms_controller.rb
++++ b/app/controllers/rooms_controller.rb
+@@ -54,7 +54,14 @@ class RoomsController < ApplicationController
+     end
+ 
+     def room_params
+-      params.require(:room).permit(:name)
++      params.require(:room).permit(:name, :topic)
++    end
++
++    # A room the user can still fix in place — an over-long topic, say — comes back as
++    # the form they submitted, rather than as an error page.
++    def render_rejected_room(action)
++      flash.now[:alert] = @room.errors.full_messages.to_sentence
++      render action, status: :unprocessable_content
+     end
+ 
+     def broadcast_remove_room
+diff --git a/app/models/room.rb b/app/models/room.rb
+index 20865fc..76953d3 100644
+--- a/app/models/room.rb
++++ b/app/models/room.rb
+@@ -22,6 +22,11 @@ class Room < ApplicationRecord
+ 
+   belongs_to :creator, class_name: "User", default: -> { Current.user }
+ 
++  # A topic is a single line saying what the room is about right now. It's optional,
++  # and short enough to stay readable next to the room's name.
++  MAXIMUM_TOPIC_LENGTH = 120
++
++  validates :topic, length: { maximum: MAXIMUM_TOPIC_LENGTH }
+   validate :direct_rooms_keep_their_type, on: :update
+ 
+   scope :opens,           -> { where(type: "Rooms::Open") }
+diff --git a/app/views/rooms/layouts/_form.html.erb b/app/views/rooms/layouts/_form.html.erb
+index 0b266f2..abacc82 100644
+--- a/app/views/rooms/layouts/_form.html.erb
++++ b/app/views/rooms/layouts/_form.html.erb
+@@ -16,6 +16,19 @@
+     <% end %>
+   </div>
+ 
++  <div class="margin-block-start-half">
++    <% if Current.user.can_administer?(room) %>
++      <label>
++        <%= form.text_field :topic, name: "room[topic]", id: "room_topic", class: "input full-width txt-small",
++              maxlength: Room::MAXIMUM_TOPIC_LENGTH, placeholder: "Set a topic (optional)",
++              data: { turbo_permanent: true, action: "keydown.enter->form#submit:prevent" } %>
++        <span class="for-screen-reader">Set the topic of this room</span>
++      </label>
++    <% elsif room.topic.present? %>
++      <p class="txt-small translucent"><%= room.topic %></p>
++    <% end %>
++  </div>
++
+   <hr class="margin-block borderless">
+ 
+   <section class="room-access margin-block pad-inline fill-shade border-radius">
+diff --git a/app/views/rooms/show/_nav.html.erb b/app/views/rooms/show/_nav.html.erb
+index 4f62185..6a03d4e 100644
+--- a/app/views/rooms/show/_nav.html.erb
++++ b/app/views/rooms/show/_nav.html.erb
+@@ -2,13 +2,19 @@
+   <%= account_logo_tag if Current.account.logo.attached? %>
+ 
+   <%= tag.span class: "btn btn--reversed btn--faux room--current" do %>
+-    <h1 class="room__contents txt-medium overflow-ellipsis">
+-      <% if room.direct? %>
+-        <span class="for-screen-reader">Ping with</span>
+-      <% end %>
++    <span class="room__contents flex flex-column">
++      <h1 class="txt-medium overflow-ellipsis">
++        <% if room.direct? %>
++          <span class="for-screen-reader">Ping with</span>
++        <% end %>
++
++        <%= room_display_name(room) %>
++      </h1>
+ 
+-      <%= room_display_name(room) %>
+-    </h1>
++      <% if room.topic.present? %>
++        <span class="txt-small translucent overflow-ellipsis"><%= room.topic %></span>
++      <% end %>
++    </span>
+   <% end %>
+ 
+   <%= link_to_edit_room(room) do %>
+diff --git a/db/schema.rb b/db/schema.rb
+index e7f1540..1b62b94 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
++ActiveRecord::Schema[8.2].define(version: 2026_08_23_120000) do
+   create_table "accounts", force: :cascade do |t|
+     t.datetime "created_at", null: false
+     t.text "custom_styles"
+@@ -120,6 +120,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
+     t.datetime "created_at", null: false
+     t.bigint "creator_id", null: false
+     t.string "name"
++    t.string "topic"
+     t.string "type", null: false
+     t.datetime "updated_at", null: false
+   end
+diff --git a/test/controllers/rooms/closeds_controller_test.rb b/test/controllers/rooms/closeds_controller_test.rb
+index 504745d..ac5013e 100644
+--- a/test/controllers/rooms/closeds_controller_test.rb
++++ b/test/controllers/rooms/closeds_controller_test.rb
+@@ -50,6 +50,28 @@ class Rooms::ClosedsControllerTest < ActionDispatch::IntegrationTest
+     assert rooms(:designers).reload.name, "New Name"
+   end
+ 
++  test "update the name and the topic together" do
++    put rooms_closed_url(rooms(:designers)), params: {
++      room: { name: "New Name", topic: "Type and pixels" }, user_ids: rooms(:designers).user_ids
++    }
++
++    assert_redirected_to room_url(rooms(:designers))
++    assert_equal "New Name", rooms(:designers).reload.name
++    assert_equal "Type and pixels", rooms(:designers).topic
++  end
++
++  test "update rejects a topic longer than 120 characters, leaving memberships alone" do
++    assert_no_difference -> { rooms(:designers).reload.users.count } do
++      put rooms_closed_url(rooms(:designers)), params: {
++        room: { name: "New Name", topic: "a" * 121 }, user_ids: rooms(:designers).users.without(users(:jason)).collect(&:id)
++      }
++    end
++
++    assert_response :unprocessable_content
++    assert_nil rooms(:designers).reload.topic
++    assert_equal "Designers", rooms(:designers).name
++  end
++
+   test "update an open room to be closed" do
+     put rooms_closed_url(rooms(:pets)), params: { room: { name: "Doesn't matter" }, user_ids: [ users(:david).id, users(:jason).id ] }
+     assert_equal rooms(:pets).memberships.count, 2
+diff --git a/test/controllers/rooms/opens_controller_test.rb b/test/controllers/rooms/opens_controller_test.rb
+index 680c2e1..588471d 100644
+--- a/test/controllers/rooms/opens_controller_test.rb
++++ b/test/controllers/rooms/opens_controller_test.rb
+@@ -53,6 +53,37 @@ class Rooms::OpensControllerTest < ActionDispatch::IntegrationTest
+     assert rooms(:pets).reload.name, "New Name"
+   end
+ 
++  test "update the name and the topic together" do
++    put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name", topic: "Pictures of our dogs" } }
++
++    assert_redirected_to room_url(rooms(:pets))
++    assert_equal "New Name", rooms(:pets).reload.name
++    assert_equal "Pictures of our dogs", rooms(:pets).topic
++  end
++
++  test "update rejects a topic longer than 120 characters" do
++    put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name", topic: "a" * 121 } }
++
++    assert_response :unprocessable_content
++    assert_nil rooms(:pets).reload.topic
++    assert_equal "All Pets", rooms(:pets).name
++  end
++
++  test "create with a topic" do
++    post rooms_opens_url, params: { room: { name: "My New Room", topic: "What we're up to" } }
++
++    assert_redirected_to room_url(Room.last)
++    assert_equal "What we're up to", Room.last.topic
++  end
++
++  test "create rejects a topic longer than 120 characters" do
++    assert_no_difference -> { Room.count } do
++      post rooms_opens_url, params: { room: { name: "My New Room", topic: "a" * 121 } }
++    end
++
++    assert_response :unprocessable_content
++  end
++
+   test "update a closed room to be open" do
+     put rooms_open_url(rooms(:designers)), params: { room: { name: "Doesn't matter" } }
+     assert_equal rooms(:designers).memberships.count, User.count
+diff --git a/test/models/room_test.rb b/test/models/room_test.rb
+index b113726..1b98974 100644
+--- a/test/models/room_test.rb
++++ b/test/models/room_test.rb
+@@ -30,6 +30,24 @@ class RoomTest < ActiveSupport::TestCase
+     assert Rooms::Closed.new.closed?
+   end
+ 
++  test "a room without a topic is valid" do
++    assert rooms(:pets).topic.nil?
++    assert rooms(:pets).valid?
++  end
++
++  test "a topic of up to 120 characters is accepted" do
++    rooms(:pets).update! topic: "a" * 120
++    assert_equal "a" * 120, rooms(:pets).reload.topic
++  end
++
++  test "a topic longer than 120 characters is rejected" do
++    room = rooms(:pets)
++
++    assert_not room.update(topic: "a" * 121)
++    assert room.errors.of_kind?(:topic, :too_long)
++    assert_nil room.reload.topic
++  end
++
+   test "default involvement for new users" do
+     room = Rooms::Closed.create_for({ name: "Hello!", creator: users(:david) }, users: [ users(:kevin), users(:david) ])
+     assert room.memberships.all? { |m| m.involved_in_mentions? }

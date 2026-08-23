@@ -1,0 +1,8 @@
+Implemented room topics.
+
+- Added nullable `rooms.topic` database column.
+- Added 120-character maximum validation.
+- Added Topic field to the existing room rename/settings form.
+- Permitted `topic` in the same create/update request as `name`.
+- Added model and controller coverage for open and closed rooms.
+- Full test suite passes: 349 tests, 0 failures, 2 skips.

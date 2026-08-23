@@ -1,0 +1,10 @@
+Implemented room topics.
+
+- Added optional `rooms.topic` database column.
+- Added a 120-character model validation.
+- Added topic to the existing room name/settings form with a 120-character input limit.
+- Permitted topic in the same rename request.
+- Added model and controller coverage.
+- Updated the database schema.
+
+Verification: `349 runs, 1016 assertions, 0 failures, 0 errors` (2 existing skips).

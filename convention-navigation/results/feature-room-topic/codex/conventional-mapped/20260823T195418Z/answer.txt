@@ -1,0 +1,10 @@
+Implemented room topics.
+
+- Added nullable `rooms.topic` database column.
+- Added 120-character maximum validation.
+- Permitted `topic` alongside `name` in room requests.
+- Added topic field to the existing rename/edit form with `maxlength="120"`.
+- Displays the topic read-only to users without rename permission.
+- Added model and controller coverage for open and closed rooms.
+
+Verification: 349 tests, 1,016 assertions, 0 failures, 0 errors, 2 existing skips.

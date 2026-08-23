@@ -24,13 +24,25 @@ require_relative "../../containers/scripts/lib/kit"
 
 AGENTS = %w[claude codex].freeze
 
-# Which branch in the image each condition runs against, and which layout that
-# branch holds. `scrambled-mapped` is the scrambled layout plus a map file that
-# runner.rb writes at trial time, named for the agent that will read it.
+# Which branch in the image each condition runs against, which layout that
+# branch holds, and which map file -- if any -- runner.rb writes at trial time,
+# named for the agent that will read it.
+#
+# Each layout gets its own map, describing that layout truthfully. Handing the
+# conventional tree the scrambled tree's map would be a fourth experiment, about
+# what a wrong map costs, and would say nothing about what a right one buys.
+#
+# `conventional-mapped` exists to answer the one question `scrambled-mapped`
+# raised and could not settle: the mapped arm came in under conventional, but
+# only the mapped arm carried an agent-instruction file at all, so the gain
+# could have been the map or could have been the mere presence of a document.
+# Holding the document constant and varying only what it has to tell you is what
+# separates them.
 CONDITIONS = {
-  "conventional" => { branch: "trial/v1", variant: "conventional", map: false },
-  "scrambled" => { branch: "trial/v2", variant: "scrambled", map: false },
-  "scrambled-mapped" => { branch: "trial/v2", variant: "scrambled", map: true }
+  "conventional" => { branch: "trial/v1", variant: "conventional", map: nil },
+  "scrambled" => { branch: "trial/v2", variant: "scrambled", map: nil },
+  "scrambled-mapped" => { branch: "trial/v2", variant: "scrambled", map: "map.md" },
+  "conventional-mapped" => { branch: "trial/v1", variant: "conventional", map: "map-conventional.md" }
 }.freeze
 
 # Pinned so a result can be attributed to a model. Recorded in meta either way:
@@ -192,7 +204,7 @@ env = {
 env["LLMX_MODEL"] = MODELS[agent] if MODELS[agent]
 
 if setup[:map]
-  map_path = File.join(EXPERIMENT_DIR, "variants", app["key"], "map.md")
+  map_path = File.join(EXPERIMENT_DIR, "variants", app["key"], setup[:map])
   abort "missing #{map_path}, which is the whole of the mapped condition" unless File.exist?(map_path)
 
   env["LLMX_MAP_B64"] = Base64.strict_encode64(File.read(map_path))
@@ -235,6 +247,11 @@ end
 meta = JSON.parse(File.read(meta_path))
 meta["host_wall_seconds"] = elapsed
 meta["container_ok"] = ok
+# Which source map this trial carried. runner.rb records the name it wrote
+# inside the container (CLAUDE.md or AGENTS.md), which says who read it but not
+# which of the two layouts it describes -- and once two mapped conditions exist,
+# that is the part a reader needs.
+meta["map_source"] = setup[:map] if setup[:map]
 File.write(meta_path, JSON.pretty_generate(meta))
 
 # A cell that died before the agent got a turn is not a result. Exiting non-zero

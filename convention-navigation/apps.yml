@@ -1,0 +1,34 @@
+# Subject apps. Host checkout paths are never committed: they come from
+# LLMX_APP_<KEY> environment variables, with the key uppercased, exactly as in
+# at-file-mentions/. Copy apps.local.example to .apps.local and source it.
+#
+# base_sha pins where the variant branches fork from, so a re-run scrambles the
+# same code even after the app moves on. It is the same pin at-file-mentions
+# uses, so the two experiments describe the same tree.
+
+apps:
+  - key: campfire
+    repo: once-campfire
+    privacy: public
+    license: MIT
+    base_sha: f1aec6133667a7486d521430f871bc420e18ec2b
+    base_ref: main
+    ruby: 3.4.5
+    bundler: 4.0.13
+    database: sqlite3
+    test_cmd: bin/rails test
+    db_prepare: bin/rails db:test:prepare
+    commit_raw_transcripts: true
+    # Deleted on every variant branch, so no app gets to coach the agent under
+    # test. campfire ships none of these today; the list is kept so a later base
+    # bump cannot quietly reintroduce one. The map file that
+    # cond-scrambled-mapped depends on is written by the runner at trial time,
+    # after this list has been applied, and is named per agent.
+    neutralize:
+      - CLAUDE.md
+      - AGENTS.md
+      - .cursorrules
+      - .claude
+      - .codex
+      - .github/copilot-instructions.md
+      - .github/instructions

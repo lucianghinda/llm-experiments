@@ -1,0 +1,91 @@
+# The tasks, their ground truth, and how success is decided.
+#
+# ONE PROMPT PER TASK, NOT ONE PER CONDITION. The prompt is the constant here
+# and the layout is the variable, which is the whole design: the same words are
+# handed to an agent working on two arrangements of identical code.
+#
+# WHAT A PROMPT MAY NOT CONTAIN
+#
+# No file path, no directory name, and no code identifier -- no class, module,
+# method or constant name copied out of the source. Any of those hands the agent
+# the answer to a `grep` and erases the variable under test.
+#
+# Ordinary domain words ARE allowed, and deliberately so. "room", "message" and
+# "topic" are what a real person would say, and they cost the same in both
+# variants: an agent can grep for them either way. What it cannot do in the
+# scrambled variant is guess the path without looking. That guess is the effect
+# being measured, so the prompts must leave room for it to happen.
+#
+# render_prompts.rb enforces this mechanically rather than trusting the reading
+# above: it rejects a prompt containing anything that looks like a path, and any
+# word that occurs in three or fewer files in either variant.
+#
+# targets_* are the files a competent answer has to reach. They are ground truth
+# for `tool_calls_to_first_target_read` and are never shown to the agent. Both
+# spellings are listed because the same file has two paths, one per variant.
+
+tasks:
+  - id: locate-direct-type
+    app: campfire
+    family: locate
+    prompt: locate-direct-type.txt
+    check: locate_direct_type.rb
+    read_only: true
+    timeout_seconds: 600
+    targets_conventional:
+      - app/models/room.rb
+    targets_scrambled:
+      - platform/core/entities/room.rb
+
+  - id: locate-generated-secret
+    app: campfire
+    family: locate
+    prompt: locate-generated-secret.txt
+    check: locate_generated_secret.rb
+    read_only: true
+    timeout_seconds: 600
+    # Nested two levels below the models root, so the answer is not reachable by
+    # listing one directory even once the root has been found.
+    targets_conventional:
+      - app/models/user/bot.rb
+    targets_scrambled:
+      - platform/core/entities/user/bot.rb
+
+  # The load-bearing task. A single lookup is where grep wins; knowing all the
+  # places one field change lands -- migration, model, controller, view -- is
+  # where convention knowledge should show if it shows anywhere.
+  #
+  # The migration is part of the test, not incidental to it: the scrambled
+  # variant reads migrations from db/changes, so one written into db/migrate is
+  # never applied and the column never appears. That is a real cost of a
+  # non-conventional layout rather than a trick, and it is recorded as such.
+  - id: feature-room-topic
+    app: campfire
+    family: cross-layer
+    prompt: feature-room-topic.txt
+    check: feature_room_topic.rb
+    read_only: false
+    timeout_seconds: 1800
+    targets_conventional:
+      - app/models/room.rb
+      - app/controllers/rooms_controller.rb
+      - app/views/rooms/opens/edit.html.erb
+    targets_scrambled:
+      - platform/core/entities/room.rb
+      - delivery/http/handlers/rooms_controller.rb
+      - delivery/http/render/rooms/opens/edit.html.erb
+
+  # Exercises the test layout on its own. Success is not "a test file appeared":
+  # the check mutates the rule out of the source and requires the new test to go
+  # red, so a test that passes by asserting nothing fails here.
+  - id: test-direct-type
+    app: campfire
+    family: test
+    prompt: test-direct-type.txt
+    check: test_direct_type.rb
+    read_only: false
+    timeout_seconds: 1200
+    targets_conventional:
+      - app/models/room.rb
+    targets_scrambled:
+      - platform/core/entities/room.rb

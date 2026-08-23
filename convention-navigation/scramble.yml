@@ -1,0 +1,116 @@
+# How the scrambled variant is built, per app.
+#
+# THE ONE RULE: files move, code does not change.
+#
+# No class, module, method or constant is renamed anywhere, and no file's
+# contents are edited except the handful of wiring files listed under `wiring`.
+# That is what makes a measured difference attributable to path knowledge: an
+# agent that navigates by `grep "def deliver"` finds exactly as much in either
+# variant, so anything it loses is prediction, not searchability.
+#
+# WHY WHOLE ROOTS MOVE AND NOTHING BELOW THEM DOES
+#
+# Under Zeitwerk every directory below an autoload root is a Ruby namespace.
+# app/models/room/ is not decoration, it is `Room::`. Renaming it would rename a
+# constant, which the rule above forbids. So a root may move anywhere; its
+# subtree moves with it, byte for byte.
+#
+# WHY THE ROOTS ARE SPREAD OVER TWO TOP-LEVEL DIRECTORIES AT UNEQUAL DEPTHS
+#
+# A scramble that put everything under one new parent would be learnable in a
+# single `ls`, and would measure almost nothing. Real config-heavy codebases are
+# inconsistent: some layers nested deep, some shallow, no single parent. That
+# inconsistency is the treatment, so it is deliberate here and not noise.
+
+scrambles:
+  campfire:
+    # Directory roots that move wholesale, in order. Each `from` must exist and
+    # each `to` must not.
+    roots:
+      - from: app/models
+        to: platform/core/entities
+      - from: app/controllers
+        to: delivery/http/handlers
+      - from: app/helpers
+        to: delivery/http/render_support
+      - from: app/views
+        to: delivery/http/render
+      - from: app/jobs
+        to: platform/async/workers
+      - from: app/channels
+        to: delivery/sockets
+      - from: db/migrate
+        to: db/changes
+
+    # Test buckets. The mirror between a test path and an implementation path
+    # is itself a Rails convention -- at-file-mentions measured agents using it,
+    # so breaking it is part of the treatment rather than a side effect.
+    #
+    # Buckets are renamed but their insides are preserved, which keeps every
+    # basename unique. Flattening the whole tree into one directory would have
+    # collided on by_bots_controller_test.rb and users_controller_test.rb, and
+    # resolving that collision would have meant renaming a file.
+    #
+    # test_helper.rb, test_helpers/ and fixtures/ do not move. `require
+    # "test_helper"` resolves through $LOAD_PATH and fixtures are found through
+    # a Rails path, so moving them would break the suite in both variants
+    # without measuring anything.
+    #
+    # test/system/ does not move either, and that one was found the hard way.
+    # `bin/rails test` skips system tests through a hardcoded exclusion glob,
+    # `test/{system,dummy,fixtures}/**/*`, matched on the path. Moved to
+    # test/suite/browser/ they stopped being excluded, so the scrambled variant
+    # tried to boot a browser the container does not have and the whole suite
+    # died on load. That is a difference in which tests run -- a behaviour
+    # change, not a layout change -- and every regression check on the scrambled
+    # side would have failed for a reason with nothing to do with the
+    # experiment. Leaving system tests where Rails expects them keeps
+    # `bin/rails test` meaning the same thing on both sides, which is the
+    # property the comparison actually needs.
+    tests:
+      - from: test/models
+        to: test/suite/persistence
+      - from: test/controllers
+        to: test/suite/endpoints
+      - from: test/helpers
+        to: test/suite/rendering
+      - from: test/channels
+        to: test/suite/realtime
+      - from: test/lib
+        to: test/suite/support
+      - from: test/performance
+        to: test/suite/timing
+
+    # Autoload roots the wiring registers explicitly. Rails derives app/*/concerns
+    # from the `app` path glob; once the parent has moved out of app/, nothing
+    # derives them, and `concerns` would silently become a namespace -- turning
+    # Authentication into Concerns::Authentication and taking the whole app down
+    # on the first request. Listed here so scramble_check.rb can prove each one
+    # exists on disk after the move.
+    autoload_roots:
+      - platform/core/entities
+      - platform/core/entities/concerns
+      - delivery/http/handlers
+      - delivery/http/handlers/concerns
+      - delivery/http/render_support
+      - platform/async/workers
+      - delivery/sockets
+      - delivery/sockets/concerns
+
+    # The only files whose CONTENTS differ between the two variants. Every other
+    # file must be byte-identical, and scramble_check.rb fails if one is not.
+    # Anything added here weakens the experiment, so the list is short and each
+    # entry has a reason.
+    wiring:
+      # registers the moved roots, the view path and the migration path
+      - config/application.rb
+      # loads the split route files in their original order
+      - config/routes.rb
+      # config/routing/*.rb are new files, not edits; listed so the check knows
+      # they are expected to exist only on the scrambled side
+      - config/routing/entry.rb
+      - config/routing/accounts.rb
+      - config/routing/people.rb
+      - config/routing/spaces.rb
+      - config/routing/posts.rb
+      - config/routing/support.rb

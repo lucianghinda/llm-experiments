@@ -304,7 +304,9 @@ convention-navigation/
     runner.rb                the in-container half of a trial
     run_grid.rb              the grid: blocked by task, rotated, resumable
     parse_transcript.rb      transcript -> events.jsonl + metrics.json
-    metrics.rb               medians, exact Mann-Whitney, the sign test
+    lib/stats.rb             the statistics, shared so two scripts cannot disagree
+    metrics.rb               for reading at a terminal while working out what happened
+    report.rb                for publishing: writes results/tables.md
     sanitize.rb              the gate between results-raw/ and results/
   results-raw/        gitignored. Everything, unfiltered
   results/            committed. campfire is MIT, so its transcripts cross whole
@@ -329,9 +331,14 @@ ruby convention-navigation/scripts/run_grid.rb --dry-run
 ruby convention-navigation/scripts/run_grid.rb
 
 ruby convention-navigation/scripts/parse_transcript.rb --all
-ruby convention-navigation/scripts/metrics.rb
+ruby convention-navigation/scripts/metrics.rb              # read this while thinking
+ruby convention-navigation/scripts/report.rb --write       # then publish the tables
 ruby convention-navigation/scripts/sanitize.rb
 ```
+
+No number in `RESULTS.md` should be typed by hand. `report.rb` exists so every
+figure stays something a reader can re-derive from the trials, and
+`metrics.rb --selftest` checks the statistics behind them.
 
 `scramble_check.rb` is not optional. A scramble that fails it has changed the
 application rather than its layout, and every number measured against it would

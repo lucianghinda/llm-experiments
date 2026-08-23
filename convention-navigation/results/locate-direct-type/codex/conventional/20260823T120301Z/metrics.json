@@ -1,0 +1,73 @@
+{
+  "total_tool_calls": 3,
+  "total_shell_segments": 17,
+  "search_segments": 2,
+  "read_segments": 10,
+  "search_calls": 1,
+  "read_calls": 2,
+  "edit_calls": 0,
+  "bash_calls": 0,
+  "other_calls": 0,
+  "distinct_files_read": 5,
+  "tool_calls_to_first_target_read": 1,
+  "tool_calls_to_first_edit": null,
+  "searches_before_first_target": 1,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "read",
+    "read"
+  ],
+  "tool_call_names": [
+    "command_execution",
+    "command_execution",
+    "command_execution"
+  ],
+  "turns": [
+    {
+      "input_tokens": 66217,
+      "output_tokens": 472,
+      "cache_read_input_tokens": 48128,
+      "reasoning_output_tokens": 126,
+      "context_tokens": 66217
+    }
+  ],
+  "agent": "codex",
+  "input_tokens": 66217,
+  "output_tokens": 472,
+  "cache_read_input_tokens": 48128,
+  "thinking_tokens": 126,
+  "total_input_tokens": 66217,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "unparsable_lines": 0,
+  "raw_events": 11,
+  "task": "locate-direct-type",
+  "app": "campfire",
+  "condition": "conventional",
+  "variant": "conventional",
+  "targets": [
+    "app/models/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "cited_paths": [
+      "app/models/room.rb"
+    ],
+    "cited_lines": [
+      25
+    ],
+    "expected_lines": [
+      25,
+      73
+    ],
+    "line_correct": true,
+    "left_tree_dirty": false,
+    "answer": "app/models/room.rb:25"
+  },
+  "wall_seconds": 29.111,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [],
+  "trial_dir": "results-raw/locate-direct-type/codex/conventional/20260823T120301Z"
+}

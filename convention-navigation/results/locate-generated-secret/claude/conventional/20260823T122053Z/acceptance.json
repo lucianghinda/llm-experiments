@@ -1,0 +1,33 @@
+{
+  "task": "locate-generated-secret",
+  "variant": "conventional",
+  "passed": true,
+  "checks": [
+    {
+      "label": "answer reports a secret length of 12",
+      "ok": true,
+      "detail": "read 12 from the answer"
+    },
+    {
+      "label": "answer names app/models/user/bot.rb",
+      "ok": true,
+      "detail": "cited: [\"app/models/user/bot.rb\"]"
+    }
+  ],
+  "facts": {
+    "reported_length": 12,
+    "cited_paths": [
+      "app/models/user/bot.rb"
+    ],
+    "cited_lines": [
+      26
+    ],
+    "expected_lines": [
+      26
+    ],
+    "line_correct": true,
+    "left_tree_dirty": false,
+    "answer": "12\napp/models/user/bot.rb:26"
+  },
+  "finished_at": "2026-08-23T12:21:16Z"
+}

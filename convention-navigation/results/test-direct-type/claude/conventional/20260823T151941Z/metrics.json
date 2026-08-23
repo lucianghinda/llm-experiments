@@ -1,0 +1,379 @@
+{
+  "total_tool_calls": 18,
+  "total_shell_segments": 59,
+  "search_segments": 7,
+  "read_segments": 24,
+  "search_calls": 6,
+  "read_calls": 10,
+  "edit_calls": 1,
+  "bash_calls": 1,
+  "other_calls": 0,
+  "distinct_files_read": 12,
+  "tool_calls_to_first_target_read": 2,
+  "tool_calls_to_first_edit": 11,
+  "searches_before_first_target": 2,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "search",
+    "read",
+    "search",
+    "read",
+    "read",
+    "search",
+    "read",
+    "read",
+    "read",
+    "edit",
+    "read",
+    "search",
+    "read",
+    "read",
+    "bash",
+    "read"
+  ],
+  "tool_call_names": [
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Read",
+    "Edit",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash"
+  ],
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 19184
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 19184
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 19184
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 22587
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 22587
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 22587
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 3403,
+      "cache_read_input_tokens": 19182,
+      "context_tokens": 22587
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 4313,
+      "cache_read_input_tokens": 22585,
+      "context_tokens": 26900
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 4313,
+      "cache_read_input_tokens": 22585,
+      "context_tokens": 26900
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 4313,
+      "cache_read_input_tokens": 22585,
+      "context_tokens": 26900
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 2657,
+      "cache_read_input_tokens": 26898,
+      "context_tokens": 29557
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 2657,
+      "cache_read_input_tokens": 26898,
+      "context_tokens": 29557
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 2657,
+      "cache_read_input_tokens": 26898,
+      "context_tokens": 29557
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 3736,
+      "cache_read_input_tokens": 29555,
+      "context_tokens": 33293
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 3736,
+      "cache_read_input_tokens": 29555,
+      "context_tokens": 33293
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2677,
+      "cache_read_input_tokens": 33291,
+      "context_tokens": 35970
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2677,
+      "cache_read_input_tokens": 33291,
+      "context_tokens": 35970
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 2677,
+      "cache_read_input_tokens": 33291,
+      "context_tokens": 35970
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 884,
+      "cache_read_input_tokens": 35968,
+      "context_tokens": 36854
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 884,
+      "cache_read_input_tokens": 35968,
+      "context_tokens": 36854
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 7,
+      "cache_creation_input_tokens": 291,
+      "cache_read_input_tokens": 36852,
+      "context_tokens": 37145
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 7,
+      "cache_creation_input_tokens": 291,
+      "cache_read_input_tokens": 36852,
+      "context_tokens": 37145
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 7,
+      "cache_creation_input_tokens": 291,
+      "cache_read_input_tokens": 36852,
+      "context_tokens": 37145
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 2244,
+      "cache_read_input_tokens": 37143,
+      "context_tokens": 39389
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 39387,
+      "context_tokens": 40201
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 9,
+      "cache_creation_input_tokens": 234,
+      "cache_read_input_tokens": 40199,
+      "context_tokens": 40435
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 9,
+      "cache_creation_input_tokens": 234,
+      "cache_read_input_tokens": 40199,
+      "context_tokens": 40435
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 9,
+      "cache_creation_input_tokens": 234,
+      "cache_read_input_tokens": 40199,
+      "context_tokens": 40435
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 16,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 40433,
+      "context_tokens": 40748
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 335,
+      "cache_read_input_tokens": 40746,
+      "context_tokens": 41083
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 335,
+      "cache_read_input_tokens": 40746,
+      "context_tokens": 41083
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 3,
+      "cache_creation_input_tokens": 335,
+      "cache_read_input_tokens": 40746,
+      "context_tokens": 41083
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 7,
+      "cache_creation_input_tokens": 325,
+      "cache_read_input_tokens": 41081,
+      "context_tokens": 41408
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 7,
+      "cache_creation_input_tokens": 325,
+      "cache_read_input_tokens": 41081,
+      "context_tokens": 41408
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 7,
+      "cache_creation_input_tokens": 325,
+      "cache_read_input_tokens": 41081,
+      "context_tokens": 41408
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 275,
+      "cache_read_input_tokens": 41406,
+      "context_tokens": 41683
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 275,
+      "cache_read_input_tokens": 41406,
+      "context_tokens": 41683
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 257,
+      "cache_read_input_tokens": 41681,
+      "context_tokens": 41940
+    }
+  ],
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 19,
+  "duration_ms": 315206,
+  "total_cost_usd": 0.6965895000000001,
+  "is_error": false,
+  "input_tokens": 32,
+  "output_tokens": 7843,
+  "cache_creation_input_tokens": 22756,
+  "cache_read_input_tokens": 545589,
+  "total_input_tokens": 568377,
+  "context_before_first_tool_call": 19184,
+  "unparsable_lines": 0,
+  "raw_events": 112,
+  "task": "test-direct-type",
+  "app": "campfire",
+  "condition": "conventional",
+  "variant": "conventional",
+  "targets": [
+    "app/models/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "new_test_files": [],
+    "modified_test_files": [
+      "test/models/room_test.rb"
+    ],
+    "added_test_methods": [
+      "test_a_direct_room_can't_be_converted_into_a_room_other_people_can_join",
+      "test_a_direct_room_can_still_be_updated_without_changing_its_type"
+    ],
+    "command": "bin/rails test test/models/room_test.rb -n \"/test_a_direct_room_can't_be_converted_into_a_room_other_people_can_join|test_a_direct_room_can_still_be_updated_without_changing_its_type/\"",
+    "mutation_killed": true,
+    "green_summary": "2 runs, 10 assertions, 0 failures, 0 errors, 0 skips",
+    "mutated_summary": "2 runs, 3 assertions, 1 failures, 0 errors, 0 skips",
+    "mutation_sites": [
+      "app/models/room.rb",
+      "app/controllers/rooms/closeds_controller.rb",
+      "app/controllers/rooms/opens_controller.rb"
+    ],
+    "edited_non_test_files": []
+  },
+  "wall_seconds": 316.57,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [
+    "test/models/room_test.rb"
+  ],
+  "trial_dir": "results-raw/test-direct-type/claude/conventional/20260823T151941Z"
+}

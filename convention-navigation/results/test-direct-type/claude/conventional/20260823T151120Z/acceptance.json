@@ -1,0 +1,38 @@
+{
+  "task": "test-direct-type",
+  "variant": "conventional",
+  "passed": true,
+  "checks": [
+    {
+      "label": "the new test passes as written (2 runs, 13 assertions, 0 failures, 0 errors, 0 skips)",
+      "ok": true,
+      "detail": "Running 5 tests in a single process (parallelization threshold is 50)\nRun options: -n \"/test_can't_be_turned_into_a_room_that_other_people_can_join|test_can't_be_turned_into_a_room_that_other_people_can_join_by_writing_its_type_directly/\" --seed 44892\n\n# Running:\n\n..\n\nFinished in 1.445603s, 1.3835 runs/s, 8.9928 assertions/s.\n2 runs, 13 assertions, 0 failures, 0 errors, 0 skips\n"
+    },
+    {
+      "label": "the new test fails once the rule is removed",
+      "ok": true,
+      "detail": "after mutation: 2 runs, 2 assertions, 2 failures, 0 errors, 0 skips"
+    }
+  ],
+  "facts": {
+    "new_test_files": [],
+    "modified_test_files": [
+      "test/models/rooms/direct_test.rb"
+    ],
+    "added_test_methods": [
+      "test_can't_be_turned_into_a_room_that_other_people_can_join",
+      "test_can't_be_turned_into_a_room_that_other_people_can_join_by_writing_its_type_directly"
+    ],
+    "command": "bin/rails test test/models/rooms/direct_test.rb -n \"/test_can't_be_turned_into_a_room_that_other_people_can_join|test_can't_be_turned_into_a_room_that_other_people_can_join_by_writing_its_type_directly/\"",
+    "mutation_killed": true,
+    "green_summary": "2 runs, 13 assertions, 0 failures, 0 errors, 0 skips",
+    "mutated_summary": "2 runs, 2 assertions, 2 failures, 0 errors, 0 skips",
+    "mutation_sites": [
+      "app/models/room.rb",
+      "app/controllers/rooms/closeds_controller.rb",
+      "app/controllers/rooms/opens_controller.rb"
+    ],
+    "edited_non_test_files": []
+  },
+  "finished_at": "2026-08-23T15:14:13Z"
+}

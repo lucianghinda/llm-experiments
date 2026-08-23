@@ -1,0 +1,17 @@
+Done. Rooms now have a topic.
+
+**Storage** — `db/changes/20260823155845_add_topic_to_rooms.rb` adds a `topic` string column to `rooms` (schema.rb regenerated).
+
+**Model** (`platform/core/entities/room.rb`)
+- `MAX_TOPIC_LENGTH = 120` plus `validates :topic, length: { maximum: MAX_TOPIC_LENGTH }` — an over-long topic fails validation and is never written.
+- Nullable, no presence validation: a room without a topic is valid. Blank/whitespace input is normalized to `nil`, so clearing the field means "no topic" rather than an empty one.
+
+**Same screen, same request as rename** — `room_params` in `RoomsController` (shared by the open and closed room controllers) now permits `:topic`, and the topic input sits directly under the name input in `rooms/layouts/_form.html.erb`, the partial both room forms already render. It's behind the identical `Current.user.can_administer?(room)` gate as the name field, so exactly the set of people who can rename a room can set its topic, in the one PUT that renames it. Non-admins see the topic rendered as read-only text there. Direct rooms have no rename field and so get no topic field. The field carries `maxlength`, `turbo_permanent` (to survive the open↔closed toggle like the name does), and a `room_topic` entry in the translations dictionary alongside `room_name`.
+
+**Rejection path** — `update!`/`create!` would have turned a too-long topic into a 500, so the open and closed controllers now re-render the form with the error and `422 Unprocessable Content` instead. For closed rooms the membership revisions are skipped when the update is rejected, so a rejected request changes nothing at all.
+
+**Display** — the room's nav header shows the topic as a small second line under the room name (`.room__topic`), using existing utility classes only; the `.room__contents` width constraint moved to the wrapper so both lines still ellipsis.
+
+**Tests** — the existing 348 pass, and I added 19 covering the validation boundary (120 accepted / 121 rejected), optionality, blank-clears-topic, setting the topic in the same request as the rename for both open and closed rooms, non-admins being unable to set it, memberships being left alone on a rejected update, and the topic rendering (and not rendering) in the nav. `bin/rubocop` is clean.
+
+One gap: `bin/rails test:system` can't run here — Selenium's driver manager is broken in this environment (`selenium-manager: Syntax error: Unterminated quoted string`), which is pre-existing and unrelated to this change. The three system tests don't touch the nav or the room form markup, but CI does run them, so that's where they'll first be exercised.

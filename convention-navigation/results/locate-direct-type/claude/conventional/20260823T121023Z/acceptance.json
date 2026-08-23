@@ -1,0 +1,28 @@
+{
+  "task": "locate-direct-type",
+  "variant": "conventional",
+  "passed": true,
+  "checks": [
+    {
+      "label": "answer names app/models/room.rb",
+      "ok": true,
+      "detail": "cited: [\"app/models/room.rb\"]"
+    }
+  ],
+  "facts": {
+    "cited_paths": [
+      "app/models/room.rb"
+    ],
+    "cited_lines": [
+      73
+    ],
+    "expected_lines": [
+      25,
+      73
+    ],
+    "line_correct": true,
+    "left_tree_dirty": false,
+    "answer": "app/models/room.rb:73"
+  },
+  "finished_at": "2026-08-23T12:11:50Z"
+}

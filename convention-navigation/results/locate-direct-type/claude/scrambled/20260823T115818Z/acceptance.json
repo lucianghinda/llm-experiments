@@ -1,0 +1,28 @@
+{
+  "task": "locate-direct-type",
+  "variant": "scrambled",
+  "passed": true,
+  "checks": [
+    {
+      "label": "answer names platform/core/entities/room.rb",
+      "ok": true,
+      "detail": "cited: [\"platform/core/entities/room.rb\"]"
+    }
+  ],
+  "facts": {
+    "cited_paths": [
+      "platform/core/entities/room.rb"
+    ],
+    "cited_lines": [
+      25
+    ],
+    "expected_lines": [
+      25,
+      73
+    ],
+    "line_correct": true,
+    "left_tree_dirty": false,
+    "answer": "platform/core/entities/room.rb:25"
+  },
+  "finished_at": "2026-08-23T11:59:32Z"
+}

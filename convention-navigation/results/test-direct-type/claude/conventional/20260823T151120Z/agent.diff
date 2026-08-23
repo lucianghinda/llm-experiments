@@ -1,0 +1,35 @@
+diff --git a/test/models/rooms/direct_test.rb b/test/models/rooms/direct_test.rb
+index ab74efa..7b129b2 100644
+--- a/test/models/rooms/direct_test.rb
++++ b/test/models/rooms/direct_test.rb
+@@ -18,4 +18,30 @@ class Rooms::DirectTest < ActiveSupport::TestCase
+     room = Rooms::Direct.find_or_create_for([ users(:david), users(:kevin) ])
+     assert room.memberships.all? { |m| m.involved_in_everything? }
+   end
++
++  test "can't be turned into a room that other people can join" do
++    room = rooms(:david_and_kevin)
++    participants = room.user_ids.sort
++
++    [ Rooms::Open, Rooms::Closed ].each do |type|
++      converted = room.becomes!(type)
++
++      assert_not converted.save, "a direct room was converted into #{type}"
++      assert_equal [ "can't be changed for a direct room" ], converted.errors[:type]
++      assert_raises(ActiveRecord::RecordInvalid) { converted.save! }
++
++      assert_equal "Rooms::Direct", Room.find(room.id).type
++      assert_equal participants, Room.find(room.id).user_ids.sort
++    end
++  end
++
++  test "can't be turned into a room that other people can join by writing its type directly" do
++    room = rooms(:david_and_kevin)
++    participants = room.user_ids.sort
++
++    assert_raises(ActiveRecord::RecordInvalid) { room.update!(type: "Rooms::Open") }
++
++    assert_equal "Rooms::Direct", Room.find(room.id).type
++    assert_equal participants, Room.find(room.id).user_ids.sort
++  end
+ end

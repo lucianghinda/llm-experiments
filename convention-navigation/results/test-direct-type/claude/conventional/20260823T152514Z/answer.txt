@@ -1,0 +1,38 @@
+Done. Added one test to `test/models/room_test.rb:33`.
+
+**Where the rule actually lives:** `Room#direct_rooms_keep_their_type` (`app/models/room.rb:20`, `:72`) — an `on: :update` validation rejecting any type change away from `Rooms::Direct`.
+
+**Why the model, not the controller:** `Rooms::OpensController` and `Rooms::ClosedsController` scope to `without_directs`, and there are already tests for that (`opens_controller_test.rb`, `closeds_controller_test.rb`). But that scope is a second layer that hides the rule: I deleted the validation and all 24 room controller tests still passed. So the validation was completely unguarded — a `becomes!`/type assignment from any other path, or a widening of one of those scopes, would silently convert a direct room with nothing failing.
+
+**The test:**
+
+```ruby
+test "a direct room can't be converted into a room others can join" do
+  direct = rooms(:david_and_kevin)
+  participant_ids = [ users(:david).id, users(:kevin).id ].sort
+
+  [ Rooms::Open, Rooms::Closed ].each do |type|
+    # Both the way the app converts rooms, and a bare assignment of the column.
+    converted = Room.find(direct.id).becomes!(type)
+    reassigned = Room.find(direct.id).tap { |room| room.type = type.sti_name }
+
+    [ converted, reassigned ].each do |room|
+      assert_not room.save, "expected a direct room to refuse becoming #{type.sti_name}"
+      assert_predicate room.errors[:type], :present?
+    end
+
+    # The room is still direct, and still holds exactly the pair it was created for.
+    assert_equal "Rooms::Direct", Room.find(direct.id).type
+    assert_equal participant_ids, Room.find(direct.id).user_ids.sort
+  end
+end
+```
+
+It covers both target types and both conversion mechanisms (`becomes!`, the path the controllers use, and raw `type=`), and asserts the outcome the rule is really about — the room re-read from the database is still direct and still holds exactly its original pair, so nobody was let in.
+
+**Verified:**
+- Passes now; full model suite 98/98 green; rubocop clean.
+- Commenting out the `validate` line makes it fail (`expected a direct room to refuse becoming Rooms::Open`), and it's the only failure in the file.
+- `app/models/room.rb` restored byte-for-byte; `git status` shows `test/models/room_test.rb` as the only modified file.
+
+One judgment call worth flagging: I asserted `errors[:type].present?` rather than the exact message string, so rewording the validation message won't cause a spurious failure.

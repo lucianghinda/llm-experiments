@@ -1,0 +1,22 @@
+Done. Rooms now have a topic.
+
+**Storage** — `db/changes/20260823101500_add_topic_to_rooms.rb` adds a nullable `topic` column (`string, limit: 120`) to `rooms`; `db/schema.rb` is regenerated.
+
+**Optional, and capped at 120** — `platform/core/entities/room.rb:27`:
+```ruby
+normalizes :topic, with: ->(topic) { topic.to_s.strip.presence }
+validates :topic, length: { maximum: MAX_TOPIC_LENGTH }
+```
+A room with no topic stays valid, and a blank submission clears the topic to `NULL` rather than storing `""` (which would later read as "this room has a topic"). Anything over 120 characters fails validation, so it is never written.
+
+**Same screen, same request as renaming** — the topic field lives in `rooms/layouts/_form.html.erb`, the shared partial that already holds the name field, inside the same `form_with` and behind the same `Current.user.can_administer?(room)` gate. It posts as `room[topic]` (explicit, because the STI param key is `rooms_open`/`rooms_closed`), and `RoomsController#room_params` now permits `:name, :topic`, so open and closed rooms save both in one PATCH. Users who can't rename see the topic as read-only text. Direct rooms have no rename path at all, so they get no topic UI.
+
+**Rejection, not a 500** — `update!`/`create!` raised `RecordInvalid`, which would have been an error page. `Rooms::OpensController` and `Rooms::ClosedsController` now rescue it and re-render the form with `422` and the error message. In the closed-room case the rescue also means membership revisions in the same request are not applied when the topic is rejected.
+
+**Display** — the topic renders under the room name in the room header (`rooms/show/_nav.html.erb`, `.room__topic` styling in `sidebar.css`).
+
+Two things worth flagging:
+- A topic change broadcasts the sidebar partial (name only), same as today. Users already looking at the room won't see a new topic in their header until they navigate or reload — that matches the existing behavior for renames, so I didn't add live nav updates.
+- The `limit: 120` on the column is documentation of intent; SQLite doesn't enforce `VARCHAR` lengths, so the model validation is the real gate.
+
+Tests: 16 new (model-level optionality/boundary/normalization, plus endpoint tests for the combined rename+topic request, the 422 rejection on create and update, form gating, and header display). Full suite is 364 runs, 0 failures, 2 pre-existing skips; RuboCop and Brakeman are clean.

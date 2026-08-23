@@ -1,0 +1,41 @@
+{
+  "task": "feature-room-topic",
+  "variant": "scrambled",
+  "passed": true,
+  "checks": [
+    {
+      "label": "topic works end to end (5 runs, 11 assertions, 0 failures, 0 errors, 0 skips)",
+      "ok": true,
+      "detail": "Running 5 tests in a single process (parallelization threshold is 50)\nRun options: --seed 51051\n\n# Running:\n\n.....\n\nFinished in 9.162550s, 0.5457 runs/s, 1.2005 assertions/s.\n5 runs, 11 assertions, 0 failures, 0 errors, 0 skips\n"
+    }
+  ],
+  "facts": {
+    "migration_files": [
+      "db/changes/20260823150000_add_topic_to_rooms.rb"
+    ],
+    "migration_exit": 0,
+    "migration_output": "",
+    "acceptance_summary": "5 runs, 11 assertions, 0 failures, 0 errors, 0 skips",
+    "regression_suite": {
+      "ran": true,
+      "ok": true,
+      "summary": "355 runs, 1032 assertions, 0 failures, 0 errors, 2 skips",
+      "seconds": 51.8
+    },
+    "changed_files": [
+      "db/schema.rb",
+      "delivery/http/handlers/rooms_controller.rb",
+      "delivery/http/render/rooms/layouts/_form.html.erb",
+      "delivery/http/render/rooms/show/_nav.html.erb",
+      "platform/core/entities/room.rb",
+      "test/suite/endpoints/rooms/closeds_controller_test.rb",
+      "test/suite/endpoints/rooms/opens_controller_test.rb",
+      "test/suite/endpoints/rooms_controller_test.rb",
+      "test/suite/persistence/room_test.rb"
+    ],
+    "new_files": [
+      "db/changes/20260823150000_add_topic_to_rooms.rb"
+    ]
+  },
+  "finished_at": "2026-08-23T14:13:14Z"
+}

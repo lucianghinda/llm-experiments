@@ -1,0 +1,112 @@
+{
+  "total_tool_calls": 11,
+  "total_shell_segments": 53,
+  "search_segments": 9,
+  "read_segments": 23,
+  "search_calls": 4,
+  "read_calls": 2,
+  "edit_calls": 1,
+  "bash_calls": 4,
+  "other_calls": 0,
+  "distinct_files_read": 9,
+  "tool_calls_to_first_target_read": 1,
+  "tool_calls_to_first_edit": 5,
+  "searches_before_first_target": 1,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "search",
+    "search",
+    "read",
+    "edit",
+    "bash",
+    "bash",
+    "bash",
+    "bash",
+    "read"
+  ],
+  "tool_call_names": [
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "file_change",
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "command_execution"
+  ],
+  "turns": [
+    {
+      "input_tokens": 632976,
+      "output_tokens": 3514,
+      "cache_read_input_tokens": 568064,
+      "reasoning_output_tokens": 782,
+      "context_tokens": 632976
+    }
+  ],
+  "agent": "codex",
+  "input_tokens": 632976,
+  "output_tokens": 3514,
+  "cache_read_input_tokens": 568064,
+  "thinking_tokens": 782,
+  "total_input_tokens": 632976,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "unparsable_lines": 0,
+  "raw_events": 29,
+  "task": "feature-room-topic",
+  "app": "campfire",
+  "condition": "scrambled",
+  "variant": "scrambled",
+  "targets": [
+    "platform/core/entities/room.rb",
+    "delivery/http/handlers/rooms_controller.rb",
+    "delivery/http/render/rooms/opens/edit.html.erb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "migration_files": [
+      "db/changes/20260823000000_add_topic_to_rooms.rb"
+    ],
+    "migration_exit": 0,
+    "migration_output": "",
+    "acceptance_summary": "5 runs, 11 assertions, 0 failures, 0 errors, 0 skips",
+    "regression_suite": {
+      "ran": true,
+      "ok": true,
+      "summary": "354 runs, 1027 assertions, 0 failures, 0 errors, 2 skips",
+      "seconds": 52.1
+    },
+    "changed_files": [
+      "db/schema.rb",
+      "delivery/http/handlers/rooms_controller.rb",
+      "delivery/http/render/rooms/layouts/_form.html.erb",
+      "delivery/http/render/rooms/show/_nav.html.erb",
+      "platform/core/entities/room.rb",
+      "test/suite/endpoints/rooms/closeds_controller_test.rb",
+      "test/suite/endpoints/rooms/opens_controller_test.rb",
+      "test/suite/persistence/room_test.rb"
+    ],
+    "new_files": [
+      "db/changes/20260823000000_add_topic_to_rooms.rb"
+    ]
+  },
+  "wall_seconds": 189.821,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [
+    "db/schema.rb",
+    "delivery/http/handlers/rooms_controller.rb",
+    "delivery/http/render/rooms/layouts/_form.html.erb",
+    "delivery/http/render/rooms/show/_nav.html.erb",
+    "platform/core/entities/room.rb",
+    "test/suite/endpoints/rooms/closeds_controller_test.rb",
+    "test/suite/endpoints/rooms/opens_controller_test.rb",
+    "test/suite/persistence/room_test.rb"
+  ],
+  "trial_dir": "results-raw/feature-room-topic/codex/scrambled/20260823T142226Z"
+}

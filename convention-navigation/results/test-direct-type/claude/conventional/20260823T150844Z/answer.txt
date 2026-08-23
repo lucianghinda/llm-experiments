@@ -1,0 +1,11 @@
+Done. Added one test to `test/models/room_test.rb:38`.
+
+**Where the rule lives.** It's enforced in two places: the `Room#direct_rooms_keep_their_type` validation (`app/models/room.rb:71`), and the `without_directs` scoping in `Rooms::OpensController`/`Rooms::ClosedsController`, which keeps direct rooms out of reach of the conversion endpoints.
+
+**The gap I filled.** The controller layer was already covered — `opens_controller_test.rb` and `closeds_controller_test.rb` each have tests attempting the promotion over HTTP. The model validation, the backstop that holds regardless of which code path reaches the record, had no test. I verified this: deleting the validation entirely leaves all 30 tests in `test/controllers/rooms/` green.
+
+**The test.** It takes the `david_and_kevin` direct room and tries to save it as both `Rooms::Open` and `Rooms::Closed` via `becomes!`, asserting for each that the save is rejected with the type error, that the persisted type is still `Rooms::Direct`, and that the participant set is unchanged. That last assertion is the one that speaks to the actual stake: `Rooms::Open` grants membership to every active user on save, so a successful conversion would republish the pair's history account-wide.
+
+**Verification.**
+- Passes as-is: 7 runs, 0 failures in `room_test.rb`; full `test/models/` suite green at 98 runs.
+- Fails when the rule is removed: deleting the `validate :direct_rooms_keep_their_type` line produces `a direct room was allowed to become Rooms::Open`. I restored the file afterward — `git diff --stat` shows the test file as the only change.

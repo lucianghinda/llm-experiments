@@ -1,0 +1,35 @@
+diff --git a/test/models/room_test.rb b/test/models/room_test.rb
+index b113726..062b5a2 100644
+--- a/test/models/room_test.rb
++++ b/test/models/room_test.rb
+@@ -34,4 +34,30 @@ class RoomTest < ActiveSupport::TestCase
+     room = Rooms::Closed.create_for({ name: "Hello!", creator: users(:david) }, users: [ users(:kevin), users(:david) ])
+     assert room.memberships.all? { |m| m.involved_in_mentions? }
+   end
++
++  # The controllers keep direct rooms out of reach of the open/closed edit paths, but the
++  # model is what makes the rule true for every caller. Both conversions are covered: an
++  # open room admits the whole account, a closed one lets whoever edits it revise the list.
++  test "a direct room can't be converted into a room other people can join" do
++    direct = rooms(:david_and_kevin)
++    participants = direct.user_ids.sort
++
++    [ Rooms::Open, Rooms::Closed ].each do |type|
++      room = Room.find(direct.id).becomes!(type)
++
++      assert_not room.save, "a direct room was allowed to become #{type}"
++      assert room.errors[:type].present?
++
++      assert_equal "Rooms::Direct", Room.find(direct.id).type
++      assert_equal participants, Room.find(direct.id).user_ids.sort
++    end
++  end
++
++  # Guards the test above from being satisfied by a rule that simply freezes direct rooms.
++  test "a direct room can still be updated without changing its type" do
++    direct = rooms(:david_and_kevin)
++
++    assert direct.update(name: "Just the two of us")
++    assert_equal "Just the two of us", Room.find(direct.id).name
++  end
+ end

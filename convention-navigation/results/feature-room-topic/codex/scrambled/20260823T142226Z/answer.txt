@@ -1,0 +1,14 @@
+Implemented room topics end-to-end:
+
+- Added nullable `rooms.topic` database column.
+- Added a 120-character server-side validation.
+- Permitted `topic` in the same request used to rename rooms.
+- Added the topic field to the shared room settings form with a browser-side limit.
+- Displayed topics in room headers when present.
+- Added model and controller coverage for open and closed rooms.
+
+Validation:
+
+- `bin/rails test`: 349 tests, 1016 assertions, 0 failures.
+- System tests couldn’t start because the environment’s Selenium Manager binary is malformed and no Chrome driver was available.
+- `git diff --check` passes.

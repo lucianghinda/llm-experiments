@@ -1,0 +1,24 @@
+Done. 130 runs, 0 failures.
+
+## What the rule is
+
+`platform/core/entities/room.rb:22` — `validate :direct_rooms_keep_their_type, on: :update`. A `Rooms::Direct` can't have its `type` changed to `Rooms::Open` or `Rooms::Closed`, both of which admit people the original pair never agreed to.
+
+## Where the gap was
+
+The rule is enforced at two layers, and only one was tested:
+
+1. **Controllers** — `Rooms::OpensController`/`ClosedsController` narrow `room_scope` to `.without_directs`. Already covered by tests in `test/suite/endpoints/rooms/opens_controller_test.rb` and `closeds_controller_test.rb`.
+2. **Model validation** — untested. Those controller tests pass purely because the scope hides direct rooms, so deleting the validation left the whole existing suite green.
+
+So I added model-level tests in `test/suite/persistence/room_test.rb`, next to the other `Room` tests:
+
+- **`a direct room can't be turned into a room others can join`** — `update(type:)` to both `Rooms::Open` and `Rooms::Closed` is rejected, an error lands on `:type`, and the reloaded record keeps both its type and its exact participant list.
+- **`a direct room keeps its type even when saved as another class`** — same via `becomes!`, which is the mechanism the controllers' `force_room_type` actually uses, so the escape hatch is closed on the real code path rather than just on direct attribute assignment.
+- **`open and closed rooms still convert into each other`** — a guard so the rule can't be trivially "satisfied" by freezing type changes for every room. This is what makes the first two tests specific to *direct* rooms.
+
+## Verification
+
+I confirmed the failure direction rather than assuming it: with `validate :direct_rooms_keep_their_type, on: :update` deleted, both new tests fail (`expected becoming a Rooms::Open to be rejected`) while the open↔closed guard stays green. Source restored — `git status` shows the test file as the only modification.
+
+One note for your judgment: I asserted only that an error is present on `:type`, not its exact wording, so rephrasing the message won't cause a spurious failure. If you'd rather the message text be pinned too, that's a one-line change.

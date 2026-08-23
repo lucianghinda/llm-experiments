@@ -1,0 +1,10 @@
+Implemented room topics:
+
+- Added nullable `rooms.topic` database column.
+- Added server-side 120-character maximum validation.
+- Permitted `topic` in the same authorized request used to rename rooms.
+- Added the optional topic field to the room settings screen.
+- Displayed topics on room pages when present.
+- Added persistence and endpoint coverage for valid and oversized topics.
+
+Verification: `350` tests passed, `0` failures, with `2` pre-existing skips.

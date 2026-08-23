@@ -1,0 +1,73 @@
+{
+  "total_tool_calls": 3,
+  "total_shell_segments": 16,
+  "search_segments": 3,
+  "read_segments": 0,
+  "search_calls": 3,
+  "read_calls": 0,
+  "edit_calls": 0,
+  "bash_calls": 0,
+  "other_calls": 0,
+  "distinct_files_read": 0,
+  "tool_calls_to_first_target_read": null,
+  "tool_calls_to_first_edit": null,
+  "searches_before_first_target": null,
+  "zero_search_navigation": null,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "search"
+  ],
+  "tool_call_names": [
+    "command_execution",
+    "command_execution",
+    "command_execution"
+  ],
+  "turns": [
+    {
+      "input_tokens": 61532,
+      "output_tokens": 373,
+      "cache_read_input_tokens": 47104,
+      "reasoning_output_tokens": 122,
+      "context_tokens": 61532
+    }
+  ],
+  "agent": "codex",
+  "input_tokens": 61532,
+  "output_tokens": 373,
+  "cache_read_input_tokens": 47104,
+  "thinking_tokens": 122,
+  "total_input_tokens": 61532,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "unparsable_lines": 0,
+  "raw_events": 10,
+  "task": "locate-generated-secret",
+  "app": "campfire",
+  "condition": "scrambled",
+  "variant": "scrambled",
+  "targets": [
+    "platform/core/entities/user/bot.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "reported_length": 12,
+    "cited_paths": [
+      "platform/core/entities/user/bot.rb"
+    ],
+    "cited_lines": [
+      26
+    ],
+    "expected_lines": [
+      26
+    ],
+    "line_correct": true,
+    "left_tree_dirty": false,
+    "answer": "12\nplatform/core/entities/user/bot.rb:26"
+  },
+  "wall_seconds": 24.809,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [],
+  "trial_dir": "results-raw/locate-generated-secret/codex/scrambled/20260823T121534Z"
+}

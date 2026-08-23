@@ -1,0 +1,71 @@
+{
+  "total_tool_calls": 2,
+  "total_shell_segments": 14,
+  "search_segments": 4,
+  "read_segments": 4,
+  "search_calls": 2,
+  "read_calls": 0,
+  "edit_calls": 0,
+  "bash_calls": 0,
+  "other_calls": 0,
+  "distinct_files_read": 0,
+  "tool_calls_to_first_target_read": 1,
+  "tool_calls_to_first_edit": null,
+  "searches_before_first_target": 1,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search"
+  ],
+  "tool_call_names": [
+    "command_execution",
+    "command_execution"
+  ],
+  "turns": [
+    {
+      "input_tokens": 46010,
+      "output_tokens": 264,
+      "cache_read_input_tokens": 35072,
+      "reasoning_output_tokens": 28,
+      "context_tokens": 46010
+    }
+  ],
+  "agent": "codex",
+  "input_tokens": 46010,
+  "output_tokens": 264,
+  "cache_read_input_tokens": 35072,
+  "thinking_tokens": 28,
+  "total_input_tokens": 46010,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "unparsable_lines": 0,
+  "raw_events": 9,
+  "task": "locate-direct-type",
+  "app": "campfire",
+  "condition": "scrambled",
+  "variant": "scrambled",
+  "targets": [
+    "platform/core/entities/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "cited_paths": [
+      "platform/core/entities/room.rb"
+    ],
+    "cited_lines": [
+      74
+    ],
+    "expected_lines": [
+      25,
+      73
+    ],
+    "line_correct": false,
+    "left_tree_dirty": false,
+    "answer": "platform/core/entities/room.rb:74"
+  },
+  "wall_seconds": 23.503,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [],
+  "trial_dir": "results-raw/locate-direct-type/codex/scrambled/20260823T120539Z"
+}

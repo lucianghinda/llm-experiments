@@ -1,0 +1,26 @@
+diff --git a/test/models/rooms/direct_test.rb b/test/models/rooms/direct_test.rb
+index ab74efa..b7c4963 100644
+--- a/test/models/rooms/direct_test.rb
++++ b/test/models/rooms/direct_test.rb
+@@ -18,4 +18,21 @@ class Rooms::DirectTest < ActiveSupport::TestCase
+     room = Rooms::Direct.find_or_create_for([ users(:david), users(:kevin) ])
+     assert room.memberships.all? { |m| m.involved_in_everything? }
+   end
++
++  test "can't be converted into a room that others can join" do
++    [ Rooms::Open, Rooms::Closed ].each do |joinable_type|
++      room = Room.find(rooms(:david_and_kevin).id).becomes!(joinable_type)
++
++      assert_not room.save, "expected a direct room to refuse becoming a #{joinable_type}"
++      assert_includes room.errors[:type], "can't be changed for a direct room"
++      assert_equal "Rooms::Direct", Room.find(room.id).type
++    end
++  end
++
++  test "keeps its type when other attributes are updated" do
++    room = rooms(:david_and_kevin)
++
++    assert room.update(name: "Just the two of us")
++    assert_equal "Rooms::Direct", Room.find(room.id).type
++  end
+ end

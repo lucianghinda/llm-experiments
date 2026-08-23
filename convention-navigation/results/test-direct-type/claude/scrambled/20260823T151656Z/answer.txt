@@ -1,0 +1,13 @@
+Added one test, in `test/suite/persistence/rooms/direct_test.rb:22` — alongside the other `Rooms::Direct` model tests.
+
+**What it targets.** The rule lives in two layers:
+- `Room#direct_rooms_keep_their_type` (`platform/core/entities/room.rb:70`) — the actual invariant, an `on: :update` validation rejecting any type change away from `Rooms::Direct`.
+- `room_scope → without_directs` in the opens/closeds controllers — a routing-level guard.
+
+The HTTP layer was already covered by two tests in `test/suite/endpoints/rooms/opens_controller_test.rb`, but those pass even with the model validation deleted (the controller scope blocks the request first). So the untested layer, and the one worth pinning, was the model rule.
+
+**The test** loads the `david_and_kevin` direct room, calls `becomes!` for both `Rooms::Open` and `Rooms::Closed` (the same conversion mechanism the controllers use), and asserts the save is rejected, an error lands on `:type`, and the persisted row still has type `Rooms::Direct` with its original two members.
+
+**Verification.** It passes as-is (4 runs, 13 assertions). I then temporarily deleted the `validate :direct_rooms_keep_their_type` line, re-ran, and got a failure — `expected a direct room to refuse becoming Rooms::Open` — then restored the file. `git diff --stat` confirms `test/suite/persistence/rooms/direct_test.rb` is the only changed file. The wider room suites (42 runs) still pass.
+
+One note: the test asserts only that an error exists on `:type`, not its wording, so a message reword won't break it — but deleting or weakening the validation will.

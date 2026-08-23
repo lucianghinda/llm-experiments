@@ -1,0 +1,26 @@
+diff --git a/test/models/room_test.rb b/test/models/room_test.rb
+index b113726..5bbe89f 100644
+--- a/test/models/room_test.rb
++++ b/test/models/room_test.rb
+@@ -34,4 +34,21 @@ class RoomTest < ActiveSupport::TestCase
+     room = Rooms::Closed.create_for({ name: "Hello!", creator: users(:david) }, users: [ users(:kevin), users(:david) ])
+     assert room.memberships.all? { |m| m.involved_in_mentions? }
+   end
++
++  test "a direct room can't be turned into a room others can join" do
++    direct = rooms(:david_and_kevin)
++    participant_ids = direct.user_ids.sort
++
++    [ Rooms::Open, Rooms::Closed ].each do |type|
++      room = Room.find(direct.id).becomes!(type)
++      room.name = "Watercooler"
++
++      assert_not room.save, "a direct room was allowed to become #{type.name}"
++      assert_equal [ "can't be changed for a direct room" ], room.errors[:type]
++
++      reloaded = Room.find(direct.id)
++      assert_equal "Rooms::Direct", reloaded.type
++      assert_equal participant_ids, reloaded.user_ids.sort, "#{type.name} conversion widened the room's audience"
++    end
++  end
+ end

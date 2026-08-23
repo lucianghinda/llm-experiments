@@ -1,0 +1,84 @@
+{
+  "total_tool_calls": 6,
+  "total_shell_segments": 23,
+  "search_segments": 5,
+  "read_segments": 8,
+  "search_calls": 2,
+  "read_calls": 1,
+  "edit_calls": 1,
+  "bash_calls": 2,
+  "other_calls": 0,
+  "distinct_files_read": 6,
+  "tool_calls_to_first_target_read": 1,
+  "tool_calls_to_first_edit": 3,
+  "searches_before_first_target": 1,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "read",
+    "edit",
+    "bash",
+    "bash"
+  ],
+  "tool_call_names": [
+    "command_execution",
+    "command_execution",
+    "command_execution",
+    "file_change",
+    "command_execution",
+    "command_execution"
+  ],
+  "turns": [
+    {
+      "input_tokens": 201605,
+      "output_tokens": 938,
+      "cache_read_input_tokens": 175360,
+      "reasoning_output_tokens": 149,
+      "context_tokens": 201605
+    }
+  ],
+  "agent": "codex",
+  "input_tokens": 201605,
+  "output_tokens": 938,
+  "cache_read_input_tokens": 175360,
+  "thinking_tokens": 149,
+  "total_input_tokens": 201605,
+  "context_before_first_tool_call": null,
+  "codex_errors": [],
+  "unparsable_lines": 0,
+  "raw_events": 18,
+  "task": "test-direct-type",
+  "app": "campfire",
+  "condition": "scrambled",
+  "variant": "scrambled",
+  "targets": [
+    "platform/core/entities/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "new_test_files": [],
+    "modified_test_files": [
+      "test/suite/persistence/room_test.rb"
+    ],
+    "added_test_methods": [
+      "test_direct_rooms_cannot_be_changed_into_rooms_others_can_join"
+    ],
+    "command": "bin/rails test test/suite/persistence/room_test.rb -n \"/test_direct_rooms_cannot_be_changed_into_rooms_others_can_join/\"",
+    "mutation_killed": true,
+    "green_summary": "1 runs, 2 assertions, 0 failures, 0 errors, 0 skips",
+    "mutated_summary": "1 runs, 1 assertions, 1 failures, 0 errors, 0 skips",
+    "mutation_sites": [
+      "platform/core/entities/room.rb",
+      "delivery/http/handlers/rooms/opens_controller.rb"
+    ],
+    "edited_non_test_files": []
+  },
+  "wall_seconds": 47.687,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [
+    "test/suite/persistence/room_test.rb"
+  ],
+  "trial_dir": "results-raw/test-direct-type/codex/scrambled/20260823T145041Z"
+}

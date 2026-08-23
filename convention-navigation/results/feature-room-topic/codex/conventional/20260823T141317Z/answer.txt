@@ -1,0 +1,10 @@
+Implemented room topics end-to-end:
+
+- Added nullable `rooms.topic` database column.
+- Added server-side 120-character validation.
+- Permitted `topic` in the existing room rename request.
+- Added the topic field to the shared room settings screen.
+- Displayed topics beneath room names.
+- Added model and controller coverage for saving and rejecting topics.
+
+Validation: full suite passes—350 tests, 1,018 assertions, 0 failures.

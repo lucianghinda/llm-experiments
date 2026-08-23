@@ -1,0 +1,57 @@
+{
+  "task": "locate-generated-secret",
+  "app": "campfire",
+  "agent": "codex",
+  "condition": "scrambled",
+  "variant": "scrambled",
+  "model_requested": "gpt-5.6-sol",
+  "targets": [
+    "platform/core/entities/user/bot.rb"
+  ],
+  "started_at": "2026-08-23T12:16:51Z",
+  "history_visible_to_agent": "085075c Import application source",
+  "branches_visible_to_agent": [
+    "main"
+  ],
+  "clean_tree_before": true,
+  "db_prepare_exit": 0,
+  "config_dir": "/home/agent/.codex-trial",
+  "agent_argv": [
+    "codex",
+    "exec",
+    "--json",
+    "--dangerously-bypass-approvals-and-sandbox",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ephemeral",
+    "-C",
+    "/workspace/app",
+    "--model",
+    "gpt-5.6-sol",
+    "-"
+  ],
+  "agent_exit": 0,
+  "timed_out": false,
+  "wall_seconds": 17.283,
+  "credentials_refreshed": [],
+  "changed_files": [],
+  "untracked_files": [],
+  "touched_target": false,
+  "acceptance_exit": 0,
+  "acceptance_seconds": 0.118,
+  "passed": true,
+  "toolchain": {
+    "image_built_at": "2026-08-17T10:22:37Z",
+    "ubuntu": "24.04",
+    "arch": "aarch64",
+    "mise": "2026.8.6 linux-arm64 (2026-08-14)",
+    "rubies": "3.4.5 4.0.1",
+    "node": "v22.23.2",
+    "claude_code": "2.1.233 (Claude Code)",
+    "codex": "codex-cli 0.147.0",
+    "postgres": "postgres (PostgreSQL) 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)"
+  },
+  "finished_at": "2026-08-23T12:17:11Z",
+  "host_wall_seconds": 23.2,
+  "container_ok": true
+}

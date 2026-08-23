@@ -1,0 +1,32 @@
+Done. Added two tests to `test/models/room_test.rb` (43 runs, 0 failures).
+
+**Why the model, not the controller.** The rule is enforced at two layers: the `without_directs` room scopes in `Rooms::OpensController`/`Rooms::ClosedsController`, and the `direct_rooms_keep_their_type` validation in `app/models/room.rb:26`. The controller layer already had three tests. The validation had none — and it's the layer that makes the rule true for *every* caller, not just the two web paths.
+
+I verified this gap rather than assuming it. Commenting out the validation left **all 35 pre-existing room tests green**, because the controller scopes stop the request before the model is ever asked. So a test targeting only the controllers would not have met your "must fail if someone removes the rule" bar.
+
+**The test:**
+
+```ruby
+test "a direct room can't be converted into a room other people can join" do
+  direct = rooms(:david_and_kevin)
+  participants = direct.user_ids.sort
+
+  [ Rooms::Open, Rooms::Closed ].each do |type|
+    room = Room.find(direct.id).becomes!(type)
+
+    assert_not room.save, "a direct room was allowed to become #{type}"
+    assert room.errors[:type].present?
+
+    assert_equal "Rooms::Direct", Room.find(direct.id).type
+    assert_equal participants, Room.find(direct.id).user_ids.sort
+  end
+end
+```
+
+It covers both ways a room becomes joinable — open admits the whole account, closed lets whoever edits it revise the roster — and asserts the consequence that actually matters, that the participant set is unchanged, not just the type column.
+
+Mutation-checked both directions: passes on the current source, and with the validation removed it fails on the first conversion (`a direct room was allowed to become Rooms::Open`). I restored `app/models/room.rb` from the index afterward; `git status` shows `test/models/room_test.rb` as the only modified file.
+
+The second test asserts a direct room can still be renamed. Without it, someone could "satisfy" the first test by making direct rooms unsaveable outright, which would break the existing rename path while leaving the suite green.
+
+One thing worth flagging: those three pre-existing controller tests pass for a subtler reason than they appear to. If the `without_directs` scopes were removed but the validation kept, `@room.update!` would raise `RecordInvalid` and the tests would error rather than assert a clean rejection — so they're load-bearing on the scope, not really independent checks of it. I left them alone, since tightening them is outside what you asked for.

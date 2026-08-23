@@ -1,0 +1,152 @@
+{
+  "total_tool_calls": 6,
+  "total_shell_segments": 15,
+  "search_segments": 8,
+  "read_segments": 5,
+  "search_calls": 5,
+  "read_calls": 1,
+  "edit_calls": 0,
+  "bash_calls": 0,
+  "other_calls": 0,
+  "distinct_files_read": 3,
+  "tool_calls_to_first_target_read": 4,
+  "tool_calls_to_first_edit": null,
+  "searches_before_first_target": 4,
+  "zero_search_navigation": false,
+  "tool_call_classes": [
+    "search",
+    "search",
+    "search",
+    "search",
+    "read",
+    "search"
+  ],
+  "tool_call_names": [
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash",
+    "Bash"
+  ],
+  "turns": [
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19158,
+      "context_tokens": 19160
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19158,
+      "context_tokens": 19160
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 1367,
+      "cache_read_input_tokens": 19158,
+      "context_tokens": 20527
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 110,
+      "cache_read_input_tokens": 20525,
+      "context_tokens": 20637
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 4,
+      "cache_creation_input_tokens": 110,
+      "cache_read_input_tokens": 20525,
+      "context_tokens": 20637
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 136,
+      "cache_read_input_tokens": 20635,
+      "context_tokens": 20773
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 2,
+      "cache_creation_input_tokens": 136,
+      "cache_read_input_tokens": 20635,
+      "context_tokens": 20773
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 17,
+      "cache_creation_input_tokens": 967,
+      "cache_read_input_tokens": 20771,
+      "context_tokens": 21740
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 20,
+      "cache_creation_input_tokens": 1522,
+      "cache_read_input_tokens": 21738,
+      "context_tokens": 23262
+    },
+    {
+      "input_tokens": 2,
+      "output_tokens": 1,
+      "cache_creation_input_tokens": 169,
+      "cache_read_input_tokens": 23260,
+      "context_tokens": 23431
+    }
+  ],
+  "agent": "claude",
+  "model_reported": "claude-opus-5",
+  "cli_version": "2.1.233",
+  "mcp_servers": [],
+  "memory_paths": {
+    "auto": "/home/agent/.claude-trial/projects/-workspace-app/memory/"
+  },
+  "tools_available": 21,
+  "num_turns": 7,
+  "duration_ms": 14332,
+  "total_cost_usd": 0.1307525,
+  "is_error": false,
+  "input_tokens": 14,
+  "output_tokens": 614,
+  "cache_creation_input_tokens": 4271,
+  "cache_read_input_tokens": 145245,
+  "total_input_tokens": 149530,
+  "context_before_first_tool_call": 19160,
+  "unparsable_lines": 0,
+  "raw_events": 23,
+  "task": "locate-direct-type",
+  "app": "campfire",
+  "condition": "scrambled",
+  "variant": "scrambled",
+  "targets": [
+    "platform/core/entities/room.rb"
+  ],
+  "passed": true,
+  "acceptance_facts": {
+    "cited_paths": [
+      "platform/core/entities/room.rb"
+    ],
+    "cited_lines": [
+      73
+    ],
+    "expected_lines": [
+      25,
+      73
+    ],
+    "line_correct": true,
+    "left_tree_dirty": false,
+    "answer": "platform/core/entities/room.rb:73"
+  },
+  "wall_seconds": 15.62,
+  "timed_out": false,
+  "map_bytes": null,
+  "changed_files": [],
+  "trial_dir": "results-raw/locate-direct-type/claude/scrambled/20260823T120430Z"
+}

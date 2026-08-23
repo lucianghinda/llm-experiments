@@ -1,0 +1,10 @@
+Implemented room topics end-to-end:
+
+- Added nullable `rooms.topic` database column.
+- Added 120-character model validation.
+- Permitted `topic` in room create/update requests.
+- Added the topic field to the existing rename/settings form.
+- Displayed topics on room pages when present.
+- Added model and controller coverage.
+
+Validation completed: all 349 existing tests pass, and `git diff --check` reports no issues.

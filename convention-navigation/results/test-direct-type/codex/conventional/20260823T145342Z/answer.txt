@@ -1,0 +1,3 @@
+Added a focused regression test in [test/models/room_test.rb](/workspace/app/test/models/room_test.rb:32).
+
+Verified: 7 tests pass with 0 failures. Only the test file was changed.

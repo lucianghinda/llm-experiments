@@ -1,0 +1,15 @@
+Done. Rooms now have a topic.
+
+**Storage** — `db/migrate/20260823120000_add_topic_to_rooms.rb` adds a `topic` string column to `rooms` (schema.rb regenerated).
+
+**Model** (`app/models/room.rb`)
+- `normalizes :topic` squishes whitespace and turns a blank topic into `nil`, so "no topic" is one state rather than two.
+- `validates :topic, length: { maximum: MAX_TOPIC_LENGTH }` with `MAX_TOPIC_LENGTH = 120`. Nil passes, so a room without a topic is valid; 121 characters fails and never reaches the database.
+
+**Same screen, same request as renaming** — the name lives in the shared `rooms/layouts/_form.html.erb`, submitted by `Rooms::OpensController#update` and `Rooms::ClosedsController#update` (both authorized by the existing `ensure_can_administer`). The topic field sits directly under the name field in that same form and `room_params` now permits `:name, :topic` in `RoomsController`, so one PATCH sets both. Non-administrators, who see the name as static text, now see the topic the same way. Those are the only two paths that rename a room; direct rooms have no rename action, so they're untouched.
+
+**Rejection handling** — `update!`/`create!` would have turned a too-long topic into a 500. Both actions now re-render the form with status 422, the submitted values still in place (and, for closed rooms, the submitted membership selection), plus the app's standard alert flash. Membership revisions in `Rooms::ClosedsController#update` now wait until the room itself saves, so a rejected topic can't leave half the request applied.
+
+**Display** — the topic shows beside the room name in the room nav (`rooms/show/_nav.html.erb`), ellipsized and hidden on narrow screens via a `.room__topic` rule in `sidebar.css`. I added a `room_topic` entry to `TranslationsHelper` so the new field gets the same translate popover as every other labelled field in that form.
+
+**Tests** — full suite green: 364 runs, 0 failures (2 pre-existing skips), plus rubocop and brakeman clean. New coverage: model tests for setting, clearing, squishing, and the 120-character boundary; controller tests on both open and closed rooms for name+topic in one request, clearing, rejection (including that memberships stay put), and create. System tests can't run here — selenium-manager can't launch in this environment, which is unrelated to these changes and none of the three system tests touch room editing.

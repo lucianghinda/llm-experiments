@@ -1,0 +1,17 @@
+Done. 368 tests pass (the 2 skips are pre-existing), rubocop is clean.
+
+## What I added
+
+**Database** — `db/changes/20260823101500_add_topic_to_rooms.rb` adds a nullable `topic` string column to `rooms`; `db/schema.rb` regenerated.
+
+**Model** (`platform/core/entities/room.rb`)
+- `Room::MAXIMUM_TOPIC_LENGTH = 120` with `validates :topic, length: { maximum: ... }`. Nil and blank pass, so a room without a topic is valid.
+- `normalizes :topic` collapses whitespace and maps a blank value to `nil` — a cleared field means "no topic", and a pasted multi-line string becomes the one line the feature calls for. Length is checked against the normalized value.
+
+**Same screen, same request** — `topic` joins `name` in `RoomsController#room_params`, and the field sits directly under the name input in `rooms/layouts/_form.html.erb`, the partial shared by the open- and closed-room new/edit forms. Both are inside the same `form_with`, so one submit renames and re-topics. It's guarded by the same `Current.user.can_administer?(room)` check as the name field, so exactly the people who can rename can set the topic; everyone else sees it as text. The field carries `maxlength: 120` and `turbo_permanent` so a typed topic survives toggling a room between open and closed.
+
+**Rejection path** — `opens#update` and `closeds#update` switched from `update!` to `update`, and both `create` actions rescue `RecordInvalid`. An invalid room re-renders its own form with `422` and the reason in the flash, instead of a 500. For closed rooms the membership revision now happens only after the room saves, so a rejected topic doesn't quietly apply the membership changes submitted with it.
+
+**Display** — the room's topic renders under the room name in the header (`rooms/show/_nav.html.erb`), and is omitted entirely when there isn't one. The existing `.room__contents` width constraint became the wrapper for both lines, so each ellipsizes rather than wrapping; `.room__topic` styling went next to it in `sidebar.css`.
+
+Two notes on judgment calls I made rather than asked about: direct rooms have no topic field, since they have no name field either — nobody can rename them, so by your rule nobody sets their topic. And I added a `room_topic` entry to `TranslationsHelper::TRANSLATIONS` because every other labelled input on that form has a translation popup.

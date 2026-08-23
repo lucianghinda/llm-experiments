@@ -110,6 +110,13 @@ others = branches(lister).reject { |b| b == branch }
 others.each { |b| run("git branch -q -D #{b}") }
 run("git branch -q -m main")
 
+# Deleting a branch only unreferences its commit. The objects survive in the
+# store and stay reachable through the reflog, so `git reflog` or
+# `git fsck --lost-found` would still lead to the other layout's tree. Expire
+# and prune so they are gone rather than merely unlisted.
+run("git reflog expire --expire=now --all")
+run("git gc --prune=now --quiet")
+
 # Verified, not assumed. If anything is left besides the branch under test, the
 # agent could diff the two layouts against each other and read the scramble.
 remaining = branches(lister)

@@ -263,6 +263,12 @@ published result changes. Both runners now single-quote the format string and
 **abort the trial** if anything other than the branch under test survives, because
 the failure mode was that everything looked normal.
 
+Deleting the branch is also not enough on its own: it only unreferences the
+commit, and the objects stay reachable through the reflog, so `git reflog` or
+`git fsck --lost-found` still leads to the other layout's whole tree. The runner
+expires and prunes after deleting, so the other arrangement is gone rather than
+merely unlisted.
+
 **A dry run created a results directory.** `run_grid.rb` treats a directory with
 a `meta.json` as work already done, so inspecting the plan would have removed
 cells from it. Nothing is written now until the trial is real.

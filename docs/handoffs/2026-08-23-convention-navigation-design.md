@@ -1,97 +1,117 @@
 ---
 created: 2026-08-23T05:03:43Z
-branch: main
+updated: 2026-08-23T07:30:00Z
+branch: experiment/convention-navigation
 trigger: manual
 restored: false
 topic: convention-navigation-design
 ---
 
-# Handoff: convention-navigation experiment — design written, harness not built
+# Handoff: convention-navigation — harness built and verified, grid not run
 
 ## Goal
 
 Test the assumption that an agent working on a conventional Rails app spends
-fewer tokens and fewer search calls than on the same app with a nonstandard,
-config-wired layout, because the model already knows where things live. Test
-with Claude Code and Codex first. The design is done; nothing has run.
+fewer tokens and fewer search calls than on the same code in a nonstandard,
+config-wired layout. Claude Code and Codex CLI first.
 
 ## Current State
 
-- `convention-navigation/README.md` written: full experiment design (question,
-  conditions, scramble rules, task families, metrics, pre-registered decision
-  rule, threats, planned layout).
-- Root `README.md` table updated with the new experiment row
-  ("design written, not yet run").
-- No scripts, prompts, tasks.yml, or apps.yml exist yet.
-- Changes are uncommitted, on `main`. Repo convention is to branch
-  (`experiment/...` or `fix/...`) and merge via PR.
+- **PR #8 open** on branch `experiment/convention-navigation`. 44 files.
+- **The scramble is built and verified.** `scramble_check.rb` passes all nine
+  checks: 720 files byte-identical after applying the move manifest, 708
+  identifiers with identical counts, `zeitwerk:check` clean on both variants,
+  179 identical route lines, and 348 runs / 1011 assertions / 0 failures on
+  both. Report committed at `variants/campfire/scramble_check.json`.
+- **Image `llmx-conv-campfire:latest` exists**, holding both layouts as
+  `trial/v1` (conventional) and `trial/v2` (scrambled). Gems are in a layer
+  cached against Gemfile/Gemfile.lock alone, so re-scrambling rebuilds in under
+  a minute instead of re-running `bundle install`.
+- **A trial runs end to end** with Codex: prompt → agent → answer extraction →
+  scripted acceptance → meta.json. Three validation trials passed. Two more
+  (the mutation check and the cross-layer check) were running at handoff time.
+- **The grid has NOT been run.** No RESULTS.md exists. `results/` was
+  deliberately deleted so three n=1 validation trials could not be mistaken for
+  findings; they remain in the gitignored `results-raw/`.
+
+## Blocked on
+
+**Claude's container credential is dead and needs an interactive re-login:**
+
+```sh
+ruby containers/scripts/auth_setup.rb --agent claude
+```
+
+The stored refresh token was spent, the replacement was discarded with the
+private config copy, and the CLI then blanked the file. `run_trial.rb` now
+refuses to start rather than burning cells, and `runner.rb` writes refreshed
+credentials back (refusing any downgrade), so this should not recur. Codex is
+unaffected and works.
 
 ## Key Decisions
 
-- One app, two layouts — not Rails vs another framework. Comparing different
-  apps confounds language, size, and familiarity; a behavior-preserving
-  "scrambled" variant of one app isolates path predictability.
-- Scramble moves files and adds config wiring but renames nothing — keeps
-  grep-by-identifier equally powerful in both variants, so differences are
-  attributable to path knowledge alone.
-- Breaking the test-path mirror is part of the treatment — mirroring is itself
-  a Rails convention (at-file-mentions showed agents exploit it).
-- Third condition `scrambled-mapped` (scrambled + AGENTS.md/CLAUDE.md map) —
-  answers the practical follow-up: does documentation buy the advantage back,
-  and what does carrying it cost per request.
-- Task prompts must contain zero identifiers — an identifier is a "grep
-  coupon" that erases the variable; render_prompts.rb should fail mechanically
-  if a prompt string greps too narrowly. Cross-layer feature tasks
-  (migration+model+controller+view) are the load-bearing family; single-symbol
-  lookups are where grep wins.
-- 5 repeats, not 3 — this repo has retracted claims built on 3 runs
-  (see startup-context fix commits).
-- Campfire for phase 1 (container image already exists), a private app
-  (postcraftstudio or bookmarks) for phase 2 to separate "memorized campfire"
-  from "knows Rails".
-- Reuse at-file-mentions infrastructure: containers, plant.rb, transcript
-  parsers, exact Mann-Whitney in metrics.rb, sanitize.rb pattern.
-- `bin/rails routes` etc. stay allowed and counted under bash calls — if
-  runtime introspection substitutes for conventions, that is the finding.
-
-## Modified Files
-
-- `README.md` (modified — new experiment table row)
-- `convention-navigation/README.md` (new)
+- One app in two layouts, never Rails vs another framework — comparing two apps
+  confounds language, size, features and training familiarity.
+- Whole roots move, nothing below them: every directory under a Zeitwerk root is
+  a namespace, so renaming one would rename a constant.
+- Two top-level roots (`platform/`, `delivery/`) at unequal depths, because a
+  single new parent would be learnable in one `ls` and would measure nothing.
+- `test/system/` and `lib/` deliberately do NOT move — see Failed Approaches.
+- Prompts contain no path, no layout directory, and no word that greps to ≤3
+  files when one is a task target. Ordinary domain words ("room") are allowed
+  and necessary; the threshold does the work, not a banned-word list.
+- Only successful trials count toward cost; failure rates reported separately.
+- 5 repeats, not 3 (this repo has retracted three-run claims).
+- Success decided by script always. The test-writing task mutates the rule out
+  of the source and requires the agent's test to go red.
 
 ## Failed Approaches
 
-- None — design-only session, nothing executed.
+- **Host-side verification of the scramble.** `bundle install` for campfire dies
+  on a libyaml assertion (bundler 4.0.13, rails from git main). Abandoned for
+  the container; do not retry.
+- **Moving `test/system` to `test/suite/browser`.** `bin/rails test` excludes
+  system tests by a hardcoded path glob, so moved they stopped being excluded
+  and the scrambled suite died booting a browser the container lacks. That is a
+  change in which tests run, not in layout.
+- **Counting grep-coupon words by file count alone.** Flagged ordinary English
+  ("exactly", "able"). Tying the rule to the task's target files dropped the
+  false positives and caught a real leak: "conversation" appears only in
+  `Room`'s comment.
+- **Matching targets against the whole Codex event.** It carries the command's
+  output, so a `rg` that printed the path scored as arrival. Now matched on the
+  locator (command/input) only.
 
 ## Files to Read
 
-- `convention-navigation/README.md` — the full design; source of truth
-- `at-file-mentions/README.md` — infrastructure to reuse and the
-  "grep reached the defect in 1 call" observation that shaped the design
-- `startup-context/README.md` — per-CLI token accounting rules (Claude sums
-  three buckets; Codex includes cache in input) and container rationale
-- `at-file-mentions/scripts/` — parse_transcript.rb, metrics.rb, sanitize.rb,
-  run_grid.rb to adapt
+- `convention-navigation/README.md` — design, verification output, and the
+  "things that would have quietly ruined this" list
+- `convention-navigation/scramble.yml` — the move rules and why each exception exists
+- `convention-navigation/tasks.yml` — the four pilot tasks and their ground truth
+- `convention-navigation/scripts/scramble_check.rb` — the proof the variants match
 
 ## Next Steps
 
-1. Commit the design on a branch (e.g. `experiment/convention-navigation-design`), PR to main.
-2. Build `scripts/scramble.rb` + `scripts/scramble_check.rb` (suite green on
-   both variants, moved files content-equal modulo wiring whitelist, no
-   renames) — the only genuinely new machinery.
-3. Write `tasks.yml` (4 pilot tasks: 1 locate, 1 planted bug, 1 cross-layer
-   feature, 1 test-writing) with scripted acceptance checks.
-4. `render_prompts.rb` with the grep-coupon check.
-5. Adapt runner/parser/metrics/sanitize from at-file-mentions; add per-class
-   tool-call counts and the zero-search-navigation flag; ensure target files
-   land in meta.json (known silent-failure mode).
-6. Run phase 1: 2 agents × 2 conditions × 4 tasks × 5 repeats = 80 trials.
+1. Re-login Claude in the container (`auth_setup.rb --agent claude`), then
+   confirm one Claude trial runs.
+2. Run the pilot: `run_grid.rb` — 4 tasks × 2 conditions × 2 agents × 5 repeats
+   = 80 trials. Sequential; budget several hours.
+3. `parse_transcript.rb --all`, then `metrics.rb`, then `sanitize.rb`.
+4. Write RESULTS.md against the pre-registered decision rule already in the
+   README. Report a mismatch between token totals and search counts as the
+   finding if that is what happens.
+5. Phase 2 if phase 1 shows an effect: add `scrambled-mapped` (already
+   implemented, `--conditions` flag), and repeat on a private app to separate
+   "knows Rails" from "memorised campfire".
+6. Optional: add the bug-fix family. Four of five campfire bugs in
+   `at-file-mentions/bugs.yml` live in files that move here; plant on the
+   conventional branch, then scramble that branch, so both variants carry an
+   identical defect.
 
 ## Open Questions
 
-- Which app gets scrambled first — campfire assumed for image reuse, but
-  confirm the user is fine with the memorization caveat for the pilot.
-- Exact scramble recipe depth (how aggressive the config indirection gets)
-  is described in rules, not yet specified file-by-file.
-- Model pins for the run (repo precedent: sonnet for Claude, gpt-5.6-sol for
-  Codex) — confirm at harness-build time.
+- Whether to run the full regression suite on every non-read-only trial. It is
+  on by default (`LLMX_REGRESSION_SUITE=1`) and adds roughly three minutes per
+  trial across 40 trials; it does not gate success, only records it.
+- Model pins: currently `claude-opus-5` and `gpt-5.6-sol`. Confirm before the
+  grid, since a result cannot be attributed to a model otherwise.

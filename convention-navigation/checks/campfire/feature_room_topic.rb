@@ -56,6 +56,18 @@ ACCEPTANCE_TEST = <<~RUBY
   end
 RUBY
 
+# Where the agent put the migration, recorded before anything is applied.
+#
+# This is a headline observation rather than bookkeeping. The scrambled variant
+# reads migrations from db/changes, so a file written into db/migrate is never
+# applied and the column never appears -- and whether an agent writes to the
+# conventional path anyway, in a tree where it does not work, is exactly the
+# kind of thing this experiment is asking about.
+migration_files = Acceptance.run("git ls-files --others --exclude-standard")["out"]
+                            .split("\n").map(&:strip)
+                            .select { |f| f.start_with?("db/") && f.end_with?(".rb") }
+Acceptance.log "migrations written to: #{migration_files.inspect}"
+
 migrate = Acceptance.run("bin/rails db:migrate", timeout: 600)
 Acceptance.log "db:migrate exit #{migrate['exit']}"
 
@@ -85,6 +97,7 @@ Acceptance.report(
     { "label" => "topic works end to end (#{summary || 'no summary line'})",
       "ok" => passed, "detail" => result["out"].lines.first(40).join }
   ],
+  "migration_files" => migration_files,
   "migration_exit" => migrate["exit"],
   "migration_output" => migrate["out"].lines.last(20).join,
   "acceptance_summary" => summary,

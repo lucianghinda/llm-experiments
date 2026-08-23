@@ -4,7 +4,12 @@
 
 The two layouts are built and proven equivalent — same code, same gems, same
 routes, same 348 passing tests — and a trial runs end to end from prompt to
-scripted verdict. What has not happened is the grid.
+scripted verdict. All four acceptance checks have been exercised against real
+agent runs. What has not happened is the grid.
+
+**Nothing below is a result.** The numbers quoted from validation trials are
+n=1, were run to prove the harness works rather than to answer the question, and
+are not published in `results/`. They stay in the gitignored `results-raw/`.
 
 ## The question
 
@@ -175,6 +180,30 @@ wrong number — see `startup-context/README.md`, where reading Codex's
 `input_tokens` as excluding cache split every measurement into two clusters 35%
 apart.
 
+## What the validation trials showed about the harness
+
+Five Codex trials, run to prove the machinery works. Each taught something about
+the design rather than about the question.
+
+**The cross-layer task is doable on the scrambled layout.** Given only
+behaviour, the agent found `db/changes/` for its migration, edited the model,
+the controller and the form partial under their moved paths, updated three test
+files, and left the suite green at 354 runs. Both the worry that the task was
+impossible without the conventional layout and the worry that it was trivial
+turned out to be wrong, which is what a usable task looks like.
+
+**Agents answer the test task by appending, not by creating.** Told to put a
+test "where tests belong", the agent added one to the existing `room_test.rb`
+rather than making a new file — the most idiomatic answer a conventional Rails
+app allows. The check had to learn to accept that, and then to isolate the added
+test by name so the mutation is judged against the agent's work rather than
+against the suite's own coverage of the same rule.
+
+**Neither locate trial navigated without searching.** Both went `rg` first, then
+read. That is one data point per condition and settles nothing, but it is the
+counter-hypothesis showing up immediately, and it is why
+`zero_search_navigation` is recorded at all.
+
 ## Things that would have quietly ruined this
 
 Each of these cost real time, and each would have produced confident, wrong
@@ -215,6 +244,24 @@ empty values. Copying that back turns one dead trial into a destroyed login,
 silently, because the result is still valid JSON and `claude auth status` still
 answers `loggedIn: true`. The write-back now refuses any candidate that empties a
 field which was populated. Found by doing it.
+
+**The branch isolation never ran, and nothing said so.** Each trial deletes every
+branch but the one under test, so the two layouts cannot be diffed against each
+other — a diff that would hand over the entire scramble, and the fact that it
+was deliberate. The branches were listed with
+`git branch --format=%(refname:short)`, passed to Open3 as a string; the
+parentheses make Open3 route it through `sh`, where `(` is a syntax error. The
+list came back empty, nothing was deleted, and both `trial/v1` and `trial/v2`
+sat in every container. `meta.json` faithfully recorded
+`branches_visible_to_agent: []`, which reads as "the agent saw no branches" and
+meant "the question failed to be asked".
+
+This was inherited from `at-file-mentions`, whose 102 published trials ran the
+same way. Re-scanning those transcripts found five history commands, all
+`git log --oneline`, and no command anywhere that can compare two refs — so no
+published result changes. Both runners now single-quote the format string and
+**abort the trial** if anything other than the branch under test survives, because
+the failure mode was that everything looked normal.
 
 **A dry run created a results directory.** `run_grid.rb` treats a directory with
 a `meta.json` as work already done, so inspecting the plan would have removed

@@ -8,10 +8,18 @@ One prompt per task. Every condition gets the same words, because the layout
 is the variable and the wording is not.
 
 Each has been checked mechanically for three things: no file path, no name of
-a directory that is part of either layout, and no word that occurs in
-3 or fewer files in either variant. That last one is the rule that
-matters. A word narrow enough to grep straight to the answer helps both
-conditions equally and hides the effect being measured.
+a directory belonging to one layout and not the other, and no word that occurs
+in 3 or fewer files **when one of those files is where this task's
+answer lives**.
+
+That last one is the rule that matters, and both halves of it are
+load-bearing. A word narrow enough to grep straight to the answer helps both
+conditions equally and hides the effect being measured. A word that is merely
+rare -- "exactly", "written" -- points nowhere near the answer and is fine.
+Tying the rule to each task's targets is what separates them, and it caught a
+leak that reading the prompts had missed: campfire's Room model carries a
+comment containing the word "conversation", so describing the rule in that
+word grepped straight to the file the agent was supposed to go find.
 
 ## locate-direct-type
 

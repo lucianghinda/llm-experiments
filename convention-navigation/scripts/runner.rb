@@ -89,12 +89,37 @@ end
 # The branch name, because `trial/v2` paired with a missing `trial/v1` still
 # says a variant exists. Whichever branch survives is renamed to `main`, so
 # every trial in every condition reports the same ordinary name.
+#
+# The format string is SINGLE QUOTED, and that is not style. `run` hands a
+# string to Open3, which sees the parentheses in %(refname:short), decides the
+# command needs a shell, and hands it to sh -- where `(` is a syntax error. The
+# command fails, `others` comes back empty, no branch is deleted, and the
+# isolation this whole block exists to provide silently does not happen. It
+# fails quietly: the trial runs, the agent works, the results look normal, and
+# the other layout was sitting there in `git branch` the whole time.
+def branches(runner)
+  runner.call("git branch --format='%(refname:short)'")["stdout"]
+        .split("\n").map(&:strip).reject(&:empty?)
+end
+
 log "isolating #{branch}"
 run("git checkout -q #{branch}")
-run("git branch --format=%(refname:short)")["stdout"].split("\n").map(&:strip)
-   .reject { |b| b.empty? || b == branch }
-   .each { |b| run("git branch -q -D #{b}") }
+
+lister = method(:run)
+others = branches(lister).reject { |b| b == branch }
+others.each { |b| run("git branch -q -D #{b}") }
 run("git branch -q -m main")
+
+# Verified, not assumed. If anything is left besides the branch under test, the
+# agent could diff the two layouts against each other and read the scramble.
+remaining = branches(lister)
+if remaining.sort != ["main"]
+  log "FATAL: expected only `main` after isolation, found #{remaining.inspect}"
+  meta["aborted"] = "branch_isolation_failed"
+  meta["branches_visible_to_agent"] = remaining
+  File.write(File.join(RESULTS, "meta.json"), JSON.pretty_generate(meta))
+  exit 6
+end
 
 # --- the map file, for the mapped condition -----------------------------------
 #
@@ -115,8 +140,7 @@ if map_b64
 end
 
 meta["history_visible_to_agent"] = run("git log --all --oneline")["stdout"].strip
-meta["branches_visible_to_agent"] = run("git branch --format=%(refname:short)")["stdout"]
-                                    .split("\n").map(&:strip)
+meta["branches_visible_to_agent"] = branches(lister)
 dirty = run("git status --porcelain")["stdout"].strip
 meta["clean_tree_before"] = dirty.empty?
 log "tree clean before agent: #{dirty.empty?}"

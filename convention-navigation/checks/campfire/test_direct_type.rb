@@ -35,8 +35,31 @@ def resolve(*candidates)
 end
 
 MODEL = resolve("app/models/room.rb", "platform/core/entities/room.rb")
-PROMOTER = resolve("app/controllers/rooms/opens_controller.rb",
-                   "delivery/http/handlers/rooms/opens_controller.rb")
+
+# EVERY controller that narrows its scope, found rather than listed.
+#
+# The first version named rooms/opens_controller.rb alone, and that was wrong in
+# a way that only a real trial could reveal: Rooms::ClosedsController carries its
+# own `without_directs` scope, so an agent that tested the closeds controller had
+# written a perfectly good test of a real enforcement point, and the mutation
+# could not break it. The trial was scored as a failure for being right in a
+# place the check was not looking.
+#
+# An incomplete mutation can only ever produce false FAILURES -- a test that
+# survives a mutation is judged vacuous -- so it cannot have inflated any pass,
+# but it silently punishes correct work, which is worse than useless.
+CONTROLLER_ROOTS = ["app/controllers", "delivery/http/handlers"].freeze
+
+def scope_narrowing_files
+  root = CONTROLLER_ROOTS.find { |r| Dir.exist?(File.join(Acceptance::APP_DIR, r)) }
+  return [] unless root
+
+  Dir.glob(File.join(Acceptance::APP_DIR, root, "**", "*.rb"))
+     .select { |path| File.read(path).include?("without_directs") }
+     .map { |path| path.sub(Acceptance::APP_DIR + "/", "") }
+end
+
+PROMOTERS = scope_narrowing_files
 
 new_files = Acceptance.run("git ls-files --others --exclude-standard")["out"]
                       .split("\n").map(&:strip).select { |f| f.end_with?("_test.rb") }
@@ -55,10 +78,19 @@ end
 
 # Rails turns `test "a name"` into the method `test_a_name`: whitespace becomes
 # underscores and nothing else changes.
+#
+# The quote characters are matched as a MATCHED PAIR rather than as a character
+# class. `["'](.+?)["']` looks equivalent and is not: it lets a double-quoted
+# name terminate on an apostrophe, so `test "an administrator can't promote"`
+# yielded `test_an_administrator_can`. That happened to still work as a filter,
+# because Minitest's -n is an unanchored regex and the truncation was a prefix --
+# but a prefix can also match several tests at once, or none, and either would
+# have decided a verdict on the wrong evidence.
 def added_test_methods(file)
   diff = Acceptance.run("git diff -U0 -- #{Shellwords.escape(file)}")["out"]
-  names = diff.scan(/^\+\s*test\s+["'](.+?)["']/).flatten
-              .map { |n| "test_#{n.gsub(/\s+/, '_')}" }
+  names = diff.scan(/^\+\s*test\s+"([^"]+)"/).flatten
+  names += diff.scan(/^\+\s*test\s+'([^']+)'/).flatten
+  names = names.map { |n| "test_#{n.gsub(/\s+/, '_')}" }
   names += diff.scan(/^\+\s*def\s+(test_\w+)/).flatten
   names.uniq
 end
@@ -83,15 +115,16 @@ passes_now = green["exit"].zero? && !green_summary.nil? && ran.positive?
 # narrows its scope so a direct room is never in reach. An agent that tested the
 # second one wrote a real test, and a mutation touching only the first would
 # fail it for being right in a way the check did not anticipate.
-originals = [MODEL, PROMOTER].compact.to_h { |p| [p, File.read(File.join(Acceptance::APP_DIR, p))] }
+mutation_sites = ([MODEL] + PROMOTERS).compact
+originals = mutation_sites.to_h { |p| [p, File.read(File.join(Acceptance::APP_DIR, p))] }
 
 if MODEL
   path = File.join(Acceptance::APP_DIR, MODEL)
   File.write(path, File.read(path).gsub(/^[ \t]*validate\s+:direct_rooms_keep_their_type.*\n/, ""))
 end
-if PROMOTER
-  path = File.join(Acceptance::APP_DIR, PROMOTER)
-  File.write(path, File.read(path).gsub(/Current\.user\.rooms\.without_directs/, "Current.user.rooms"))
+PROMOTERS.each do |relative|
+  path = File.join(Acceptance::APP_DIR, relative)
+  File.write(path, File.read(path).gsub(/\.rooms\.without_directs/, ".rooms"))
 end
 
 mutated = Acceptance.run(command, timeout: 900)
@@ -121,6 +154,6 @@ Acceptance.report(
   "mutation_killed" => killed,
   "green_summary" => green_summary,
   "mutated_summary" => mutated_summary,
-  "mutation_sites" => [MODEL, PROMOTER].compact,
+  "mutation_sites" => mutation_sites,
   "edited_non_test_files" => edited_non_test
 )

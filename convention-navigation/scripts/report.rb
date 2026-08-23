@@ -34,6 +34,15 @@ HEADLINE = {
   "distinct_files_read" => "files read"
 }.freeze
 
+# The map condition gets one extra metric. `searches_before_first_target` is the
+# count the map is supposed to act on directly -- a document saying where models
+# live should cut the searching that happens before the first one is opened -- so
+# it is the metric that says whether a recovery is the map working or a
+# coincidence in token accounting.
+MAP_METRICS = HEADLINE.merge(
+  "searches_before_first_target" => "searches before first target"
+).freeze
+
 def commas(number)
   return "-" if number.nil?
 
@@ -65,7 +74,10 @@ agents.each do |agent|
 
   HEADLINE.each do |metric, label|
     out << "### #{label}, median over trials that passed\n\n"
-    out << "| task | " + present_conditions.join(" | ") + " | change | exact p |\n"
+    # The change and p columns are conventional-to-scrambled and stay that way
+    # even when a third condition has a column, because that pair is the
+    # pre-registered question. The map's comparisons get their own table.
+    out << "| task | " + present_conditions.join(" | ") + " | change c->s | exact p c->s |\n"
     out << "|---" * (present_conditions.size + 3) + "|\n"
 
     tasks.each do |task|
@@ -143,6 +155,58 @@ agents.each do |agent|
   end
 end
 out << "\n"
+
+# --- the map --------------------------------------------------------------
+#
+# Two comparisons, not one. `scrambled -> mapped` is the question that was
+# asked: does writing the layout down buy back what the layout cost? And
+# `conventional -> mapped` is the question the answer provokes, which has a
+# confound the first one does not: only the mapped arm carries a CLAUDE.md or
+# AGENTS.md at all, so any benefit of merely having a project document is
+# folded into it. Both are printed rather than only the flattering one.
+if present_conditions.include?("scrambled-mapped")
+  out << "## The map: scrambled plus a document saying where things live\n\n"
+  out << "`scrambled -> mapped` measures what the map recovers. `conventional ->\n"
+  out << "mapped` is not a clean comparison and is printed with that warning\n"
+  out << "attached: no conventional trial carries an agent-instruction file, so a\n"
+  out << "mapped trial beating conventional could be the map or could be the mere\n"
+  out << "presence of a document. Separating those needs a conventional-mapped arm\n"
+  out << "that has not been run.\n\n"
+  out << "| agent | metric | conventional | scrambled | mapped | s->m | exact p | c->m | exact p |\n"
+  out << "|---|---|---|---|---|---|---|---|---|\n"
+
+  agents.each do |agent|
+    MAP_METRICS.each do |metric, label|
+      tasks.each do |task|
+        cell = passed.select { |r| r["agent"] == agent && r["task"] == task }
+        series = %w[conventional scrambled scrambled-mapped].to_h do |cond|
+          [cond, cell.select { |r| r["condition"] == cond }.filter_map { |r| r[metric] }.map(&:to_f)]
+        end
+        next if series.values.any?(&:empty?)
+
+        med = series.transform_values { |v| Stats.median(v) }
+        show = lambda do |value|
+          metric == "total_input_tokens" ? commas(value) : format("%g", value.round(1))
+        end
+
+        pair = lambda do |from|
+          pct = Stats.percent_change(med[from], med["scrambled-mapped"])
+          delta = pct ? format("%+.0f%%", pct) : format("%+.1f", med["scrambled-mapped"] - med[from])
+          result = Stats.exact_mann_whitney(series[from], series["scrambled-mapped"])
+          [delta, result[:p] ? format("%.3f", result[:p]) : result[:note]]
+        end
+
+        s_change, s_p = pair.call("scrambled")
+        c_change, c_p = pair.call("conventional")
+
+        out << "| #{agent} | #{label} | #{show.call(med['conventional'])} | " \
+               "#{show.call(med['scrambled'])} | #{show.call(med['scrambled-mapped'])} | " \
+               "#{s_change} | #{s_p} | #{c_change} | #{c_p} |\n"
+      end
+    end
+  end
+  out << "\n"
+end
 
 # --- zero-search navigation ---------------------------------------------------
 out << "## Zero-search navigation\n\n"

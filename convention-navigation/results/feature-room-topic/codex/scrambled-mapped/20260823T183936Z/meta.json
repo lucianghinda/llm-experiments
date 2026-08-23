@@ -1,0 +1,70 @@
+{
+  "task": "feature-room-topic",
+  "app": "campfire",
+  "agent": "codex",
+  "condition": "scrambled-mapped",
+  "variant": "scrambled",
+  "model_requested": "gpt-5.6-sol",
+  "targets": [
+    "platform/core/entities/room.rb",
+    "delivery/http/handlers/rooms_controller.rb",
+    "delivery/http/render/rooms/opens/edit.html.erb"
+  ],
+  "started_at": "2026-08-23T18:39:39Z",
+  "map_file": "AGENTS.md",
+  "map_bytes": 2487,
+  "history_visible_to_agent": "e1eb5de Import application source",
+  "branches_visible_to_agent": [
+    "main"
+  ],
+  "clean_tree_before": true,
+  "db_prepare_exit": 0,
+  "config_dir": "/home/agent/.codex-trial",
+  "agent_argv": [
+    "codex",
+    "exec",
+    "--json",
+    "--dangerously-bypass-approvals-and-sandbox",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ephemeral",
+    "-C",
+    "/workspace/app",
+    "--model",
+    "gpt-5.6-sol",
+    "-"
+  ],
+  "agent_exit": 0,
+  "timed_out": false,
+  "wall_seconds": 147.456,
+  "credentials_refreshed": [],
+  "changed_files": [
+    "db/schema.rb",
+    "delivery/http/handlers/rooms_controller.rb",
+    "delivery/http/render/rooms/layouts/_form.html.erb",
+    "platform/core/entities/room.rb",
+    "test/suite/endpoints/rooms/opens_controller_test.rb",
+    "test/suite/persistence/room_test.rb"
+  ],
+  "untracked_files": [
+    "db/changes/20260823000000_add_topic_to_rooms.rb"
+  ],
+  "touched_target": true,
+  "acceptance_exit": 0,
+  "acceptance_seconds": 62.469,
+  "passed": true,
+  "toolchain": {
+    "image_built_at": "2026-08-17T10:22:37Z",
+    "ubuntu": "24.04",
+    "arch": "aarch64",
+    "mise": "2026.8.6 linux-arm64 (2026-08-14)",
+    "rubies": "3.4.5 4.0.1",
+    "node": "v22.23.2",
+    "claude_code": "2.1.233 (Claude Code)",
+    "codex": "codex-cli 0.147.0",
+    "postgres": "postgres (PostgreSQL) 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)"
+  },
+  "finished_at": "2026-08-23T18:43:12Z",
+  "host_wall_seconds": 215.6,
+  "container_ok": true
+}

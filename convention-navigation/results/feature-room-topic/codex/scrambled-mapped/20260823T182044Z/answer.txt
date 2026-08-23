@@ -1,0 +1,9 @@
+Implemented room topics.
+
+- Added nullable `rooms.topic` database column.
+- Added a 120-character model validation.
+- Permitted `topic` alongside `name` in room requests.
+- Added an optional topic field to the shared rename screen with a 120-character browser limit.
+- Added model boundary tests and rename/update request coverage.
+
+Validation: `349 runs, 1015 assertions, 0 failures, 0 errors, 2 existing skips`.

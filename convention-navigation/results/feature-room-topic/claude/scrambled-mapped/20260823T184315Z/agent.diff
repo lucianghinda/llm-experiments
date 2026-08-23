@@ -1,0 +1,258 @@
+diff --git a/app/assets/stylesheets/sidebar.css b/app/assets/stylesheets/sidebar.css
+index 94f0983..26d0e3e 100644
+--- a/app/assets/stylesheets/sidebar.css
++++ b/app/assets/stylesheets/sidebar.css
+@@ -252,6 +252,11 @@
+       }
+     }
+   }
++
++  .room__topic {
++    margin: 0;
++    opacity: 0.7;
++  }
+ }
+ 
+ /* Searches */
+diff --git a/db/schema.rb b/db/schema.rb
+index e7f1540..1b62b94 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
++ActiveRecord::Schema[8.2].define(version: 2026_08_23_120000) do
+   create_table "accounts", force: :cascade do |t|
+     t.datetime "created_at", null: false
+     t.text "custom_styles"
+@@ -120,6 +120,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
+     t.datetime "created_at", null: false
+     t.bigint "creator_id", null: false
+     t.string "name"
++    t.string "topic"
+     t.string "type", null: false
+     t.datetime "updated_at", null: false
+   end
+diff --git a/delivery/http/handlers/rooms_controller.rb b/delivery/http/handlers/rooms_controller.rb
+index 1f1d28e..6d77969 100644
+--- a/delivery/http/handlers/rooms_controller.rb
++++ b/delivery/http/handlers/rooms_controller.rb
+@@ -54,7 +54,7 @@ class RoomsController < ApplicationController
+     end
+ 
+     def room_params
+-      params.require(:room).permit(:name)
++      params.require(:room).permit(:name, :topic)
+     end
+ 
+     def broadcast_remove_room
+diff --git a/delivery/http/render/rooms/layouts/_form.html.erb b/delivery/http/render/rooms/layouts/_form.html.erb
+index 0b266f2..c177131 100644
+--- a/delivery/http/render/rooms/layouts/_form.html.erb
++++ b/delivery/http/render/rooms/layouts/_form.html.erb
+@@ -16,6 +16,19 @@
+     <% end %>
+   </div>
+ 
++  <div class="flex align-center gap margin-block-start">
++    <% if Current.user.can_administer?(room) %>
++      <label class="flex-item-grow">
++        <%= form.text_field :topic, name: "room[topic]", id: "room_topic", class: "input full-width",
++              maxlength: Room::MAX_TOPIC_LENGTH, placeholder: "What's this room about? (optional)",
++              data: { turbo_permanent: true, action: "keydown.enter->form#submit:prevent" } %>
++        <span class="for-screen-reader">Say what this room is currently about</span>
++      </label>
++    <% elsif room.topic.present? %>
++      <p class="flex-item-grow txt-subtle margin-none"><%= room.topic %></p>
++    <% end %>
++  </div>
++
+   <hr class="margin-block borderless">
+ 
+   <section class="room-access margin-block pad-inline fill-shade border-radius">
+diff --git a/delivery/http/render/rooms/show/_nav.html.erb b/delivery/http/render/rooms/show/_nav.html.erb
+index 4f62185..9351a62 100644
+--- a/delivery/http/render/rooms/show/_nav.html.erb
++++ b/delivery/http/render/rooms/show/_nav.html.erb
+@@ -2,13 +2,19 @@
+   <%= account_logo_tag if Current.account.logo.attached? %>
+ 
+   <%= tag.span class: "btn btn--reversed btn--faux room--current" do %>
+-    <h1 class="room__contents txt-medium overflow-ellipsis">
+-      <% if room.direct? %>
+-        <span class="for-screen-reader">Ping with</span>
+-      <% end %>
++    <span class="room__contents flex flex-column txt-tight-lines">
++      <h1 class="txt-medium overflow-ellipsis">
++        <% if room.direct? %>
++          <span class="for-screen-reader">Ping with</span>
++        <% end %>
++
++        <%= room_display_name(room) %>
++      </h1>
+ 
+-      <%= room_display_name(room) %>
+-    </h1>
++      <% if room.topic.present? %>
++        <p class="room__topic txt-small overflow-ellipsis"><%= room.topic %></p>
++      <% end %>
++    </span>
+   <% end %>
+ 
+   <%= link_to_edit_room(room) do %>
+diff --git a/platform/core/entities/room.rb b/platform/core/entities/room.rb
+index 20865fc..37daccc 100644
+--- a/platform/core/entities/room.rb
++++ b/platform/core/entities/room.rb
+@@ -22,6 +22,13 @@ class Room < ApplicationRecord
+ 
+   belongs_to :creator, class_name: "User", default: -> { Current.user }
+ 
++  # A topic is optional, but it's meant to be one line saying what the room is about,
++  # not a second body of text competing with the messages in it.
++  MAX_TOPIC_LENGTH = 120
++
++  normalizes :topic, with: ->(topic) { topic.strip.presence }
++  validates :topic, length: { maximum: MAX_TOPIC_LENGTH }
++
+   validate :direct_rooms_keep_their_type, on: :update
+ 
+   scope :opens,           -> { where(type: "Rooms::Open") }
+diff --git a/test/suite/endpoints/rooms/closeds_controller_test.rb b/test/suite/endpoints/rooms/closeds_controller_test.rb
+index 504745d..787de04 100644
+--- a/test/suite/endpoints/rooms/closeds_controller_test.rb
++++ b/test/suite/endpoints/rooms/closeds_controller_test.rb
+@@ -50,6 +50,26 @@ class Rooms::ClosedsControllerTest < ActionDispatch::IntegrationTest
+     assert rooms(:designers).reload.name, "New Name"
+   end
+ 
++  test "update the topic along with the name" do
++    put rooms_closed_url(rooms(:designers)), params: {
++      room: { name: "New Name", topic: "Type and pixels" }, user_ids: rooms(:designers).users.collect(&:id)
++    }
++
++    assert_redirected_to room_url(rooms(:designers))
++    assert_equal "New Name", rooms(:designers).reload.name
++    assert_equal "Type and pixels", rooms(:designers).topic
++  end
++
++  test "a topic longer than 120 characters isn't saved" do
++    assert_raises ActiveRecord::RecordInvalid do
++      put rooms_closed_url(rooms(:designers)), params: {
++        room: { name: "New Name", topic: "a" * 121 }, user_ids: rooms(:designers).users.collect(&:id)
++      }
++    end
++
++    assert_nil rooms(:designers).reload.topic
++  end
++
+   test "update an open room to be closed" do
+     put rooms_closed_url(rooms(:pets)), params: { room: { name: "Doesn't matter" }, user_ids: [ users(:david).id, users(:jason).id ] }
+     assert_equal rooms(:pets).memberships.count, 2
+diff --git a/test/suite/endpoints/rooms/opens_controller_test.rb b/test/suite/endpoints/rooms/opens_controller_test.rb
+index 680c2e1..795a55d 100644
+--- a/test/suite/endpoints/rooms/opens_controller_test.rb
++++ b/test/suite/endpoints/rooms/opens_controller_test.rb
+@@ -53,6 +53,43 @@ class Rooms::OpensControllerTest < ActionDispatch::IntegrationTest
+     assert rooms(:pets).reload.name, "New Name"
+   end
+ 
++  test "edit offers the topic on the same form as the name" do
++    get edit_rooms_open_url(rooms(:pets))
++
++    assert_select "form input#room_name"
++    assert_select "form input#room_topic"
++  end
++
++  test "update the topic along with the name" do
++    put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name", topic: "Pictures of pets" } }
++
++    assert_redirected_to room_url(rooms(:pets))
++    assert_equal "New Name", rooms(:pets).reload.name
++    assert_equal "Pictures of pets", rooms(:pets).topic
++  end
++
++  test "create with a topic" do
++    post rooms_opens_url, params: { room: { name: "My New Room", topic: "Whatever comes up" } }
++    assert_equal "Whatever comes up", Room.last.topic
++  end
++
++  test "a topic longer than 120 characters isn't saved" do
++    assert_raises ActiveRecord::RecordInvalid do
++      put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name", topic: "a" * 121 } }
++    end
++
++    assert_nil rooms(:pets).reload.topic
++  end
++
++  test "only admins or creators can update the topic" do
++    sign_in :jz
++
++    put rooms_open_url(rooms(:hq)), params: { room: { topic: "Mine now" } }
++
++    assert_response :forbidden
++    assert_nil rooms(:hq).reload.topic
++  end
++
+   test "update a closed room to be open" do
+     put rooms_open_url(rooms(:designers)), params: { room: { name: "Doesn't matter" } }
+     assert_equal rooms(:designers).memberships.count, User.count
+diff --git a/test/suite/endpoints/rooms_controller_test.rb b/test/suite/endpoints/rooms_controller_test.rb
+index 69b2add..6603c3a 100644
+--- a/test/suite/endpoints/rooms_controller_test.rb
++++ b/test/suite/endpoints/rooms_controller_test.rb
+@@ -15,6 +15,18 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
+     assert_response :success
+   end
+ 
++  test "show displays the room's topic" do
++    rooms(:pets).update! topic: "Pictures of pets"
++
++    get room_url(rooms(:pets))
++    assert_select ".room__topic", "Pictures of pets"
++  end
++
++  test "show leaves out the topic when the room hasn't got one" do
++    get room_url(rooms(:pets))
++    assert_select ".room__topic", false
++  end
++
+   test "shows records the last room visited in a cookie" do
+     get room_url(users(:david).rooms.last)
+     assert response.cookies[:last_room] = users(:david).rooms.last.id
+diff --git a/test/suite/persistence/room_test.rb b/test/suite/persistence/room_test.rb
+index b113726..c2b670d 100644
+--- a/test/suite/persistence/room_test.rb
++++ b/test/suite/persistence/room_test.rb
+@@ -30,6 +30,29 @@ class RoomTest < ActiveSupport::TestCase
+     assert Rooms::Closed.new.closed?
+   end
+ 
++  test "a room without a topic is valid" do
++    room = Rooms::Open.create_for({ name: "Hello!", creator: users(:david) }, users: users(:david))
++    assert_nil room.topic
++    assert room.valid?
++  end
++
++  test "a blank topic reads as no topic at all" do
++    room = rooms(:pets)
++    room.update! topic: "  "
++    assert_nil room.reload.topic
++  end
++
++  test "topic longer than 120 characters is rejected" do
++    room = rooms(:pets)
++
++    room.topic = "a" * 121
++    assert_not room.valid?
++    assert_includes room.errors.attribute_names, :topic
++
++    room.topic = "a" * 120
++    assert room.valid?
++  end
++
+   test "default involvement for new users" do
+     room = Rooms::Closed.create_for({ name: "Hello!", creator: users(:david) }, users: [ users(:kevin), users(:david) ])
+     assert room.memberships.all? { |m| m.involved_in_mentions? }

@@ -1,0 +1,19 @@
+Done. Rooms have a topic.
+
+**Storage** — `db/changes/20260823120000_add_topic_to_rooms.rb` adds a nullable `topic` string column; `db/schema.rb` regenerated.
+
+**Model** (`platform/core/entities/room.rb:2,26-28`)
+- `MAX_TOPIC_LENGTH = 120`, enforced with `validates :topic, length: { maximum: ... }` — no presence validation, so a room without a topic stays valid.
+- `normalizes :topic` collapses whitespace to a single line and turns an emptied field into `nil` rather than `""`, so "no topic" has one representation.
+
+**Editing** — the topic rides along with the rename, not beside it. `room_params` now permits `:topic`, and the field lives in `rooms/layouts/_form.html.erb`, the partial shared by the open- and closed-room forms. That's the same screen and the same `PUT` that renames, gated by the same `can_administer?` check; non-admins see the topic as read-only text next to the read-only name. Direct rooms are untouched — they have no name and no update action, so nobody renames them.
+
+**Rejection path** — `update!`/`create!` would have turned an over-long topic into a 500. Both controllers now branch on the save and call a shared `rerender_room_form`, which re-renders the form at `:unprocessable_content` with the reason in the existing flash. For closed rooms the membership revision moved inside the success branch, so a rejected topic doesn't quietly apply the user changes from the same form.
+
+**Display** — a stored-but-invisible topic would be useless, so the room header (`rooms/show/_nav.html.erb`) shows it under the room name, ellipsised, with a small CSS addition. This wasn't in your bullets; flagging it as the one judgment call. Like the room name, it refreshes on navigation rather than live-broadcasting.
+
+Two things worth knowing:
+- Creating a room also accepts a topic. The new-room and edit-room screens share one form partial, and letting you name a room at creation but not describe it seemed like the wrong seam to cut.
+- The input carries `maxlength="120"` as a client-side guard; the server validation is still the authority, and both are tested.
+
+Full suite: 367 runs, 0 failures, 0 errors, 2 skips — both skips pre-existing (libvips capability checks in `test/suite/support/vips_loader_policy_test.rb`). Rubocop clean.

@@ -1,11 +1,13 @@
 # Does Rails convention-over-configuration save an agent tokens?
 
-**Status: pilot run. 80 trials, all passed. The answer is in
-[`RESULTS.md`](RESULTS.md).**
+**Status: pilot run, plus the map follow-up. 90 trials, all passed. The answer
+is in [`RESULTS.md`](RESULTS.md).**
 
 The two layouts are built and proven equivalent — same code, same gems, same
 routes, same 348 passing tests — and the full grid of 4 tasks × 2 conditions ×
-2 agents × 5 repeats has been run end to end.
+2 agents × 5 repeats has been run end to end. The `scrambled-mapped` condition
+adds 10 more on the cross-layer task, reusing the scrambled trials as its
+baseline.
 
 **This file is the design; `RESULTS.md` is the answer.** Everything below
 describes how the experiment was built and what it pre-registered, including a
@@ -14,10 +16,12 @@ validation trials showed about the harness" are still n=1 from before the grid
 and are about the harness, not the question.
 
 The short version of the answer: agents never navigated without searching, in
-either layout, in any of the 80 trials — so the assumption's mechanism is wrong.
+any layout, in any of the 90 trials — so the assumption's mechanism is wrong.
 But changing code across layers cost 25–44% more on the scrambled layout in
 three cells of four. Convention does not save an agent from searching; it saves
-it from searching repeatedly.
+it from searching repeatedly. And a 2.5 KB file naming the directories gave that
+back in full — −32% and −31% against the scrambled layout — without ever making
+either agent navigate without a grep.
 
 ## The question
 

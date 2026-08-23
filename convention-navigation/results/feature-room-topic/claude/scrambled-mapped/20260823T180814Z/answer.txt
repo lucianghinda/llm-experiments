@@ -1,0 +1,16 @@
+Done. Rooms now have a topic.
+
+**Storage** — `db/changes/20260823120000_add_topic_to_rooms.rb` adds a nullable `topic` string column; `db/schema.rb` is regenerated from the migration.
+
+**Model** (`platform/core/entities/room.rb`) — `MAX_TOPIC_LENGTH = 120` and `validates :topic, length: { maximum: MAX_TOPIC_LENGTH }`. A plain `maximum:` check skips `nil`, so a room without a topic stays valid; anything over 120 characters fails validation, and since the controllers use `update!`/`create!`, the write is rejected (Rails maps `RecordInvalid` to 422).
+
+**Editing** — `room_params` in `RoomsController` now permits `:topic`, so both `Rooms::OpensController` and `Rooms::ClosedsController` pick it up through the same `update`/`create` they already use for renames, behind the same `ensure_can_administer` gate. The field lives in the shared `rooms/layouts/_form.html.erb` right under the name input — same screen, same form, one submit. Non-administrators, who see the name as static text there, now see the topic as static text too. The input carries `maxlength` from the model constant, and a `room_topic` entry was added to `TranslationsHelper` so the field gets the same translate popover as every other field in the app.
+
+**Display** — the room header (`rooms/show/_nav.html.erb`) shows the topic as a second, smaller line under the room name inside the existing pill. Only utility classes already in the stylesheets are used; no CSS changes.
+
+**Tests** — added model tests (optional, at-limit, over-limit), controller tests for opens and closeds covering rename-and-set-topic in one request, over-long rejection with nothing persisted, the non-admin forbidden path, create-with-topic, and edit rendering for both admin and non-admin; plus header rendering tests. Full suite: 361 runs, 0 failures, 0 errors (the 2 skips are pre-existing). RuboCop clean across 276 files.
+
+Two things worth flagging:
+
+- The over-long case surfaces as an unhandled `ActiveRecord::RecordInvalid`. That's 422 in production via Rails' default `rescue_responses`, and matches how this codebase handles every other invalid write — but there's no error UI, so a non-browser client gets a bare 422 with no message. The browser form is capped at 120 by `maxlength`, so it's a backstop rather than a normal path. `config/environments/test.rb` sets `show_exceptions = :none`, so the two rejection tests assert the raise directly; there's a comment saying why.
+- Direct rooms have the column but no way to set it — they have no `update` action and can't be renamed, which follows from the "anyone who can rename a room" scoping.

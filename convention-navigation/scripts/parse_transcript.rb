@@ -46,22 +46,65 @@ end
 SEARCH_SHELL = /\b(?:grep|rg|ag|ack|find|fd|glob|locate|tree)\b|\bls\b/
 READ_SHELL = /\b(?:cat|head|tail|less|more|bat|nl)\b|\bsed\s+-n\b/
 
+# A heredoc body is data the agent WROTE, not a command it ran. Claude writes
+# probe scripts with `cat > /tmp/probe.rb <<'EOF' ... EOF`, and one of those
+# scripts contained the word `find`, which scored the whole call as a search.
+# Strip the bodies before classifying anything.
+def strip_heredocs(command)
+  command.to_s.gsub(/<<-?\s*(['"]?)(\w+)\1.*?^\s*\2\s*$/m, "<<HEREDOC")
+         .gsub(/<<-?\s*(['"]?)(\w+)\1.*\z/m, "<<HEREDOC")
+end
+
+# Claude batches: one Bash call is routinely `ls a && cat b; grep c`. Counting
+# that as a single act of anything loses most of what happened, and how much an
+# agent batches could easily differ between conditions -- which would show up as
+# a fake difference in call counts. So segments are counted as well as calls.
+def shell_segments(command)
+  strip_heredocs(command).split(/;|&&|\|\||\||\n/).map(&:strip).reject(&:empty?)
+end
+
+def classify_shell(segment)
+  # A search that pipes its output somewhere is still a search, so this is
+  # checked first and the redirect test below never demotes it.
+  return "search" if segment.match?(SEARCH_SHELL)
+
+  # `cat > /tmp/probe.rb` is a write dressed as a read: the word `cat` is there,
+  # but the agent is creating a file, not navigating to one. Only a redirect
+  # into a path counts -- `2>&1` and `>&2` are not writes to look at.
+  writes_a_file = segment.match?(/>\s*(?!&)\S/) && !segment.match?(/\A\s*\d?>\s*&/)
+  return "bash" if writes_a_file
+
+  return "read" if segment.match?(READ_SHELL)
+
+  "bash"
+end
+
 CLAUDE_SEARCH_TOOLS = %w[Grep Glob LS].freeze
 CLAUDE_READ_TOOLS = %w[Read NotebookRead].freeze
 CLAUDE_EDIT_TOOLS = %w[Edit Write MultiEdit NotebookEdit].freeze
 
-def classify_claude(name, blob)
+def classify_claude(name, command)
   return "search" if CLAUDE_SEARCH_TOOLS.include?(name)
   return "read" if CLAUDE_READ_TOOLS.include?(name)
   return "edit" if CLAUDE_EDIT_TOOLS.include?(name)
+  return "other" unless name == "Bash"
 
-  if name == "Bash"
-    return "search" if blob.match?(SEARCH_SHELL)
-    return "read" if blob.match?(READ_SHELL)
+  # Search wins over read in a mixed call, because the question the metric
+  # answers is "did the agent have to hunt", and a call that hunted did.
+  classes = shell_segments(command).map { |s| classify_shell(s) }
+  return "search" if classes.include?("search")
+  return "read" if classes.include?("read")
 
-    return "bash"
-  end
-  "other"
+  "bash"
+end
+
+# This container's Claude has no Grep, Glob or LS tool -- its `tools` list at
+# init carries Bash, Read, Edit and Write but nothing for searching -- so every
+# search it performs is a shell command. Both agents therefore navigate through
+# the shell here, which is worth knowing when reading the tool counts, though it
+# still does not make them poolable.
+def segment_counts(command)
+  shell_segments(command).map { |s| classify_shell(s) }.tally
 end
 
 CODEX_EDIT_ITEMS = %w[file_change patch_apply].freeze
@@ -70,8 +113,10 @@ def classify_codex(item_type, command)
   return "edit" if CODEX_EDIT_ITEMS.include?(item_type)
   return "other" unless item_type == "command_execution"
   return "edit" if command.match?(/\bapply_patch\b/)
-  return "search" if command.match?(SEARCH_SHELL)
-  return "read" if command.match?(READ_SHELL)
+
+  classes = shell_segments(command).map { |s| classify_shell(s) }
+  return "search" if classes.include?("search")
+  return "read" if classes.include?("read")
 
   "bash"
 end
@@ -109,8 +154,20 @@ def summarize(calls, turns, targets)
   read_paths = calls.select { |c| %w[read edit].include?(c["class"]) }
                     .flat_map { |c| c["paths"] }.uniq
 
+  # Segments as well as calls. A call is one turn of the agent's attention; a
+  # segment is one thing it actually asked the machine to do, and Claude
+  # routinely puts three or four in a single call. If an agent batches more
+  # heavily in one condition than the other -- which is plausible, since more
+  # exploration invites more chaining -- call counts alone would show that as a
+  # difference in effort when it is a difference in packaging.
+  segments = calls.map { |c| c["segments"] || {} }
+                  .each_with_object(Hash.new(0)) { |h, acc| h.each { |k, v| acc[k] += v } }
+
   {
     "total_tool_calls" => calls.size,
+    "total_shell_segments" => segments.values.sum,
+    "search_segments" => segments["search"].to_i,
+    "read_segments" => segments["read"].to_i,
     "search_calls" => by_class["search"].to_i,
     "read_calls" => by_class["read"].to_i,
     "edit_calls" => by_class["edit"].to_i,
@@ -155,10 +212,16 @@ def summarize_claude(events, meta)
     }
     Array(event.dig("message", "content")).select { |c| c["type"] == "tool_use" }.each do |use|
       # For Claude the tool input IS the locator: the result comes back in a
-      # separate user event, so nothing here can contain a tool's output.
-      blob = (use["input"] || {}).to_json
-      calls << { "name" => use["name"], "class" => classify_claude(use["name"], blob),
-                 "paths" => paths_in(blob), "locator" => blob, "blob" => blob }
+      # separate user event, so nothing here can contain a tool's output. The
+      # heredoc bodies still come out, so a path mentioned inside a script the
+      # agent wrote is not mistaken for the agent opening that path.
+      input = use["input"] || {}
+      command = input["command"].to_s
+      blob = input.to_json
+      locator = command.empty? ? blob : strip_heredocs(command) + " " + [input["file_path"], input["path"]].compact.join(" ")
+      calls << { "name" => use["name"], "class" => classify_claude(use["name"], command),
+                 "paths" => paths_in(locator), "locator" => locator, "blob" => blob,
+                 "segments" => command.empty? ? {} : segment_counts(command) }
     end
   end
 
@@ -202,13 +265,15 @@ def summarize_codex(events, meta)
       klass = classify_codex(item["type"], command)
       next if klass == "other" && !%w[mcp_tool_call web_search].include?(item["type"])
 
-      paths = paths_in(command)
+      stripped = strip_heredocs(command)
+      paths = paths_in(stripped)
       paths |= Array(item["changes"]).flat_map { |c| c.is_a?(Hash) ? c.keys : [c.to_s] } if item["changes"]
       # The locator is what the agent asked for. item.to_json would also carry
       # aggregated_output, which is what the command printed back -- see the
       # note on first_target_index for what counting that did to the numbers.
       calls << { "name" => item["type"], "class" => klass, "paths" => paths,
-                 "locator" => ([command] + paths).join(" "), "blob" => item.to_json }
+                 "locator" => ([stripped] + paths).join(" "), "blob" => item.to_json,
+                 "segments" => command.empty? ? {} : segment_counts(command) }
     when "turn.completed"
       u = event["usage"] || {}
       turns << {
@@ -245,6 +310,49 @@ def detect_agent(events)
   return "codex" if events.any? { |e| e["type"].to_s.start_with?("item.", "turn.", "thread.") }
 
   "unknown"
+end
+
+# The classifier decides what `search_calls` means, and that is a headline
+# number, so it is checked rather than trusted. Every case below is a real
+# command taken from a transcript, including the two that were being scored
+# wrongly: a probe script whose heredoc body contained the word `find`, and a
+# `cat >` that writes a file rather than reading one.
+if ARGV.include?("--selftest")
+  cases = {
+    "cat -n platform/core/entities/room.rb" => "read",
+    "grep -rn foo . > /tmp/out" => "search",
+    "ls app" => "search",
+    "bin/rails runner /tmp/p.rb 2>&1" => "bash",
+    "sed -n '1,60p' config/routes.rb" => "read",
+    "head -20 Gemfile" => "read",
+    "bin/rails test" => "bash"
+  }
+  failures = []
+  cases.each do |command, want|
+    got = classify_shell(command)
+    puts format("  %-6s %-46s want=%s", got == want ? "ok" : "FAIL", command[0, 46], want)
+    failures << command unless got == want
+  end
+
+  # Whole-call behaviour: heredoc bodies must not be classified, and a call that
+  # both lists and reads counts as a search because the agent still had to hunt.
+  probe = "cat > /tmp/probe.rb <<'EOF'\nRoom.find_each do |r|\n  puts r\nend\nEOF"
+  compound = "ls delivery/http/handlers/ && cat -n delivery/http/handlers/rooms_controller.rb"
+  [[probe, "bash", "heredoc body is not a command"],
+   [compound, "search", "a call that lists and reads is a search"]].each do |command, want, why|
+    got = classify_claude("Bash", command)
+    puts format("  %-6s %-46s want=%s (%s)", got == want ? "ok" : "FAIL", why[0, 46], want, why)
+    failures << why unless got == want
+  end
+
+  segs = segment_counts(compound)
+  ok = segs["search"] == 1 && segs["read"] == 1
+  puts format("  %-6s %-46s want=%s", ok ? "ok" : "FAIL", "compound call splits into 1 search + 1 read",
+              { "search" => 1, "read" => 1 })
+  failures << "segments" unless ok
+
+  puts(failures.empty? ? "\nall self-tests passed" : "\n#{failures.size} self-test(s) FAILED")
+  exit(failures.empty? ? 0 : 1)
 end
 
 paths =

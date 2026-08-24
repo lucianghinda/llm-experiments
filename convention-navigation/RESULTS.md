@@ -173,6 +173,47 @@ layout down is not a substitute for having a guessable one; on Claude's numbers
 the best cell in the whole experiment is conventional *and* documented
 (1,868,371) and the worst is scrambled and not (3,899,138), a factor of 2.1.
 
+### The document shrank the diff. The layout did not
+
+Tokens are one currency; the code a trial leaves behind is the other, and it is
+measured independently, from `agent.diff` rather than from the transcript.
+Median lines added to tracked files on the cross-layer task, for Claude:
+
+```
+conventional            220        scrambled            214     (-3%, p = 0.841)
+conventional + map      126        scrambled + map      150     (-43% and -30%)
+```
+
+The layout never moved this number: 220 against 214 is flat. The document cut it
+43% on the conventional tree (p=0.008) and 30% on the scrambled one (p=0.056),
+and files touched went 14 to 10 and 14 to 11 (both p=0.024). Codex shows the
+same direction at smaller scale: 31 to 24 and 34 to 23.
+
+So the intervention that cut input tokens 40% also cut the code written 43%,
+measured a different way, which makes the token result hard to dismiss as an
+accounting artifact. What the extra code was: without a document, every
+conventional Claude trial also edited the room nav partial and the two
+controller subclasses, four of five edited the translations helper, and two
+touched a stylesheet — none of which the prompt asked for and none of which the
+acceptance test checks. With the map, on the conventional tree, the stylesheet
+edits stopped and the helper edits dropped to one in five. Why orientation
+narrows scope is a question this data can only point at: an agent that explores
+less encounters fewer files, and files it never reads are files it never edits.
+
+### One observation across agents, recorded with its caveat
+
+Claude's median passing change on the conventional layout is 220 added lines
+across 14 files. Codex's is 31 lines across 8. The ranges do not overlap
+(186–235 against 22–39, p=0.008), both pass the same acceptance test, and both
+leave the same 348-test suite green. On the test-writing task the same split is
+20 lines against 7.
+
+This is the one cross-agent comparison in these results, and it is a comparison
+of models, not layouts: diff lines mean the same thing for both agents, unlike
+tokens, but nothing here says which change is better. No trial's diff was ever
+scored for quality — passing is the only bar — and "minimal" and "incomplete"
+can look identical from a line count, as can "thorough" and "padded".
+
 ### Codex spent fewer calls and not fewer tokens
 
 On the conventional layout the map cut Codex's tool calls 27% (p=0.016) and its

@@ -1,0 +1,11 @@
+Done. All 360 tests pass (348 pre-existing, unchanged, plus 12 new).
+
+**What changed**
+
+- `db/changes/20260823120000_add_topic_to_rooms.rb` — adds a nullable `topic` string column to `rooms`; `db/schema.rb` regenerated.
+- `platform/core/entities/room.rb:25` — `MAX_TOPIC_LENGTH = 120`, a `length: { maximum: … }` validation, and a `normalizes` that turns a blank/whitespace topic back into `nil` so "no topic" is one state. No presence validation, so a room without a topic stays valid.
+- `delivery/http/handlers/rooms_controller.rb:57` — `room_params` now permits `:topic`. This is the single param filter that both `Rooms::OpensController` and `Rooms::ClosedsController` use for `create`/`update`, so the topic rides along on the exact request that renames the room, behind the same `ensure_can_administer` check.
+- `delivery/http/render/rooms/layouts/_form.html.erb` — a topic field under the name field in the shared room form, so it appears on the same screen for both open and closed rooms, gated on the same `can_administer?` check that gates the name field. Non-admins see the topic as text if there is one. The input carries `maxlength: 120` as a client-side guard.
+- `delivery/http/render/rooms/show/_nav.html.erb` + `app/assets/stylesheets/sidebar.css` — the topic renders as a second, smaller line under the room name in the room header, omitted entirely when absent. Storing a topic nobody sees seemed like half the feature; this is the smallest display that makes it useful. Direct rooms have no rename screen, so they can't get a topic.
+
+**One thing worth flagging:** the open/closed controllers use `update!`/`create!`, so an over-length topic that gets past the `maxlength` attribute (a scripted or API request) raises `RecordInvalid` → a 422, not a re-rendered form with an error message. It's rejected and not saved, as required, but the failure is a generic error page. No controller in this codebase currently renders validation errors, so I matched that rather than introducing a new pattern — say the word if you'd like the edit form re-rendered with the message instead.

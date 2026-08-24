@@ -1,0 +1,103 @@
+diff --git a/db/schema.rb b/db/schema.rb
+index e7f1540..91851cf 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
++ActiveRecord::Schema[8.2].define(version: 2026_08_23_000000) do
+   create_table "accounts", force: :cascade do |t|
+     t.datetime "created_at", null: false
+     t.text "custom_styles"
+@@ -120,6 +120,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
+     t.datetime "created_at", null: false
+     t.bigint "creator_id", null: false
+     t.string "name"
++    t.string "topic"
+     t.string "type", null: false
+     t.datetime "updated_at", null: false
+   end
+diff --git a/delivery/http/handlers/rooms_controller.rb b/delivery/http/handlers/rooms_controller.rb
+index 1f1d28e..6d77969 100644
+--- a/delivery/http/handlers/rooms_controller.rb
++++ b/delivery/http/handlers/rooms_controller.rb
+@@ -54,7 +54,7 @@ class RoomsController < ApplicationController
+     end
+ 
+     def room_params
+-      params.require(:room).permit(:name)
++      params.require(:room).permit(:name, :topic)
+     end
+ 
+     def broadcast_remove_room
+diff --git a/delivery/http/render/rooms/layouts/_form.html.erb b/delivery/http/render/rooms/layouts/_form.html.erb
+index 0b266f2..806fd80 100644
+--- a/delivery/http/render/rooms/layouts/_form.html.erb
++++ b/delivery/http/render/rooms/layouts/_form.html.erb
+@@ -16,6 +16,14 @@
+     <% end %>
+   </div>
+ 
++  <% if Current.user.can_administer?(room) %>
++    <label class="block margin-block">
++      <%= form.text_field :topic, name: "room[topic]", id: "room_topic", class: "input full-width",
++            maxlength: 120, placeholder: "What is this room about?" %>
++      <span class="for-screen-reader">Room topic</span>
++    </label>
++  <% end %>
++
+   <hr class="margin-block borderless">
+ 
+   <section class="room-access margin-block pad-inline fill-shade border-radius">
+diff --git a/platform/core/entities/room.rb b/platform/core/entities/room.rb
+index 20865fc..be667ef 100644
+--- a/platform/core/entities/room.rb
++++ b/platform/core/entities/room.rb
+@@ -22,6 +22,8 @@ class Room < ApplicationRecord
+ 
+   belongs_to :creator, class_name: "User", default: -> { Current.user }
+ 
++  validates :topic, length: { maximum: 120 }
++
+   validate :direct_rooms_keep_their_type, on: :update
+ 
+   scope :opens,           -> { where(type: "Rooms::Open") }
+diff --git a/test/suite/endpoints/rooms/opens_controller_test.rb b/test/suite/endpoints/rooms/opens_controller_test.rb
+index 680c2e1..97a08d8 100644
+--- a/test/suite/endpoints/rooms/opens_controller_test.rb
++++ b/test/suite/endpoints/rooms/opens_controller_test.rb
+@@ -46,11 +46,12 @@ class Rooms::OpensControllerTest < ActionDispatch::IntegrationTest
+ 
+   test "update" do
+     assert_turbo_stream_broadcasts :rooms, count: 1 do
+-      put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name" } }
++      put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name", topic: "All about pets" } }
+     end
+ 
+     assert_redirected_to room_url(rooms(:pets))
+     assert rooms(:pets).reload.name, "New Name"
++    assert_equal "All about pets", rooms(:pets).topic
+   end
+ 
+   test "update a closed room to be open" do
+diff --git a/test/suite/persistence/room_test.rb b/test/suite/persistence/room_test.rb
+index b113726..6f5f3fa 100644
+--- a/test/suite/persistence/room_test.rb
++++ b/test/suite/persistence/room_test.rb
+@@ -1,6 +1,14 @@
+ require "test_helper"
+ 
+ class RoomTest < ActiveSupport::TestCase
++  test "topic is optional and at most 120 characters" do
++    creator = users(:david)
++
++    assert Rooms::Open.new(name: "No topic", topic: nil, creator: creator).valid?
++    assert Rooms::Open.new(name: "Short topic", topic: "A" * 120, creator: creator).valid?
++    assert_not Rooms::Open.new(name: "Long topic", topic: "A" * 121, creator: creator).valid?
++  end
++
+   test "grant membership to user" do
+     rooms(:watercooler).memberships.grant_to(users(:kevin))
+     assert rooms(:watercooler).users.include?(users(:kevin))

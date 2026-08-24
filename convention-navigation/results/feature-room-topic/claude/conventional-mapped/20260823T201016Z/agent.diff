@@ -1,0 +1,245 @@
+diff --git a/app/controllers/rooms_controller.rb b/app/controllers/rooms_controller.rb
+index 1f1d28e..6d77969 100644
+--- a/app/controllers/rooms_controller.rb
++++ b/app/controllers/rooms_controller.rb
+@@ -54,7 +54,7 @@ class RoomsController < ApplicationController
+     end
+ 
+     def room_params
+-      params.require(:room).permit(:name)
++      params.require(:room).permit(:name, :topic)
+     end
+ 
+     def broadcast_remove_room
+diff --git a/app/models/room.rb b/app/models/room.rb
+index 20865fc..4c93889 100644
+--- a/app/models/room.rb
++++ b/app/models/room.rb
+@@ -1,4 +1,6 @@
+ class Room < ApplicationRecord
++  MAX_TOPIC_LENGTH = 120
++
+   has_many :memberships, dependent: :delete_all do
+     def grant_to(users)
+       room = proxy_association.owner
+@@ -22,6 +24,12 @@ class Room < ApplicationRecord
+ 
+   belongs_to :creator, class_name: "User", default: -> { Current.user }
+ 
++  normalizes :topic, with: ->(topic) { topic.strip.presence }
++
++  # A topic is a single line saying what the room is about right now, so it stays short
++  # enough to read at a glance. Having none at all is normal.
++  validates :topic, length: { maximum: MAX_TOPIC_LENGTH }
++
+   validate :direct_rooms_keep_their_type, on: :update
+ 
+   scope :opens,           -> { where(type: "Rooms::Open") }
+diff --git a/app/views/rooms/layouts/_form.html.erb b/app/views/rooms/layouts/_form.html.erb
+index 0b266f2..e587b2c 100644
+--- a/app/views/rooms/layouts/_form.html.erb
++++ b/app/views/rooms/layouts/_form.html.erb
+@@ -16,6 +16,19 @@
+     <% end %>
+   </div>
+ 
++  <div class="flex align-center gap margin-block-start-half">
++    <% if Current.user.can_administer?(room) %>
++      <label class="flex-item-grow">
++        <%= form.text_field :topic, name: "room[topic]", id: "room_topic", class: "input full-width",
++              maxlength: Room::MAX_TOPIC_LENGTH, placeholder: "What's this room about right now? (optional)",
++              data: { turbo_permanent: true, action: "keydown.enter->form#submit:prevent" } %>
++        <span class="for-screen-reader">Set a topic for this room</span>
++      </label>
++    <% elsif room.topic.present? %>
++      <p class="flex-item-grow txt-subtle margin-none"><%= room.topic %></p>
++    <% end %>
++  </div>
++
+   <hr class="margin-block borderless">
+ 
+   <section class="room-access margin-block pad-inline fill-shade border-radius">
+diff --git a/app/views/rooms/show/_nav.html.erb b/app/views/rooms/show/_nav.html.erb
+index 4f62185..077341d 100644
+--- a/app/views/rooms/show/_nav.html.erb
++++ b/app/views/rooms/show/_nav.html.erb
+@@ -2,13 +2,19 @@
+   <%= account_logo_tag if Current.account.logo.attached? %>
+ 
+   <%= tag.span class: "btn btn--reversed btn--faux room--current" do %>
+-    <h1 class="room__contents txt-medium overflow-ellipsis">
+-      <% if room.direct? %>
+-        <span class="for-screen-reader">Ping with</span>
+-      <% end %>
++    <span class="flex flex-column align-start txt-tight-lines">
++      <h1 class="room__contents txt-medium overflow-ellipsis">
++        <% if room.direct? %>
++          <span class="for-screen-reader">Ping with</span>
++        <% end %>
++
++        <%= room_display_name(room) %>
++      </h1>
+ 
+-      <%= room_display_name(room) %>
+-    </h1>
++      <% if room.topic.present? %>
++        <span class="room__contents txt-small txt-subtle overflow-ellipsis"><%= room.topic %></span>
++      <% end %>
++    </span>
+   <% end %>
+ 
+   <%= link_to_edit_room(room) do %>
+diff --git a/db/schema.rb b/db/schema.rb
+index e7f1540..1b62b94 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
++ActiveRecord::Schema[8.2].define(version: 2026_08_23_120000) do
+   create_table "accounts", force: :cascade do |t|
+     t.datetime "created_at", null: false
+     t.text "custom_styles"
+@@ -120,6 +120,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
+     t.datetime "created_at", null: false
+     t.bigint "creator_id", null: false
+     t.string "name"
++    t.string "topic"
+     t.string "type", null: false
+     t.datetime "updated_at", null: false
+   end
+diff --git a/test/controllers/rooms/closeds_controller_test.rb b/test/controllers/rooms/closeds_controller_test.rb
+index 504745d..c96012c 100644
+--- a/test/controllers/rooms/closeds_controller_test.rb
++++ b/test/controllers/rooms/closeds_controller_test.rb
+@@ -50,6 +50,16 @@ class Rooms::ClosedsControllerTest < ActionDispatch::IntegrationTest
+     assert rooms(:designers).reload.name, "New Name"
+   end
+ 
++  test "update renames the room and sets its topic in the same request" do
++    put rooms_closed_url(rooms(:designers)), params: {
++      room: { name: "New Name", topic: "Shipping the new icon set" }, user_ids: rooms(:designers).users.collect(&:id)
++    }
++
++    assert_redirected_to room_url(rooms(:designers))
++    assert_equal "New Name", rooms(:designers).reload.name
++    assert_equal "Shipping the new icon set", rooms(:designers).topic
++  end
++
+   test "update an open room to be closed" do
+     put rooms_closed_url(rooms(:pets)), params: { room: { name: "Doesn't matter" }, user_ids: [ users(:david).id, users(:jason).id ] }
+     assert_equal rooms(:pets).memberships.count, 2
+diff --git a/test/controllers/rooms/opens_controller_test.rb b/test/controllers/rooms/opens_controller_test.rb
+index 680c2e1..6babe68 100644
+--- a/test/controllers/rooms/opens_controller_test.rb
++++ b/test/controllers/rooms/opens_controller_test.rb
+@@ -53,6 +53,52 @@ class Rooms::OpensControllerTest < ActionDispatch::IntegrationTest
+     assert rooms(:pets).reload.name, "New Name"
+   end
+ 
++  test "edit offers the topic alongside the name" do
++    rooms(:pets).update! topic: "Photos of our pets"
++
++    get edit_rooms_open_url(rooms(:pets))
++
++    assert_response :success
++    assert_select "input#room_name"
++    assert_select "input#room_topic[value=?]", "Photos of our pets"
++  end
++
++  test "edit shows the topic as plain text to those who can't administer the room" do
++    rooms(:hq).update! topic: "Where the buck stops"
++    sign_in :jz
++
++    get edit_rooms_open_url(rooms(:hq))
++
++    assert_response :success
++    assert_select "input#room_topic", count: 0
++    assert_select "p.txt-subtle", text: "Where the buck stops"
++  end
++
++  test "update renames the room and sets its topic in the same request" do
++    put rooms_open_url(rooms(:pets)), params: { room: { name: "New Name", topic: "Photos of our pets" } }
++
++    assert_redirected_to room_url(rooms(:pets))
++    assert_equal "New Name", rooms(:pets).reload.name
++    assert_equal "Photos of our pets", rooms(:pets).topic
++  end
++
++  test "update clears the topic" do
++    rooms(:pets).update! topic: "Photos of our pets"
++
++    put rooms_open_url(rooms(:pets)), params: { room: { name: "All Pets", topic: "" } }
++
++    assert_nil rooms(:pets).reload.topic
++  end
++
++  test "only admins or creators can set the topic" do
++    sign_in :jz
++
++    put rooms_open_url(rooms(:hq)), params: { room: { name: "HQ", topic: "Whatever I say it is" } }
++
++    assert_response :forbidden
++    assert_nil rooms(:hq).reload.topic
++  end
++
+   test "update a closed room to be open" do
+     put rooms_open_url(rooms(:designers)), params: { room: { name: "Doesn't matter" } }
+     assert_equal rooms(:designers).memberships.count, User.count
+diff --git a/test/controllers/rooms_controller_test.rb b/test/controllers/rooms_controller_test.rb
+index 69b2add..e726d1d 100644
+--- a/test/controllers/rooms_controller_test.rb
++++ b/test/controllers/rooms_controller_test.rb
+@@ -15,6 +15,15 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
+     assert_response :success
+   end
+ 
++  test "show displays the room's topic in the header" do
++    rooms(:pets).update! topic: "Photos of our pets"
++
++    get room_url(rooms(:pets))
++
++    assert_response :success
++    assert_select ".room--current", text: /Photos of our pets/
++  end
++
+   test "shows records the last room visited in a cookie" do
+     get room_url(users(:david).rooms.last)
+     assert response.cookies[:last_room] = users(:david).rooms.last.id
+diff --git a/test/models/room_test.rb b/test/models/room_test.rb
+index b113726..892f1af 100644
+--- a/test/models/room_test.rb
++++ b/test/models/room_test.rb
+@@ -30,6 +30,30 @@ class RoomTest < ActiveSupport::TestCase
+     assert Rooms::Closed.new.closed?
+   end
+ 
++  test "a room without a topic is valid" do
++    assert_nil rooms(:pets).topic
++    assert rooms(:pets).valid?
++  end
++
++  test "topic of up to 120 characters is accepted" do
++    rooms(:pets).update! topic: "T" * 120
++    assert_equal "T" * 120, rooms(:pets).reload.topic
++  end
++
++  test "topic longer than 120 characters is rejected" do
++    room = rooms(:pets)
++    room.topic = "T" * 121
++
++    assert_not room.valid?
++    assert room.errors.of_kind?(:topic, :too_long)
++    assert_nil room.reload.topic
++  end
++
++  test "blank topic is stored as none at all" do
++    rooms(:pets).update! topic: "   "
++    assert_nil rooms(:pets).reload.topic
++  end
++
+   test "default involvement for new users" do
+     room = Rooms::Closed.create_for({ name: "Hello!", creator: users(:david) }, users: [ users(:kevin), users(:david) ])
+     assert room.memberships.all? { |m| m.involved_in_mentions? }

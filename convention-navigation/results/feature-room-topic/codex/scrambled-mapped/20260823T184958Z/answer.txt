@@ -1,0 +1,9 @@
+Implemented room topics.
+
+- Added nullable `rooms.topic` string column and updated the schema.
+- Added a 120-character model validation; blank topics remain valid.
+- Added the topic field to the existing room rename form with a 120-character input limit.
+- Permitted `topic` in the same create/update request as `name`.
+- Added model and endpoint regression tests.
+
+Verification: `349 tests, 1016 assertions, 0 failures, 0 errors` (2 existing skips).

@@ -42,14 +42,19 @@ METRICS = %w[
   wall_seconds
 ].freeze
 
-CONDITIONS = %w[conventional scrambled scrambled-mapped].freeze
+CONDITIONS = %w[conventional scrambled scrambled-mapped conventional-mapped].freeze
 CONDITION_PAIRS = [
   # The comparison the experiment is for.
   %w[conventional scrambled],
   # Does writing the layout down buy the advantage back, and what does carrying
   # the map cost on every request?
   %w[scrambled scrambled-mapped],
-  %w[conventional scrambled-mapped]
+  %w[conventional scrambled-mapped],
+  # And the control for that last one. A mapped trial beating conventional says
+  # nothing on its own while only mapped trials carry a document at all: this
+  # pair holds the document constant and varies only what it has to tell you.
+  %w[conventional conventional-mapped],
+  %w[conventional-mapped scrambled-mapped]
 ].freeze
 
 if ARGV.include?("--selftest")

@@ -22,7 +22,7 @@ require_relative "lib/stats"
 
 EXPERIMENT_DIR = File.expand_path("..", __dir__)
 
-CONDITIONS = %w[conventional scrambled scrambled-mapped].freeze
+CONDITIONS = %w[conventional scrambled scrambled-mapped conventional-mapped].freeze
 
 # The four that answer the question. total_input_tokens is the headline; the
 # other three are the mechanism, and they are what tell a real effect apart from
@@ -33,6 +33,15 @@ HEADLINE = {
   "search_calls" => "search calls",
   "distinct_files_read" => "files read"
 }.freeze
+
+# The map condition gets one extra metric. `searches_before_first_target` is the
+# count the map is supposed to act on directly -- a document saying where models
+# live should cut the searching that happens before the first one is opened -- so
+# it is the metric that says whether a recovery is the map working or a
+# coincidence in token accounting.
+MAP_METRICS = HEADLINE.merge(
+  "searches_before_first_target" => "searches before first target"
+).freeze
 
 def commas(number)
   return "-" if number.nil?
@@ -65,7 +74,10 @@ agents.each do |agent|
 
   HEADLINE.each do |metric, label|
     out << "### #{label}, median over trials that passed\n\n"
-    out << "| task | " + present_conditions.join(" | ") + " | change | exact p |\n"
+    # The change and p columns are conventional-to-scrambled and stay that way
+    # even when a third condition has a column, because that pair is the
+    # pre-registered question. The map's comparisons get their own table.
+    out << "| task | " + present_conditions.join(" | ") + " | change c->s | exact p c->s |\n"
     out << "|---" * (present_conditions.size + 3) + "|\n"
 
     tasks.each do |task|
@@ -143,6 +155,76 @@ agents.each do |agent|
   end
 end
 out << "\n"
+
+# --- the map --------------------------------------------------------------
+#
+# Three comparisons, each answering something the others cannot.
+#
+#   conv -> conv+map   what a document buys when it says only what an agent
+#                      could already have guessed. This is the control: it holds
+#                      "there is a document" constant and takes away the only
+#                      thing the scrambled map had to tell you.
+#   scr  -> scr+map    what a document buys when the layout is unguessable.
+#                      The question the follow-up was built to ask.
+#   conv+map -> scr+map  with a document on both sides, does the layout still
+#                      cost anything? This is the only clean way to ask whether
+#                      a documented nonstandard layout can match a conventional
+#                      one, and it exists because conv -> scr+map cannot: that
+#                      pair varies the layout and the document together.
+#
+# Each layout is described by its own map, truthfully. The conventional one is
+# shorter because there is less to say, and that asymmetry is a property of the
+# thing being measured rather than a flaw in the measurement: a conventional
+# layout needs less documentation. Byte counts are printed so a reader can weigh
+# it.
+if present_conditions.include?("scrambled-mapped")
+  out << "## The map: what a document saying where things live is worth\n\n"
+  out << "Each layout carries its own map, describing that layout truthfully.\n"
+  out << "`conv+map` is the control for `scr+map`: it holds the presence of an\n"
+  out << "agent-instruction file constant and removes only the thing the scrambled\n"
+  out << "map had to tell you, since a conventional layout's map mostly restates\n"
+  out << "Rails defaults. Change is shown with its exact p in brackets.\n\n"
+  out << "| agent | metric | conv | conv+map | scr | scr+map | conv -> conv+map | scr -> scr+map | conv+map -> scr+map |\n"
+  out << "|---|---|---|---|---|---|---|---|---|\n"
+
+  agents.each do |agent|
+    MAP_METRICS.each do |metric, label|
+      tasks.each do |task|
+        cell = passed.select { |r| r["agent"] == agent && r["task"] == task }
+        series = CONDITIONS.to_h do |cond|
+          [cond, cell.select { |r| r["condition"] == cond }.filter_map { |r| r[metric] }.map(&:to_f)]
+        end
+        # The three-condition core must be present; conventional-mapped may not
+        # be, so the table still renders before that arm has run.
+        next if %w[conventional scrambled scrambled-mapped].any? { |c| series[c].empty? }
+
+        med = series.transform_values { |v| v.empty? ? nil : Stats.median(v) }
+        show = lambda do |value|
+          next "-" if value.nil?
+
+          metric == "total_input_tokens" ? commas(value) : format("%g", value.round(1))
+        end
+
+        pair = lambda do |from, to|
+          next "-" if med[from].nil? || med[to].nil?
+
+          pct = Stats.percent_change(med[from], med[to])
+          delta = pct ? format("%+.0f%%", pct) : format("%+.1f", med[to] - med[from])
+          result = Stats.exact_mann_whitney(series[from], series[to])
+          "#{delta} (#{result[:p] ? format('%.3f', result[:p]) : result[:note]})"
+        end
+
+        out << "| #{agent} | #{label} | " \
+               "#{show.call(med['conventional'])} | #{show.call(med['conventional-mapped'])} | " \
+               "#{show.call(med['scrambled'])} | #{show.call(med['scrambled-mapped'])} | " \
+               "#{pair.call('conventional', 'conventional-mapped')} | " \
+               "#{pair.call('scrambled', 'scrambled-mapped')} | " \
+               "#{pair.call('conventional-mapped', 'scrambled-mapped')} |\n"
+      end
+    end
+  end
+  out << "\n"
+end
 
 # --- zero-search navigation ---------------------------------------------------
 out << "## Zero-search navigation\n\n"

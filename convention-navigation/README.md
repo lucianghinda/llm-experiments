@@ -1,11 +1,12 @@
 # Does Rails convention-over-configuration save an agent tokens?
 
-**Status: pilot run. 80 trials, all passed. The answer is in
-[`RESULTS.md`](RESULTS.md).**
+**Status: pilot run, plus both map follow-ups. 100 trials, all passed. The answer
+is in [`RESULTS.md`](RESULTS.md).**
 
 The two layouts are built and proven equivalent — same code, same gems, same
 routes, same 348 passing tests — and the full grid of 4 tasks × 2 conditions ×
-2 agents × 5 repeats has been run end to end.
+2 agents × 5 repeats has been run end to end. The two mapped conditions add 10
+each on the cross-layer task, reusing the bare trials as their baselines.
 
 **This file is the design; `RESULTS.md` is the answer.** Everything below
 describes how the experiment was built and what it pre-registered, including a
@@ -13,11 +14,14 @@ design error the results section owns up to. The numbers quoted in "What the
 validation trials showed about the harness" are still n=1 from before the grid
 and are about the harness, not the question.
 
-The short version of the answer: agents never navigated without searching, in
-either layout, in any of the 80 trials — so the assumption's mechanism is wrong.
-But changing code across layers cost 25–44% more on the scrambled layout in
-three cells of four. Convention does not save an agent from searching; it saves
-it from searching repeatedly.
+The short version of the answer: agents navigated without searching once in 100
+trials, so the assumption's mechanism is wrong. Changing code across layers did
+cost 25–44% more on the scrambled layout in three cells of four — convention
+does not save an agent from searching, it saves it from searching repeatedly.
+But the largest effect measured here is not the layout at all: a page of prose
+in `CLAUDE.md` took 40% off Claude's *conventional* trials, with every documented
+run cheaper than every undocumented one. The layout penalty survives on top of
+that, at +42% with documents on both sides.
 
 ## The question
 
@@ -51,12 +55,23 @@ conventions. So the comparison is campfire against a rearranged campfire:
 | `conventional` | the app as its authors wrote it |
 | `scrambled` | the same code, non-conventional layout, wired through configuration |
 | `scrambled-mapped` | `scrambled` plus a file documenting where everything is |
+| `conventional-mapped` | `conventional` plus the same kind of file, describing that layout |
 
 `conventional` vs `scrambled` isolates what convention knowledge is worth.
 `scrambled-mapped` asks the practical follow-up: if your architecture is
 nonstandard, does writing it down buy the advantage back — and what does
 carrying that document cost on every request? Its tokens are charged, not
 hidden.
+
+`conventional-mapped` is the control for that, and it exists because the first
+follow-up could not tell two things apart. Only mapped trials carried an
+agent-instruction file at all, so a mapped trial beating `conventional` might
+have been the map's layout information or might have been the mere presence of a
+document. Documenting both layouts holds the document constant and varies only
+what it has to tell you — a conventional layout's map mostly restates Rails
+defaults. Each layout gets a truthful map of itself; handing the conventional
+tree the scrambled tree's map would be a different experiment, about what a
+*wrong* map costs.
 
 ### The scramble
 
@@ -305,6 +320,7 @@ convention-navigation/
   variants/campfire/
     scrambled/        the eight wiring files, the only content that differs
     map.md            the document that IS the scrambled-mapped condition
+    map-conventional.md  the same, for conventional-mapped: its control
     manifest.json     generated: every old path -> new path
   checks/
     lib/acceptance.rb shared plumbing for the acceptance checks

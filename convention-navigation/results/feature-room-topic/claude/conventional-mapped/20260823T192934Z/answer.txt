@@ -1,0 +1,16 @@
+Done. Rooms now have a topic.
+
+**Storage** — `db/migrate/20260823120000_add_topic_to_rooms.rb` adds a `topic` string column (migrated, `db/schema.rb` regenerated). Nullable, so a room without one is still valid.
+
+**Validation** — `app/models/room.rb:25` adds `MAX_TOPIC_LENGTH = 120` and `validates :topic, length: { maximum: MAX_TOPIC_LENGTH }`. Length validation ignores `nil`, so absent topics pass; anything over 120 characters fails and isn't saved.
+
+**Editing** — the topic rides along with the rename, in the same form and request:
+- `RoomsController#room_params` now permits `:topic`, so both `Rooms::Opens` and `Rooms::Closeds` (which inherit it) accept it on create and update.
+- `app/views/rooms/layouts/_form.html.erb` — the partial behind both room edit screens — gains a topic field right under the name field, shown to exactly the same people who get the name field (`Current.user.can_administer?(room)`); everyone else sees the topic as read-only text. It carries `maxlength: 120` and the same `turbo_permanent` treatment as the name, so switching a room between open and closed mid-edit keeps what was typed.
+- Direct rooms have no rename screen, so they get no topic field.
+
+**Rejection path** — the two update actions previously used `update!`, which would have turned an over-long topic into a 500. They now branch on `update` and re-render the edit screen with `:unprocessable_entity`, preserving what the user typed and showing the error above the form; for closed rooms this also means membership revisions no longer run when the save is rejected. Create keeps `create_for`'s bang semantics but rescues `RecordInvalid` to re-render `new` the same way.
+
+**Display** — `app/views/rooms/show/_nav.html.erb` shows the topic as a second, smaller line under the room name in the header (the name/topic pair is stacked inside the existing `.room__contents` box, which keeps its width cap and ellipsis).
+
+**Tests** — added model tests (optional, exactly 120 accepted, 121 rejected and the stored value untouched), controller tests for both room types (topic set during rename; over-long topic rejected with no broadcast and, for closed rooms, no membership change; over-long topic rejected on create), and a test that the topic renders in the room nav. Full suite: 359 runs, 0 failures, 2 pre-existing skips. RuboCop clean. System tests couldn't run here — `selenium-manager` in this environment fails before any test loads, which is unrelated to these changes.

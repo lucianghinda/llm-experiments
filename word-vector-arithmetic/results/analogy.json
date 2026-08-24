@@ -1,0 +1,609 @@
+{
+  "provenance": {
+    "source": "https://nlp.stanford.edu/data/glove.6B.zip",
+    "entry": "glove.6B.50d.txt",
+    "table_sha256": "d8f717f8dd4b545cb7f418ef9f3d0c3e6e68a6f48b97d32f8b7aae40cb31f96f",
+    "read_from": "data/glove.6B.50d.txt",
+    "vocabulary": 400000,
+    "dimensions": 50,
+    "words_yml_sha256": "92415c293a18812a1c00254f2e60babac79999f3e4b8449531b359c5f3de35ff",
+    "slice_sha256": "bef13dadd9abdc4e334e3b6e014bb649a1645b81492f472062f58bdc9057967e",
+    "ruby": "4.0.1"
+  },
+  "analogies": [
+    {
+      "relation": "gender",
+      "a": "man",
+      "b": "woman",
+      "c": "king",
+      "expected": "queen",
+      "euclidean": {
+        "top1_with_inputs": "king",
+        "rank_with_inputs": 2,
+        "top1": "queen",
+        "rank": 1,
+        "top5": [
+          "queen",
+          "prince",
+          "elizabeth",
+          "daughter",
+          "widow"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "king",
+        "rank_with_inputs": 2,
+        "top1": "queen",
+        "rank": 1,
+        "top5": [
+          "queen",
+          "daughter",
+          "prince",
+          "throne",
+          "princess"
+        ]
+      }
+    },
+    {
+      "relation": "gender",
+      "a": "man",
+      "b": "woman",
+      "c": "boy",
+      "expected": "girl",
+      "euclidean": {
+        "top1_with_inputs": "girl",
+        "rank_with_inputs": 1,
+        "top1": "girl",
+        "rank": 1,
+        "top5": [
+          "girl",
+          "mother",
+          "toddler",
+          "girlfriend",
+          "child"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "girl",
+        "rank_with_inputs": 1,
+        "top1": "girl",
+        "rank": 1,
+        "top5": [
+          "girl",
+          "mother",
+          "toddler",
+          "girlfriend",
+          "child"
+        ]
+      }
+    },
+    {
+      "relation": "gender",
+      "a": "man",
+      "b": "woman",
+      "c": "brother",
+      "expected": "sister",
+      "euclidean": {
+        "top1_with_inputs": "daughter",
+        "rank_with_inputs": 9,
+        "top1": "daughter",
+        "rank": 8,
+        "top5": [
+          "daughter",
+          "wife",
+          "cousin",
+          "father",
+          "mother"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "daughter",
+        "rank_with_inputs": 10,
+        "top1": "daughter",
+        "rank": 9,
+        "top5": [
+          "daughter",
+          "wife",
+          "mother",
+          "father",
+          "cousin"
+        ]
+      }
+    },
+    {
+      "relation": "gender",
+      "a": "man",
+      "b": "woman",
+      "c": "uncle",
+      "expected": "aunt",
+      "euclidean": {
+        "top1_with_inputs": "niece",
+        "rank_with_inputs": 3,
+        "top1": "niece",
+        "rank": 3,
+        "top5": [
+          "niece",
+          "grandmother",
+          "aunt",
+          "granddaughter",
+          "daughter"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "daughter",
+        "rank_with_inputs": 4,
+        "top1": "daughter",
+        "rank": 4,
+        "top5": [
+          "daughter",
+          "niece",
+          "grandmother",
+          "aunt",
+          "granddaughter"
+        ]
+      }
+    },
+    {
+      "relation": "gender",
+      "a": "man",
+      "b": "woman",
+      "c": "actor",
+      "expected": "actress",
+      "euclidean": {
+        "top1_with_inputs": "actress",
+        "rank_with_inputs": 1,
+        "top1": "actress",
+        "rank": 1,
+        "top5": [
+          "actress",
+          "starred",
+          "comedian",
+          "starring",
+          "entertainer"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "actress",
+        "rank_with_inputs": 1,
+        "top1": "actress",
+        "rank": 1,
+        "top5": [
+          "actress",
+          "starred",
+          "starring",
+          "comedian",
+          "singer"
+        ]
+      }
+    },
+    {
+      "relation": "capital",
+      "a": "france",
+      "b": "paris",
+      "c": "italy",
+      "expected": "rome",
+      "euclidean": {
+        "top1_with_inputs": "rome",
+        "rank_with_inputs": 1,
+        "top1": "rome",
+        "rank": 1,
+        "top5": [
+          "rome",
+          "turin",
+          "venice",
+          "naples",
+          "aires"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "rome",
+        "rank_with_inputs": 1,
+        "top1": "rome",
+        "rank": 1,
+        "top5": [
+          "rome",
+          "milan",
+          "turin",
+          "venice",
+          "madrid"
+        ]
+      }
+    },
+    {
+      "relation": "capital",
+      "a": "france",
+      "b": "paris",
+      "c": "japan",
+      "expected": "tokyo",
+      "euclidean": {
+        "top1_with_inputs": "tokyo",
+        "rank_with_inputs": 1,
+        "top1": "tokyo",
+        "rank": 1,
+        "top5": [
+          "tokyo",
+          "shanghai",
+          "osaka",
+          "japanese",
+          "beijing"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "tokyo",
+        "rank_with_inputs": 1,
+        "top1": "tokyo",
+        "rank": 1,
+        "top5": [
+          "tokyo",
+          "shanghai",
+          "japanese",
+          "osaka",
+          "beijing"
+        ]
+      }
+    },
+    {
+      "relation": "capital",
+      "a": "france",
+      "b": "paris",
+      "c": "germany",
+      "expected": "berlin",
+      "euclidean": {
+        "top1_with_inputs": "berlin",
+        "rank_with_inputs": 1,
+        "top1": "berlin",
+        "rank": 1,
+        "top5": [
+          "berlin",
+          "vienna",
+          "munich",
+          "frankfurt",
+          "hamburg"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "berlin",
+        "rank_with_inputs": 1,
+        "top1": "berlin",
+        "rank": 1,
+        "top5": [
+          "berlin",
+          "frankfurt",
+          "munich",
+          "vienna",
+          "hamburg"
+        ]
+      }
+    },
+    {
+      "relation": "capital",
+      "a": "france",
+      "b": "paris",
+      "c": "spain",
+      "expected": "madrid",
+      "euclidean": {
+        "top1_with_inputs": "aires",
+        "rank_with_inputs": 3,
+        "top1": "aires",
+        "rank": 3,
+        "top5": [
+          "aires",
+          "buenos",
+          "madrid",
+          "rome",
+          "santiago"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "aires",
+        "rank_with_inputs": 3,
+        "top1": "aires",
+        "rank": 3,
+        "top5": [
+          "aires",
+          "buenos",
+          "madrid",
+          "rome",
+          "santiago"
+        ]
+      }
+    },
+    {
+      "relation": "comparative",
+      "a": "good",
+      "b": "better",
+      "c": "bad",
+      "expected": "worse",
+      "euclidean": {
+        "top1_with_inputs": "bad",
+        "rank_with_inputs": 2,
+        "top1": "worse",
+        "rank": 1,
+        "top5": [
+          "worse",
+          "hurt",
+          "harder",
+          "too",
+          "unfortunately"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "bad",
+        "rank_with_inputs": 2,
+        "top1": "worse",
+        "rank": 1,
+        "top5": [
+          "worse",
+          "too",
+          "unfortunately",
+          "hurt",
+          "because"
+        ]
+      }
+    },
+    {
+      "relation": "comparative",
+      "a": "big",
+      "b": "bigger",
+      "c": "small",
+      "expected": "smaller",
+      "euclidean": {
+        "top1_with_inputs": "larger",
+        "rank_with_inputs": 2,
+        "top1": "larger",
+        "rank": 2,
+        "top5": [
+          "larger",
+          "smaller",
+          "large",
+          "normally",
+          "typically"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "larger",
+        "rank_with_inputs": 4,
+        "top1": "larger",
+        "rank": 3,
+        "top5": [
+          "larger",
+          "large",
+          "smaller",
+          "normally",
+          "typically"
+        ]
+      }
+    },
+    {
+      "relation": "comparative",
+      "a": "long",
+      "b": "longer",
+      "c": "short",
+      "expected": "shorter",
+      "euclidean": {
+        "top1_with_inputs": "longer",
+        "rank_with_inputs": 84,
+        "top1": "actually",
+        "rank": 82,
+        "top5": [
+          "actually",
+          "except",
+          "usually",
+          "depending",
+          "otherwise"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "longer",
+        "rank_with_inputs": 43,
+        "top1": "usually",
+        "rank": 41,
+        "top5": [
+          "usually",
+          "depending",
+          "actually",
+          "generally",
+          "either"
+        ]
+      }
+    },
+    {
+      "relation": "past-tense",
+      "a": "walk",
+      "b": "walked",
+      "c": "run",
+      "expected": "ran",
+      "euclidean": {
+        "top1_with_inputs": "run",
+        "rank_with_inputs": 3,
+        "top1": "went",
+        "rank": 2,
+        "top5": [
+          "went",
+          "ran",
+          "drove",
+          "picked",
+          "threw"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "run",
+        "rank_with_inputs": 3,
+        "top1": "went",
+        "rank": 2,
+        "top5": [
+          "went",
+          "ran",
+          "drove",
+          "picked",
+          "threw"
+        ]
+      }
+    },
+    {
+      "relation": "past-tense",
+      "a": "go",
+      "b": "went",
+      "c": "take",
+      "expected": "took",
+      "euclidean": {
+        "top1_with_inputs": "took",
+        "rank_with_inputs": 1,
+        "top1": "took",
+        "rank": 1,
+        "top5": [
+          "took",
+          "came",
+          "after",
+          "before",
+          "while"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "took",
+        "rank_with_inputs": 1,
+        "top1": "took",
+        "rank": 1,
+        "top5": [
+          "took",
+          "after",
+          "came",
+          "before",
+          "had"
+        ]
+      }
+    },
+    {
+      "relation": "past-tense",
+      "a": "eat",
+      "b": "ate",
+      "c": "drink",
+      "expected": "drank",
+      "euclidean": {
+        "top1_with_inputs": "drank",
+        "rank_with_inputs": 1,
+        "top1": "drank",
+        "rank": 1,
+        "top5": [
+          "drank",
+          "drinks",
+          "sipping",
+          "sipped",
+          "bottled"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "drank",
+        "rank_with_inputs": 1,
+        "top1": "drank",
+        "rank": 1,
+        "top5": [
+          "drank",
+          "drinks",
+          "sipping",
+          "sipped",
+          "beer"
+        ]
+      }
+    },
+    {
+      "relation": "plural",
+      "a": "cat",
+      "b": "cats",
+      "c": "dog",
+      "expected": "dogs",
+      "euclidean": {
+        "top1_with_inputs": "cats",
+        "rank_with_inputs": 2,
+        "top1": "dogs",
+        "rank": 1,
+        "top5": [
+          "dogs",
+          "rabbits",
+          "herd",
+          "animals",
+          "breed"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "cats",
+        "rank_with_inputs": 2,
+        "top1": "dogs",
+        "rank": 1,
+        "top5": [
+          "dogs",
+          "animals",
+          "rabbits",
+          "horses",
+          "goats"
+        ]
+      }
+    },
+    {
+      "relation": "plural",
+      "a": "cat",
+      "b": "cats",
+      "c": "mouse",
+      "expected": "mice",
+      "euclidean": {
+        "top1_with_inputs": "mouse",
+        "rank_with_inputs": 6,
+        "top1": "rabbits",
+        "rank": 4,
+        "top5": [
+          "rabbits",
+          "monkeys",
+          "bugs",
+          "mice",
+          "rodents"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "mouse",
+        "rank_with_inputs": 2,
+        "top1": "mice",
+        "rank": 1,
+        "top5": [
+          "mice",
+          "rabbits",
+          "rodents",
+          "monkeys",
+          "humans"
+        ]
+      }
+    },
+    {
+      "relation": "plural",
+      "a": "cat",
+      "b": "cats",
+      "c": "child",
+      "expected": "children",
+      "euclidean": {
+        "top1_with_inputs": "children",
+        "rank_with_inputs": 1,
+        "top1": "children",
+        "rank": 1,
+        "top5": [
+          "children",
+          "parents",
+          "mothers",
+          "teenagers",
+          "youngsters"
+        ]
+      },
+      "cosine": {
+        "top1_with_inputs": "children",
+        "rank_with_inputs": 1,
+        "top1": "children",
+        "rank": 1,
+        "top5": [
+          "children",
+          "parents",
+          "mothers",
+          "teenagers",
+          "families"
+        ]
+      }
+    }
+  ]
+}

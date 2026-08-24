@@ -1,0 +1,220 @@
+# Every word the experiments touch. Nothing is hardcoded in a script, so the
+# committed slice in vectors-slice.txt is exactly derivable from this file.
+#
+# THE SEED IS ONE PAIR, ON PURPOSE. The talk derives the plural direction from
+# cat and cats alone and then asks other words about it. Averaging over many
+# pairs is the obvious improvement, so it is a second condition here rather
+# than a replacement: the question is how much the one-pair version gives up.
+#
+# TRAINING AND TEST ARE DISJOINT. direction_training feeds the averaged
+# direction only. No pair appears in both lists, and the seed appears in
+# neither, so every reported number is on words the direction never saw.
+#
+# HALF THE TEST SET IS IRREGULAR. A direction derived from cats - cat could be
+# picking up the letter s rather than the idea of plurality. men, mice, feet and
+# criteria share no suffix with cats, so they separate the two explanations.
+# Reporting regular and irregular together would hide that.
+#
+# THE ANALOGY TARGET IS NEVER AN INPUT. For each quadruple the experiment
+# computes b - a + c and ranks all 400k words against it. d is what a correct
+# answer would be, and it is never one of a, b, c.
+
+analogies:
+  - relation: gender
+    a: man
+    b: woman
+    c: king
+    d: queen
+  - relation: gender
+    a: man
+    b: woman
+    c: boy
+    d: girl
+  - relation: gender
+    a: man
+    b: woman
+    c: brother
+    d: sister
+  - relation: gender
+    a: man
+    b: woman
+    c: uncle
+    d: aunt
+  - relation: gender
+    a: man
+    b: woman
+    c: actor
+    d: actress
+  - relation: capital
+    a: france
+    b: paris
+    c: italy
+    d: rome
+  - relation: capital
+    a: france
+    b: paris
+    c: japan
+    d: tokyo
+  - relation: capital
+    a: france
+    b: paris
+    c: germany
+    d: berlin
+  - relation: capital
+    a: france
+    b: paris
+    c: spain
+    d: madrid
+  - relation: comparative
+    a: good
+    b: better
+    c: bad
+    d: worse
+  - relation: comparative
+    a: big
+    b: bigger
+    c: small
+    d: smaller
+  - relation: comparative
+    a: long
+    b: longer
+    c: short
+    d: shorter
+  - relation: past-tense
+    a: walk
+    b: walked
+    c: run
+    d: ran
+  - relation: past-tense
+    a: go
+    b: went
+    c: take
+    d: took
+  - relation: past-tense
+    a: eat
+    b: ate
+    c: drink
+    d: drank
+  - relation: plural
+    a: cat
+    b: cats
+    c: dog
+    d: dogs
+  - relation: plural
+    a: cat
+    b: cats
+    c: mouse
+    d: mice
+  - relation: plural
+    a: cat
+    b: cats
+    c: child
+    d: children
+
+direction_seed:
+  singular: cat
+  plural: cats
+
+direction_training:
+  - singular: dog
+    plural: dogs
+  - singular: car
+    plural: cars
+  - singular: house
+    plural: houses
+  - singular: tree
+    plural: trees
+  - singular: hand
+    plural: hands
+
+direction_test:
+  - singular: book
+    plural: books
+    form: regular
+  - singular: bird
+    plural: birds
+    form: regular
+  - singular: game
+    plural: games
+    form: regular
+  - singular: road
+    plural: roads
+    form: regular
+  - singular: room
+    plural: rooms
+    form: regular
+  - singular: day
+    plural: days
+    form: regular
+  - singular: city
+    plural: cities
+    form: regular
+  - singular: baby
+    plural: babies
+    form: regular
+  - singular: story
+    plural: stories
+    form: regular
+  - singular: box
+    plural: boxes
+    form: regular
+  - singular: church
+    plural: churches
+    form: regular
+  - singular: bus
+    plural: buses
+    form: regular
+  - singular: wolf
+    plural: wolves
+    form: regular
+  - singular: leaf
+    plural: leaves
+    form: regular
+  - singular: knife
+    plural: knives
+    form: regular
+  - singular: man
+    plural: men
+    form: irregular
+  - singular: woman
+    plural: women
+    form: irregular
+  - singular: child
+    plural: children
+    form: irregular
+  - singular: mouse
+    plural: mice
+    form: irregular
+  - singular: foot
+    plural: feet
+    form: irregular
+  - singular: tooth
+    plural: teeth
+    form: irregular
+  - singular: goose
+    plural: geese
+    form: irregular
+  - singular: person
+    plural: people
+    form: irregular
+  - singular: ox
+    plural: oxen
+    form: irregular
+  - singular: cactus
+    plural: cacti
+    form: irregular
+  - singular: fungus
+    plural: fungi
+    form: irregular
+  - singular: analysis
+    plural: analyses
+    form: irregular
+  - singular: crisis
+    plural: crises
+    form: irregular
+  - singular: criterion
+    plural: criteria
+    form: irregular
+  - singular: phenomenon
+    plural: phenomena
+    form: irregular

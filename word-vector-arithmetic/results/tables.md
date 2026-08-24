@@ -2,77 +2,124 @@
 
 # Tables
 
-GloVe glove.6B.50d.txt, 400000 words, 50 dimensions, sha256 `d8f717f8dd4b`.
+| model | entries | dimensions | candidate pool | analogies | plural pairs |
+|---|---|---|---|---|---|
+| glove | 400000 | 50 | whole vocabulary | 18 | 30 |
+| gpt2 | 50257 | 768 | 32064 | 18 | 27 |
 
 ## 1. Analogy top-1 accuracy
 
-`b - a + c`, ranked against the whole vocabulary. Hit means the expected word came first.
+`b - a + c`, ranked against the vocabulary. A hit means the expected word came first. "word-like only" restricts GPT-2's candidates to whole words as they appear mid-sentence, since most of its vocabulary is fragments that no GloVe ranking could return.
 
-| metric | inputs excluded | inputs kept | median rank excl. | median rank kept |
-|---|---|---|---|---|
-| euclidean | 11/18 (61%) | 8/18 (44%) | 1 | 2 |
-| cosine | 12/18 (67%) | 8/18 (44%) | 1 | 2 |
+| model | metric | inputs excluded | inputs kept | word-like only | median rank excl. |
+|---|---|---|---|---|---|
+| glove | euclidean | 11/18 (61%) | 8/18 (44%) | - | 1 |
+| glove | cosine | 12/18 (67%) | 8/18 (44%) | - | 1 |
+| gpt2 | euclidean | 16/18 (89%) | 5/18 (28%) | 16/18 (89%) | 1 |
+| gpt2 | cosine | 16/18 (89%) | 5/18 (28%) | 16/18 (89%) | 1 |
 
 ## 2. What comes first when the inputs are left in
 
 The three input words are `a`, `b`, `c`. If the nearest point to `b - a + c` is one of them, the arithmetic did not move far enough to leave its own inputs behind.
 
-| metric | an input word | the expected word | something else |
-|---|---|---|---|
-| euclidean | 6/18 (33%) | 8/18 (44%) | 4/18 (22%) |
-| cosine | 6/18 (33%) | 8/18 (44%) | 4/18 (22%) |
+| model | metric | an input word | the expected word | something else |
+|---|---|---|---|---|
+| glove | euclidean | 6/18 (33%) | 8/18 (44%) | 4/18 (22%) |
+| glove | cosine | 6/18 (33%) | 8/18 (44%) | 4/18 (22%) |
+| gpt2 | euclidean | 13/18 (72%) | 5/18 (28%) | 0/18 (0%) |
+| gpt2 | cosine | 13/18 (72%) | 5/18 (28%) | 0/18 (0%) |
 
 ## 3. Analogy accuracy by relation (euclidean, inputs excluded)
 
-| relation | top-1 | median rank |
+| relation | glove top-1 | gpt2 top-1 |
 |---|---|---|
-| capital | 3/4 (75%) | 1 |
-| comparative | 1/3 (33%) | 2 |
-| gender | 3/5 (60%) | 1 |
-| past-tense | 2/3 (67%) | 1 |
-| plural | 2/3 (67%) | 1 |
+| capital | 3/4 (75%) | 2/4 (50%) |
+| comparative | 1/3 (33%) | 3/3 (100%) |
+| gender | 3/5 (60%) | 5/5 (100%) |
+| past-tense | 2/3 (67%) | 3/3 (100%) |
+| plural | 2/3 (67%) | 3/3 (100%) |
 
-## 4. Every analogy
+## 4. Every analogy, both models
 
-`rank` is where the expected word landed with the inputs excluded; `kept` is the same rank with them left in.
+Euclidean, inputs excluded. `rank` is where the expected word landed.
 
-| relation | arithmetic | expected | top-1 | rank | kept | top-1 with inputs |
+| relation | arithmetic | expected | glove top-1 | rank | gpt2 top-1 | rank |
 |---|---|---|---|---|---|---|
-| gender | woman - man + king | queen | queen | 1 | 2 | king |
-| gender | woman - man + boy | girl | girl | 1 | 1 | girl |
-| gender | woman - man + brother | sister | daughter | 8 | 9 | daughter |
-| gender | woman - man + uncle | aunt | niece | 3 | 3 | niece |
-| gender | woman - man + actor | actress | actress | 1 | 1 | actress |
-| capital | paris - france + italy | rome | rome | 1 | 1 | rome |
-| capital | paris - france + japan | tokyo | tokyo | 1 | 1 | tokyo |
-| capital | paris - france + germany | berlin | berlin | 1 | 1 | berlin |
-| capital | paris - france + spain | madrid | aires | 3 | 3 | aires |
-| comparative | better - good + bad | worse | worse | 1 | 2 | bad |
-| comparative | bigger - big + small | smaller | larger | 2 | 2 | larger |
-| comparative | longer - long + short | shorter | actually | 82 | 84 | longer |
-| past-tense | walked - walk + run | ran | went | 2 | 3 | run |
-| past-tense | went - go + take | took | took | 1 | 1 | took |
-| past-tense | ate - eat + drink | drank | drank | 1 | 1 | drank |
-| plural | cats - cat + dog | dogs | dogs | 1 | 2 | cats |
-| plural | cats - cat + mouse | mice | rabbits | 4 | 6 | mouse |
-| plural | cats - cat + child | children | children | 1 | 1 | children |
+| gender | woman - man + king | queen | `"queen"` | 1 | `" queen"` | 1 |
+| gender | woman - man + boy | girl | `"girl"` | 1 | `" girl"` | 1 |
+| gender | woman - man + brother | sister | `"daughter"` | 8 | `" sister"` | 1 |
+| gender | woman - man + uncle | aunt | `"niece"` | 3 | `" aunt"` | 1 |
+| gender | woman - man + actor | actress | `"actress"` | 1 | `" actress"` | 1 |
+| capital | paris - france + italy | rome | `"rome"` | 1 | `" Italian"` | 2 |
+| capital | paris - france + japan | tokyo | `"tokyo"` | 1 | `" Tokyo"` | 1 |
+| capital | paris - france + germany | berlin | `"berlin"` | 1 | `" Berlin"` | 1 |
+| capital | paris - france + spain | madrid | `"aires"` | 3 | `" Barcelona"` | 2 |
+| comparative | better - good + bad | worse | `"worse"` | 1 | `" worse"` | 1 |
+| comparative | bigger - big + small | smaller | `"larger"` | 2 | `" smaller"` | 1 |
+| comparative | longer - long + short | shorter | `"actually"` | 82 | `" shorter"` | 1 |
+| past-tense | walked - walk + run | ran | `"went"` | 2 | `" ran"` | 1 |
+| past-tense | went - go + take | took | `"took"` | 1 | `" took"` | 1 |
+| past-tense | ate - eat + drink | drank | `"drank"` | 1 | `" drank"` | 1 |
+| plural | cats - cat + dog | dogs | `"dogs"` | 1 | `" dogs"` | 1 |
+| plural | cats - cat + mouse | mice | `"rabbits"` | 4 | `" mice"` | 1 |
+| plural | cats - cat + child | children | `"children"` | 1 | `" children"` | 1 |
 
 ## 5. The plural direction on held-out pairs
 
-A pair is separated when the plural scores above the singular. `seed` is the direction from `cats - cat` alone; `averaged` is the mean of 5 training pairs. 30 test pairs, none of them seen by either direction.
+A pair is separated when the plural scores above the singular. `seed` is the direction from `cats - cat` alone; `averaged` is the mean of 5 training pairs. No test pair was seen by either direction.
 
-| direction | score | all pairs | regular | irregular |
-|---|---|---|---|---|
-| seed | dot | 29/30 (97%) | 14/15 (93%) | 15/15 (100%) |
-| seed | cosine | 29/30 (97%) | 14/15 (93%) | 15/15 (100%) |
-| averaged | dot | 29/30 (97%) | 14/15 (93%) | 15/15 (100%) |
-| averaged | cosine | 29/30 (97%) | 14/15 (93%) | 15/15 (100%) |
+| model | direction | score | all pairs | regular | irregular |
+|---|---|---|---|---|---|
+| glove | seed | dot | 29/30 (97%) | 14/15 (93%) | 15/15 (100%) |
+| glove | seed | cosine | 29/30 (97%) | 14/15 (93%) | 15/15 (100%) |
+| glove | averaged | dot | 29/30 (97%) | 14/15 (93%) | 15/15 (100%) |
+| glove | averaged | cosine | 29/30 (97%) | 14/15 (93%) | 15/15 (100%) |
+| gpt2 | seed | dot | 26/27 (96%) | 15/15 (100%) | 11/12 (92%) |
+| gpt2 | seed | cosine | 26/27 (96%) | 15/15 (100%) | 11/12 (92%) |
+| gpt2 | averaged | dot | 27/27 (100%) | 15/15 (100%) | 12/12 (100%) |
+| gpt2 | averaged | cosine | 27/27 (100%) | 15/15 (100%) | 12/12 (100%) |
+
+### The same pairs, both models
+
+27 pairs exist in every model. Pairs only one model can answer are dropped here.
+
+| model | direction | score | shared pairs |
+|---|---|---|---|
+| glove | seed | dot | 26/27 (96%) |
+| glove | seed | cosine | 26/27 (96%) |
+| glove | averaged | dot | 26/27 (96%) |
+| glove | averaged | cosine | 26/27 (96%) |
+| gpt2 | seed | dot | 26/27 (96%) |
+| gpt2 | seed | cosine | 26/27 (96%) |
+| gpt2 | averaged | dot | 27/27 (100%) |
+| gpt2 | averaged | cosine | 27/27 (100%) |
 
 ## 6. Pairs the direction gets wrong
 
-| direction | score | pair | form | singular | plural |
-|---|---|---|---|---|---|
-| seed | dot | leaf / leaves | regular | -2.611 | -2.749 |
-| seed | cosine | leaf / leaves | regular | -0.181 | -0.205 |
-| averaged | dot | leaf / leaves | regular | -0.099 | -1.200 |
-| averaged | cosine | leaf / leaves | regular | -0.009 | -0.118 |
+| model | direction | score | pair | form | singular | plural |
+|---|---|---|---|---|---|---|
+| glove | seed | dot | leaf / leaves | regular | -2.611 | -2.749 |
+| glove | seed | cosine | leaf / leaves | regular | -0.181 | -0.205 |
+| glove | averaged | dot | leaf / leaves | regular | -0.099 | -1.200 |
+| glove | averaged | cosine | leaf / leaves | regular | -0.009 | -0.118 |
+| gpt2 | seed | dot | criterion / criteria | irregular | 1.383 | 0.936 |
+| gpt2 | seed | cosine | criterion / criteria | irregular | 0.139 | 0.101 |
+
+## 7. Which token stood in for each word (GPT-2)
+
+The policy is: both mid-sentence forms first (` word`, then ` Word`), then the line-initial ones. Only words that needed something other than the plain mid-sentence form are listed.
+
+| word | token used |
+|---|---|
+| berlin | `" Berlin"` |
+| france | `" France"` |
+| germany | `" Germany"` |
+| italy | `" Italy"` |
+| japan | `" Japan"` |
+| madrid | `" Madrid"` |
+| paris | `" Paris"` |
+| rome | `" Rome"` |
+| spain | `" Spain"` |
+| tokyo | `" Tokyo"` |
+
+Words with no single GPT-2 token, dropped from its runs: `cacti`, `cactus`, `geese`, `oxen`.

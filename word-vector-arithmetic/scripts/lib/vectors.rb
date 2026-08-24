@@ -54,15 +54,23 @@ module Vectors
   # A scored vocabulary. Built once per target so that the top-n list and a
   # single word's rank come from the same scan rather than two.
   class Ranking
-    def initialize(table, scores, exclude)
+    def initialize(table, scores, exclude, restrict = nil)
       @table = table
       @scores = scores
       @excluded = exclude.filter_map { |w| table.index_of(w) }.to_set
+      # nil means the whole vocabulary competes. A set means only those indices
+      # do -- how "which of GPT-2's tokens could a GloVe answer even be?" is
+      # asked without pretending the other tokens are not there.
+      @restrict = restrict
+    end
+
+    def eligible?(index)
+      !@excluded.include?(index) && (@restrict.nil? || @restrict.include?(index))
     end
 
     def top(n)
       @scores.each_with_index
-             .reject { |_, i| @excluded.include?(i) }
+             .select { |_, i| eligible?(i) }
              .min_by(n) { |score, _| score }
              .map { |score, i| [@table.word_at(i), score] }
     end
@@ -77,7 +85,7 @@ module Vectors
       closer = 0
       i = 0
       while i < @scores.length
-        closer += 1 if @scores[i] < mine && !@excluded.include?(i)
+        closer += 1 if @scores[i] < mine && eligible?(i)
         i += 1
       end
       closer + 1
@@ -94,9 +102,10 @@ module Vectors
       vectors = []
       File.foreach(path) do |line|
         parts = line.split(" ")
-        # A gensim-exported table opens with a "400000 50" header line. Real rows
-        # carry one token plus every dimension, so a short row is that header.
-        next if parts.length <= DIMS
+        # A gensim-exported table opens with a "400000 50" header line. Two
+        # integers and nothing else is that header. The rule cannot test against
+        # DIMS, because a GPT-2 slice carries 768 of them.
+        next if parts.length == 2 && parts.all? { |part| part.match?(/\A\d+\z/) }
 
         words << parts.shift
         vectors << parts.map!(&:to_f)
@@ -112,6 +121,9 @@ module Vectors
     end
 
     def size = @words.length
+    def raw_index_of(token) = @index[token]
+    def vector_at(index) = @vectors[index]
+    def each_word_with_index(&block) = @words.each_with_index(&block)
     def [](word) = (i = @index[word.downcase]) && @vectors[i]
     def include?(word) = @index.key?(word.downcase)
     def index_of(word) = @index[word.downcase]
@@ -129,12 +141,12 @@ module Vectors
       end
     end
 
-    def ranking(target, metric: :euclidean, exclude: [])
-      ranking_from(scores(target, metric: metric), exclude: exclude)
+    def ranking(target, metric: :euclidean, exclude: [], restrict: nil)
+      ranking_from(scores(target, metric: metric), exclude: exclude, restrict: restrict)
     end
 
-    def ranking_from(scores, exclude: [])
-      Ranking.new(self, scores, exclude)
+    def ranking_from(scores, exclude: [], restrict: nil)
+      Ranking.new(self, scores, exclude, restrict)
     end
 
     private

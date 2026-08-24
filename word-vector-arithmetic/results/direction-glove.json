@@ -1,13 +1,15 @@
 {
   "provenance": {
-    "source": "https://nlp.stanford.edu/data/glove.6B.zip",
-    "entry": "glove.6B.50d.txt",
-    "table_sha256": "d8f717f8dd4b545cb7f418ef9f3d0c3e6e68a6f48b97d32f8b7aae40cb31f96f",
-    "read_from": "data/glove.6B.50d.txt",
+    "model": "glove",
+    "read_from": "data/",
+    "sources": {
+      "glove.6B.50d.txt": "d8f717f8dd4b545cb7f418ef9f3d0c3e6e68a6f48b97d32f8b7aae40cb31f96f"
+    },
     "vocabulary": 400000,
     "dimensions": 50,
+    "candidate_pool": null,
+    "words_without_a_vector": [],
     "words_yml_sha256": "92415c293a18812a1c00254f2e60babac79999f3e4b8449531b359c5f3de35ff",
-    "slice_sha256": "bef13dadd9abdc4e334e3b6e014bb649a1645b81492f472062f58bdc9057967e",
     "ruby": "4.0.1"
   },
   "seed": {

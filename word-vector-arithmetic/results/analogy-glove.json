@@ -1,13 +1,15 @@
 {
   "provenance": {
-    "source": "https://nlp.stanford.edu/data/glove.6B.zip",
-    "entry": "glove.6B.50d.txt",
-    "table_sha256": "d8f717f8dd4b545cb7f418ef9f3d0c3e6e68a6f48b97d32f8b7aae40cb31f96f",
-    "read_from": "data/glove.6B.50d.txt",
+    "model": "glove",
+    "read_from": "data/",
+    "sources": {
+      "glove.6B.50d.txt": "d8f717f8dd4b545cb7f418ef9f3d0c3e6e68a6f48b97d32f8b7aae40cb31f96f"
+    },
     "vocabulary": 400000,
     "dimensions": 50,
+    "candidate_pool": null,
+    "words_without_a_vector": [],
     "words_yml_sha256": "92415c293a18812a1c00254f2e60babac79999f3e4b8449531b359c5f3de35ff",
-    "slice_sha256": "bef13dadd9abdc4e334e3b6e014bb649a1645b81492f472062f58bdc9057967e",
     "ruby": "4.0.1"
   },
   "analogies": [
@@ -28,7 +30,9 @@
           "elizabeth",
           "daughter",
           "widow"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "king",
@@ -41,7 +45,9 @@
           "prince",
           "throne",
           "princess"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -61,7 +67,9 @@
           "toddler",
           "girlfriend",
           "child"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "girl",
@@ -74,7 +82,9 @@
           "toddler",
           "girlfriend",
           "child"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -94,7 +104,9 @@
           "cousin",
           "father",
           "mother"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "daughter",
@@ -107,7 +119,9 @@
           "mother",
           "father",
           "cousin"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -127,7 +141,9 @@
           "aunt",
           "granddaughter",
           "daughter"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "daughter",
@@ -140,7 +156,9 @@
           "grandmother",
           "aunt",
           "granddaughter"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -160,7 +178,9 @@
           "comedian",
           "starring",
           "entertainer"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "actress",
@@ -173,7 +193,9 @@
           "starring",
           "comedian",
           "singer"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -193,7 +215,9 @@
           "venice",
           "naples",
           "aires"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "rome",
@@ -206,7 +230,9 @@
           "turin",
           "venice",
           "madrid"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -226,7 +252,9 @@
           "osaka",
           "japanese",
           "beijing"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "tokyo",
@@ -239,7 +267,9 @@
           "japanese",
           "osaka",
           "beijing"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -259,7 +289,9 @@
           "munich",
           "frankfurt",
           "hamburg"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "berlin",
@@ -272,7 +304,9 @@
           "munich",
           "vienna",
           "hamburg"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -292,7 +326,9 @@
           "madrid",
           "rome",
           "santiago"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "aires",
@@ -305,7 +341,9 @@
           "madrid",
           "rome",
           "santiago"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -325,7 +363,9 @@
           "harder",
           "too",
           "unfortunately"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "bad",
@@ -338,7 +378,9 @@
           "unfortunately",
           "hurt",
           "because"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -358,7 +400,9 @@
           "large",
           "normally",
           "typically"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "larger",
@@ -371,7 +415,9 @@
           "smaller",
           "normally",
           "typically"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -391,7 +437,9 @@
           "usually",
           "depending",
           "otherwise"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "longer",
@@ -404,7 +452,9 @@
           "actually",
           "generally",
           "either"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -424,7 +474,9 @@
           "drove",
           "picked",
           "threw"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "run",
@@ -437,7 +489,9 @@
           "drove",
           "picked",
           "threw"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -457,7 +511,9 @@
           "after",
           "before",
           "while"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "took",
@@ -470,7 +526,9 @@
           "came",
           "before",
           "had"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -490,7 +548,9 @@
           "sipping",
           "sipped",
           "bottled"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "drank",
@@ -503,7 +563,9 @@
           "sipping",
           "sipped",
           "beer"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -523,7 +585,9 @@
           "herd",
           "animals",
           "breed"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "cats",
@@ -536,7 +600,9 @@
           "rabbits",
           "horses",
           "goats"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -556,7 +622,9 @@
           "bugs",
           "mice",
           "rodents"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "mouse",
@@ -569,7 +637,9 @@
           "rodents",
           "monkeys",
           "humans"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     },
     {
@@ -589,7 +659,9 @@
           "mothers",
           "teenagers",
           "youngsters"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       },
       "cosine": {
         "top1_with_inputs": "children",
@@ -602,7 +674,9 @@
           "mothers",
           "teenagers",
           "families"
-        ]
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
       }
     }
   ]

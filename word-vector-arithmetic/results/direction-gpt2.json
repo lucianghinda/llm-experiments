@@ -1,0 +1,833 @@
+{
+  "provenance": {
+    "model": "gpt2",
+    "read_from": "data/",
+    "sources": {
+      "gpt2-wte.f32": "e182e433b37dbdb47448e0413c840edf6965113c1fc8048c63b69795d8cf875a",
+      "gpt2-vocab.json": "196139668be63f3b5d6574427317ae82f612a97c5d1cdaf36ed2256dbf636783",
+      "gpt2-wte.meta.json": "2e794e718af69f660bcb2f749d5a1cfc9c1a8db10f283b9379da9d85899f9638"
+    },
+    "vocabulary": 50257,
+    "dimensions": 768,
+    "candidate_pool": 32064,
+    "words_without_a_vector": [
+      "cacti",
+      "cactus",
+      "geese",
+      "oxen"
+    ],
+    "words_yml_sha256": "92415c293a18812a1c00254f2e60babac79999f3e4b8449531b359c5f3de35ff",
+    "ruby": "4.0.1"
+  },
+  "seed": {
+    "singular": "cat",
+    "plural": "cats"
+  },
+  "training": [
+    {
+      "singular": "dog",
+      "plural": "dogs"
+    },
+    {
+      "singular": "car",
+      "plural": "cars"
+    },
+    {
+      "singular": "house",
+      "plural": "houses"
+    },
+    {
+      "singular": "tree",
+      "plural": "trees"
+    },
+    {
+      "singular": "hand",
+      "plural": "hands"
+    }
+  ],
+  "pairs": [
+    {
+      "singular": "book",
+      "plural": "books",
+      "form": "regular",
+      "tokens": {
+        "book": " book",
+        "books": " books"
+      },
+      "seed_dot": {
+        "singular": -0.5860670433324701,
+        "plural": 0.9459587877150903,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.06782322210070288,
+        "plural": 0.10189577724741118,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.5747248411622489,
+        "plural": 1.1139561964111377,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.1081211331584532,
+        "plural": 0.19506151174276445,
+        "separates": true
+      }
+    },
+    {
+      "singular": "bird",
+      "plural": "birds",
+      "form": "regular",
+      "tokens": {
+        "bird": " bird",
+        "birds": " birds"
+      },
+      "seed_dot": {
+        "singular": 0.439596922553501,
+        "plural": 3.1390239731123546,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.04876704114362865,
+        "plural": 0.34427297430307485,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.19138490128555652,
+        "plural": 1.6596161353899668,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.034514289463713016,
+        "plural": 0.2958935166546525,
+        "separates": true
+      }
+    },
+    {
+      "singular": "game",
+      "plural": "games",
+      "form": "regular",
+      "tokens": {
+        "game": " game",
+        "games": " games"
+      },
+      "seed_dot": {
+        "singular": -0.4106205068638549,
+        "plural": 0.6014795663161974,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.05040894716387671,
+        "plural": 0.06987752832465836,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.44665584940694075,
+        "plural": 0.9744735410620605,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.08913730918869711,
+        "plural": 0.18403745139076244,
+        "separates": true
+      }
+    },
+    {
+      "singular": "road",
+      "plural": "roads",
+      "form": "regular",
+      "tokens": {
+        "road": " road",
+        "roads": " roads"
+      },
+      "seed_dot": {
+        "singular": -0.1609629195836797,
+        "plural": 1.5930095138817553,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.01874848903890189,
+        "plural": 0.16578998044903193,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.19074751939620968,
+        "plural": 1.861430889790704,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.03611759576555144,
+        "plural": 0.314924413445533,
+        "separates": true
+      }
+    },
+    {
+      "singular": "room",
+      "plural": "rooms",
+      "form": "regular",
+      "tokens": {
+        "room": " room",
+        "rooms": " rooms"
+      },
+      "seed_dot": {
+        "singular": 0.1715641459195978,
+        "plural": 2.0199541107809407,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.018854711818233144,
+        "plural": 0.20947999843592885,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.23297503384239904,
+        "plural": 1.969924077051009,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.04162193354978886,
+        "plural": 0.3321008971133605,
+        "separates": true
+      }
+    },
+    {
+      "singular": "day",
+      "plural": "days",
+      "form": "regular",
+      "tokens": {
+        "day": " day",
+        "days": " days"
+      },
+      "seed_dot": {
+        "singular": -0.21012725422972675,
+        "plural": 0.843159336627755,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.02530316073380401,
+        "plural": 0.09597078220957124,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.24708100322842833,
+        "plural": 0.8532659731641778,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.04836723340124116,
+        "plural": 0.15788225104449863,
+        "separates": true
+      }
+    },
+    {
+      "singular": "city",
+      "plural": "cities",
+      "form": "regular",
+      "tokens": {
+        "city": " city",
+        "cities": " cities"
+      },
+      "seed_dot": {
+        "singular": -0.048907713995932994,
+        "plural": 1.444745286622717,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.005842107237516717,
+        "plural": 0.15791813780897693,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": 0.0015331342004582457,
+        "plural": 1.6577205485443587,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": 0.00029770891111860443,
+        "plural": 0.29455849379655913,
+        "separates": true
+      }
+    },
+    {
+      "singular": "baby",
+      "plural": "babies",
+      "form": "regular",
+      "tokens": {
+        "baby": " baby",
+        "babies": " babies"
+      },
+      "seed_dot": {
+        "singular": 0.5834769116990104,
+        "plural": 3.2410548662500798,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.06846468158198137,
+        "plural": 0.3403291742906029,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.2828685267612924,
+        "plural": 1.7362975674808894,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.053956907118377806,
+        "plural": 0.2963851605487082,
+        "separates": true
+      }
+    },
+    {
+      "singular": "story",
+      "plural": "stories",
+      "form": "regular",
+      "tokens": {
+        "story": " story",
+        "stories": " stories"
+      },
+      "seed_dot": {
+        "singular": -0.0662529230675962,
+        "plural": 1.5012053597633483,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.007685551378228511,
+        "plural": 0.1642518081360005,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.3118554869286904,
+        "plural": 1.314251236804446,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.05880887581306396,
+        "plural": 0.23375878912347345,
+        "separates": true
+      }
+    },
+    {
+      "singular": "box",
+      "plural": "boxes",
+      "form": "regular",
+      "tokens": {
+        "box": " box",
+        "boxes": " boxes"
+      },
+      "seed_dot": {
+        "singular": 0.05785471765423032,
+        "plural": 1.64169865060643,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.006457730604103809,
+        "plural": 0.17082919208024994,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.36663020274873426,
+        "plural": 1.743009868647677,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.0665256131388107,
+        "plural": 0.29484108009687476,
+        "separates": true
+      }
+    },
+    {
+      "singular": "church",
+      "plural": "churches",
+      "form": "regular",
+      "tokens": {
+        "church": " church",
+        "churches": " churches"
+      },
+      "seed_dot": {
+        "singular": 0.2740946542525698,
+        "plural": 2.008365655050873,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.030757089205276384,
+        "plural": 0.20411283150176207,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.2702619869498019,
+        "plural": 1.7254378618048642,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.049300251396676625,
+        "plural": 0.28506660719334603,
+        "separates": true
+      }
+    },
+    {
+      "singular": "bus",
+      "plural": "buses",
+      "form": "regular",
+      "tokens": {
+        "bus": " bus",
+        "buses": " buses"
+      },
+      "seed_dot": {
+        "singular": -0.014222459913704966,
+        "plural": 2.1643887894716594,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.0015954673798602198,
+        "plural": 0.2146513356143127,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.21459035250780478,
+        "plural": 2.182212076436465,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.03913297863536638,
+        "plural": 0.3518153432861568,
+        "separates": true
+      }
+    },
+    {
+      "singular": "wolf",
+      "plural": "wolves",
+      "form": "regular",
+      "tokens": {
+        "wolf": " wolf",
+        "wolves": " wolves"
+      },
+      "seed_dot": {
+        "singular": 0.9568054232832516,
+        "plural": 3.4263822377520596,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.10016449142244604,
+        "plural": 0.32972389932835333,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.004492888307876662,
+        "plural": 1.7307480929146357,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.0007646017470384577,
+        "plural": 0.2707496978565965,
+        "separates": true
+      }
+    },
+    {
+      "singular": "leaf",
+      "plural": "leaves",
+      "form": "regular",
+      "tokens": {
+        "leaf": " leaf",
+        "leaves": " leaves"
+      },
+      "seed_dot": {
+        "singular": 0.4532479918216918,
+        "plural": 0.955455237534291,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.04593960247184401,
+        "plural": 0.10376353196605305,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.12812050901435548,
+        "plural": 0.9458221463273692,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.021110061638914015,
+        "plural": 0.16697958646450994,
+        "separates": true
+      }
+    },
+    {
+      "singular": "knife",
+      "plural": "knives",
+      "form": "regular",
+      "tokens": {
+        "knife": " knife",
+        "knives": " knives"
+      },
+      "seed_dot": {
+        "singular": 0.14988619267545403,
+        "plural": 2.2476353073419197,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.015805562252074818,
+        "plural": 0.21926364193274198,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.26447960755831673,
+        "plural": 1.8331752069792393,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.045337755405504866,
+        "plural": 0.29071286718272016,
+        "separates": true
+      }
+    },
+    {
+      "singular": "man",
+      "plural": "men",
+      "form": "irregular",
+      "tokens": {
+        "man": " man",
+        "men": " men"
+      },
+      "seed_dot": {
+        "singular": -0.5084776171036374,
+        "plural": 1.2171780898909264,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.06200697507907394,
+        "plural": 0.14297425317368448,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.4182915421704858,
+        "plural": 0.8326016186893203,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.08292152683361276,
+        "plural": 0.1589865785174228,
+        "separates": true
+      }
+    },
+    {
+      "singular": "woman",
+      "plural": "women",
+      "form": "irregular",
+      "tokens": {
+        "woman": " woman",
+        "women": " women"
+      },
+      "seed_dot": {
+        "singular": 0.025377477690766634,
+        "plural": 1.5212742855712245,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.0029468350472278025,
+        "plural": 0.17723849432845032,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.16393974880088472,
+        "plural": 0.9737219458713878,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.03094647154128072,
+        "plural": 0.1844187133258669,
+        "separates": true
+      }
+    },
+    {
+      "singular": "child",
+      "plural": "children",
+      "form": "irregular",
+      "tokens": {
+        "child": " child",
+        "children": " children"
+      },
+      "seed_dot": {
+        "singular": -0.18127141079472378,
+        "plural": 2.3256693891815634,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.020837275381564945,
+        "plural": 0.27172273271368974,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.7518171825586527,
+        "plural": 0.908847239969674,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.1404893378005373,
+        "plural": 0.17261891852748376,
+        "separates": true
+      }
+    },
+    {
+      "singular": "mouse",
+      "plural": "mice",
+      "form": "irregular",
+      "tokens": {
+        "mouse": " mouse",
+        "mice": " mice"
+      },
+      "seed_dot": {
+        "singular": 0.46536336389926125,
+        "plural": 2.644056487890157,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.049311576325112745,
+        "plural": 0.27172611053430906,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.023573334366960234,
+        "plural": 1.5239504972244835,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.004060665481038578,
+        "plural": 0.2545956651226554,
+        "separates": true
+      }
+    },
+    {
+      "singular": "foot",
+      "plural": "feet",
+      "form": "irregular",
+      "tokens": {
+        "foot": " foot",
+        "feet": " feet"
+      },
+      "seed_dot": {
+        "singular": 0.0767738991309739,
+        "plural": 1.555929936700166,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.0080227136171522,
+        "plural": 0.16496276257296674,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.47698387621023663,
+        "plural": 1.4920582566278975,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.08102721131771899,
+        "plural": 0.25715866712593316,
+        "separates": true
+      }
+    },
+    {
+      "singular": "tooth",
+      "plural": "teeth",
+      "form": "irregular",
+      "tokens": {
+        "tooth": " tooth",
+        "teeth": " teeth"
+      },
+      "seed_dot": {
+        "singular": 0.5860199413471215,
+        "plural": 2.0232369407509325,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.05624959864403068,
+        "plural": 0.193593696301486,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.3391806750704943,
+        "plural": 1.2828822068808705,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.052924606212212545,
+        "plural": 0.19954954849549741,
+        "separates": true
+      }
+    },
+    {
+      "singular": "person",
+      "plural": "people",
+      "form": "irregular",
+      "tokens": {
+        "person": " person",
+        "people": " people"
+      },
+      "seed_dot": {
+        "singular": -0.21905956842923496,
+        "plural": 1.2390886504039487,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.02635285356638449,
+        "plural": 0.16184220273311337,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": -0.35756048854565253,
+        "plural": 0.7944196047706192,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": -0.0699253171515195,
+        "plural": 0.16867816065706032,
+        "separates": true
+      }
+    },
+    {
+      "singular": "fungus",
+      "plural": "fungi",
+      "form": "irregular",
+      "tokens": {
+        "fungus": " fungus",
+        "fungi": " fungi"
+      },
+      "seed_dot": {
+        "singular": 1.2999554095720116,
+        "plural": 2.6723377750404147,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.12394792976565572,
+        "plural": 0.2521854205697476,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": 0.5825917112844887,
+        "plural": 1.4512915789953968,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": 0.09030142942198732,
+        "plural": 0.2226397992413503,
+        "separates": true
+      }
+    },
+    {
+      "singular": "analysis",
+      "plural": "analyses",
+      "form": "irregular",
+      "tokens": {
+        "analysis": " analysis",
+        "analyses": " analyses"
+      },
+      "seed_dot": {
+        "singular": 0.21359864546748578,
+        "plural": 1.0314160730645485,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.025027174001072027,
+        "plural": 0.11037866527740886,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": 0.22675045168596838,
+        "plural": 1.1072268236209466,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": 0.04318977895615768,
+        "plural": 0.1926226455887268,
+        "separates": true
+      }
+    },
+    {
+      "singular": "crisis",
+      "plural": "crises",
+      "form": "irregular",
+      "tokens": {
+        "crisis": " crisis",
+        "crises": " crises"
+      },
+      "seed_dot": {
+        "singular": -0.13206867626017135,
+        "plural": 0.9861706359671294,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": -0.014514369003158683,
+        "plural": 0.09838429233532907,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": 0.030302579081383584,
+        "plural": 1.0759247479189475,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": 0.0054137404451954476,
+        "plural": 0.17449183026922746,
+        "separates": true
+      }
+    },
+    {
+      "singular": "criterion",
+      "plural": "criteria",
+      "form": "irregular",
+      "tokens": {
+        "criterion": " criterion",
+        "criteria": " criteria"
+      },
+      "seed_dot": {
+        "singular": 1.3830963479454152,
+        "plural": 0.9364267066551841,
+        "separates": false
+      },
+      "seed_cosine": {
+        "singular": 0.13850004910688699,
+        "plural": 0.1013416535249282,
+        "separates": false
+      },
+      "averaged_dot": {
+        "singular": 0.5024937423285478,
+        "plural": 0.5433541092201787,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": 0.0817989355653449,
+        "plural": 0.09559092244343875,
+        "separates": true
+      }
+    },
+    {
+      "singular": "phenomenon",
+      "plural": "phenomena",
+      "form": "irregular",
+      "tokens": {
+        "phenomenon": " phenomenon",
+        "phenomena": " phenomena"
+      },
+      "seed_dot": {
+        "singular": 0.17465276759503778,
+        "plural": 0.948086361908884,
+        "separates": true
+      },
+      "seed_cosine": {
+        "singular": 0.018812054712899113,
+        "plural": 0.0996872846244787,
+        "separates": true
+      },
+      "averaged_dot": {
+        "singular": 0.2439282149577944,
+        "plural": 0.899579062580381,
+        "separates": true
+      },
+      "averaged_cosine": {
+        "singular": 0.04271125185037232,
+        "plural": 0.15376259776683443,
+        "separates": true
+      }
+    }
+  ]
+}

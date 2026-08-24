@@ -22,9 +22,8 @@
 
 require "digest"
 require "fileutils"
-require "net/http"
-require "uri"
 require "zlib"
+require_relative "lib/byte_source"
 
 SOURCE = "https://nlp.stanford.edu/data/glove.6B.zip"
 MIRROR = "https://huggingface.co/stanfordnlp/glove/resolve/main/glove.6B.zip"
@@ -43,92 +42,6 @@ CD_SIG = "PK\x01\x02".b
 LFH_SIG = "PK\x03\x04".b
 DEFLATE = 8
 STORED = 0
-
-# A zip is read back-to-front, so both readers expose random access rather than
-# a stream: give me these bytes at this offset. One implementation is four Range
-# requests, the other is pread on a local archive.
-class HttpReader
-  MAX_REDIRECTS = 5
-  UA = "llm-experiments/word-vector-arithmetic (+ruby #{RUBY_VERSION})"
-
-  attr_reader :size
-
-  def initialize(url)
-    @url = url
-    @size = probe_size
-  end
-
-  def read(offset, length)
-    buffer = +""
-    stream(offset, length) { |chunk| buffer << chunk }
-    buffer
-  end
-
-  def stream(offset, length, &block)
-    request("bytes=#{offset}-#{offset + length - 1}") do |res|
-      res.read_body(&block)
-    end
-  end
-
-  private
-
-  def probe_size
-    request("bytes=0-0") do |res|
-      res.read_body { |_| nil }
-      total = res["content-range"].to_s[%r{/(\d+)\z}, 1]
-      raise "no total size in Content-Range: #{res["content-range"].inspect}" unless total
-
-      total.to_i
-    end
-  end
-
-  def request(range, url = @url, hops = 0, &block)
-    uri = URI(url)
-    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https",
-                    open_timeout: 30, read_timeout: 180) do |http|
-      req = Net::HTTP::Get.new(uri)
-      req["Range"] = range
-      req["User-Agent"] = UA
-      http.request(req) do |res|
-        if res.is_a?(Net::HTTPRedirection)
-          raise "too many redirects from #{@url}" if hops >= MAX_REDIRECTS
-
-          return request(range, res["location"], hops + 1, &block)
-        end
-        # A 200 here means the server sent the whole 822MB archive instead of the
-        # slice. Refusing is better than silently downloading it.
-        raise "#{uri.host} ignored Range and answered #{res.code}" unless res.code == "206"
-
-        return block.call(res)
-      end
-    end
-  end
-end
-
-class FileReader
-  attr_reader :size
-
-  def initialize(path)
-    @path = path
-    @size = File.size(path)
-  end
-
-  def read(offset, length)
-    File.open(@path, "rb") { |f| f.pread(length, offset) }
-  end
-
-  def stream(offset, length)
-    File.open(@path, "rb") do |f|
-      f.seek(offset)
-      remaining = length
-      while remaining.positive?
-        chunk = f.read([remaining, 1 << 20].min) or break
-        remaining -= chunk.bytesize
-        yield chunk
-      end
-    end
-  end
-end
 
 def find_entry(reader, name)
   tail_length = [65_557, reader.size].min
@@ -223,15 +136,15 @@ reader, origin =
   if local_zip
     abort "GLOVE_ZIP=#{local_zip} does not exist" unless File.exist?(local_zip)
 
-    [FileReader.new(local_zip), local_zip]
+    [ByteSource::Local.new(local_zip), local_zip]
   else
     warn "reading zip directory from #{SOURCE}"
     begin
-      [HttpReader.new(SOURCE), SOURCE]
+      [ByteSource::Http.new(SOURCE), SOURCE]
     rescue StandardError => e
       warn "  #{e.class}: #{e.message}"
       warn "falling back to #{MIRROR}"
-      [HttpReader.new(MIRROR), MIRROR]
+      [ByteSource::Http.new(MIRROR), MIRROR]
     end
   end
 

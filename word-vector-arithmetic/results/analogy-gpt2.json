@@ -10,8 +10,13 @@
     "vocabulary": 50257,
     "dimensions": 768,
     "candidate_pool": 32064,
-    "words_without_a_vector": [],
-    "words_yml_sha256": "92415c293a18812a1c00254f2e60babac79999f3e4b8449531b359c5f3de35ff",
+    "words_without_a_vector": [
+      "guido",
+      "matz",
+      "sinatra",
+      "torvalds"
+    ],
+    "words_yml_sha256": "b88143652cba2f426affb4705e98759d14bd99d4baed6aeaea464808df245cc4",
     "ruby": "4.0.1"
   },
   "analogies": [
@@ -787,6 +792,534 @@
         ],
         "top1_word_like": " children",
         "rank_word_like": 1
+      }
+    },
+    {
+      "relation": "framework",
+      "a": "ruby",
+      "b": "rails",
+      "c": "python",
+      "expected": "django",
+      "group": "ruby",
+      "tokens": {
+        "ruby": " ruby",
+        "rails": " rails",
+        "python": " python",
+        "django": " Django"
+      },
+      "euclidean": {
+        "top1_with_inputs": " rails",
+        "rank_with_inputs": 2588,
+        "top1": " rail",
+        "rank": 2586,
+        "top5": [
+          " rail",
+          " Python",
+          " trains",
+          " wires",
+          " railway"
+        ],
+        "top1_word_like": " rail",
+        "rank_word_like": 1700
+      },
+      "cosine": {
+        "top1_with_inputs": " rails",
+        "rank_with_inputs": 57,
+        "top1": " rail",
+        "rank": 55,
+        "top5": [
+          " rail",
+          " Python",
+          " railways",
+          "python",
+          " wires"
+        ],
+        "top1_word_like": " rail",
+        "rank_word_like": 47
+      }
+    },
+    {
+      "relation": "package",
+      "a": "ruby",
+      "b": "gem",
+      "c": "python",
+      "expected": "pip",
+      "group": "ruby",
+      "tokens": {
+        "ruby": " ruby",
+        "gem": " gem",
+        "python": " python",
+        "pip": " pip"
+      },
+      "euclidean": {
+        "top1_with_inputs": " gem",
+        "rank_with_inputs": 56,
+        "top1": " Python",
+        "rank": 54,
+        "top5": [
+          " Python",
+          " gems",
+          " monster",
+          " tool",
+          " snake"
+        ],
+        "top1_word_like": " Python",
+        "rank_word_like": 13
+      },
+      "cosine": {
+        "top1_with_inputs": " gem",
+        "rank_with_inputs": 6,
+        "top1": " gems",
+        "rank": 4,
+        "top5": [
+          " gems",
+          " Python",
+          "python",
+          " pip",
+          " git"
+        ],
+        "top1_word_like": " gems",
+        "rank_word_like": 3
+      }
+    },
+    {
+      "relation": "package",
+      "a": "ruby",
+      "b": "gem",
+      "c": "javascript",
+      "expected": "npm",
+      "group": "ruby",
+      "tokens": {
+        "ruby": " ruby",
+        "gem": " gem",
+        "javascript": " javascript",
+        "npm": " npm"
+      },
+      "euclidean": {
+        "top1_with_inputs": " javascript",
+        "rank_with_inputs": 89,
+        "top1": " JavaScript",
+        "rank": 87,
+        "top5": [
+          " JavaScript",
+          " gems",
+          " Javascript",
+          "ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
+          " HTML"
+        ],
+        "top1_word_like": " JavaScript",
+        "rank_word_like": 28
+      },
+      "cosine": {
+        "top1_with_inputs": " javascript",
+        "rank_with_inputs": 18,
+        "top1": " gems",
+        "rank": 16,
+        "top5": [
+          " gems",
+          " Javascript",
+          " JavaScript",
+          " Gem",
+          " js"
+        ],
+        "top1_word_like": " gems",
+        "rank_word_like": 13
+      }
+    },
+    {
+      "relation": "accessor",
+      "a": "array",
+      "b": "index",
+      "c": "hash",
+      "expected": "key",
+      "group": "ruby",
+      "tokens": {
+        "array": " array",
+        "index": " index",
+        "hash": " hash",
+        "key": " key"
+      },
+      "euclidean": {
+        "top1_with_inputs": " hash",
+        "rank_with_inputs": 610,
+        "top1": " Index",
+        "rank": 608,
+        "top5": [
+          " Index",
+          " hashing",
+          "Index",
+          " indexes",
+          " hashes"
+        ],
+        "top1_word_like": " Index",
+        "rank_word_like": 356
+      },
+      "cosine": {
+        "top1_with_inputs": " hash",
+        "rank_with_inputs": 5090,
+        "top1": " hashing",
+        "rank": 5088,
+        "top5": [
+          " hashing",
+          " Index",
+          " indexes",
+          " hashes",
+          "Index"
+        ],
+        "top1_word_like": " hashing",
+        "rank_word_like": 3761
+      }
+    },
+    {
+      "relation": "data-structure",
+      "a": "hash",
+      "b": "dictionary",
+      "c": "array",
+      "expected": "list",
+      "group": "ruby",
+      "tokens": {
+        "hash": " hash",
+        "dictionary": " dictionary",
+        "array": " array",
+        "list": " list"
+      },
+      "euclidean": {
+        "top1_with_inputs": " dictionary",
+        "rank_with_inputs": 17,
+        "top1": " Dictionary",
+        "rank": 15,
+        "top5": [
+          " Dictionary",
+          " arrays",
+          " vocabulary",
+          "array",
+          " diction"
+        ],
+        "top1_word_like": " Dictionary",
+        "rank_word_like": 13
+      },
+      "cosine": {
+        "top1_with_inputs": " dictionary",
+        "rank_with_inputs": 37,
+        "top1": " Dictionary",
+        "rank": 35,
+        "top5": [
+          " Dictionary",
+          " arrays",
+          " diction",
+          "array",
+          " vocabulary"
+        ],
+        "top1_word_like": " Dictionary",
+        "rank_word_like": 31
+      }
+    },
+    {
+      "relation": "error-handling",
+      "a": "raise",
+      "b": "rescue",
+      "c": "throw",
+      "expected": "catch",
+      "group": "ruby",
+      "tokens": {
+        "raise": " raise",
+        "rescue": " rescue",
+        "throw": " throw",
+        "catch": " catch"
+      },
+      "euclidean": {
+        "top1_with_inputs": " rescue",
+        "rank_with_inputs": 419,
+        "top1": " throwing",
+        "rank": 417,
+        "top5": [
+          " throwing",
+          " Rescue",
+          " rescued",
+          " rescuing",
+          " throws"
+        ],
+        "top1_word_like": " throwing",
+        "rank_word_like": 262
+      },
+      "cosine": {
+        "top1_with_inputs": " rescue",
+        "rank_with_inputs": 493,
+        "top1": " Rescue",
+        "rank": 491,
+        "top5": [
+          " Rescue",
+          " rescuing",
+          " rescued",
+          " throwing",
+          " throws"
+        ],
+        "top1_word_like": " Rescue",
+        "rank_word_like": 452
+      }
+    },
+    {
+      "relation": "negated-keyword",
+      "a": "if",
+      "b": "unless",
+      "c": "while",
+      "expected": "until",
+      "group": "ruby",
+      "tokens": {
+        "if": " if",
+        "unless": " unless",
+        "while": " while",
+        "until": " until"
+      },
+      "euclidean": {
+        "top1_with_inputs": " while",
+        "rank_with_inputs": 9,
+        "top1": " whilst",
+        "rank": 7,
+        "top5": [
+          " whilst",
+          " whereas",
+          " although",
+          " despite",
+          " While"
+        ],
+        "top1_word_like": " whilst",
+        "rank_word_like": 6
+      },
+      "cosine": {
+        "top1_with_inputs": " while",
+        "rank_with_inputs": 9,
+        "top1": " whilst",
+        "rank": 7,
+        "top5": [
+          " whilst",
+          " whereas",
+          "while",
+          "unless",
+          " although"
+        ],
+        "top1_word_like": " whilst",
+        "rank_word_like": 5
+      }
+    },
+    {
+      "relation": "alias",
+      "a": "map",
+      "b": "collect",
+      "c": "reduce",
+      "expected": "inject",
+      "group": "ruby",
+      "tokens": {
+        "map": " map",
+        "collect": " collect",
+        "reduce": " reduce",
+        "inject": " inject"
+      },
+      "euclidean": {
+        "top1_with_inputs": " collect",
+        "rank_with_inputs": 3895,
+        "top1": " collecting",
+        "rank": 3893,
+        "top5": [
+          " collecting",
+          " reducing",
+          " eliminate",
+          " reduces",
+          " collects"
+        ],
+        "top1_word_like": " collecting",
+        "rank_word_like": 2614
+      },
+      "cosine": {
+        "top1_with_inputs": " collect",
+        "rank_with_inputs": 1906,
+        "top1": "Collect",
+        "rank": 1904,
+        "top5": [
+          "Collect",
+          " collects",
+          " collecting",
+          " Reduce",
+          " Collect"
+        ],
+        "top1_word_like": " collects",
+        "rank_word_like": 1417
+      }
+    },
+    {
+      "relation": "alias",
+      "a": "map",
+      "b": "collect",
+      "c": "select",
+      "expected": "filter",
+      "group": "ruby",
+      "tokens": {
+        "map": " map",
+        "collect": " collect",
+        "select": " select",
+        "filter": " filter"
+      },
+      "euclidean": {
+        "top1_with_inputs": " select",
+        "rank_with_inputs": 4730,
+        "top1": " Select",
+        "rank": 4728,
+        "top5": [
+          " Select",
+          "select",
+          " selected",
+          "Select",
+          " Collect"
+        ],
+        "top1_word_like": " Select",
+        "rank_word_like": 3500
+      },
+      "cosine": {
+        "top1_with_inputs": " select",
+        "rank_with_inputs": 13827,
+        "top1": " Select",
+        "rank": 13825,
+        "top5": [
+          " Select",
+          "select",
+          "Collect",
+          " Collect",
+          "Select"
+        ],
+        "top1_word_like": " Select",
+        "rank_word_like": 9127
+      }
+    },
+    {
+      "relation": "alias",
+      "a": "map",
+      "b": "collect",
+      "c": "length",
+      "expected": "size",
+      "group": "ruby",
+      "tokens": {
+        "map": " map",
+        "collect": " collect",
+        "length": " length",
+        "size": " size"
+      },
+      "euclidean": {
+        "top1_with_inputs": " length",
+        "rank_with_inputs": 18,
+        "top1": " Length",
+        "rank": 16,
+        "top5": [
+          " Length",
+          " collecting",
+          "length",
+          " collected",
+          " lengths"
+        ],
+        "top1_word_like": " Length",
+        "rank_word_like": 13
+      },
+      "cosine": {
+        "top1_with_inputs": " length",
+        "rank_with_inputs": 27,
+        "top1": " Length",
+        "rank": 25,
+        "top5": [
+          " Length",
+          " lengths",
+          "length",
+          "Length",
+          " collecting"
+        ],
+        "top1_word_like": " Length",
+        "rank_word_like": 20
+      }
+    },
+    {
+      "relation": "exit-keyword",
+      "a": "loop",
+      "b": "break",
+      "c": "method",
+      "expected": "return",
+      "group": "ruby",
+      "tokens": {
+        "loop": " loop",
+        "break": " break",
+        "method": " method",
+        "return": " return"
+      },
+      "euclidean": {
+        "top1_with_inputs": " break",
+        "rank_with_inputs": 162,
+        "top1": " methods",
+        "rank": 160,
+        "top5": [
+          " methods",
+          " breaks",
+          " Break",
+          " breaking",
+          " broke"
+        ],
+        "top1_word_like": " methods",
+        "rank_word_like": 123
+      },
+      "cosine": {
+        "top1_with_inputs": " break",
+        "rank_with_inputs": 53,
+        "top1": " methods",
+        "rank": 51,
+        "top5": [
+          " methods",
+          " breaks",
+          " Break",
+          " Method",
+          " breaking"
+        ],
+        "top1_word_like": " methods",
+        "rank_word_like": 42
+      }
+    },
+    {
+      "relation": "hierarchy",
+      "a": "class",
+      "b": "subclass",
+      "c": "parent",
+      "expected": "child",
+      "group": "ruby",
+      "tokens": {
+        "class": " class",
+        "subclass": " subclass",
+        "parent": " parent",
+        "child": " child"
+      },
+      "euclidean": {
+        "top1_with_inputs": " parent",
+        "rank_with_inputs": 126,
+        "top1": "Parent",
+        "rank": 124,
+        "top5": [
+          "Parent",
+          " Parent",
+          "parent",
+          "\u0012",
+          " parents"
+        ],
+        "top1_word_like": " Parent",
+        "rank_word_like": 34
+      },
+      "cosine": {
+        "top1_with_inputs": " parent",
+        "rank_with_inputs": 509,
+        "top1": "Parent",
+        "rank": 507,
+        "top5": [
+          "Parent",
+          " Parent",
+          "parent",
+          " parental",
+          " parents"
+        ],
+        "top1_word_like": " Parent",
+        "rank_word_like": 305
       }
     }
   ]

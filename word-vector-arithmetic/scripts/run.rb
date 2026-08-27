@@ -62,6 +62,7 @@ def analogy_rows(table, analogies, pool, skipped)
 
     target = Vectors.add(Vectors.sub(table.fetch(b), table.fetch(a)), table.fetch(c))
     row = { "relation" => quad["relation"], "a" => a, "b" => b, "c" => c, "expected" => d }
+    row["group"] = quad["group"] if quad["group"]
     forms = token_forms(table, [a, b, c, d])
     row["tokens"] = forms if forms
 

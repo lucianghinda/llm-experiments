@@ -1,10 +1,10 @@
 # Does "king - man + woman = queen" hold when you check it yourself?
 
-**Status: run on two models. 18 analogies and 30 held-out plural pairs, on GloVe
-50d and on GPT-2's own embedding matrix. Tables in
-[`results/tables.md`](results/tables.md).**
+**Status: run on two models. 18 analogies, 15 Ruby-programming analogies and 30
+held-out plural pairs, on GloVe 50d and on GPT-2's own embedding matrix. Tables
+in [`results/tables.md`](results/tables.md).**
 
-The short version, three findings.
+The short version, four findings.
 
 **The famous analogy is a hit only under a convention nobody mentions:** the
 three input words are removed from the results first. Keep them in and the
@@ -17,6 +17,19 @@ every case GloVe fumbled, like `longer - long + short`, which GloVe put at rank
 82. But with the inputs left in, GPT-2 drops to 5/18, and in 13 of 18 the
 nearest point is one of the input words. When GPT-2 is wrong, it is *never*
 wrong in an interesting way: "something else" is 0/18.
+
+**Ruby analogies are a corpus test, and the two models fail it three orders of
+magnitude apart.** A separate group — `rails - ruby + python → django`,
+`gem - ruby + python → pip`, `if:unless :: while:until` — goes 0/15 on GloVe
+and 0/12 on GPT-2 at top-1. But GloVe answers from the everyday senses of the
+words (`sinatra - ruby + python` returns `tunes`, with `flask` at rank 274,369;
+`subclass - class + parent` returns `cephalopod`, because its subclasses are
+taxonomic) while GPT-2 misses to adjacent programming words: `pip` at cosine
+rank 4, `npm` at 16, `until` at 7. And GPT-2's wins stop exactly where English
+stops: it finds `until` and `size` but not the pure Ruby alias pairs — `inject`
+sits at rank 3,893 and `filter` at 4,728, because nothing outside Ruby's
+`Enumerable` links `reduce` to `inject`. The senses of programming words made
+it into the embedding; the API structure did not.
 
 **The direction claim holds on both.** A single direction from `cats - cat`
 separates plural from singular on 29 of 30 GloVe pairs and 26 of 27 GPT-2 pairs
@@ -65,6 +78,40 @@ excluded. Recording both is the whole experiment. `gensim`'s `most_similar`
 drops them silently; the `find_nearest_words` helper in the manim source does
 not. Ranking uses Euclidean distance — matching the source's
 `((data - vector)**2).sum(1)` — and cosine.
+
+**The Ruby group.** 15 more quadruples, marked `group: ruby` in `words.yml` and
+never mixed into the numbers above, because they ask a different question. The
+original relations use everyday words in their everyday senses; these require
+the programming sense of polysemous words — `rails` the framework, not the
+tracks; `gem` the package, not the jewel; `hash` the data structure, not the
+browns. GloVe's news-and-Wikipedia corpus (2014) barely contains those senses;
+GPT-2's WebText is full of them. Same arithmetic, same scoring, different
+question: does the analogy structure exist for a *domain* the corpus may not
+cover?
+
+Nine are ecosystem relations: language→framework
+(`ruby:rails :: python:django`, `:: sinatra:flask`), language→package-manager
+(`ruby:gem :: python:pip`, `:: javascript:npm`), collection→accessor
+(`array:index :: hash:key`), Ruby-term→Python-term
+(`hash:dictionary :: array:list`), exception keywords
+(`raise:rescue :: throw:catch`) and project→creator
+(`linux:torvalds :: ruby:matz`, `:: python:guido`).
+
+Six are language mechanics, and three of those are a graded probe. The
+mechanics: Ruby's negated keywords (`if:unless :: while:until`), what exits
+what (`loop:break :: method:return`), and the inheritance hierarchy said two
+ways (`class:subclass :: parent:child`). The probe is the alias relation
+`map:collect :: X`: for `select:filter` and `length:size` English already
+treats the pair as near-synonyms, but nothing outside Ruby's `Enumerable`
+connects `reduce` to `inject` — injections are medical everywhere else. If
+`inject` ranks well, the signal can only have come from code.
+
+Vocabulary decided the item list before any vector was read: `eigenclass`,
+`metaclass`, `rubygems` and `laravel` have no entry in either model, so the
+most Ruby-flavoured analogies cannot be asked at all. `matz`, `guido`,
+`torvalds` and `sinatra` exist in GloVe (mostly as other people: Frank Sinatra)
+but have no single GPT-2 token, so three quadruples run on GloVe alone and the
+report marks them rather than dropping them.
 
 GPT-2 gets a third ranking, restricted to **word-like tokens** (32,064 of
 50,257: a leading space then letters). Most of its vocabulary is fragments and
@@ -124,6 +171,56 @@ is in the right city-sized neighbourhood and loses to a near neighbour.
 Restricting GPT-2's candidates to word-like tokens changed nothing (16/18 either
 way). Its embedding arithmetic does not land on fragments.
 
+### The Ruby group: zero hits, and the misses are the result
+
+| relation | arithmetic | expected | glove top-1 | rank | gpt2 top-1 | rank |
+|---|---|---|---|---|---|---|
+| framework | rails - ruby + python | django | `"externally"` | 104588 | `" rail"` | 2586 |
+| framework | sinatra - ruby + python | flask | `"tunes"` | 274369 | - | - |
+| package | gem - ruby + python | pip | `"toolchain"` | 68835 | `" Python"` | 54 |
+| package | gem - ruby + javascript | npm | `"compiler"` | 110357 | `" JavaScript"` | 87 |
+| accessor | index - array + hash | key | `"benchmark"` | 19682 | `" Index"` | 608 |
+| data-structure | dictionary - hash + array | list | `"contemporary"` | 1803 | `" Dictionary"` | 15 |
+| error-handling | rescue - raise + throw | catch | `"blew"` | 72 | `" throwing"` | 417 |
+| creator | torvalds - linux + ruby | matz | `"susumu"` | 94588 | - | - |
+| creator | torvalds - linux + python | guido | `"gitai"` | 150497 | - | - |
+| negated-keyword | unless - if + while | until | `"bringing"` | 980 | `" whilst"` | 7 |
+| alias | collect - map + reduce | inject | `"payments"` | 124 | `" collecting"` | 3893 |
+| alias | collect - map + select | filter | `"receive"` | 50712 | `" Select"` | 4728 |
+| alias | collect - map + length | size | `"amount"` | 673 | `" Length"` | 16 |
+| exit-keyword | break - loop + method | return | `"quick"` | 136 | `" methods"` | 160 |
+| hierarchy | subclass - class + parent | child | `"cephalopod"` | 352919 | `"Parent"` | 124 |
+
+(Euclidean, inputs excluded.) Neither model gets a single top-1, so the number
+that matters is *where* the expected word landed, and there the models are
+different experiments. GloVe's answers say which sense each word resolved to:
+`sinatra - ruby + python` returns `tunes`, `jukebox`, `manilow`; `collect` is
+money (`payments`, `costs`, `compensate`); and `subclass - class + parent`
+returns `cephalopod`, `megapode` and `suborder`, because GloVe's subclasses
+are taxonomic — `child` lands at rank 352,919 of 400,000. In that space the
+programming relations do not exist.
+
+GPT-2 misses to programming words adjacent to the answer: `gem - ruby +
+python` puts `" Python"` first with `pip` at cosine rank 4, and — a tell that
+both senses coexist in the vector — `" snake"` in the euclidean top-5. `pip`
+at rank 4, `npm` at 16, `until` at 7 out of 50,257 is the same shape as the
+original finding: the arithmetic points into the right neighbourhood and stops
+short, this time without even the excuse of the inputs being in the way.
+
+The alias probe draws the boundary of what GPT-2's embedding learned. Of the
+three `map:collect :: X` items, it does well exactly where English helps —
+`size` at rank 16, since length and size are synonyms anyway — and fails where
+only Ruby's `Enumerable` supplies the link: `inject` at rank 3,893, `filter`
+at 4,728, both behind plain morphology like `" collecting"` and `" Select"`.
+The *senses* of programming words are in the embedding; API structure — which
+method is an alias of which — is not, at least not at the input-embedding
+layer.
+
+The exceptions run the other way too. `rescue - raise + throw → catch` is the
+one item GloVe does better on (72 vs 417) — the one whose relation holds in
+everyday English, where things are raised and thrown, caught and rescued.
+Corpus coverage, not arithmetic, is what separates the two columns.
+
 ### The direction generalises on both, and not because of spelling
 
 | model | direction | all pairs | regular | irregular |
@@ -175,13 +272,21 @@ tables intersect the item lists rather than compare 30 against 27.
 - **GPT-2 is still not GPT-3, and neither is a transformer's internals.** This
   is the input embedding matrix, before a single attention block. It is what the
   talk describes at that point, not what the model computes later.
-- **18 and 30 are small.** These are illustrative counts on hand-picked words,
+- **The Ruby group's expected answers are judgment calls.** `gem - ruby +
+  python` is scored against `pip`, but `easy_install` was the contemporary of
+  GloVe's corpus and "package" is a defensible answer too. The ranks are exact;
+  what counts as *the* correct fourth word is an editorial choice, which is why
+  the per-item table shows what actually came first instead of only a score.
+  And the two models answer different subsets — 15 items for GloVe, 12 for
+  GPT-2 — because four words have vectors in only one model.
+- **18, 15 and 30 are small.** These are illustrative counts on hand-picked words,
   not a benchmark, and there is no significance test. The exclusion effect is not
   a sample estimate — it is a deterministic property of the same items scored two
   ways, which is why it is reported as a count and not an interval.
 - **The analogy set is easy on purpose.** Relations were chosen because they are
   the ones usually claimed to work, so these are ceilings, not averages over
-  English.
+  English. The Ruby group is the deliberate opposite — items nobody claims work
+  — which is another reason the two are never averaged together.
 - **Ties resolve in the expected word's favour.** `rank_of` counts strictly
   closer entries. Exact float ties are vanishingly rare; the choice is documented
   rather than relied on.

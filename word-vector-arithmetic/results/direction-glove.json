@@ -9,7 +9,7 @@
     "dimensions": 50,
     "candidate_pool": null,
     "words_without_a_vector": [],
-    "words_yml_sha256": "92415c293a18812a1c00254f2e60babac79999f3e4b8449531b359c5f3de35ff",
+    "words_yml_sha256": "b88143652cba2f426affb4705e98759d14bd99d4baed6aeaea464808df245cc4",
     "ruby": "4.0.1"
   },
   "seed": {

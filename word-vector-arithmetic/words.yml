@@ -18,6 +18,17 @@
 # THE ANALOGY TARGET IS NEVER AN INPUT. For each quadruple the experiment
 # computes b - a + c and ranks all 400k words against it. d is what a correct
 # answer would be, and it is never one of a, b, c.
+#
+# THE ruby GROUP IS A SEPARATE QUESTION, SO IT IS SCORED SEPARATELY. The
+# original 18 analogies use everyday words in their everyday senses. The ruby
+# group asks whether the same arithmetic works when every word has to mean its
+# programming sense: GloVe's news-and-Wikipedia corpus mostly knows "rails" as
+# train tracks and "gem" as a jewel, while GPT-2's web corpus is full of code.
+# Mixing the two groups into one accuracy would blur both, so report.rb never
+# does. Words that would make the best items -- eigenclass, metaclass,
+# rubygems, laravel -- have no vector in either model, and matz, guido,
+# torvalds and sinatra exist only in GloVe, so some quadruples run on one
+# model and that is recorded rather than papered over.
 
 analogies:
   - relation: gender
@@ -110,6 +121,96 @@ analogies:
     b: cats
     c: child
     d: children
+  - relation: framework
+    group: ruby
+    a: ruby
+    b: rails
+    c: python
+    d: django
+  - relation: framework
+    group: ruby
+    a: ruby
+    b: sinatra
+    c: python
+    d: flask
+  - relation: package
+    group: ruby
+    a: ruby
+    b: gem
+    c: python
+    d: pip
+  - relation: package
+    group: ruby
+    a: ruby
+    b: gem
+    c: javascript
+    d: npm
+  - relation: accessor
+    group: ruby
+    a: array
+    b: index
+    c: hash
+    d: key
+  - relation: data-structure
+    group: ruby
+    a: hash
+    b: dictionary
+    c: array
+    d: list
+  - relation: error-handling
+    group: ruby
+    a: raise
+    b: rescue
+    c: throw
+    d: catch
+  - relation: creator
+    group: ruby
+    a: linux
+    b: torvalds
+    c: ruby
+    d: matz
+  - relation: creator
+    group: ruby
+    a: linux
+    b: torvalds
+    c: python
+    d: guido
+  - relation: negated-keyword
+    group: ruby
+    a: if
+    b: unless
+    c: while
+    d: until
+  - relation: alias
+    group: ruby
+    a: map
+    b: collect
+    c: reduce
+    d: inject
+  - relation: alias
+    group: ruby
+    a: map
+    b: collect
+    c: select
+    d: filter
+  - relation: alias
+    group: ruby
+    a: map
+    b: collect
+    c: length
+    d: size
+  - relation: exit-keyword
+    group: ruby
+    a: loop
+    b: break
+    c: method
+    d: return
+  - relation: hierarchy
+    group: ruby
+    a: class
+    b: subclass
+    c: parent
+    d: child
 
 direction_seed:
   singular: cat

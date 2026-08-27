@@ -2,10 +2,10 @@
 
 # Tables
 
-| model | entries | dimensions | candidate pool | analogies | plural pairs |
-|---|---|---|---|---|---|
-| glove | 400000 | 50 | whole vocabulary | 18 | 30 |
-| gpt2 | 50257 | 768 | 32064 | 18 | 27 |
+| model | entries | dimensions | candidate pool | analogies | ruby analogies | plural pairs |
+|---|---|---|---|---|---|---|
+| glove | 400000 | 50 | whole vocabulary | 18 | 15 | 30 |
+| gpt2 | 50257 | 768 | 32064 | 18 | 12 | 27 |
 
 ## 1. Analogy top-1 accuracy
 
@@ -64,7 +64,36 @@ Euclidean, inputs excluded. `rank` is where the expected word landed.
 | plural | cats - cat + mouse | mice | `"rabbits"` | 4 | `" mice"` | 1 |
 | plural | cats - cat + child | children | `"children"` | 1 | `" children"` | 1 |
 
-## 5. The plural direction on held-out pairs
+## 5. The ruby group
+
+Programming-domain analogies, scored apart from the original set because they ask a different question: every word here has to mean its programming sense, which GloVe's news corpus rarely saw. A `-` row means a word had no vector in that model. Euclidean, inputs excluded.
+
+| relation | arithmetic | expected | glove top-1 | rank | gpt2 top-1 | rank |
+|---|---|---|---|---|---|---|
+| framework | rails - ruby + python | django | `"externally"` | 104588 | `" rail"` | 2586 |
+| framework | sinatra - ruby + python | flask | `"tunes"` | 274369 | - | - |
+| package | gem - ruby + python | pip | `"toolchain"` | 68835 | `" Python"` | 54 |
+| package | gem - ruby + javascript | npm | `"compiler"` | 110357 | `" JavaScript"` | 87 |
+| accessor | index - array + hash | key | `"benchmark"` | 19682 | `" Index"` | 608 |
+| data-structure | dictionary - hash + array | list | `"contemporary"` | 1803 | `" Dictionary"` | 15 |
+| error-handling | rescue - raise + throw | catch | `"blew"` | 72 | `" throwing"` | 417 |
+| creator | torvalds - linux + ruby | matz | `"susumu"` | 94588 | - | - |
+| creator | torvalds - linux + python | guido | `"gitai"` | 150497 | - | - |
+| negated-keyword | unless - if + while | until | `"bringing"` | 980 | `" whilst"` | 7 |
+| alias | collect - map + reduce | inject | `"payments"` | 124 | `" collecting"` | 3893 |
+| alias | collect - map + select | filter | `"receive"` | 50712 | `" Select"` | 4728 |
+| alias | collect - map + length | size | `"amount"` | 673 | `" Length"` | 16 |
+| exit-keyword | break - loop + method | return | `"quick"` | 136 | `" methods"` | 160 |
+| hierarchy | subclass - class + parent | child | `"cephalopod"` | 352919 | `"Parent"` | 124 |
+
+| model | metric | inputs excluded | inputs kept | word-like only | median rank excl. |
+|---|---|---|---|---|---|
+| glove | euclidean | 0/15 (0%) | 0/15 (0%) | - | 50712 |
+| glove | cosine | 0/15 (0%) | 0/15 (0%) | - | 25121 |
+| gpt2 | euclidean | 0/12 (0%) | 0/12 (0%) | 0/12 (0%) | 142 |
+| gpt2 | cosine | 0/12 (0%) | 0/12 (0%) | 0/12 (0%) | 53 |
+
+## 6. The plural direction on held-out pairs
 
 A pair is separated when the plural scores above the singular. `seed` is the direction from `cats - cat` alone; `averaged` is the mean of 5 training pairs. No test pair was seen by either direction.
 
@@ -94,7 +123,7 @@ A pair is separated when the plural scores above the singular. `seed` is the dir
 | gpt2 | averaged | dot | 27/27 (100%) |
 | gpt2 | averaged | cosine | 27/27 (100%) |
 
-## 6. Pairs the direction gets wrong
+## 7. Pairs the direction gets wrong
 
 | model | direction | score | pair | form | singular | plural |
 |---|---|---|---|---|---|---|
@@ -105,13 +134,14 @@ A pair is separated when the plural scores above the singular. `seed` is the dir
 | gpt2 | seed | dot | criterion / criteria | irregular | 1.383 | 0.936 |
 | gpt2 | seed | cosine | criterion / criteria | irregular | 0.139 | 0.101 |
 
-## 7. Which token stood in for each word (GPT-2)
+## 8. Which token stood in for each word (GPT-2)
 
 The policy is: both mid-sentence forms first (` word`, then ` Word`), then the line-initial ones. Only words that needed something other than the plain mid-sentence form are listed.
 
 | word | token used |
 |---|---|
 | berlin | `" Berlin"` |
+| django | `" Django"` |
 | france | `" France"` |
 | germany | `" Germany"` |
 | italy | `" Italy"` |
@@ -122,4 +152,4 @@ The policy is: both mid-sentence forms first (` word`, then ` Word`), then the l
 | spain | `" Spain"` |
 | tokyo | `" Tokyo"` |
 
-Words with no single GPT-2 token, dropped from its runs: `cacti`, `cactus`, `geese`, `oxen`.
+Words with no single GPT-2 token, dropped from its runs: `cacti`, `cactus`, `geese`, `guido`, `matz`, `oxen`, `sinatra`, `torvalds`.

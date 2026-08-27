@@ -1,0 +1,10 @@
+# The GloVe table: 400k words x 50 floats, 163MB of ASCII. Public, immutable,
+# and reproducible byte-for-byte from the pinned URL and SHA-256 in
+# scripts/fetch.rb, so versioning it would buy no reproducibility and cost
+# every clone 163MB of git objects forever. GitHub would refuse the push
+# anyway; the per-file limit is 100MB.
+#
+# vectors-slice.txt is the committed answer to "can I re-run this without the
+# download": it carries only the words words.yml names, and the direction test
+# runs off it whole.
+data/

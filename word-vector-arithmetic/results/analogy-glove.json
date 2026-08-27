@@ -1,0 +1,1253 @@
+{
+  "provenance": {
+    "model": "glove",
+    "read_from": "data/",
+    "sources": {
+      "glove.6B.50d.txt": "d8f717f8dd4b545cb7f418ef9f3d0c3e6e68a6f48b97d32f8b7aae40cb31f96f"
+    },
+    "vocabulary": 400000,
+    "dimensions": 50,
+    "candidate_pool": null,
+    "words_without_a_vector": [],
+    "words_yml_sha256": "b88143652cba2f426affb4705e98759d14bd99d4baed6aeaea464808df245cc4",
+    "ruby": "4.0.1"
+  },
+  "analogies": [
+    {
+      "relation": "gender",
+      "a": "man",
+      "b": "woman",
+      "c": "king",
+      "expected": "queen",
+      "euclidean": {
+        "top1_with_inputs": "king",
+        "rank_with_inputs": 2,
+        "top1": "queen",
+        "rank": 1,
+        "top5": [
+          "queen",
+          "prince",
+          "elizabeth",
+          "daughter",
+          "widow"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "king",
+        "rank_with_inputs": 2,
+        "top1": "queen",
+        "rank": 1,
+        "top5": [
+          "queen",
+          "daughter",
+          "prince",
+          "throne",
+          "princess"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "gender",
+      "a": "man",
+      "b": "woman",
+      "c": "boy",
+      "expected": "girl",
+      "euclidean": {
+        "top1_with_inputs": "girl",
+        "rank_with_inputs": 1,
+        "top1": "girl",
+        "rank": 1,
+        "top5": [
+          "girl",
+          "mother",
+          "toddler",
+          "girlfriend",
+          "child"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "girl",
+        "rank_with_inputs": 1,
+        "top1": "girl",
+        "rank": 1,
+        "top5": [
+          "girl",
+          "mother",
+          "toddler",
+          "girlfriend",
+          "child"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "gender",
+      "a": "man",
+      "b": "woman",
+      "c": "brother",
+      "expected": "sister",
+      "euclidean": {
+        "top1_with_inputs": "daughter",
+        "rank_with_inputs": 9,
+        "top1": "daughter",
+        "rank": 8,
+        "top5": [
+          "daughter",
+          "wife",
+          "cousin",
+          "father",
+          "mother"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "daughter",
+        "rank_with_inputs": 10,
+        "top1": "daughter",
+        "rank": 9,
+        "top5": [
+          "daughter",
+          "wife",
+          "mother",
+          "father",
+          "cousin"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "gender",
+      "a": "man",
+      "b": "woman",
+      "c": "uncle",
+      "expected": "aunt",
+      "euclidean": {
+        "top1_with_inputs": "niece",
+        "rank_with_inputs": 3,
+        "top1": "niece",
+        "rank": 3,
+        "top5": [
+          "niece",
+          "grandmother",
+          "aunt",
+          "granddaughter",
+          "daughter"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "daughter",
+        "rank_with_inputs": 4,
+        "top1": "daughter",
+        "rank": 4,
+        "top5": [
+          "daughter",
+          "niece",
+          "grandmother",
+          "aunt",
+          "granddaughter"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "gender",
+      "a": "man",
+      "b": "woman",
+      "c": "actor",
+      "expected": "actress",
+      "euclidean": {
+        "top1_with_inputs": "actress",
+        "rank_with_inputs": 1,
+        "top1": "actress",
+        "rank": 1,
+        "top5": [
+          "actress",
+          "starred",
+          "comedian",
+          "starring",
+          "entertainer"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "actress",
+        "rank_with_inputs": 1,
+        "top1": "actress",
+        "rank": 1,
+        "top5": [
+          "actress",
+          "starred",
+          "starring",
+          "comedian",
+          "singer"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "capital",
+      "a": "france",
+      "b": "paris",
+      "c": "italy",
+      "expected": "rome",
+      "euclidean": {
+        "top1_with_inputs": "rome",
+        "rank_with_inputs": 1,
+        "top1": "rome",
+        "rank": 1,
+        "top5": [
+          "rome",
+          "turin",
+          "venice",
+          "naples",
+          "aires"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "rome",
+        "rank_with_inputs": 1,
+        "top1": "rome",
+        "rank": 1,
+        "top5": [
+          "rome",
+          "milan",
+          "turin",
+          "venice",
+          "madrid"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "capital",
+      "a": "france",
+      "b": "paris",
+      "c": "japan",
+      "expected": "tokyo",
+      "euclidean": {
+        "top1_with_inputs": "tokyo",
+        "rank_with_inputs": 1,
+        "top1": "tokyo",
+        "rank": 1,
+        "top5": [
+          "tokyo",
+          "shanghai",
+          "osaka",
+          "japanese",
+          "beijing"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "tokyo",
+        "rank_with_inputs": 1,
+        "top1": "tokyo",
+        "rank": 1,
+        "top5": [
+          "tokyo",
+          "shanghai",
+          "japanese",
+          "osaka",
+          "beijing"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "capital",
+      "a": "france",
+      "b": "paris",
+      "c": "germany",
+      "expected": "berlin",
+      "euclidean": {
+        "top1_with_inputs": "berlin",
+        "rank_with_inputs": 1,
+        "top1": "berlin",
+        "rank": 1,
+        "top5": [
+          "berlin",
+          "vienna",
+          "munich",
+          "frankfurt",
+          "hamburg"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "berlin",
+        "rank_with_inputs": 1,
+        "top1": "berlin",
+        "rank": 1,
+        "top5": [
+          "berlin",
+          "frankfurt",
+          "munich",
+          "vienna",
+          "hamburg"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "capital",
+      "a": "france",
+      "b": "paris",
+      "c": "spain",
+      "expected": "madrid",
+      "euclidean": {
+        "top1_with_inputs": "aires",
+        "rank_with_inputs": 3,
+        "top1": "aires",
+        "rank": 3,
+        "top5": [
+          "aires",
+          "buenos",
+          "madrid",
+          "rome",
+          "santiago"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "aires",
+        "rank_with_inputs": 3,
+        "top1": "aires",
+        "rank": 3,
+        "top5": [
+          "aires",
+          "buenos",
+          "madrid",
+          "rome",
+          "santiago"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "comparative",
+      "a": "good",
+      "b": "better",
+      "c": "bad",
+      "expected": "worse",
+      "euclidean": {
+        "top1_with_inputs": "bad",
+        "rank_with_inputs": 2,
+        "top1": "worse",
+        "rank": 1,
+        "top5": [
+          "worse",
+          "hurt",
+          "harder",
+          "too",
+          "unfortunately"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "bad",
+        "rank_with_inputs": 2,
+        "top1": "worse",
+        "rank": 1,
+        "top5": [
+          "worse",
+          "too",
+          "unfortunately",
+          "hurt",
+          "because"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "comparative",
+      "a": "big",
+      "b": "bigger",
+      "c": "small",
+      "expected": "smaller",
+      "euclidean": {
+        "top1_with_inputs": "larger",
+        "rank_with_inputs": 2,
+        "top1": "larger",
+        "rank": 2,
+        "top5": [
+          "larger",
+          "smaller",
+          "large",
+          "normally",
+          "typically"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "larger",
+        "rank_with_inputs": 4,
+        "top1": "larger",
+        "rank": 3,
+        "top5": [
+          "larger",
+          "large",
+          "smaller",
+          "normally",
+          "typically"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "comparative",
+      "a": "long",
+      "b": "longer",
+      "c": "short",
+      "expected": "shorter",
+      "euclidean": {
+        "top1_with_inputs": "longer",
+        "rank_with_inputs": 84,
+        "top1": "actually",
+        "rank": 82,
+        "top5": [
+          "actually",
+          "except",
+          "usually",
+          "depending",
+          "otherwise"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "longer",
+        "rank_with_inputs": 43,
+        "top1": "usually",
+        "rank": 41,
+        "top5": [
+          "usually",
+          "depending",
+          "actually",
+          "generally",
+          "either"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "past-tense",
+      "a": "walk",
+      "b": "walked",
+      "c": "run",
+      "expected": "ran",
+      "euclidean": {
+        "top1_with_inputs": "run",
+        "rank_with_inputs": 3,
+        "top1": "went",
+        "rank": 2,
+        "top5": [
+          "went",
+          "ran",
+          "drove",
+          "picked",
+          "threw"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "run",
+        "rank_with_inputs": 3,
+        "top1": "went",
+        "rank": 2,
+        "top5": [
+          "went",
+          "ran",
+          "drove",
+          "picked",
+          "threw"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "past-tense",
+      "a": "go",
+      "b": "went",
+      "c": "take",
+      "expected": "took",
+      "euclidean": {
+        "top1_with_inputs": "took",
+        "rank_with_inputs": 1,
+        "top1": "took",
+        "rank": 1,
+        "top5": [
+          "took",
+          "came",
+          "after",
+          "before",
+          "while"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "took",
+        "rank_with_inputs": 1,
+        "top1": "took",
+        "rank": 1,
+        "top5": [
+          "took",
+          "after",
+          "came",
+          "before",
+          "had"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "past-tense",
+      "a": "eat",
+      "b": "ate",
+      "c": "drink",
+      "expected": "drank",
+      "euclidean": {
+        "top1_with_inputs": "drank",
+        "rank_with_inputs": 1,
+        "top1": "drank",
+        "rank": 1,
+        "top5": [
+          "drank",
+          "drinks",
+          "sipping",
+          "sipped",
+          "bottled"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "drank",
+        "rank_with_inputs": 1,
+        "top1": "drank",
+        "rank": 1,
+        "top5": [
+          "drank",
+          "drinks",
+          "sipping",
+          "sipped",
+          "beer"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "plural",
+      "a": "cat",
+      "b": "cats",
+      "c": "dog",
+      "expected": "dogs",
+      "euclidean": {
+        "top1_with_inputs": "cats",
+        "rank_with_inputs": 2,
+        "top1": "dogs",
+        "rank": 1,
+        "top5": [
+          "dogs",
+          "rabbits",
+          "herd",
+          "animals",
+          "breed"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "cats",
+        "rank_with_inputs": 2,
+        "top1": "dogs",
+        "rank": 1,
+        "top5": [
+          "dogs",
+          "animals",
+          "rabbits",
+          "horses",
+          "goats"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "plural",
+      "a": "cat",
+      "b": "cats",
+      "c": "mouse",
+      "expected": "mice",
+      "euclidean": {
+        "top1_with_inputs": "mouse",
+        "rank_with_inputs": 6,
+        "top1": "rabbits",
+        "rank": 4,
+        "top5": [
+          "rabbits",
+          "monkeys",
+          "bugs",
+          "mice",
+          "rodents"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "mouse",
+        "rank_with_inputs": 2,
+        "top1": "mice",
+        "rank": 1,
+        "top5": [
+          "mice",
+          "rabbits",
+          "rodents",
+          "monkeys",
+          "humans"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "plural",
+      "a": "cat",
+      "b": "cats",
+      "c": "child",
+      "expected": "children",
+      "euclidean": {
+        "top1_with_inputs": "children",
+        "rank_with_inputs": 1,
+        "top1": "children",
+        "rank": 1,
+        "top5": [
+          "children",
+          "parents",
+          "mothers",
+          "teenagers",
+          "youngsters"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "children",
+        "rank_with_inputs": 1,
+        "top1": "children",
+        "rank": 1,
+        "top5": [
+          "children",
+          "parents",
+          "mothers",
+          "teenagers",
+          "families"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "framework",
+      "a": "ruby",
+      "b": "rails",
+      "c": "python",
+      "expected": "django",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "externally",
+        "rank_with_inputs": 104590,
+        "top1": "externally",
+        "rank": 104588,
+        "top5": [
+          "externally",
+          "locomotion",
+          "vertically",
+          "horizontally",
+          "movable"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "vertically",
+        "rank_with_inputs": 50740,
+        "top1": "vertically",
+        "rank": 50738,
+        "top5": [
+          "vertically",
+          "horizontally",
+          "locomotion",
+          "externally",
+          "bipedal"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "framework",
+      "a": "ruby",
+      "b": "sinatra",
+      "c": "python",
+      "expected": "flask",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "tunes",
+        "rank_with_inputs": 274372,
+        "top1": "tunes",
+        "rank": 274369,
+        "top5": [
+          "tunes",
+          "jukebox",
+          "duets",
+          "manilow",
+          "improvisations"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "tunes",
+        "rank_with_inputs": 179109,
+        "top1": "tunes",
+        "rank": 179107,
+        "top5": [
+          "tunes",
+          "jukebox",
+          "duets",
+          "songs",
+          "manilow"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "package",
+      "a": "ruby",
+      "b": "gem",
+      "c": "python",
+      "expected": "pip",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "python",
+        "rank_with_inputs": 68837,
+        "top1": "toolchain",
+        "rank": 68835,
+        "top5": [
+          "toolchain",
+          "tabletop",
+          "ubuntu",
+          "d&d",
+          "mmo"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "python",
+        "rank_with_inputs": 256857,
+        "top1": "toolchain",
+        "rank": 256854,
+        "top5": [
+          "toolchain",
+          "ubuntu",
+          "gnu",
+          "spamalot",
+          "d&d"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "package",
+      "a": "ruby",
+      "b": "gem",
+      "c": "javascript",
+      "expected": "npm",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "javascript",
+        "rank_with_inputs": 110359,
+        "top1": "compiler",
+        "rank": 110357,
+        "top5": [
+          "compiler",
+          "client-side",
+          "repositories",
+          "runtime",
+          "server-side"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "javascript",
+        "rank_with_inputs": 86778,
+        "top1": "compiler",
+        "rank": 86776,
+        "top5": [
+          "compiler",
+          "backend",
+          "client-side",
+          "repositories",
+          "runtime"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "accessor",
+      "a": "array",
+      "b": "index",
+      "c": "hash",
+      "expected": "key",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "index",
+        "rank_with_inputs": 19684,
+        "top1": "benchmark",
+        "rank": 19682,
+        "top5": [
+          "benchmark",
+          "nasdaq",
+          "ordinaries",
+          "cpi",
+          "indexes"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "index",
+        "rank_with_inputs": 16030,
+        "top1": "benchmark",
+        "rank": 16028,
+        "top5": [
+          "benchmark",
+          "nasdaq",
+          "ordinaries",
+          "asx",
+          "cpi"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "data-structure",
+      "a": "hash",
+      "b": "dictionary",
+      "c": "array",
+      "expected": "list",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "contemporary",
+        "rank_with_inputs": 1805,
+        "top1": "contemporary",
+        "rank": 1803,
+        "top5": [
+          "contemporary",
+          "background",
+          "language",
+          "visual",
+          "literature"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "contemporary",
+        "rank_with_inputs": 1552,
+        "top1": "contemporary",
+        "rank": 1550,
+        "top5": [
+          "contemporary",
+          "background",
+          "language",
+          "literature",
+          "visual"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "error-handling",
+      "a": "raise",
+      "b": "rescue",
+      "c": "throw",
+      "expected": "catch",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "blew",
+        "rank_with_inputs": 74,
+        "top1": "blew",
+        "rank": 72,
+        "top5": [
+          "blew",
+          "shot",
+          "crashing",
+          "crews",
+          "shoot"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "blew",
+        "rank_with_inputs": 76,
+        "top1": "blew",
+        "rank": 74,
+        "top5": [
+          "blew",
+          "shot",
+          "rescuers",
+          "crashing",
+          "crews"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "creator",
+      "a": "linux",
+      "b": "torvalds",
+      "c": "ruby",
+      "expected": "matz",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "susumu",
+        "rank_with_inputs": 94590,
+        "top1": "susumu",
+        "rank": 94588,
+        "top5": [
+          "susumu",
+          "clytemnestra",
+          "velma",
+          "jenna",
+          "shmuel"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "susumu",
+        "rank_with_inputs": 116072,
+        "top1": "susumu",
+        "rank": 116070,
+        "top5": [
+          "susumu",
+          "clytemnestra",
+          "velma",
+          "jenna",
+          "shmuel"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "creator",
+      "a": "linux",
+      "b": "torvalds",
+      "c": "python",
+      "expected": "guido",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "gitai",
+        "rank_with_inputs": 150499,
+        "top1": "gitai",
+        "rank": 150497,
+        "top5": [
+          "gitai",
+          "siddharth",
+          "geeta",
+          "mallika",
+          "zorba"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "siddharth",
+        "rank_with_inputs": 72394,
+        "top1": "siddharth",
+        "rank": 72392,
+        "top5": [
+          "siddharth",
+          "gitai",
+          "geeta",
+          "mallika",
+          "kinski"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "negated-keyword",
+      "a": "if",
+      "b": "unless",
+      "c": "while",
+      "expected": "until",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "bringing",
+        "rank_with_inputs": 982,
+        "top1": "bringing",
+        "rank": 980,
+        "top5": [
+          "bringing",
+          "entering",
+          "continued",
+          "leaving",
+          "followed"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "while",
+        "rank_with_inputs": 177,
+        "top1": "30",
+        "rank": 176,
+        "top5": [
+          "30",
+          "15",
+          "continued",
+          "bringing",
+          "months"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "alias",
+      "a": "map",
+      "b": "collect",
+      "c": "reduce",
+      "expected": "inject",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "reduce",
+        "rank_with_inputs": 126,
+        "top1": "payments",
+        "rank": 124,
+        "top5": [
+          "payments",
+          "raise",
+          "costs",
+          "compensate",
+          "pay"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "compensate",
+        "rank_with_inputs": 130,
+        "top1": "compensate",
+        "rank": 128,
+        "top5": [
+          "compensate",
+          "raise",
+          "paying",
+          "excess",
+          "payments"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "alias",
+      "a": "map",
+      "b": "collect",
+      "c": "select",
+      "expected": "filter",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "receive",
+        "rank_with_inputs": 50714,
+        "top1": "receive",
+        "rank": 50712,
+        "top5": [
+          "receive",
+          "earn",
+          "prospective",
+          "paid",
+          "hire"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "receive",
+        "rank_with_inputs": 25123,
+        "top1": "receive",
+        "rank": 25121,
+        "top5": [
+          "receive",
+          "earn",
+          "prospective",
+          "paid",
+          "hire"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "alias",
+      "a": "map",
+      "b": "collect",
+      "c": "length",
+      "expected": "size",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "amount",
+        "rank_with_inputs": 675,
+        "top1": "amount",
+        "rank": 673,
+        "top5": [
+          "amount",
+          "extra",
+          "paying",
+          "weight",
+          "each"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "amount",
+        "rank_with_inputs": 454,
+        "top1": "amount",
+        "rank": 452,
+        "top5": [
+          "amount",
+          "extra",
+          "paying",
+          "weight",
+          "fees"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "exit-keyword",
+      "a": "loop",
+      "b": "break",
+      "c": "method",
+      "expected": "return",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "quick",
+        "rank_with_inputs": 138,
+        "top1": "quick",
+        "rank": 136,
+        "top5": [
+          "quick",
+          "make",
+          "process",
+          "needed",
+          "try"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "quick",
+        "rank_with_inputs": 147,
+        "top1": "quick",
+        "rank": 145,
+        "top5": [
+          "quick",
+          "make",
+          "process",
+          "needed",
+          "try"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    },
+    {
+      "relation": "hierarchy",
+      "a": "class",
+      "b": "subclass",
+      "c": "parent",
+      "expected": "child",
+      "group": "ruby",
+      "euclidean": {
+        "top1_with_inputs": "cephalopod",
+        "rank_with_inputs": 352921,
+        "top1": "cephalopod",
+        "rank": 352919,
+        "top5": [
+          "cephalopod",
+          "megapode",
+          "suborder",
+          "somerfield",
+          "limacodidae"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      },
+      "cosine": {
+        "top1_with_inputs": "cephalopod",
+        "rank_with_inputs": 304287,
+        "top1": "cephalopod",
+        "rank": 304285,
+        "top5": [
+          "cephalopod",
+          "ammonite",
+          "suborder",
+          "zygaenidae",
+          "phyllanthaceae"
+        ],
+        "top1_word_like": null,
+        "rank_word_like": null
+      }
+    }
+  ]
+}

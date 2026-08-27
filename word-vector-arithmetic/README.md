@@ -309,6 +309,7 @@ scripts/lib/models.rb     One place that decides what a model is and where its f
 scripts/slice.rb          Cuts the committed slices out of the full tables.
 scripts/run.rb            Runs both experiments against one model. Measures, does not judge.
 scripts/report.rb         Turns results/*.json into results/tables.md.
+scripts/explore.rb        Ask your own question and read the whole ranking. Measures nothing.
 results/analogy-*.json    Per-analogy ranks, both metrics, every exclusion setting.
 results/direction-*.json  Per-pair scores, both directions, both metrics.
 results/tables.md         Generated. Every number quoted above comes from here.
@@ -343,6 +344,46 @@ of an 822MB archive, CRC32-checked against the zip and SHA-256 against a pinned
 hash. `fetch_gpt2.rb` reads the safetensors JSON header and requests just
 `wte.weight`: 147MB instead of 522MB, and the other 160 tensors never cross the
 network. `GLOVE_ZIP=/path/to/glove.6B.zip` extracts from a local archive.
+
+## Asking your own questions
+
+The committed results keep the top 5 and the rank of the one word `words.yml`
+nominated; the scan scored all 400,000 and threw the rest away.
+`scripts/explore.rb` prints the part that was thrown away, which is where the
+answers to "why did it say *that*?" live.
+
+```
+ruby word-vector-arithmetic/scripts/explore.rb                          # prompt, both models
+ruby word-vector-arithmetic/scripts/explore.rb "collect - map + length = size"
+ruby word-vector-arithmetic/scripts/explore.rb --model gpt2 --top 30 "hash"
+ruby word-vector-arithmetic/scripts/explore.rb --slice "woman - man + king = queen"
+```
+
+Operators need spaces around them. Anything after `=` (or `->`) is the word you
+expected, and its rank is reported wherever it landed, however deep. A bare word
+ranks the vocabulary against that word instead. `--slice` runs without any
+download, on the words `words.yml` names. `--metric cosine`, `--top N` and
+`--word-like` (GPT-2's word-only candidate pool) change the view; at the prompt
+the same settings are `:model`, `:metric` and `:top`.
+
+Every answer lists the ranking with the input words excluded, as `run.rb` does,
+and then says what happens when they are kept — that gap is the experiment's
+first finding, so it is on screen for every query:
+
+```
+glove | woman - man + king | euclidean | 400,000 entries | 1.1s
+    1  queen                           8.061  <-- expected
+    2  prince                         13.403
+    3  elizabeth                      13.803
+inputs kept: king comes first -- an input word; queen moves to 2
+input ranks:  woman 376  man 1,542  king 1
+```
+
+GPT-2 additionally prints which token stood in for each word, because that
+choice once moved an answer by four orders of magnitude.
+
+Nothing here writes a file or affects a committed result. `run.rb` is the
+experiment; this is a way to look at a model.
 
 ## Why the tables are not committed
 

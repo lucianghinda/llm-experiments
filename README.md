@@ -14,6 +14,7 @@ results, so anyone can check the numbers instead of trusting the summary.
 | [`startup-context/`](startup-context/) | What does an agent load before it starts work, where does it come from, and which parts can be turned off? | 91 |
 | [`convention-navigation/`](convention-navigation/) | Does Rails convention-over-configuration save an agent tokens, compared to the same app in a nonstandard layout? | 80  |
 | [`word-vector-arithmetic/`](word-vector-arithmetic/) | Does "king - man + woman = queen" hold when you check it yourself, does it hold better on a real LLM's embedding matrix than on GloVe, and does it hold at all for Ruby's own vocabulary? | 33 analogies, 30 pairs, 2 models |
+| [`output-styles/`](output-styles/) | Does a style instruction act the same as a Claude Code output style as it does as a prompt clause, and how do the five built-in styles score on the same rulers? | 96 |
 
 ## Shared tooling
 

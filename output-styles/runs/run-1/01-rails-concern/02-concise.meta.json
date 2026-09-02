@@ -1,0 +1,12 @@
+{
+  "claude_version": "2.1.258 (Claude Code)",
+  "model_requested": "opus",
+  "app_bundle": "pcs.bundle",
+  "app_sha": "63f4ff5698a9459f17e03663aaa9349b4b27b51b",
+  "style_name": "Concise",
+  "style_file": null,
+  "prompt": "Read the file app/controllers/concerns/idempotency.rb in this Rails app and explain to me how it works.",
+  "exit": 0,
+  "seconds": 29.6,
+  "finished_at": "2026-09-02T06:53:50Z"
+}

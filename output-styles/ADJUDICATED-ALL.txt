@@ -1,0 +1,19 @@
+verdicts read: 116 (26 PRESENT, 90 ABSENT)
+cells per variant: 8, so each column is out of 48
+
+variant                regex      read    gain
+----------------------------------------------
+default                42/48      42/48        -
+concise                39/48      40/48       +1
+explanatory            46/48      48/48       +2
+learning               43/48      44/48       +1
+proactive              44/48      45/48       +1
+style:STE              42/48      43/48       +1
+style:ASD              35/48      38/48       +3
+style:ASD+hatch        39/48      40/48       +1
+style:ASD bare         34/48      38/48       +4
+prompt:STE             39/48      42/48       +3
+prompt:ASD             24/48      31/48       +7
+prompt:ASD+hatch       33/48      35/48       +2
+
+regex = coverage.rb floor; read = floor plus facts confirmed present by hand

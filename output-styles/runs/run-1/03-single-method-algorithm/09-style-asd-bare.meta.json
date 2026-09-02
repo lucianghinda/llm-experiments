@@ -1,0 +1,12 @@
+{
+  "claude_version": "2.1.258 (Claude Code)",
+  "model_requested": "opus",
+  "app_bundle": "srb.bundle",
+  "app_sha": "9535f1eb2d9460a1766c5060383e6cb1585c749b",
+  "style_name": "ASD-STE100 bare",
+  "style_file": "asd-ste100-bare.md",
+  "prompt": "Read the method `count_transpositions` in app/services/authors/match_by_name.rb in this Rails app and explain to me how it works.",
+  "exit": 0,
+  "seconds": 43.4,
+  "finished_at": "2026-09-02T07:13:06Z"
+}

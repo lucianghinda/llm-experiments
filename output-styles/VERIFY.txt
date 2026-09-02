@@ -1,0 +1,4 @@
+cells checked: 96
+models:   claude-opus-5 x96
+versions: 2.1.258 (Claude Code) x96
+OK: every cell clean and consistent

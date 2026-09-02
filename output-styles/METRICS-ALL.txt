@@ -1,0 +1,59 @@
+== 01-rails-concern
+run           default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+run-1      18.5 (32%)   20.2 (33%)   20.0 (29%)   18.8 (27%)   21.9 (35%)   14.4 ( 0%)   12.8 ( 3%)   15.1 ( 7%)   11.7 ( 2%)   16.7 (14%)   13.6 ( 8%)   12.8 ( 0%)
+run-2      18.3 (17%)   20.2 (29%)   19.6 (29%)   19.1 (23%)   17.3 (19%)   15.5 ( 9%)   11.9 ( 3%)   14.5 (10%)    9.6 ( 2%)   19.5 (25%)   10.5 ( 0%)   10.3 ( 0%)
+
+words         default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+run-1         454w j7      357w j5      803w j6      826w j7      485w j6      471w j3      385w j0      427w j6      492w j2      454w j5      490w j0      547w j1
+run-2         428w j8      335w j4      793w j6      725w j4      540w j9      519w j5      421w j0      582w j8      435w j0      532w j4      505w j0      490w j0
+
+out tok       default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+run-1        2994t/5n     1323t/4n     3873t/5n     2891t/4n     1871t/5n     1423t/2n     1254t/2n     1704t/2n     1278t/2n     1312t/2n     1767t/2n     1326t/2n
+run-2        2728t/4n     1078t/2n     4902t/6n     3085t/5n     3111t/5n     2013t/2n     1252t/2n     2189t/6n     1300t/2n     1567t/2n     1449t/2n     1766t/2n
+
+== 02-single-method-domain
+run           default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+run-1      21.4 (29%)   16.6 (17%)   21.7 (32%)   19.8 (26%)   23.1 (26%)   17.1 (13%)   12.3 ( 4%)   16.0 (12%)   11.3 ( 0%)   19.0 (28%)   11.7 ( 3%)   14.4 ( 5%)
+run-2      19.5 (29%)   17.2 (22%)   19.8 (26%)   17.9 (18%)   15.2 (17%)   15.4 ( 8%)   11.6 ( 0%)   13.5 ( 8%)   12.8 ( 0%)   24.2 (32%)    9.3 ( 2%)   11.3 ( 0%)
+
+words         default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+run-1         436w j0      292w j0      651w j2      523w j2      428w j1      388w j0      341w j0      416w j1      308w j0      342w j0      345w j0      275w j0
+run-2         401w j0      296w j0      658w j2      566w j2      427w j0      378w j0      316w j0      333w j0      394w j0      459w j0      400w j0      348w j0
+
+out tok       default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+run-1        2905t/4n      901t/2n     5876t/5n     3399t/2n     2182t/5n     2246t/5n     1015t/2n     2838t/3n     1771t/6n     2437t/5n     2756t/4n     2413t/5n
+run-2        3429t/5n     1752t/5n     4628t/4n     3310t/4n     3426t/5n     2344t/4n     2277t/4n     1914t/2n     2462t/6n     3066t/5n     2064t/2n     2219t/2n
+
+== 03-single-method-algorithm
+run           default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+run-1      19.0 (30%)   15.5 (12%)   19.7 (29%)   21.5 (36%)   22.2 (42%)   14.8 (10%)   11.8 ( 0%)   15.8 (18%)    9.1 ( 0%)   16.3 (18%)   11.1 ( 0%)   12.5 ( 0%)
+run-2      29.0 (50%)   16.1 (12%)   21.2 (30%)   19.3 (27%)   20.9 (28%)   14.3 (18%)   11.7 ( 0%)   13.3 ( 4%)   12.6 ( 3%)   13.6 ( 8%)   10.0 ( 0%)   11.1 ( 0%)
+
+words         default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+run-1         501w j1      260w j0      589w j1      458w j0      414w j0      446w j0      342w j0      518w j0      268w j0      349w j0      406w j0      364w j0
+run-2          98w j1      269w j0      558w j1      489w j1      365w j1      313w j0      380w j0      302w j0      398w j0      356w j0      432w j0      402w j0
+
+out tok       default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+run-1        4106t/5n     2084t/5n     5479t/4n     3512t/5n     2878t/7n     3812t/5n     2788t/5n     3605t/6n     2541t/5n     3010t/5n     3528t/6n     2044t/2n
+run-2        3503t/5n     2426t/6n     5051t/5n     4375t/6n     3212t/5n     2646t/5n     2496t/5n     3278t/5n     2854t/5n     2904t/5n     1452t/2n     3097t/5n
+
+== 04-query-object
+run           default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+run-1      18.6 (27%)   22.0 (26%)   17.6 (21%)   17.6 (13%)   20.3 (24%)   13.6 ( 6%)   11.2 ( 2%)   16.3 (13%)   10.0 ( 0%)   18.8 (17%)   10.6 ( 0%)   14.2 ( 7%)
+run-2      16.1 (11%)   16.2 (13%)   23.7 (38%)   18.8 (15%)   16.5 (18%)   19.2 (24%)   10.7 ( 2%)   13.3 ( 0%)   11.6 ( 2%)   15.1 ( 4%)   11.7 ( 1%)   11.0 ( 0%)
+
+words         default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+run-1         653w j4      395w j0      889w j4      917w j4      665w j1      696w j2      576w j0      503w j1      469w j1      657w j1      706w j1      602w j1
+run-2         541w j2      380w j2      785w j4      728w j1      649w j2      538w j1      546w j1      524w j1      592w j1      845w j1      798w j1      645w j1
+
+out tok       default      concise       explan        learn       proact        s:STE        s:ASD       s:ASDw       s:bare        p:STE        p:ASD       p:ASDw
+run-1        3025t/4n     2465t/4n     6400t/5n     6178t/6n     3176t/2n     4898t/5n     2202t/2n     2417t/2n     2258t/2n     4267t/5n     3998t/5n     3289t/2n
+run-2        4326t/5n     2718t/2n     3637t/5n     5077t/6n     3128t/4n     3094t/4n     2884t/2n     2776t/4n     2264t/2n     3184t/5n     4635t/2n     2951t/3n
+
+avg words per sentence (share of sentences over the 25-word STE limit)
+words row: prose word count, jargon-list hits as jN
+out tok row: output tokens and number of assistant turns

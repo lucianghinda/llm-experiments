@@ -114,11 +114,61 @@ Rails defaults. Change is shown with its exact p in brackets.
 | claude | search calls | 20 | 15 | 25 | 20 | -25% (0.024) | -20% (0.008) | +33% (0.056) |
 | claude | files read | 36 | 27 | 38 | 30 | -25% (0.151) | -21% (0.032) | +11% (0.476) |
 | claude | searches before first target | 2 | 2 | 5 | 2 | +0% (0.278) | -60% (0.008) | +0% (0.444) |
+| claude | lines added to tracked files | 220 | 126 | 214 | 150 | -43% (0.008) | -30% (0.056) | +19% (0.310) |
+| claude | files touched (modified + new) | 14 | 10 | 14 | 11 | -29% (0.024) | -21% (0.024) | +10% (0.206) |
 | codex | input tokens | 570,090 | 613,826 | 733,778 | 506,662 | +8% (0.690) | -31% (0.095) | -17% (0.421) |
 | codex | tool calls | 11 | 8 | 11 | 8 | -27% (0.016) | -27% (0.056) | +0% (0.325) |
 | codex | search calls | 5 | 3 | 4 | 4 | -40% (0.048) | +0% (0.278) | +33% (0.286) |
 | codex | files read | 3 | 2 | 9 | 5 | -33% (0.556) | -44% (0.230) | +150% (0.857) |
 | codex | searches before first target | 1 | 1 | 1 | 1 | +0% (1.000) | +0% (1.000) | +0% (1.000) |
+| codex | lines added to tracked files | 31 | 24 | 34 | 23 | -23% (0.302) | -32% (0.063) | -4% (1.000) |
+| codex | files touched (modified + new) | 8 | 7 | 8 | 7 | -12% (0.524) | -12% (0.167) | +0% (0.444) |
+
+## Code written
+
+How much code each passing trial left behind. Lines are `+` lines in
+agent.diff, which is `git diff` over tracked files -- a brand-new file
+(the migration, a fresh test file) adds nothing to the line count and is
+counted only in files touched. Two trials that pass the same scripted
+acceptance check can differ by a factor of seven here, and nothing in
+this experiment scores which of them wrote the better change: passing is
+the only quality bar a trial faces.
+
+### claude: lines added to tracked files, median over trials that passed
+
+| task | conventional | scrambled | scrambled-mapped | conventional-mapped | change c->s | exact p c->s |
+|---|---|---|---|---|---|---|
+| feature-room-topic | 220 | 214 | 150 | 126 | -3% | 0.841 |
+| locate-direct-type | 0 | 0 | - | - | +0.0 | 1.000 |
+| locate-generated-secret | 0 | 0 | - | - | +0.0 | 1.000 |
+| test-direct-type | 20 | 20 | - | - | +0% | 0.873 |
+
+### claude: files touched (modified + new), median over trials that passed
+
+| task | conventional | scrambled | scrambled-mapped | conventional-mapped | change c->s | exact p c->s |
+|---|---|---|---|---|---|---|
+| feature-room-topic | 14 | 14 | 11 | 10 | +0% | 0.881 |
+| locate-direct-type | 0 | 0 | - | - | +0.0 | 1.000 |
+| locate-generated-secret | 0 | 0 | - | - | +0.0 | 1.000 |
+| test-direct-type | 1 | 1 | - | - | +0% | 1.000 |
+
+### codex: lines added to tracked files, median over trials that passed
+
+| task | conventional | scrambled | scrambled-mapped | conventional-mapped | change c->s | exact p c->s |
+|---|---|---|---|---|---|---|
+| feature-room-topic | 31 | 34 | 23 | 24 | +10% | 0.206 |
+| locate-direct-type | 0 | 0 | - | - | +0.0 | 1.000 |
+| locate-generated-secret | 0 | 0 | - | - | +0.0 | 1.000 |
+| test-direct-type | 7 | 7 | - | - | +0% | 1.000 |
+
+### codex: files touched (modified + new), median over trials that passed
+
+| task | conventional | scrambled | scrambled-mapped | conventional-mapped | change c->s | exact p c->s |
+|---|---|---|---|---|---|---|
+| feature-room-topic | 8 | 8 | 7 | 7 | +0% | 1.000 |
+| locate-direct-type | 0 | 0 | - | - | +0.0 | 1.000 |
+| locate-generated-secret | 0 | 0 | - | - | +0.0 | 1.000 |
+| test-direct-type | 1 | 1 | - | - | +0% | 1.000 |
 
 ## Zero-search navigation
 

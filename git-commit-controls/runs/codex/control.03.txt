@@ -1,0 +1,4 @@
+fix(cart): Include quantities in totals
+
+Cart totals counted each line item only once, understating the total
+when an item had multiple units. Include the quantity of each item.

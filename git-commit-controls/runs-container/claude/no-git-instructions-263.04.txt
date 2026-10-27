@@ -1,0 +1,3 @@
+Fix cart total to account for item quantity
+
+total_cents summed price_cents alone, ignoring quantity.

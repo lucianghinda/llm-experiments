@@ -1,0 +1,1 @@
+Include item quantity when calculating cart total

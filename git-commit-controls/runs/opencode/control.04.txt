@@ -1,0 +1,1 @@
+Calculate cart total by quantity

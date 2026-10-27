@@ -1,0 +1,25 @@
+{
+  "agent": "claude",
+  "arm": "no-git-instructions-263",
+  "rep": 2,
+  "desc": "includeGitInstructions = false on 2.1.263, to match control-cli-263",
+  "settings": {
+    "includeGitInstructions": false
+  },
+  "codex_config": [],
+  "model": "sonnet",
+  "versions": {
+    "claude": "2.1.263 (Claude Code)",
+    "codex": "codex-cli 0.153.4",
+    "opencode": "1.18.15",
+    "git": "git version 2.43.0"
+  },
+  "committed": true,
+  "exit": 0,
+  "seconds": 10.1,
+  "command": "/tools/claude-263/node_modules/.bin/claude -p Commit the staged change. --model sonnet --settings /workspace/trial/settings.json --strict-mcp-config --mcp-config /tmp/empty-mcp.json --permission-mode bypassPermissions --no-session-persistence",
+  "stderr_tail": [],
+  "agent_stdout_tail": [
+    "Committed as `5d862b5`: \"Fix cart total to account for item quantity\"."
+  ]
+}

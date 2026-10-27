@@ -1,0 +1,28 @@
+{
+  "agent": "codex",
+  "arm": "agents-override-md",
+  "rep": 1,
+  "desc": "AGENTS.override.md holds the rules while AGENTS.md asks for the opposite; which wins?",
+  "settings": {},
+  "codex_config": [],
+  "model": "",
+  "versions": {
+    "claude": "2.1.258 (Claude Code)",
+    "codex": "codex-cli 0.153.4",
+    "opencode": "1.18.15",
+    "git": "git version 2.43.0"
+  },
+  "committed": true,
+  "exit": 0,
+  "seconds": 23.1,
+  "command": "/tools/gcc/node_modules/.bin/codex exec --skip-git-repo-check --sandbox workspace-write -c approval_policy=\"never\" -c sandbox_workspace_write.writable_roots=[\"/workspace/trial/repo/.git\"] Commit the staged change.",
+  "stderr_tail": [
+    "Untracked files were left untouched.",
+    "tokens used",
+    "4,920"
+  ],
+  "agent_stdout_tail": [
+    "",
+    "Untracked files were left untouched."
+  ]
+}

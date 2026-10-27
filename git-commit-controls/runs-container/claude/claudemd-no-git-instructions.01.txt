@@ -1,0 +1,5 @@
+fix(cart): multiply price by quantity in total
+
+Cart totals summed only price_cents, ignoring quantity, so carts with
+multiple units of an item were undercharged. Multiply price by
+quantity when computing the total.

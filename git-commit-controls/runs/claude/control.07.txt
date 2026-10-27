@@ -1,0 +1,3 @@
+Fix total_cents to account for item quantity
+
+Cart total was summing price_cents only, ignoring quantity.

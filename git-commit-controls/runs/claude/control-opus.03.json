@@ -1,0 +1,20 @@
+{
+  "agent": "claude",
+  "arm": "control-opus",
+  "rep": 3,
+  "desc": "same as control but on Opus: is attribution compliance a property of the model?",
+  "settings": {
+    "disableAllHooks": true
+  },
+  "codex_config": null,
+  "committed": true,
+  "exit": 0,
+  "seconds": 26.0,
+  "command": "/opt/homebrew/bin/claude -p Commit the staged change. --model opus --settings /private/tmp/claude-502/-Users-luciang-Dropbox-workprojects-explorations-llm-experiments/db42e1b9-f8dd-4d58-80d0-3d5b13ec2a28/scratchpad/gcc/settings.json --strict-mcp-config --mcp-config {\"mcpServers\":{}} --permission-mode bypassPermissions --no-session-persistence",
+  "model": "opus",
+  "stderr_tail": [],
+  "agent_stdout_tail": [
+    "- I committed on `main` since that's where the change was staged and you asked directly. My usual default is to branch first — say the word if you'd rather this move to a branch.",
+    "- There's no test covering the multi-quantity case. Worth adding one so the bug can't come back."
+  ]
+}

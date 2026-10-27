@@ -1,0 +1,4 @@
+fix(cart): Include item quantity in total_cents calculation
+
+total_cents summed price_cents per item but ignored quantity,
+undercharging for any item added more than once.

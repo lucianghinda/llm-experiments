@@ -1,0 +1,29 @@
+{
+  "agent": "claude",
+  "arm": "attribution-empty-263",
+  "rep": 7,
+  "desc": "attribution.commit = \"\" on 2.1.263, to match control-cli-263",
+  "settings": {
+    "attribution": {
+      "commit": "",
+      "pr": "",
+      "sessionUrl": false
+    }
+  },
+  "codex_config": [],
+  "model": "sonnet",
+  "versions": {
+    "claude": "2.1.263 (Claude Code)",
+    "codex": "codex-cli 0.153.4",
+    "opencode": "1.18.15",
+    "git": "git version 2.43.0"
+  },
+  "committed": true,
+  "exit": 0,
+  "seconds": 11.4,
+  "command": "/tools/claude-263/node_modules/.bin/claude -p Commit the staged change. --model sonnet --settings /workspace/trial/settings.json --strict-mcp-config --mcp-config /tmp/empty-mcp.json --permission-mode bypassPermissions --no-session-persistence",
+  "stderr_tail": [],
+  "agent_stdout_tail": [
+    "Committed as `2daecc9`."
+  ]
+}

@@ -1,0 +1,6 @@
+Multiply price by quantity in total
+
+Cart#total_cents summed only the unit price, so any line item with
+quantity above 1 was undercharged.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>

@@ -1,0 +1,1 @@
+fix(cart): Multiply price by quantity in cart total

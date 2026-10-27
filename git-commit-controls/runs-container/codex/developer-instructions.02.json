@@ -1,0 +1,30 @@
+{
+  "agent": "codex",
+  "arm": "developer-instructions",
+  "rep": 2,
+  "desc": "the rules passed as the developer_instructions config key",
+  "settings": {},
+  "codex_config": [
+    "developer_instructions=\"## Git commits\\n\\n- Use Conventional Commits: `type(scope): description`.\\n- Keep the subject line at 60 characters or less.\\n- Use the imperative mood.\\n- Always add a body explaining why the change was made.\\n- Never mention AI, Claude, Codex or opencode.\\n- Never add a Co-Authored-By trailer.\\n\""
+  ],
+  "model": "",
+  "versions": {
+    "claude": "2.1.258 (Claude Code)",
+    "codex": "codex-cli 0.153.4",
+    "opencode": "1.18.15",
+    "git": "git version 2.43.0"
+  },
+  "committed": true,
+  "exit": 0,
+  "seconds": 67.0,
+  "command": "/tools/gcc/node_modules/.bin/codex exec --skip-git-repo-check --sandbox workspace-write -c approval_policy=\"never\" -c sandbox_workspace_write.writable_roots=[\"/workspace/trial/repo/.git\"] -c developer_instructions=\"## Git commits\\n\\n- Use Conventional Commits: `type(scope): description`.\\n- Keep the subject line at 60 characters or less.\\n- Use the imperative mood.\\n- Always add a body explaining why the change was made.\\n- Never mention AI, Claude, Codex or opencode.\\n- Never add a Co-Authored-By trailer.\\n\" Commit the staged change.",
+  "stderr_tail": [
+    "Working tree is clean.",
+    "tokens used",
+    "4,788"
+  ],
+  "agent_stdout_tail": [
+    "",
+    "Working tree is clean."
+  ]
+}

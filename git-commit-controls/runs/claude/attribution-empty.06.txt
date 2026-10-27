@@ -1,0 +1,4 @@
+Fix total_cents to account for item quantity
+
+Sum was only summing price_cents, ignoring quantity, so multi-quantity
+line items undercounted the cart total.

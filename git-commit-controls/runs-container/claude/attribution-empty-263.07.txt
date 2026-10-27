@@ -1,0 +1,3 @@
+Include item quantity when calculating cart total
+
+Total was only summing price_cents, ignoring quantity.

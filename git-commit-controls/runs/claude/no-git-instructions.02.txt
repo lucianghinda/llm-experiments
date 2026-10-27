@@ -1,0 +1,1 @@
+Fix total_cents to account for item quantity

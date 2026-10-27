@@ -1,0 +1,24 @@
+{
+  "agent": "codex",
+  "arm": "control",
+  "rep": 6,
+  "desc": "isolated CODEX_HOME holding only auth.json; no config.toml, no AGENTS.md",
+  "settings": {
+    "disableAllHooks": true
+  },
+  "codex_config": [],
+  "committed": true,
+  "exit": 0,
+  "seconds": 32.7,
+  "command": "~/.nodenv/shims/codex exec --skip-git-repo-check --sandbox workspace-write -c approval_policy=\"never\" -c sandbox_workspace_write.writable_roots=[\"/private/tmp/claude-502/-Users-luciang-Dropbox-workprojects-explorations-llm-experiments/db42e1b9-f8dd-4d58-80d0-3d5b13ec2a28/scratchpad/gcc2/work/.git\"] Commit the staged change.",
+  "model": null,
+  "stderr_tail": [
+    "Syntax and cart checks passed. Working tree is clean.",
+    "tokens used",
+    "32.782"
+  ],
+  "agent_stdout_tail": [
+    "",
+    "Syntax and cart checks passed. Working tree is clean."
+  ]
+}

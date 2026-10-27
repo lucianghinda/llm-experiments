@@ -1,0 +1,4 @@
+fix(cart): multiply price by quantity in total_cents
+
+total_cents summed only unit prices, so any item with quantity
+greater than 1 undercounted the cart total.

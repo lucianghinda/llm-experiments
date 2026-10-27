@@ -1,0 +1,3 @@
+fix: account for item quantity in cart total
+
+total_cents previously summed price_cents alone, ignoring quantity.

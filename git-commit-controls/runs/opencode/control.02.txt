@@ -1,0 +1,1 @@
+Fix cart total to use item quantity

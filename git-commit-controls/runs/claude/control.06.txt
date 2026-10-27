@@ -1,0 +1,6 @@
+Fix total_cents to account for item quantity
+
+price_cents alone ignored quantity, undercounting totals for line
+items with quantity greater than one.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>

@@ -1,0 +1,3 @@
+fix(cart): account for item quantity in total
+
+Cart totals previously summed raw item prices and ignored quantity, which undercounted multi-unit carts. This updates total_cents to multiply each line item price by its quantity before summing so totals match expected checkout amounts.

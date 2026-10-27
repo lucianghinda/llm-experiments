@@ -1,0 +1,3 @@
+Fix cart total to account for item quantity
+
+total_cents only summed price_cents, ignoring quantity, so carts with quantity > 1 undercharged.

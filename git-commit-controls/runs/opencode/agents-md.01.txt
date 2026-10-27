@@ -1,0 +1,3 @@
+fix(cart): use quantity in total price
+
+Correct cart total calculation so each item's quantity is included in the sum. This prevents undercharging when multiple units are added at once.

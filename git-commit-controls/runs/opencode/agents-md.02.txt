@@ -1,0 +1,3 @@
+fix(cart): multiply item totals by quantity
+
+Update Cart#total_cents to account for item quantity in subtotal calculations. Without this, carts with multiple units of the same item always used a single price per line item.

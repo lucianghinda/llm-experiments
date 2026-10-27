@@ -1,0 +1,4 @@
+Fix total_cents to account for item quantity
+
+Previously summed price_cents alone, ignoring how many of each
+item was in the cart.

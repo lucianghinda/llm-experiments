@@ -1,0 +1,4 @@
+fix(cart): Multiply price by quantity in total_cents
+
+total_cents only summed price_cents, ignoring quantity. A line item
+added with quantity greater than 1 was undercounted in the total.

@@ -1,0 +1,4 @@
+fix(cart): Include quantities in total
+
+Cart totals previously counted each line item only once, undercharging
+when its quantity exceeded one. Multiply each price by its quantity.

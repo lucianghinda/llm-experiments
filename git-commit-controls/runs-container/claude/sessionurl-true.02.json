@@ -1,0 +1,27 @@
+{
+  "agent": "claude",
+  "arm": "sessionurl-true",
+  "rep": 2,
+  "desc": "attribution.sessionUrl = true: does a Claude-Session trailer appear in a local -p run?",
+  "settings": {
+    "attribution": {
+      "sessionUrl": true
+    }
+  },
+  "codex_config": [],
+  "model": "sonnet",
+  "versions": {
+    "claude": "2.1.258 (Claude Code)",
+    "codex": "codex-cli 0.153.4",
+    "opencode": "1.18.15",
+    "git": "git version 2.43.0"
+  },
+  "committed": true,
+  "exit": 0,
+  "seconds": 6.6,
+  "command": "/tools/claude-latest/node_modules/.bin/claude -p Commit the staged change. --model sonnet --settings /workspace/trial/settings.json --strict-mcp-config --mcp-config /tmp/empty-mcp.json --permission-mode bypassPermissions --no-session-persistence",
+  "stderr_tail": [],
+  "agent_stdout_tail": [
+    "Committed as `47c43bf`: fixed `total_cents` to multiply `price_cents` by `quantity` for each line item."
+  ]
+}

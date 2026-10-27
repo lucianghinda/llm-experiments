@@ -1,0 +1,3 @@
+fix(cart): compute total using item quantity
+
+The cart total currently ignored item quantities, so multiple units were undercounted. Sum each item's unit price times quantity to match expected checkout totals.

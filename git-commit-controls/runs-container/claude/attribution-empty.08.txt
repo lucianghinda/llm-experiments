@@ -1,0 +1,1 @@
+Multiply price by quantity when computing cart total

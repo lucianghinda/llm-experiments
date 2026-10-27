@@ -1,0 +1,18 @@
+{
+  "agent": "claude",
+  "arm": "control",
+  "rep": 2,
+  "desc": "no commit-related settings; whatever Claude Code does by default",
+  "settings": {
+    "disableAllHooks": true
+  },
+  "codex_config": null,
+  "committed": true,
+  "exit": 0,
+  "seconds": 10.2,
+  "command": "/opt/homebrew/bin/claude -p Commit the staged change. --model sonnet --settings /private/tmp/claude-502/-Users-luciang-Dropbox-workprojects-explorations-llm-experiments/db42e1b9-f8dd-4d58-80d0-3d5b13ec2a28/scratchpad/gcc/settings.json --strict-mcp-config --mcp-config {\"mcpServers\":{}} --permission-mode bypassPermissions --no-session-persistence",
+  "stderr_tail": [],
+  "agent_stdout_tail": [
+    "Committed as `0916458`: fixes `total_cents` to multiply price by quantity."
+  ]
+}

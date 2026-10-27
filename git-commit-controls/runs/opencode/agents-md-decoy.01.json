@@ -1,0 +1,24 @@
+{
+  "agent": "opencode",
+  "arm": "agents-md-decoy",
+  "rep": 1,
+  "desc": "AGENTS.md asks for a plain one-line subject; is the file obeyed at all?",
+  "settings": {
+    "disableAllHooks": true
+  },
+  "codex_config": null,
+  "committed": true,
+  "exit": 0,
+  "seconds": 8.8,
+  "command": "/opt/homebrew/bin/opencode run --pure --auto --dir /private/tmp/claude-502/-Users-luciang-Dropbox-workprojects-explorations-llm-experiments/db42e1b9-f8dd-4d58-80d0-3d5b13ec2a28/scratchpad/gcc3/work -m openai/gpt-5.3-codex-spark Commit the staged change.",
+  "model": "openai/gpt-5.3-codex-spark",
+  "stderr_tail": [
+    "\u001b[0m$ \u001b[0mgit status --short",
+    "?? AGENTS.md",
+    "\u001b[0m"
+  ],
+  "agent_stdout_tail": [
+    "",
+    "Note: `AGENTS.md` is still untracked in the workspace and was not included in this commit."
+  ]
+}

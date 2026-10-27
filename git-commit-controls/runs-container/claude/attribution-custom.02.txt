@@ -1,0 +1,3 @@
+Multiply price by quantity when computing cart total
+
+Co-Authored-By: Robot <robot@example.com>

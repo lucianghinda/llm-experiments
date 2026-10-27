@@ -1,0 +1,1 @@
+Multiply line item prices by quantity when calculating cart total

@@ -1,0 +1,3 @@
+Multiply line item price by quantity in cart total
+
+Total was previously summing unit prices only, ignoring quantity.

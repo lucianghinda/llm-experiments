@@ -1,0 +1,6 @@
+Account for quantity in cart total
+
+The total summed each item's unit price once, so items added with
+a quantity above 1 were undercharged.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>

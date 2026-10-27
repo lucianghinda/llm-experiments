@@ -1,0 +1,5 @@
+fix(cart): Account for item quantities in totals
+
+Cart totals counted each line item only once, understating the cost
+when customers added multiple units. Include each item quantity so
+the total reflects all units in the cart.

@@ -1,0 +1,26 @@
+{
+  "agent": "codex",
+  "arm": "developer-instructions",
+  "rep": 1,
+  "desc": "the rules passed as the developer_instructions config key",
+  "settings": {
+    "disableAllHooks": true
+  },
+  "codex_config": [
+    "developer_instructions=\"## Git commits\\n\\n- Use Conventional Commits: `type(scope): description`.\\n- Keep the subject line at 60 characters or less.\\n- Use the imperative mood.\\n- Always add a body explaining why the change was made.\\n- Never mention AI, Claude, Codex or opencode.\\n- Never add a Co-Authored-By trailer.\\n\""
+  ],
+  "committed": true,
+  "exit": 0,
+  "seconds": 28.6,
+  "command": "~/.nodenv/shims/codex exec --skip-git-repo-check --sandbox workspace-write -c approval_policy=\"never\" -c sandbox_workspace_write.writable_roots=[\"/private/tmp/claude-502/-Users-luciang-Dropbox-workprojects-explorations-llm-experiments/db42e1b9-f8dd-4d58-80d0-3d5b13ec2a28/scratchpad/gcc2/work/.git\"] -c developer_instructions=\"## Git commits\\n\\n- Use Conventional Commits: `type(scope): description`.\\n- Keep the subject line at 60 characters or less.\\n- Use the imperative mood.\\n- Always add a body explaining why the change was made.\\n- Never mention AI, Claude, Codex or opencode.\\n- Never add a Co-Authored-By trailer.\\n\" Commit the staged change.",
+  "model": null,
+  "stderr_tail": [
+    "Syntax and cart checks passed. Working tree is clean.",
+    "tokens used",
+    "17.053"
+  ],
+  "agent_stdout_tail": [
+    "",
+    "Syntax and cart checks passed. Working tree is clean."
+  ]
+}

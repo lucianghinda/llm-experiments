@@ -1,0 +1,6 @@
+Include quantity when calculating cart total
+
+Line item totals were only counting price_cents once per item,
+ignoring quantity.
+
+Co-Authored-By: Robot <robot@example.com>

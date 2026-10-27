@@ -1,0 +1,3 @@
+fix(cart): include quantity in total calculation
+
+The cart total ignored item quantities and only summed unit prices. Multiply each item's price by its quantity so multi-unit line items are counted correctly.

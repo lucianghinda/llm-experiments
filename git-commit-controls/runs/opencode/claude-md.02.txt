@@ -1,0 +1,3 @@
+fix(cart): include quantity in total
+
+Cart totals were previously summing only unit prices, so orders with quantities >1 were underpriced. This change multiplies each item's unit price by its quantity to produce accurate cent totals.

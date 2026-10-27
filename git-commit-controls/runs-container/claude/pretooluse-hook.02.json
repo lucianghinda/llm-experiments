@@ -1,0 +1,38 @@
+{
+  "agent": "claude",
+  "arm": "pretooluse-hook",
+  "rep": 2,
+  "desc": "PreToolUse hook rewrites the git commit command before it runs",
+  "settings": {
+    "hooks": {
+      "PreToolUse": [
+        {
+          "matcher": "Bash",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "ruby /workspace/trial/pretooluse.rb",
+              "timeout": 15
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "codex_config": [],
+  "model": "sonnet",
+  "versions": {
+    "claude": "2.1.258 (Claude Code)",
+    "codex": "codex-cli 0.153.4",
+    "opencode": "1.18.15",
+    "git": "git version 2.43.0"
+  },
+  "committed": true,
+  "exit": 0,
+  "seconds": 5.8,
+  "command": "/tools/claude-latest/node_modules/.bin/claude -p Commit the staged change. --model sonnet --settings /workspace/trial/settings.json --strict-mcp-config --mcp-config /tmp/empty-mcp.json --permission-mode bypassPermissions --no-session-persistence",
+  "stderr_tail": [],
+  "agent_stdout_tail": [
+    "Committed as `78b179d`."
+  ]
+}

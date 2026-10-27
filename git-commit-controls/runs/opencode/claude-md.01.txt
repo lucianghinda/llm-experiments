@@ -1,0 +1,5 @@
+fix(cart): compute total with item quantities
+
+Cart totals previously summed only unit prices, undercounting carts with multiple quantities. Sum each line item's unit price multiplied by its quantity to reflect true order total.
+
+This ensures checkout and reporting use the same quantity-aware pricing model used when items are added.

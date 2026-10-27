@@ -1,0 +1,4 @@
+fix(cart): Fix total_cents to account for item quantity
+
+total_cents summed price_cents only, ignoring quantity, so a
+line item with quantity > 1 undercounted the total.

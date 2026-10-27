@@ -1,0 +1,1 @@
+Account for item quantities in cart totals

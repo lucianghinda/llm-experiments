@@ -1,0 +1,1 @@
+Multiply price by quantity in total_cents

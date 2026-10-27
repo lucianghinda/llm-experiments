@@ -1,0 +1,1 @@
+Fix total_cents to multiply by item quantity

@@ -1,0 +1,3 @@
+Multiply price by quantity in total
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>

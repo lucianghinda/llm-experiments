@@ -1,0 +1,4 @@
+fix(cart): multiply price by quantity in total
+
+total_cents previously ignored quantity and summed price_cents alone,
+undercharging for any item added with quantity greater than 1.

@@ -1,0 +1,29 @@
+{
+  "agent": "claude",
+  "arm": "attribution-empty",
+  "rep": 4,
+  "desc": "attribution.commit = \"\" (the setting the source document recommends)",
+  "settings": {
+    "attribution": {
+      "commit": "",
+      "pr": "",
+      "sessionUrl": false
+    }
+  },
+  "codex_config": [],
+  "model": "sonnet",
+  "versions": {
+    "claude": "2.1.258 (Claude Code)",
+    "codex": "codex-cli 0.153.4",
+    "opencode": "1.18.15",
+    "git": "git version 2.43.0"
+  },
+  "committed": true,
+  "exit": 0,
+  "seconds": 7.7,
+  "command": "/tools/claude-latest/node_modules/.bin/claude -p Commit the staged change. --model sonnet --settings /workspace/trial/settings.json --strict-mcp-config --mcp-config /tmp/empty-mcp.json --permission-mode bypassPermissions --no-session-persistence",
+  "stderr_tail": [],
+  "agent_stdout_tail": [
+    "Committed as `401461e`."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "agent": "claude",
+  "arm": "control-opus",
+  "rep": 8,
+  "desc": "same as control but on Opus: is attribution compliance a property of the model?",
+  "settings": {},
+  "codex_config": [],
+  "model": "opus",
+  "versions": {
+    "claude": "2.1.258 (Claude Code)",
+    "codex": "codex-cli 0.153.4",
+    "opencode": "1.18.15",
+    "git": "git version 2.43.0"
+  },
+  "committed": true,
+  "exit": 0,
+  "seconds": 15.4,
+  "command": "/tools/claude-latest/node_modules/.bin/claude -p Commit the staged change. --model opus --settings /workspace/trial/settings.json --strict-mcp-config --mcp-config /tmp/empty-mcp.json --permission-mode bypassPermissions --no-session-persistence",
+  "stderr_tail": [],
+  "agent_stdout_tail": [
+    "",
+    "Note: you were on `main` directly, and the change was already staged there, so I committed in place rather than branching."
+  ]
+}

@@ -1,0 +1,5 @@
+Fix total_cents to multiply by quantity
+
+price_cents alone ignored line item quantity, undercounting the total.
+
+Co-Authored-By: Robot <robot@example.com>

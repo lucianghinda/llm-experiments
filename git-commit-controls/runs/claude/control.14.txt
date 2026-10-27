@@ -1,0 +1,3 @@
+Fix cart total to account for item quantity
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>

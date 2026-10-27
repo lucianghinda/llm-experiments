@@ -1,0 +1,6 @@
+Fix total to account for quantity
+
+total_cents summed only price_cents, so any line item with
+quantity above 1 was undercharged.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>

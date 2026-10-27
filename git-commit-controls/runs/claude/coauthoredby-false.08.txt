@@ -1,0 +1,3 @@
+Fix total to account for item quantity
+
+Total was summing price only, ignoring quantity per line item.

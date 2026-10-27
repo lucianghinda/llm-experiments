@@ -1,0 +1,6 @@
+Fix cart total to account for item quantity
+
+total_cents summed each item's unit price once, ignoring quantity, so a
+cart with any quantity above 1 was undercharged.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>

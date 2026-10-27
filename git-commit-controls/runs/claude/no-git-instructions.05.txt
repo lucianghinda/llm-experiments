@@ -1,0 +1,3 @@
+fix: multiply price by quantity in cart total
+
+total_cents summed only price_cents, ignoring item quantity.

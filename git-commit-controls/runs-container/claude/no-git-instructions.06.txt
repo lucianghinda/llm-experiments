@@ -1,0 +1,1 @@
+Multiply item price by quantity in cart total

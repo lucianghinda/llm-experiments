@@ -1,0 +1,5 @@
+Multiply price by quantity in cart total
+
+Fix total_cents to account for item quantity instead of summing unit price only.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>

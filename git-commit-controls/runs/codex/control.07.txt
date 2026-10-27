@@ -1,0 +1,4 @@
+fix(cart): Include quantities in total
+
+Cart totals counted each line item only once, regardless of quantity.
+Multiply each price by its quantity so totals reflect all units.

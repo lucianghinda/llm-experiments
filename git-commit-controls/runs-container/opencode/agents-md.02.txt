@@ -1,0 +1,3 @@
+fix(cart): apply item quantity in total
+
+Cart total calculation was only summing unit prices and ignored item quantities. This commit updates total_cents to multiply each price by its quantity so totals reflect true line-item amounts for checkout and reporting.

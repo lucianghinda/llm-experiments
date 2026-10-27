@@ -1,0 +1,3 @@
+fix(cart): Include quantities in cart totals
+
+Multiply each item price by its quantity so totals account for every unit added to the cart.

@@ -1,0 +1,5 @@
+Fix total_cents to account for item quantity
+
+Was summing price_cents only, ignoring quantity, so totals were wrong for items with quantity > 1.
+
+Co-Authored-By: Robot <robot@example.com>

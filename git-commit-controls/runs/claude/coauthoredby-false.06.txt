@@ -1,0 +1,3 @@
+Fix total_cents to account for item quantity
+
+Total was summing unit prices only, ignoring quantity per line item.

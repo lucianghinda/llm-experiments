@@ -1,0 +1,3 @@
+Fix total_cents to multiply by item quantity
+
+Previously the cart total ignored quantity and only summed unit prices.

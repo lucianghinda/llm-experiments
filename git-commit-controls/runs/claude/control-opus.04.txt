@@ -1,0 +1,6 @@
+Multiply price by quantity in cart total
+
+The total summed each item's unit price, so a line item with quantity
+greater than one was charged once.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>

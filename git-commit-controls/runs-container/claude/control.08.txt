@@ -1,0 +1,4 @@
+Multiply price by quantity when computing cart total
+
+Fixes total_cents to account for line item quantities instead of
+only summing unit prices.

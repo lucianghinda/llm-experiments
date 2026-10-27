@@ -1,0 +1,4 @@
+fix(cart): Include quantities in total
+
+fix(cart): Cart totals previously counted each line item only once, regardless of
+quantity. Include every unit when calculating the total in cents.

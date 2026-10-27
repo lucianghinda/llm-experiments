@@ -1,0 +1,3 @@
+Account for quantity in cart total
+
+price_cents alone ignored item quantity when computing total_cents.

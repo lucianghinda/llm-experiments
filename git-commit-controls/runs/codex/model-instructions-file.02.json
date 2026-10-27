@@ -1,0 +1,26 @@
+{
+  "agent": "codex",
+  "arm": "model-instructions-file",
+  "rep": 2,
+  "desc": "model_instructions_file replaces Codex's built-in instructions with the rules",
+  "settings": {
+    "disableAllHooks": true
+  },
+  "codex_config": [
+    "model_instructions_file=\"/private/tmp/claude-502/-Users-luciang-Dropbox-workprojects-explorations-llm-experiments/db42e1b9-f8dd-4d58-80d0-3d5b13ec2a28/scratchpad/gcc2/instructions.md\""
+  ],
+  "committed": true,
+  "exit": 0,
+  "seconds": 26.7,
+  "command": "~/.nodenv/shims/codex exec --skip-git-repo-check --sandbox workspace-write -c approval_policy=\"never\" -c sandbox_workspace_write.writable_roots=[\"/private/tmp/claude-502/-Users-luciang-Dropbox-workprojects-explorations-llm-experiments/db42e1b9-f8dd-4d58-80d0-3d5b13ec2a28/scratchpad/gcc2/work/.git\"] -c model_instructions_file=\"/private/tmp/claude-502/-Users-luciang-Dropbox-workprojects-explorations-llm-experiments/db42e1b9-f8dd-4d58-80d0-3d5b13ec2a28/scratchpad/gcc2/instructions.md\" Commit the staged change.",
+  "model": null,
+  "stderr_tail": [
+    "Smoke checks passed. Working tree is clean.",
+    "tokens used",
+    "25.575"
+  ],
+  "agent_stdout_tail": [
+    "",
+    "Smoke checks passed. Working tree is clean."
+  ]
+}

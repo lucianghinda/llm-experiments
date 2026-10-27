@@ -1,0 +1,3 @@
+fix(cart): multiply price by quantity in total
+
+Cart totals previously summed only unit prices, so line items with a quantity greater than one under-counted the total.

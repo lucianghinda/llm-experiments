@@ -1,0 +1,19 @@
+{
+  "agent": "claude",
+  "arm": "claudemd-no-git-instructions",
+  "rep": 1,
+  "desc": "project CLAUDE.md rules with the built-in git instructions removed",
+  "settings": {
+    "includeGitInstructions": false,
+    "disableAllHooks": true
+  },
+  "codex_config": null,
+  "committed": true,
+  "exit": 0,
+  "seconds": 13.5,
+  "command": "/opt/homebrew/bin/claude -p Commit the staged change. --model sonnet --settings /private/tmp/claude-502/-Users-luciang-Dropbox-workprojects-explorations-llm-experiments/db42e1b9-f8dd-4d58-80d0-3d5b13ec2a28/scratchpad/gcc/settings.json --strict-mcp-config --mcp-config {\"mcpServers\":{}} --permission-mode bypassPermissions --no-session-persistence",
+  "stderr_tail": [],
+  "agent_stdout_tail": [
+    "Committed as `8f786f1`. Note: the new `CLAUDE.md` in this directory is untracked and wasn't included."
+  ]
+}

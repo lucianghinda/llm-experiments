@@ -1,0 +1,28 @@
+{
+  "agent": "codex",
+  "arm": "control",
+  "rep": 6,
+  "desc": "isolated CODEX_HOME holding only auth.json; no config.toml, no AGENTS.md",
+  "settings": {},
+  "codex_config": [],
+  "model": "",
+  "versions": {
+    "claude": "2.1.258 (Claude Code)",
+    "codex": "codex-cli 0.153.4",
+    "opencode": "1.18.15",
+    "git": "git version 2.43.0"
+  },
+  "committed": true,
+  "exit": 0,
+  "seconds": 28.1,
+  "command": "/tools/gcc/node_modules/.bin/codex exec --skip-git-repo-check --sandbox workspace-write -c approval_policy=\"never\" -c sandbox_workspace_write.writable_roots=[\"/workspace/trial/repo/.git\"] Commit the staged change.",
+  "stderr_tail": [
+    "Working tree is clean.",
+    "tokens used",
+    "9,035"
+  ],
+  "agent_stdout_tail": [
+    "",
+    "Working tree is clean."
+  ]
+}

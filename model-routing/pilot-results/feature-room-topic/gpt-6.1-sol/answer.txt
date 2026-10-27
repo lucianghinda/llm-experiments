@@ -1,0 +1,3 @@
+Added optional `topic` storage and a topic field on the existing rename form, using the same request and permissions. Topics over 120 characters are rejected.
+
+Tests: 353 runs, 0 failures, 0 errors, 2 skips. Updated tests also pass separately. Browser tests could not start due to an environment Selenium error.

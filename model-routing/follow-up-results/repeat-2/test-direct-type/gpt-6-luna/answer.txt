@@ -1,0 +1,1 @@
+Added a model regression test in [room_test.rb](/workspace/app/test/models/room_test.rb) that verifies a direct room cannot be saved as open and remains direct. The test passes: 7 runs, 13 assertions.

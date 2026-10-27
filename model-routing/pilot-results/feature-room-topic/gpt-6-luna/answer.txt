@@ -1,0 +1,3 @@
+Added an optional `topic` column to rooms. Room admins can set or change it in the existing edit form alongside the name, through the same request. Topics over 120 characters are rejected by model validation.
+
+The open and closed room controller tests pass: 18 runs, 63 assertions, 0 failures.

@@ -1,0 +1,178 @@
+[
+  {
+    "task": "locate-direct-type",
+    "model": "gpt-6.1-sol",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 14.528,
+    "host_seconds": 28.4,
+    "input_tokens": 45423,
+    "cached_input_tokens": 38656,
+    "output_tokens": 120
+  },
+  {
+    "task": "locate-direct-type",
+    "model": "gpt-6.1-terra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 15.456,
+    "host_seconds": 26.8,
+    "input_tokens": 29064,
+    "cached_input_tokens": 26112,
+    "output_tokens": 75
+  },
+  {
+    "task": "test-direct-type",
+    "model": "gpt-6-astra",
+    "passed": true,
+    "audit": "assertion_failure_confirmed",
+    "agent_seconds": 56.77,
+    "host_seconds": 72.7,
+    "input_tokens": 158466,
+    "cached_input_tokens": 143872,
+    "output_tokens": 959
+  },
+  {
+    "task": "locate-direct-type",
+    "model": "gpt-6-luna",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 16.367,
+    "host_seconds": 27.9,
+    "input_tokens": 70237,
+    "cached_input_tokens": 61312,
+    "output_tokens": 250
+  },
+  {
+    "task": "locate-generated-secret",
+    "model": "gpt-6-astra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 15.712,
+    "host_seconds": 28.1,
+    "input_tokens": 43894,
+    "cached_input_tokens": 40576,
+    "output_tokens": 115
+  },
+  {
+    "task": "locate-generated-secret",
+    "model": "gpt-6.1-sol",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 19.531,
+    "host_seconds": 32.2,
+    "input_tokens": 44177,
+    "cached_input_tokens": 40832,
+    "output_tokens": 92
+  },
+  {
+    "task": "feature-room-topic",
+    "model": "gpt-6-luna",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 85.807,
+    "host_seconds": 161.5,
+    "input_tokens": 481867,
+    "cached_input_tokens": 441600,
+    "output_tokens": 2760
+  },
+  {
+    "task": "feature-room-topic",
+    "model": "gpt-6-astra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 161.327,
+    "host_seconds": 241.3,
+    "input_tokens": 501627,
+    "cached_input_tokens": 465024,
+    "output_tokens": 3078
+  },
+  {
+    "task": "feature-room-topic",
+    "model": "gpt-6.1-terra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 93.642,
+    "host_seconds": 170.0,
+    "input_tokens": 362925,
+    "cached_input_tokens": 339328,
+    "output_tokens": 2442
+  },
+  {
+    "task": "locate-generated-secret",
+    "model": "gpt-6.1-terra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 13.028,
+    "host_seconds": 24.4,
+    "input_tokens": 44078,
+    "cached_input_tokens": 38272,
+    "output_tokens": 181
+  },
+  {
+    "task": "test-direct-type",
+    "model": "gpt-6.1-sol",
+    "passed": true,
+    "audit": "assertion_failure_confirmed",
+    "agent_seconds": 44.749,
+    "host_seconds": 61.5,
+    "input_tokens": 141932,
+    "cached_input_tokens": 133632,
+    "output_tokens": 890
+  },
+  {
+    "task": "locate-generated-secret",
+    "model": "gpt-6-luna",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 14.617,
+    "host_seconds": 26.7,
+    "input_tokens": 84298,
+    "cached_input_tokens": 66944,
+    "output_tokens": 198
+  },
+  {
+    "task": "feature-room-topic",
+    "model": "gpt-6.1-sol",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 182.949,
+    "host_seconds": 261.7,
+    "input_tokens": 587846,
+    "cached_input_tokens": 541184,
+    "output_tokens": 3765
+  },
+  {
+    "task": "test-direct-type",
+    "model": "gpt-6-luna",
+    "passed": true,
+    "audit": "assertion_failure_confirmed",
+    "agent_seconds": 29.211,
+    "host_seconds": 45.6,
+    "input_tokens": 98833,
+    "cached_input_tokens": 84736,
+    "output_tokens": 897
+  },
+  {
+    "task": "locate-direct-type",
+    "model": "gpt-6-astra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 14.303,
+    "host_seconds": 27.1,
+    "input_tokens": 45200,
+    "cached_input_tokens": 41344,
+    "output_tokens": 122
+  },
+  {
+    "task": "test-direct-type",
+    "model": "gpt-6.1-terra",
+    "passed": true,
+    "audit": "assertion_failure_confirmed",
+    "agent_seconds": 25.892,
+    "host_seconds": 43.8,
+    "input_tokens": 89014,
+    "cached_input_tokens": 79104,
+    "output_tokens": 506
+  }
+]

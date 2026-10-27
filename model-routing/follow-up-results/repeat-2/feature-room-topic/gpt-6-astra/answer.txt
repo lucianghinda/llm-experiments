@@ -1,0 +1,3 @@
+Added optional room topics in the `topic` database column, editable alongside the name through the same form and request. Topics over 120 characters are rejected.
+
+Validation: 360 tests, 0 failures, 2 skips; lint passes. Browser tests could not start due to the environment’s Chrome/Selenium setup.

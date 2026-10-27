@@ -1,0 +1,178 @@
+[
+  {
+    "task": "test-direct-type",
+    "model": "gpt-6-luna",
+    "passed": true,
+    "audit": "assertion_failure_confirmed",
+    "agent_seconds": 25.297,
+    "host_seconds": 43.0,
+    "input_tokens": 103987,
+    "cached_input_tokens": 86016,
+    "output_tokens": 917
+  },
+  {
+    "task": "locate-direct-type",
+    "model": "gpt-6.1-sol",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 11.482,
+    "host_seconds": 23.1,
+    "input_tokens": 30514,
+    "cached_input_tokens": 26240,
+    "output_tokens": 53
+  },
+  {
+    "task": "locate-generated-secret",
+    "model": "gpt-6.1-terra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 10.08,
+    "host_seconds": 21.1,
+    "input_tokens": 30112,
+    "cached_input_tokens": 26112,
+    "output_tokens": 107
+  },
+  {
+    "task": "test-direct-type",
+    "model": "gpt-6.1-sol",
+    "passed": true,
+    "audit": "assertion_failure_confirmed",
+    "agent_seconds": 45.507,
+    "host_seconds": 61.9,
+    "input_tokens": 153595,
+    "cached_input_tokens": 134016,
+    "output_tokens": 905
+  },
+  {
+    "task": "locate-direct-type",
+    "model": "gpt-6.1-terra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 9.068,
+    "host_seconds": 20.3,
+    "input_tokens": 29141,
+    "cached_input_tokens": 26112,
+    "output_tokens": 71
+  },
+  {
+    "task": "locate-direct-type",
+    "model": "gpt-6-luna",
+    "passed": false,
+    "audit": "not_applicable",
+    "agent_seconds": 16.216,
+    "host_seconds": 27.5,
+    "input_tokens": 72200,
+    "cached_input_tokens": 53888,
+    "output_tokens": 321
+  },
+  {
+    "task": "locate-generated-secret",
+    "model": "gpt-6-astra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 17.828,
+    "host_seconds": 29.3,
+    "input_tokens": 44030,
+    "cached_input_tokens": 40704,
+    "output_tokens": 118
+  },
+  {
+    "task": "feature-room-topic",
+    "model": "gpt-6-luna",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 40.657,
+    "host_seconds": 118.8,
+    "input_tokens": 305841,
+    "cached_input_tokens": 275712,
+    "output_tokens": 2016
+  },
+  {
+    "task": "locate-generated-secret",
+    "model": "gpt-6.1-sol",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 14.347,
+    "host_seconds": 25.3,
+    "input_tokens": 44224,
+    "cached_input_tokens": 40832,
+    "output_tokens": 116
+  },
+  {
+    "task": "test-direct-type",
+    "model": "gpt-6-astra",
+    "passed": true,
+    "audit": "assertion_failure_confirmed",
+    "agent_seconds": 53.812,
+    "host_seconds": 70.6,
+    "input_tokens": 101333,
+    "cached_input_tokens": 94336,
+    "output_tokens": 765
+  },
+  {
+    "task": "feature-room-topic",
+    "model": "gpt-6.1-sol",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 152.349,
+    "host_seconds": 230.5,
+    "input_tokens": 481881,
+    "cached_input_tokens": 459008,
+    "output_tokens": 3306
+  },
+  {
+    "task": "feature-room-topic",
+    "model": "gpt-6-astra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 214.438,
+    "host_seconds": 299.0,
+    "input_tokens": 744281,
+    "cached_input_tokens": 712576,
+    "output_tokens": 3822
+  },
+  {
+    "task": "locate-direct-type",
+    "model": "gpt-6-astra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 13.569,
+    "host_seconds": 25.7,
+    "input_tokens": 46642,
+    "cached_input_tokens": 42112,
+    "output_tokens": 115
+  },
+  {
+    "task": "locate-generated-secret",
+    "model": "gpt-6-luna",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 16.159,
+    "host_seconds": 29.4,
+    "input_tokens": 71257,
+    "cached_input_tokens": 61312,
+    "output_tokens": 211
+  },
+  {
+    "task": "test-direct-type",
+    "model": "gpt-6.1-terra",
+    "passed": true,
+    "audit": "assertion_failure_confirmed",
+    "agent_seconds": 20.491,
+    "host_seconds": 36.5,
+    "input_tokens": 80656,
+    "cached_input_tokens": 74752,
+    "output_tokens": 512
+  },
+  {
+    "task": "feature-room-topic",
+    "model": "gpt-6.1-terra",
+    "passed": true,
+    "audit": "not_applicable",
+    "agent_seconds": 89.337,
+    "host_seconds": 165.6,
+    "input_tokens": 370060,
+    "cached_input_tokens": 340480,
+    "output_tokens": 2599
+  }
+]

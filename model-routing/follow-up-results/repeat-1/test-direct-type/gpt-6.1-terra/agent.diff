@@ -1,0 +1,20 @@
+diff --git a/test/models/room_test.rb b/test/models/room_test.rb
+index b113726..f3466cd 100644
+--- a/test/models/room_test.rb
++++ b/test/models/room_test.rb
+@@ -30,6 +30,15 @@ class RoomTest < ActiveSupport::TestCase
+     assert Rooms::Closed.new.closed?
+   end
+ 
++  test "a direct room cannot change its type" do
++    [ "Rooms::Open", "Rooms::Closed" ].each do |type|
++      room = Room.find(rooms(:david_and_kevin).id)
++
++      assert_not room.update(type: type)
++      assert_equal "Rooms::Direct", Room.find(room.id).type
++    end
++  end
++
+   test "default involvement for new users" do
+     room = Rooms::Closed.create_for({ name: "Hello!", creator: users(:david) }, users: [ users(:kevin), users(:david) ])
+     assert room.memberships.all? { |m| m.involved_in_mentions? }

@@ -1,0 +1,17 @@
+task,model,passed,audit,agent_seconds,host_seconds,input_tokens,cached_input_tokens,output_tokens
+test-direct-type,gpt-6-luna,true,assertion_failure_confirmed,25.297,43.0,103987,86016,917
+locate-direct-type,gpt-6.1-sol,true,not_applicable,11.482,23.1,30514,26240,53
+locate-generated-secret,gpt-6.1-terra,true,not_applicable,10.08,21.1,30112,26112,107
+test-direct-type,gpt-6.1-sol,true,assertion_failure_confirmed,45.507,61.9,153595,134016,905
+locate-direct-type,gpt-6.1-terra,true,not_applicable,9.068,20.3,29141,26112,71
+locate-direct-type,gpt-6-luna,false,not_applicable,16.216,27.5,72200,53888,321
+locate-generated-secret,gpt-6-astra,true,not_applicable,17.828,29.3,44030,40704,118
+feature-room-topic,gpt-6-luna,true,not_applicable,40.657,118.8,305841,275712,2016
+locate-generated-secret,gpt-6.1-sol,true,not_applicable,14.347,25.3,44224,40832,116
+test-direct-type,gpt-6-astra,true,assertion_failure_confirmed,53.812,70.6,101333,94336,765
+feature-room-topic,gpt-6.1-sol,true,not_applicable,152.349,230.5,481881,459008,3306
+feature-room-topic,gpt-6-astra,true,not_applicable,214.438,299.0,744281,712576,3822
+locate-direct-type,gpt-6-astra,true,not_applicable,13.569,25.7,46642,42112,115
+locate-generated-secret,gpt-6-luna,true,not_applicable,16.159,29.4,71257,61312,211
+test-direct-type,gpt-6.1-terra,true,assertion_failure_confirmed,20.491,36.5,80656,74752,512
+feature-room-topic,gpt-6.1-terra,true,not_applicable,89.337,165.6,370060,340480,2599

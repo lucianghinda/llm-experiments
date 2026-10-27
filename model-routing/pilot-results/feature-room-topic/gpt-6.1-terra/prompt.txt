@@ -1,0 +1,10 @@
+Rooms need a topic: one short line of text saying what the room is currently
+about. Add it.
+
+- Store it in a database column named topic.
+- A topic is optional. A room without one is still valid.
+- A topic longer than 120 characters must be rejected rather than saved.
+- Anyone who can rename a room must be able to set or change its topic at the
+  same time, through the same screen and the same request that renames it.
+
+The application's existing tests must still pass when you are done.

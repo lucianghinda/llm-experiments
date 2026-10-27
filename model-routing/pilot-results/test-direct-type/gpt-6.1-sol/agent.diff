@@ -1,0 +1,21 @@
+diff --git a/test/models/rooms/direct_test.rb b/test/models/rooms/direct_test.rb
+index ab74efa..4b99230 100644
+--- a/test/models/rooms/direct_test.rb
++++ b/test/models/rooms/direct_test.rb
+@@ -1,6 +1,16 @@
+ require "test_helper"
+ 
+ class Rooms::DirectTest < ActiveSupport::TestCase
++  test "direct rooms cannot become open or closed rooms" do
++    room = rooms(:david_and_kevin)
++
++    [ "Rooms::Open", "Rooms::Closed" ].each do |type|
++      assert_not room.update(type: type)
++      assert_includes room.errors[:type], "can't be changed for a direct room"
++      assert_equal "Rooms::Direct", room.reload.type
++    end
++  end
++
+   test "create room for same users" do
+     room = Rooms::Direct.find_or_create_for([ users(:david), users(:kevin) ])
+     assert room.users.include?(users(:david))

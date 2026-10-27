@@ -1,0 +1,3 @@
+Added one regression test in [direct_test.rb](/workspace/app/test/models/rooms/direct_test.rb:4) covering conversion to both open and closed rooms.
+
+Verified all four tests in the file pass, and the new test fails when the rule is disabled in memory. No application code changed.

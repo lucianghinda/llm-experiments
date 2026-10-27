@@ -1,0 +1,26 @@
+diff --git a/test/models/room_test.rb b/test/models/room_test.rb
+index b113726..623826f 100644
+--- a/test/models/room_test.rb
++++ b/test/models/room_test.rb
+@@ -30,6 +30,21 @@ class RoomTest < ActiveSupport::TestCase
+     assert Rooms::Closed.new.closed?
+   end
+ 
++  test "direct rooms cannot be converted to open or closed rooms" do
++    [ Rooms::Open, Rooms::Closed ].each do |room_type|
++      direct = rooms(:david_and_kevin).reload
++      participant_ids = direct.user_ids.sort
++      converted = direct.becomes!(room_type)
++
++      assert_not converted.save
++      assert_includes converted.errors[:type], "can't be changed for a direct room"
++
++      persisted = Room.find(direct.id)
++      assert_instance_of Rooms::Direct, persisted
++      assert_equal participant_ids, persisted.user_ids.sort
++    end
++  end
++
+   test "default involvement for new users" do
+     room = Rooms::Closed.create_for({ name: "Hello!", creator: users(:david) }, users: [ users(:kevin), users(:david) ])
+     assert room.memberships.all? { |m| m.involved_in_mentions? }

@@ -1,0 +1,8 @@
+This application has a rule that a direct room, which exists for a fixed pair of
+people, cannot be turned into a room that other people can join.
+
+Write an automated test that proves that rule holds, and put it where tests
+belong in this codebase. The test must pass now, and it must fail if someone
+removes the rule.
+
+Add the test and nothing else. Do not change any code outside the test you write.

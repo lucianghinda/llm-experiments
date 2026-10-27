@@ -1,0 +1,219 @@
+diff --git a/app/controllers/rooms/closeds_controller.rb b/app/controllers/rooms/closeds_controller.rb
+index c0d01d4..a403bd7 100644
+--- a/app/controllers/rooms/closeds_controller.rb
++++ b/app/controllers/rooms/closeds_controller.rb
+@@ -21,6 +21,10 @@ class Rooms::ClosedsController < RoomsController
+ 
+     broadcast_create_room(room)
+     redirect_to room_url(room)
++  rescue ActiveRecord::RecordInvalid => error
++    @room = error.record
++    @users = User.active.ordered
++    render :new, status: :unprocessable_entity
+   end
+ 
+   def edit
+@@ -29,11 +33,14 @@ class Rooms::ClosedsController < RoomsController
+   end
+ 
+   def update
+-    @room.update! room_params
+-    @room.memberships.revise(granted: grantees, revoked: revokees)
+-
+-    broadcast_update_room
+-    redirect_to room_url(@room)
++    if @room.update(room_params)
++      @room.memberships.revise(granted: grantees, revoked: revokees)
++      broadcast_update_room
++      redirect_to room_url(@room)
++    else
++      @selected_users, @unselected_users = User.active.ordered.partition { |user| grantee_ids.map(&:to_s).include?(user.id.to_s) }
++      render :edit, status: :unprocessable_entity
++    end
+   end
+ 
+   private
+diff --git a/app/controllers/rooms/opens_controller.rb b/app/controllers/rooms/opens_controller.rb
+index 2605d22..4fa67f8 100644
+--- a/app/controllers/rooms/opens_controller.rb
++++ b/app/controllers/rooms/opens_controller.rb
+@@ -21,6 +21,10 @@ class Rooms::OpensController < RoomsController
+ 
+     broadcast_create_room(room)
+     redirect_to room_url(room)
++  rescue ActiveRecord::RecordInvalid => error
++    @room = error.record
++    @users = User.active.ordered
++    render :new, status: :unprocessable_entity
+   end
+ 
+   def edit
+@@ -28,10 +32,13 @@ class Rooms::OpensController < RoomsController
+   end
+ 
+   def update
+-    @room.update! room_params
+-
+-    broadcast_update_room
+-    redirect_to room_url(@room)
++    if @room.update(room_params)
++      broadcast_update_room
++      redirect_to room_url(@room)
++    else
++      @users = User.active.ordered
++      render :edit, status: :unprocessable_entity
++    end
+   end
+ 
+   private
+diff --git a/app/controllers/rooms_controller.rb b/app/controllers/rooms_controller.rb
+index 1f1d28e..6d77969 100644
+--- a/app/controllers/rooms_controller.rb
++++ b/app/controllers/rooms_controller.rb
+@@ -54,7 +54,7 @@ class RoomsController < ApplicationController
+     end
+ 
+     def room_params
+-      params.require(:room).permit(:name)
++      params.require(:room).permit(:name, :topic)
+     end
+ 
+     def broadcast_remove_room
+diff --git a/app/models/room.rb b/app/models/room.rb
+index 20865fc..d847174 100644
+--- a/app/models/room.rb
++++ b/app/models/room.rb
+@@ -22,6 +22,8 @@ class Room < ApplicationRecord
+ 
+   belongs_to :creator, class_name: "User", default: -> { Current.user }
+ 
++  validates :topic, length: { maximum: 120 }, allow_nil: true
++
+   validate :direct_rooms_keep_their_type, on: :update
+ 
+   scope :opens,           -> { where(type: "Rooms::Open") }
+diff --git a/app/views/rooms/layouts/_form.html.erb b/app/views/rooms/layouts/_form.html.erb
+index 0b266f2..99a23ae 100644
+--- a/app/views/rooms/layouts/_form.html.erb
++++ b/app/views/rooms/layouts/_form.html.erb
+@@ -16,6 +16,16 @@
+     <% end %>
+   </div>
+ 
++  <% if Current.user.can_administer?(room) %>
++    <div class="margin-block">
++      <%= form.label :topic, "Topic (optional)" %>
++      <%= form.text_field :topic, name: "room[topic]", class: "input full-width", maxlength: 120 %>
++      <% room.errors.full_messages_for(:topic).each do |message| %>
++        <p role="alert"><%= message %></p>
++      <% end %>
++    </div>
++  <% end %>
++
+   <hr class="margin-block borderless">
+ 
+   <section class="room-access margin-block pad-inline fill-shade border-radius">
+diff --git a/app/views/rooms/show/_nav.html.erb b/app/views/rooms/show/_nav.html.erb
+index 4f62185..98c1c6a 100644
+--- a/app/views/rooms/show/_nav.html.erb
++++ b/app/views/rooms/show/_nav.html.erb
+@@ -11,6 +11,10 @@
+     </h1>
+   <% end %>
+ 
++  <% if room.topic.present? %>
++    <span class="overflow-ellipsis"><%= room.topic %></span>
++  <% end %>
++
+   <%= link_to_edit_room(room) do %>
+     <%= image_tag "menu-dots-horizontal.svg", size: 20, aria: { hidden: "true" } %>
+     <span class="for-screen-reader">Settings for this <%= room.direct? ? "Ping" : "room" %></span>
+diff --git a/db/schema.rb b/db/schema.rb
+index e7f1540..2c8d187 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
++ActiveRecord::Schema[8.2].define(version: 2026_10_27_000000) do
+   create_table "accounts", force: :cascade do |t|
+     t.datetime "created_at", null: false
+     t.text "custom_styles"
+@@ -120,6 +120,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
+     t.datetime "created_at", null: false
+     t.bigint "creator_id", null: false
+     t.string "name"
++    t.string "topic"
+     t.string "type", null: false
+     t.datetime "updated_at", null: false
+   end
+diff --git a/test/controllers/rooms/closeds_controller_test.rb b/test/controllers/rooms/closeds_controller_test.rb
+index 504745d..0ec4cdc 100644
+--- a/test/controllers/rooms/closeds_controller_test.rb
++++ b/test/controllers/rooms/closeds_controller_test.rb
+@@ -39,6 +39,13 @@ class Rooms::ClosedsControllerTest < ActionDispatch::IntegrationTest
+   end
+ 
+ 
++  test "update topic with the room name" do
++    room = rooms(:designers)
++    put rooms_closed_url(room), params: { room: { name: "Design team", topic: "Current projects" }, user_ids: room.user_ids }
++    assert_redirected_to room_url(room)
++    assert_equal [ "Design team", "Current projects" ], room.reload.attributes.values_at("name", "topic")
++  end
++
+   test "update with membership revisions" do
+     assert_difference -> { rooms(:designers).reload.users.count }, -1 do
+       put rooms_closed_url(rooms(:designers)), params: {
+diff --git a/test/controllers/rooms/opens_controller_test.rb b/test/controllers/rooms/opens_controller_test.rb
+index 680c2e1..8492ae9 100644
+--- a/test/controllers/rooms/opens_controller_test.rb
++++ b/test/controllers/rooms/opens_controller_test.rb
+@@ -53,6 +53,24 @@ class Rooms::OpensControllerTest < ActionDispatch::IntegrationTest
+     assert rooms(:pets).reload.name, "New Name"
+   end
+ 
++  test "update name and topic together and show the topic" do
++    put rooms_open_url(rooms(:pets)), params: { room: { name: "New name", topic: "Our pets" } }
++    assert_redirected_to room_url(rooms(:pets))
++    assert_equal [ "New name", "Our pets" ], rooms(:pets).reload.attributes.values_at("name", "topic")
++    get room_url(rooms(:pets))
++    assert_select "span", text: "Our pets"
++  end
++
++  test "reject an overlong topic without changing the room" do
++    room = rooms(:pets)
++    original_name = room.name
++    put rooms_open_url(room), params: { room: { name: "Changed", topic: "a" * 121 } }
++    assert_response :unprocessable_entity
++    assert_select "[role=alert]", text: /Topic/
++    assert_equal original_name, room.reload.name
++    assert_nil room.topic
++  end
++
+   test "update a closed room to be open" do
+     put rooms_open_url(rooms(:designers)), params: { room: { name: "Doesn't matter" } }
+     assert_equal rooms(:designers).memberships.count, User.count
+diff --git a/test/models/room_test.rb b/test/models/room_test.rb
+index b113726..eb52c17 100644
+--- a/test/models/room_test.rb
++++ b/test/models/room_test.rb
+@@ -23,6 +23,16 @@ class RoomTest < ActiveSupport::TestCase
+     assert room.users.include?(users(:david))
+   end
+ 
++  test "topic is optional and limited to 120 characters" do
++    room = rooms(:pets)
++    room.topic = nil
++    assert room.valid?
++    room.topic = "a" * 120
++    assert room.valid?
++    room.topic = "a" * 121
++    assert_not room.valid?
++  end
++
+   test "type" do
+     assert Rooms::Open.new.open?
+     assert_not Rooms::Open.new.direct?

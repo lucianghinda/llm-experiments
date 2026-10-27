@@ -1,0 +1,18 @@
+{
+  "task": "test-direct-type",
+  "variant": "conventional",
+  "passed": false,
+  "checks": [
+    {
+      "label": "a test was added",
+      "ok": false,
+      "detail": "no new or modified *_test.rb anywhere in the tree"
+    }
+  ],
+  "facts": {
+    "new_test_files": [],
+    "modified_test_files": [],
+    "mutation_killed": null
+  },
+  "finished_at": "2026-10-27T10:12:19Z"
+}

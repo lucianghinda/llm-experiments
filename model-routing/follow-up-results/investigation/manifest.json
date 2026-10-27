@@ -1,0 +1,155 @@
+{
+  "seed": 20261030,
+  "image": "llmx-app-campfire:latest",
+  "image_digest": "sha256:2f81affa534cf256462a9d175b44edc4d1430bbb99d296ad7483081c60000140",
+  "image_inspect_sha256": "fd32bd362f6181b6560f1d9ee9cbdb78fe9f20811ad4eddc0edc90fa7c35ddad",
+  "cli_version": "codex-cli 0.164.0",
+  "sequential": true,
+  "workspace_sha256": "adcee46b6230361c59774523c1fa193946c96467f028d7156e49d14677fa8e86",
+  "cells": [
+    {
+      "blind_id": "a6c5628a38d6e90f",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 60797,
+        "cached_input_tokens": 52224,
+        "output_tokens": 936
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "191ef974c17a3750a09d0cf146469a25c9604d2c19a0b419772d85f82bb91093",
+      "sequence": 1
+    },
+    {
+      "blind_id": "7bdb1b503ec8d27d",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 43854,
+        "cached_input_tokens": 40448,
+        "output_tokens": 650
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "5181889a5bcdad5eb23fa7c1cafc9f47e47797df5c6ef7e88006ed0fac197bd3",
+      "sequence": 2
+    },
+    {
+      "blind_id": "c1069c39d5508529",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 41954,
+        "cached_input_tokens": 34560,
+        "output_tokens": 620
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "85bd96b9b894329253501a3e7de9218b25183d5c2e3ce026b1f1bbfdb8fdbd81",
+      "sequence": 3
+    },
+    {
+      "blind_id": "456aa04aa60a5aad",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 41950,
+        "cached_input_tokens": 36608,
+        "output_tokens": 640
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "f595721f3907ecb5bd5a8789c3eb8a8e00847f1fe7b1d5e0a3626e9e7932eed1",
+      "sequence": 4
+    },
+    {
+      "blind_id": "35ece69f54fe793f",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 60274,
+        "cached_input_tokens": 55808,
+        "output_tokens": 1011
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "5457da3be9c01f5b8e88e23f0eff185286b33d5288a09c1701373933b93c5fd2",
+      "sequence": 5
+    },
+    {
+      "blind_id": "3be983588d4e24d3",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 43856,
+        "cached_input_tokens": 38400,
+        "output_tokens": 637
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "80bb77d91bb0d05c6c22ffee29b68ba7b7f44775353be819959975129c87c13d",
+      "sequence": 6
+    },
+    {
+      "blind_id": "72c7701be2967d04",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 43856,
+        "cached_input_tokens": 40448,
+        "output_tokens": 647
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "272ea7872c5a126d5f72e83d77668f2900cd3f2291bc70b47331211a2118db3c",
+      "sequence": 7
+    },
+    {
+      "blind_id": "0bff12525bc13780",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 60404,
+        "cached_input_tokens": 56064,
+        "output_tokens": 795
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "51669790018dfeb904909c054955770b2c197e2c6d187408b3110eb06a3a99d3",
+      "sequence": 8
+    },
+    {
+      "blind_id": "34be33e585386bb6",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 60566,
+        "cached_input_tokens": 55808,
+        "output_tokens": 921
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "099b1b98232af66a36b86edd25fd0e4c8f94da8d407d8ecd5d3ea9c8007d54d4",
+      "sequence": 9
+    },
+    {
+      "blind_id": "91e239dc9e7e41f2",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 41980,
+        "cached_input_tokens": 38528,
+        "output_tokens": 859
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "f432ab6a99309cbc42429fd355bf0ffd89c0c5849c9964b39bb47840726a43df",
+      "sequence": 10
+    },
+    {
+      "blind_id": "07e2801a1405bd60",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 60404,
+        "cached_input_tokens": 54016,
+        "output_tokens": 845
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "a487f75f56d94e68baaa5c2428f8ae4ae0f2d81addfcc29e7de16ba3f0650c77",
+      "sequence": 11
+    },
+    {
+      "blind_id": "6c92756c8c8848df",
+      "exit_status": 0,
+      "usage": {
+        "input_tokens": 60177,
+        "cached_input_tokens": 55808,
+        "output_tokens": 873
+      },
+      "completed_turns": 1,
+      "raw_response_sha256": "c297dc39c1c63fedf7302e176aa0b73ebeeeb6d10dc2c0b704bc6fea636785c9",
+      "sequence": 12
+    }
+  ]
+}

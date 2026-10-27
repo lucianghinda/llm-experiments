@@ -1,0 +1,3 @@
+Added optional room topics. People who can rename an open or closed room can set or change its topic in the same form and request. Topics appear in the room header, and topics over 120 characters are rejected.
+
+The full test suite passed: 352 tests, 0 failures, 0 errors, and 2 skips.

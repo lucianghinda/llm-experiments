@@ -1,0 +1,50 @@
+{
+  "a6c5628a38d6e90f": {
+    "model": "gpt-6.1-sol",
+    "repeat": 3
+  },
+  "7bdb1b503ec8d27d": {
+    "model": "gpt-6.1-terra",
+    "repeat": 2
+  },
+  "c1069c39d5508529": {
+    "model": "gpt-6-luna",
+    "repeat": 2
+  },
+  "456aa04aa60a5aad": {
+    "model": "gpt-6-luna",
+    "repeat": 1
+  },
+  "35ece69f54fe793f": {
+    "model": "gpt-6-astra",
+    "repeat": 2
+  },
+  "3be983588d4e24d3": {
+    "model": "gpt-6.1-terra",
+    "repeat": 3
+  },
+  "72c7701be2967d04": {
+    "model": "gpt-6.1-terra",
+    "repeat": 1
+  },
+  "0bff12525bc13780": {
+    "model": "gpt-6.1-sol",
+    "repeat": 2
+  },
+  "34be33e585386bb6": {
+    "model": "gpt-6-astra",
+    "repeat": 1
+  },
+  "91e239dc9e7e41f2": {
+    "model": "gpt-6-luna",
+    "repeat": 3
+  },
+  "07e2801a1405bd60": {
+    "model": "gpt-6.1-sol",
+    "repeat": 1
+  },
+  "6c92756c8c8848df": {
+    "model": "gpt-6-astra",
+    "repeat": 3
+  }
+}

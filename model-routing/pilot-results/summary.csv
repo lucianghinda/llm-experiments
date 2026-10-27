@@ -1,0 +1,17 @@
+task,model_requested,passed,agent_seconds,host_seconds,input_tokens,cached_input_tokens,output_tokens,api_equivalent_usd
+locate-direct-type,gpt-6-luna,true,21.9,35.0,55120,44800,191,0.001576
+locate-direct-type,gpt-6-astra,true,16.727,28.4,43847,38912,114,0.093962
+locate-generated-secret,gpt-6-astra,true,21.273,32.4,43924,38400,133,0.10029
+feature-room-topic,gpt-6.1-sol,true,144.384,223.3,350496,325120,2569,0.108954
+feature-room-topic,gpt-6.1-terra,true,113.876,192.4,490814,456064,2532,0.070213
+feature-room-topic,gpt-6-luna,true,125.104,201.8,202882,169088,1223,0.005682
+locate-generated-secret,gpt-6.1-terra,true,15.323,26.3,31658,26112,103,0.007367
+locate-generated-secret,gpt-6-luna,true,14.525,25.5,84596,68864,246,0.002385
+locate-generated-secret,gpt-6.1-sol,true,20.232,31.5,44295,40832,119,0.012199
+locate-direct-type,gpt-6.1-terra,true,16.47,27.9,35069,24320,85,0.01239
+test-direct-type,gpt-6.1-terra,true,26.936,44.5,83221,76416,466,0.012956
+test-direct-type,gpt-6-luna,false,20.169,37.4,63580,56320,345,0.001462
+test-direct-type,gpt-6-astra,true,59.398,76.8,174687,155008,947,0.399148
+test-direct-type,gpt-6.1-sol,true,42.025,59.7,117984,105984,744,0.042038
+locate-direct-type,gpt-6.1-sol,true,16.411,28.2,44586,39424,99,0.015256
+feature-room-topic,gpt-6-astra,true,129.848,209.8,339870,311424,2810,0.736384

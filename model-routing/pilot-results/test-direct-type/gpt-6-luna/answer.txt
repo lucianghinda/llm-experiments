@@ -1,0 +1,1 @@
+The regression coverage already exists in [opens_controller_test.rb](/workspace/app/test/controllers/rooms/opens_controller_test.rb:64): it checks that a direct room stays direct and keeps its original participants after an attempt to promote it to an open room. I made no changes, since adding another test would duplicate that coverage.

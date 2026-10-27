@@ -1,0 +1,134 @@
+{
+  "3be983588d4e24d3": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Says individual store operations are synchronized but lookup, gateway call, and insert are not atomic; both can find absence."},
+      "execution_evidence": {"score": 4, "evidence": "A and B both find no payment, both call gateway with order-41, then both insert; test confirms two calls and rows."},
+      "correction": {"score": 4, "evidence": "Durable pre-call payment claim; unique order_id; atomic insert/claim and only winner dispatches; notes DB enforcement across processes and warns transaction cannot cover remote side effect."},
+      "retry_failure_semantics": {"score": 4, "evidence": "Retain unknown/pending after uncertain outcome and do not blindly charge; requires provider contract or reconciliation, not established by supplied code."},
+      "regression_tradeoffs": {"score": 3, "evidence": "Concurrent test asserts one call/record and loser pending or eventual result; identifies uncertainty/manual reconciliation tradeoff. Does not test timeout-after-acceptance recovery."}
+    },
+    "omissions": ["No regression test explicitly simulates an ambiguous timeout after provider acceptance and demonstrates recovery."],
+    "unsafe_claims": []
+  },
+  "34be33e585386bb6": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Identifies individually synchronized operations and absent reservation between lookup and charge; distinguishes transaction limitations."},
+      "execution_evidence": {"score": 4, "evidence": "Concrete six-step A/B schedule has both observe absence before gateway calls and ends in duplicate calls and rows."},
+      "correction": {"score": 4, "evidence": "Unique order_id durable attempt before call; atomically commit reservation; only creator calls; conflict reads attempt; avoids rolling back external charge."},
+      "retry_failure_semantics": {"score": 4, "evidence": "Pending/unknown must not trigger another call; reconcile or verified capability; explicitly says exactly-once cannot be established."},
+      "regression_tradeoffs": {"score": 3, "evidence": "Barrier test asserts one invocation/attempt and successful retry; explains stranded attempts and unsafe reclaiming. No simulated ambiguous-retry recovery test."}
+    },
+    "omissions": ["No test case explicitly simulates a timeout after provider acceptance and verifies recovery/reconciliation."],
+    "unsafe_claims": []
+  },
+  "35ece69f54fe793f": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Maps missing-payment check to permission to charge; method-level synchronization does not make sequence atomic."},
+      "execution_evidence": {"score": 4, "evidence": "Both requests find absence, call gateway with same key, and insert duplicate rows; explicitly says fake gateway records every call."},
+      "correction": {"score": 4, "evidence": "Pre-call durable attempt, unique order_id, short atomic insert/conflict claim, winner alone dispatches, separate result update; says DB coordination across processes."},
+      "retry_failure_semantics": {"score": 4, "evidence": "Preserve pending/unknown and do not charge on retry; reconciliation or verified provider capability required; rejects exactly-once inference."},
+      "regression_tradeoffs": {"score": 3, "evidence": "Detailed barrier regression checks one call/attempt and subsequent successful retry; states stranded pending tradeoff. Does not simulate ambiguous accepted-then-timeout recovery."}
+    },
+    "omissions": ["No test explicitly exercises a timeout after provider acceptance and recovery of that uncertain attempt."],
+    "unsafe_claims": []
+  },
+  "456aa04aa60a5aad": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Clearly says individual operation locks do not make lookup, gateway call, and insert atomic."},
+      "execution_evidence": {"score": 4, "evidence": "Timeline has both lookups and both passing seam before gateway calls, with two calls and rows as observed outcome."},
+      "correction": {"score": 3, "evidence": "Requires DB uniqueness and claim before gateway, winner-only dispatch, cross-process enforcement, and warns against network transaction. Conflict path is less fully specified than load-and-return/recovery design."},
+      "retry_failure_semantics": {"score": 3, "evidence": "Recognizes uncertain outcome and says retain claim, reconcile or retry using same key; provider behavior unspecified. Does not clearly rule out retry absent contract or define durable attempt state transitions."},
+      "regression_tradeoffs": {"score": 3, "evidence": "Concurrent claim test asserts one call and row and identifies unresolved-claim tradeoff; lacks an ambiguous timeout recovery test."}
+    },
+    "omissions": ["No explicit pending/unknown retry policy or tested timeout-after-acceptance recovery."],
+    "unsafe_claims": ["The phrase 'reconcile or retry using the same key' could imply retry is safe without a verified provider guarantee; the answer later acknowledges that safety depends on unspecified behavior."]
+  },
+  "6c92756c8c8848df": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Identifies check-then-act and explains operation-level synchronization leaves overall sequence unsynchronized."},
+      "execution_evidence": {"score": 4, "evidence": "Concrete two-request timeline puts both absent lookups before both gateway calls and duplicate inserts."},
+      "correction": {"score": 4, "evidence": "Atomic pre-call reservation backed by unique order_id, conflict loser reads state, winner dispatches; short transactions avoid gateway-in-transaction trap."},
+      "retry_failure_semantics": {"score": 4, "evidence": "Retain unknown/pending after uncertain response, no retry charge, reconcile, and no provider guarantee inferred."},
+      "regression_tradeoffs": {"score": 3, "evidence": "Barrier test asserts one call/attempt and later successful retry; explains availability tradeoff. Does not test ambiguous timeout/recovery itself."}
+    },
+    "omissions": ["No test explicitly simulates lost gateway response after acceptance and recovery."],
+    "unsafe_claims": []
+  },
+  "07e2801a1405bd60": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Calls this a check-then-act race and distinguishes synchronized store methods from the unsynchronized overall operation."},
+      "execution_evidence": {"score": 4, "evidence": "Six-step timeline has both requests observe absence before calls and duplicate rows; fake gateway records both repeated-key calls."},
+      "correction": {"score": 4, "evidence": "Pre-call durable attempt with unique order_id; only successful claimant calls gateway; conflict reads existing; explicit multi-process database enforcement and no network transaction."},
+      "retry_failure_semantics": {"score": 4, "evidence": "Retry returns success or pending/unknown without resubmission; reconciliation or verified provider capability needed; explains exactly-once boundary."},
+      "regression_tradeoffs": {"score": 4, "evidence": "Concurrent test checks second caller does not invoke gateway and retry returns stored result; also explains crash-before/after-charge ambiguity and reconciliation limitation."}
+    },
+    "omissions": ["No explicit test simulates a timeout after provider acceptance; the answer does describe that failure window and recovery requirement."],
+    "unsafe_claims": []
+  },
+  "0bff12525bc13780": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Identifies check-then-act and explains separately synchronized operations do not make the workflow atomic."},
+      "execution_evidence": {"score": 4, "evidence": "A/B table shows both lookup absences before calls, then duplicate calls and rows; fake gateway does not deduplicate."},
+      "correction": {"score": 4, "evidence": "Durable pre-call unique attempt, atomic insert-or-find, commit before network call, conflict returns existing status, and DB required across processes."},
+      "retry_failure_semantics": {"score": 4, "evidence": "Same existing attempt/key retained; uncertain attempts do not dispatch again; explicitly notes no exactly-once recovery without provider support or reconciliation."},
+      "regression_tradeoffs": {"score": 3, "evidence": "Deterministic held-gateway test asserts one call/row and stored result on retry, with pending-state tradeoff; no ambiguous timeout recovery test."}
+    },
+    "omissions": ["Regression test does not simulate timeout after provider acceptance and verify reconciliation or retry recovery."],
+    "unsafe_claims": []
+  },
+  "72c7701be2967d04": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Explains per-method synchronization and absence of an atomic claim across lookup, gateway, and insert."},
+      "execution_evidence": {"score": 4, "evidence": "Four-step concrete timeline shows both lookups absent before both calls and duplicate inserts; cites observed test behavior."},
+      "correction": {"score": 4, "evidence": "Pre-call atomic claim with unique database order_id, winner-only gateway call, loser reads existing; warns ordinary absent-row transaction is insufficient."},
+      "retry_failure_semantics": {"score": 4, "evidence": "Unknown/pending persists after ambiguous response; retry does not charge; same key plus verified provider guarantee or reconciliation required."},
+      "regression_tradeoffs": {"score": 3, "evidence": "Concurrent test checks one call and record; tradeoff explains stranded attempts and remote/local atomicity. Does not include an ambiguous-retry recovery assertion."}
+    },
+    "omissions": ["No explicit timeout-after-acceptance recovery test."],
+    "unsafe_claims": []
+  },
+  "7bdb1b503ec8d27d": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Explains method-level locking does not make charging exclusive after absence is observed."},
+      "execution_evidence": {"score": 4, "evidence": "Timeline and test explicitly show both absence observations, duplicate calls, and duplicate records."},
+      "correction": {"score": 4, "evidence": "Durable pending claim, unique order_id, atomic winner decision, conflict loser reads existing, only winner dispatches; correct multi-process and transaction limits."},
+      "retry_failure_semantics": {"score": 4, "evidence": "Uncertain attempt is retained; no blind charge; requires verified deduplication or reconciliation and rejects exactly-once inference."},
+      "regression_tradeoffs": {"score": 3, "evidence": "Test asserts one call/attempt and retry completion; tradeoff covers pending state and uncertainty. It does not test timeout recovery explicitly."}
+    },
+    "omissions": ["No regression scenario simulates an accepted charge with lost response."],
+    "unsafe_claims": []
+  },
+  "91e239dc9e7e41f2": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Maps read, gateway call, and insert as separate operations and explains absence is incorrectly treated as exclusive permission."},
+      "execution_evidence": {"score": 4, "evidence": "Timeline puts both absent reads before calls and two inserts; test observes two gateway calls and rows."},
+      "correction": {"score": 4, "evidence": "Unique DB claim before gateway, conflict loser follows state, explicit multi-process guarantee and external call cannot roll back; warns against holding transaction across network."},
+      "retry_failure_semantics": {"score": 4, "evidence": "Retain durable key and pending attempt after uncertainty; reconcile or rely on documented provider guarantee; says exactly-once is not established."},
+      "regression_tradeoffs": {"score": 3, "evidence": "Concurrent one-claim test plus uncertain retry assertion and clear transaction tradeoff; does not test actual provider reconciliation/ambiguous recovery."}
+    },
+    "omissions": ["Test proposal checks no second claim on uncertainty but does not demonstrate reconciliation or safe retry after an accepted-then-timeout outcome."],
+    "unsafe_claims": []
+  },
+  "a6c5628a38d6e90f": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Explicitly maps check-charge-insert and explains individual synchronized store calls do not make that sequence atomic."},
+      "execution_evidence": {"score": 4, "evidence": "Six-step schedule includes both absence observations before calls and duplicate rows; references test reproduction."},
+      "correction": {"score": 4, "evidence": "Pre-call durable reservation with non-null unique order_id, atomic insert/conflict winner, cross-process DB coordination, short transactions around local state only."},
+      "retry_failure_semantics": {"score": 4, "evidence": "Retain uncertain claim, retries do not send or mint keys, and provider deduplication/reconciliation must be established before automatic recovery."},
+      "regression_tradeoffs": {"score": 4, "evidence": "Proposes two-request duplicate prevention plus retry assertion, explains stranded pending tradeoff and exactly-once boundary. It does not simulate timeout acceptance, but grounds limitation clearly."}
+    },
+    "omissions": ["The retry test is after successful completion rather than an explicit timeout-after-acceptance scenario."],
+    "unsafe_claims": []
+  },
+  "c1069c39d5508529": {
+    "scores": {
+      "root_cause": {"score": 4, "evidence": "Explains find-then-charge-then-insert and that method locks do not cover whole sequence."},
+      "execution_evidence": {"score": 4, "evidence": "Concrete timeline forces both requests to observe absence before both charge and insert."},
+      "correction": {"score": 3, "evidence": "Unique order_id and atomic insert-or-fetch claim before charge; winner proceeds and loser follows existing row. Does not spell out provider-result state transitions or conflict recovery in as much detail as strongest answers."},
+      "retry_failure_semantics": {"score": 3, "evidence": "Reuse persisted key and preserve uncertain state; says retry only according to verified provider capability. Reconciliation is named but bounded exactly-once guarantees are less explicit."},
+      "regression_tradeoffs": {"score": 3, "evidence": "Concurrent test asserts one gateway caller and row; tradeoff covers failure window and provider support. No ambiguous timeout recovery test."}
+    },
+    "omissions": ["Could be more explicit that exactly-once is impossible without provider idempotency/reconciliation; no test simulates ambiguous timeout recovery."],
+    "unsafe_claims": []
+  }
+}

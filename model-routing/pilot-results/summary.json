@@ -1,0 +1,248 @@
+[
+  {
+    "task": "locate-direct-type",
+    "model_requested": "gpt-6-luna",
+    "passed": true,
+    "agent_seconds": 21.9,
+    "host_seconds": 35.0,
+    "input_tokens": 55120,
+    "cached_input_tokens": 44800,
+    "output_tokens": 191,
+    "api_equivalent_usd": 0.001576,
+    "changed_files": [],
+    "timestamp": "2026-10-27T09:55:20Z"
+  },
+  {
+    "task": "locate-direct-type",
+    "model_requested": "gpt-6-astra",
+    "passed": true,
+    "agent_seconds": 16.727,
+    "host_seconds": 28.4,
+    "input_tokens": 43847,
+    "cached_input_tokens": 38912,
+    "output_tokens": 114,
+    "api_equivalent_usd": 0.093962,
+    "changed_files": [],
+    "timestamp": "2026-10-27T09:56:34Z"
+  },
+  {
+    "task": "locate-generated-secret",
+    "model_requested": "gpt-6-astra",
+    "passed": true,
+    "agent_seconds": 21.273,
+    "host_seconds": 32.4,
+    "input_tokens": 43924,
+    "cached_input_tokens": 38400,
+    "output_tokens": 133,
+    "api_equivalent_usd": 0.10029,
+    "changed_files": [],
+    "timestamp": "2026-10-27T09:57:07Z"
+  },
+  {
+    "task": "feature-room-topic",
+    "model_requested": "gpt-6.1-sol",
+    "passed": true,
+    "agent_seconds": 144.384,
+    "host_seconds": 223.3,
+    "input_tokens": 350496,
+    "cached_input_tokens": 325120,
+    "output_tokens": 2569,
+    "api_equivalent_usd": 0.108954,
+    "changed_files": [
+      "app/controllers/rooms_controller.rb",
+      "app/models/room.rb",
+      "app/views/rooms/layouts/_form.html.erb",
+      "db/schema.rb",
+      "test/controllers/rooms/closeds_controller_test.rb",
+      "test/controllers/rooms/opens_controller_test.rb",
+      "test/models/room_test.rb"
+    ],
+    "timestamp": "2026-10-27T09:57:49Z"
+  },
+  {
+    "task": "feature-room-topic",
+    "model_requested": "gpt-6.1-terra",
+    "passed": true,
+    "agent_seconds": 113.876,
+    "host_seconds": 192.4,
+    "input_tokens": 490814,
+    "cached_input_tokens": 456064,
+    "output_tokens": 2532,
+    "api_equivalent_usd": 0.070213,
+    "changed_files": [
+      "app/controllers/rooms/closeds_controller.rb",
+      "app/controllers/rooms/opens_controller.rb",
+      "app/controllers/rooms_controller.rb",
+      "app/models/room.rb",
+      "app/views/rooms/layouts/_form.html.erb",
+      "app/views/rooms/show/_nav.html.erb",
+      "db/schema.rb",
+      "test/controllers/rooms/closeds_controller_test.rb",
+      "test/controllers/rooms/opens_controller_test.rb",
+      "test/models/room_test.rb"
+    ],
+    "timestamp": "2026-10-27T10:01:42Z"
+  },
+  {
+    "task": "feature-room-topic",
+    "model_requested": "gpt-6-luna",
+    "passed": true,
+    "agent_seconds": 125.104,
+    "host_seconds": 201.8,
+    "input_tokens": 202882,
+    "cached_input_tokens": 169088,
+    "output_tokens": 1223,
+    "api_equivalent_usd": 0.005682,
+    "changed_files": [
+      "app/controllers/rooms_controller.rb",
+      "app/models/room.rb",
+      "app/views/rooms/layouts/_form.html.erb",
+      "db/schema.rb"
+    ],
+    "timestamp": "2026-10-27T10:05:06Z"
+  },
+  {
+    "task": "locate-generated-secret",
+    "model_requested": "gpt-6.1-terra",
+    "passed": true,
+    "agent_seconds": 15.323,
+    "host_seconds": 26.3,
+    "input_tokens": 31658,
+    "cached_input_tokens": 26112,
+    "output_tokens": 103,
+    "api_equivalent_usd": 0.007367,
+    "changed_files": [],
+    "timestamp": "2026-10-27T10:08:39Z"
+  },
+  {
+    "task": "locate-generated-secret",
+    "model_requested": "gpt-6-luna",
+    "passed": true,
+    "agent_seconds": 14.525,
+    "host_seconds": 25.5,
+    "input_tokens": 84596,
+    "cached_input_tokens": 68864,
+    "output_tokens": 246,
+    "api_equivalent_usd": 0.002385,
+    "changed_files": [],
+    "timestamp": "2026-10-27T10:09:10Z"
+  },
+  {
+    "task": "locate-generated-secret",
+    "model_requested": "gpt-6.1-sol",
+    "passed": true,
+    "agent_seconds": 20.232,
+    "host_seconds": 31.5,
+    "input_tokens": 44295,
+    "cached_input_tokens": 40832,
+    "output_tokens": 119,
+    "api_equivalent_usd": 0.012199,
+    "changed_files": [],
+    "timestamp": "2026-10-27T10:09:41Z"
+  },
+  {
+    "task": "locate-direct-type",
+    "model_requested": "gpt-6.1-terra",
+    "passed": true,
+    "agent_seconds": 16.47,
+    "host_seconds": 27.9,
+    "input_tokens": 35069,
+    "cached_input_tokens": 24320,
+    "output_tokens": 85,
+    "api_equivalent_usd": 0.01239,
+    "changed_files": [],
+    "timestamp": "2026-10-27T10:10:21Z"
+  },
+  {
+    "task": "test-direct-type",
+    "model_requested": "gpt-6.1-terra",
+    "passed": true,
+    "agent_seconds": 26.936,
+    "host_seconds": 44.5,
+    "input_tokens": 83221,
+    "cached_input_tokens": 76416,
+    "output_tokens": 466,
+    "api_equivalent_usd": 0.012956,
+    "changed_files": [
+      "test/models/room_test.rb"
+    ],
+    "timestamp": "2026-10-27T10:10:55Z"
+  },
+  {
+    "task": "test-direct-type",
+    "model_requested": "gpt-6-luna",
+    "passed": false,
+    "agent_seconds": 20.169,
+    "host_seconds": 37.4,
+    "input_tokens": 63580,
+    "cached_input_tokens": 56320,
+    "output_tokens": 345,
+    "api_equivalent_usd": 0.001462,
+    "changed_files": [],
+    "timestamp": "2026-10-27T10:11:55Z"
+  },
+  {
+    "task": "test-direct-type",
+    "model_requested": "gpt-6-astra",
+    "passed": true,
+    "agent_seconds": 59.398,
+    "host_seconds": 76.8,
+    "input_tokens": 174687,
+    "cached_input_tokens": 155008,
+    "output_tokens": 947,
+    "api_equivalent_usd": 0.399148,
+    "changed_files": [
+      "test/models/rooms/direct_test.rb"
+    ],
+    "timestamp": "2026-10-27T10:12:39Z"
+  },
+  {
+    "task": "test-direct-type",
+    "model_requested": "gpt-6.1-sol",
+    "passed": true,
+    "agent_seconds": 42.025,
+    "host_seconds": 59.7,
+    "input_tokens": 117984,
+    "cached_input_tokens": 105984,
+    "output_tokens": 744,
+    "api_equivalent_usd": 0.042038,
+    "changed_files": [
+      "test/models/rooms/direct_test.rb"
+    ],
+    "timestamp": "2026-10-27T10:14:04Z"
+  },
+  {
+    "task": "locate-direct-type",
+    "model_requested": "gpt-6.1-sol",
+    "passed": true,
+    "agent_seconds": 16.411,
+    "host_seconds": 28.2,
+    "input_tokens": 44586,
+    "cached_input_tokens": 39424,
+    "output_tokens": 99,
+    "api_equivalent_usd": 0.015256,
+    "changed_files": [],
+    "timestamp": "2026-10-27T10:15:13Z"
+  },
+  {
+    "task": "feature-room-topic",
+    "model_requested": "gpt-6-astra",
+    "passed": true,
+    "agent_seconds": 129.848,
+    "host_seconds": 209.8,
+    "input_tokens": 339870,
+    "cached_input_tokens": 311424,
+    "output_tokens": 2810,
+    "api_equivalent_usd": 0.736384,
+    "changed_files": [
+      "app/controllers/rooms_controller.rb",
+      "app/models/room.rb",
+      "app/views/rooms/layouts/_form.html.erb",
+      "db/schema.rb",
+      "test/controllers/rooms/closeds_controller_test.rb",
+      "test/controllers/rooms/opens_controller_test.rb",
+      "test/models/room_test.rb"
+    ],
+    "timestamp": "2026-10-27T10:15:47Z"
+  }
+]

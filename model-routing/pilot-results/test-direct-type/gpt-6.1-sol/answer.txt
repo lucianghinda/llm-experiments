@@ -1,0 +1,5 @@
+Added the regression test in [test/models/rooms/direct_test.rb](/workspace/app/test/models/rooms/direct_test.rb:4).
+
+It verifies that direct rooms reject conversion to open or closed rooms and retain their persisted type.
+
+All 4 tests pass. Disabling the validation in memory makes the new test fail. Only the test file changed.

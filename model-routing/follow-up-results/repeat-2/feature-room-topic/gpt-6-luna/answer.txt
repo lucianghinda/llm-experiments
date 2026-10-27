@@ -1,0 +1,3 @@
+Added optional room topics. The `rooms.topic` column is nullable; topics over 120 characters fail model validation. Room administrators can set or change the topic alongside the name on the existing settings screen and request, and a set topic appears in the room header.
+
+Ran the database migration and `git diff --check`. I did not run the test suite.

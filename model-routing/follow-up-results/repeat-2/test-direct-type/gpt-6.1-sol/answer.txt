@@ -1,0 +1,3 @@
+Added one regression test in [test/models/room_test.rb](/workspace/app/test/models/room_test.rb:33) covering conversion of direct rooms to both open and closed rooms.
+
+Verified all 7 model tests pass and the new test fails when the validation is disabled in memory. Only the test file changed.

@@ -1,0 +1,314 @@
+{
+  "07e2801a1405bd60": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Specifies a deterministic concurrent same-order assertion and a grounded uncertainty/availability limitation; does not test recovery from an ambiguous accepted-then-timeout case."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "0bff12525bc13780": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Specifies a deterministic concurrent same-order assertion and a grounded uncertainty/availability limitation; does not test recovery from an ambiguous accepted-then-timeout case."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "34be33e585386bb6": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Specifies a deterministic concurrent same-order assertion and a grounded uncertainty/availability limitation; does not test recovery from an ambiguous accepted-then-timeout case."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "35ece69f54fe793f": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Specifies a deterministic concurrent same-order assertion and a grounded uncertainty/availability limitation; does not test recovery from an ambiguous accepted-then-timeout case."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "3be983588d4e24d3": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Specifies a deterministic concurrent same-order assertion and a grounded uncertainty/availability limitation; does not test recovery from an ambiguous accepted-then-timeout case."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "456aa04aa60a5aad": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Specifies a deterministic concurrent same-order assertion and a grounded uncertainty/availability limitation; does not test recovery from an ambiguous accepted-then-timeout case."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "6c92756c8c8848df": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Specifies a deterministic concurrent same-order assertion and a grounded uncertainty/availability limitation; does not test recovery from an ambiguous accepted-then-timeout case."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "72c7701be2967d04": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Gives a focused concurrent same-order test and a grounded ambiguity tradeoff, but no explicit ambiguous-timeout retry test."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "7bdb1b503ec8d27d": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Specifies a deterministic concurrent same-order assertion and a grounded uncertainty/availability limitation; does not test recovery from an ambiguous accepted-then-timeout case."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "91e239dc9e7e41f2": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 4,
+        "evidence": "Proposes the concurrent one-claim/one-gateway-call regression and an uncertain-outcome retry asserting persisted-key reuse without a second independent charge; explains reconciliation limitation."
+      }
+    },
+    "total": 20,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "a6c5628a38d6e90f": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Specifies a deterministic concurrent same-order assertion and a grounded uncertainty/availability limitation; does not test recovery from an ambiguous accepted-then-timeout case."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  },
+  "c1069c39d5508529": {
+    "dimensions": {
+      "root_cause": {
+        "score": 4,
+        "evidence": "Identifies individually synchronized lookup/insert operations but no workflow-level atomicity; explains check-then-act gap."
+      },
+      "execution_evidence": {
+        "score": 4,
+        "evidence": "Shows both requests observe absence before gateway calls, followed by duplicate calls and payment rows."
+      },
+      "correction": {
+        "score": 4,
+        "evidence": "Uses a durable pre-charge claim, database uniqueness, conflict handling, multi-process coordination, and commits before the network call."
+      },
+      "retry_failure_semantics": {
+        "score": 4,
+        "evidence": "Keeps uncertain attempts pending/unknown and bounds exactly-once claims on provider deduplication or reconciliation."
+      },
+      "regression_tradeoffs": {
+        "score": 3,
+        "evidence": "Gives a focused concurrent same-order test and a grounded ambiguity tradeoff, but no explicit ambiguous-timeout retry test."
+      }
+    },
+    "total": 19,
+    "evidence_summary": "Strong diagnosis and durable claim design; test coverage generally omits an ambiguous provider-acceptance timeout recovery assertion."
+  }
+}

@@ -1,0 +1,234 @@
+diff --git a/app/controllers/rooms_controller.rb b/app/controllers/rooms_controller.rb
+index 1f1d28e..6d77969 100644
+--- a/app/controllers/rooms_controller.rb
++++ b/app/controllers/rooms_controller.rb
+@@ -54,7 +54,7 @@ class RoomsController < ApplicationController
+     end
+ 
+     def room_params
+-      params.require(:room).permit(:name)
++      params.require(:room).permit(:name, :topic)
+     end
+ 
+     def broadcast_remove_room
+diff --git a/app/models/room.rb b/app/models/room.rb
+index 20865fc..be667ef 100644
+--- a/app/models/room.rb
++++ b/app/models/room.rb
+@@ -22,6 +22,8 @@ class Room < ApplicationRecord
+ 
+   belongs_to :creator, class_name: "User", default: -> { Current.user }
+ 
++  validates :topic, length: { maximum: 120 }
++
+   validate :direct_rooms_keep_their_type, on: :update
+ 
+   scope :opens,           -> { where(type: "Rooms::Open") }
+diff --git a/app/views/rooms/layouts/_form.html.erb b/app/views/rooms/layouts/_form.html.erb
+index 0b266f2..4124ed0 100644
+--- a/app/views/rooms/layouts/_form.html.erb
++++ b/app/views/rooms/layouts/_form.html.erb
+@@ -16,6 +16,17 @@
+     <% end %>
+   </div>
+ 
++  <% if Current.user.can_administer?(room) %>
++    <label class="flex flex-column margin-block">
++      <span>Topic (optional)</span>
++      <%= form.text_field :topic, name: "room[topic]", id: "room_topic", class: "input full-width",
++            maxlength: 120, placeholder: "What is this room about?",
++            data: { turbo_permanent: true, action: "keydown.enter->form#submit:prevent" } %>
++    </label>
++  <% elsif room.topic.present? %>
++    <p><%= room.topic %></p>
++  <% end %>
++
+   <hr class="margin-block borderless">
+ 
+   <section class="room-access margin-block pad-inline fill-shade border-radius">
+diff --git a/db/schema.rb b/db/schema.rb
+index e7f1540..2c8d187 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
++ActiveRecord::Schema[8.2].define(version: 2026_10_27_000000) do
+   create_table "accounts", force: :cascade do |t|
+     t.datetime "created_at", null: false
+     t.text "custom_styles"
+@@ -120,6 +120,7 @@ ActiveRecord::Schema[8.2].define(version: 2025_12_12_154340) do
+     t.datetime "created_at", null: false
+     t.bigint "creator_id", null: false
+     t.string "name"
++    t.string "topic"
+     t.string "type", null: false
+     t.datetime "updated_at", null: false
+   end
+diff --git a/test/controllers/rooms/closeds_controller_test.rb b/test/controllers/rooms/closeds_controller_test.rb
+index 504745d..879b0d9 100644
+--- a/test/controllers/rooms/closeds_controller_test.rb
++++ b/test/controllers/rooms/closeds_controller_test.rb
+@@ -5,6 +5,46 @@ class Rooms::ClosedsControllerTest < ActionDispatch::IntegrationTest
+     sign_in :david
+   end
+ 
++  test "edit includes topic in the rename form" do
++    rooms(:designers).update!(topic: "Current topic")
++
++    get edit_rooms_closed_url(rooms(:designers))
++
++    assert_response :success
++    assert_select "form" do
++      assert_select "input[name='room[name]']"
++      assert_select "input[name='room[topic]'][maxlength='120'][value='Current topic']"
++    end
++  end
++
++  test "rename and set or clear topic in the same request" do
++    room = rooms(:designers)
++
++    [ "a" * 120, "New topic", "" ].each do |topic|
++      put rooms_closed_url(room), params: {
++        room: { name: "Renamed room", topic: topic }, user_ids: room.user_ids
++      }
++
++      assert_redirected_to room_url(room)
++      assert_equal "Renamed room", room.reload.name
++      assert_equal topic, room.topic
++    end
++  end
++
++  test "overlong topic rejects the rename request" do
++    room = rooms(:designers)
++    original_name = room.name
++    original_user_ids = room.user_ids.sort
++
++    assert_raises ActiveRecord::RecordInvalid do
++      put rooms_closed_url(room), params: { room: { name: "Rejected name", topic: "a" * 121 } }
++    end
++
++    assert_equal original_name, room.reload.name
++    assert_nil room.topic
++    assert_equal original_user_ids, room.user_ids.sort
++  end
++
+   test "show redirects to get general show" do
+     get rooms_open_url(users(:david).rooms.closeds.last)
+     assert_redirected_to room_url(users(:david).rooms.closeds.last)
+@@ -59,11 +99,12 @@ class Rooms::ClosedsControllerTest < ActionDispatch::IntegrationTest
+     sign_in :jz
+ 
+     assert_turbo_stream_broadcasts :rooms, count: 0 do
+-      put rooms_closed_url(rooms(:designers)), params: { room: { name: "New Name" } }
++      put rooms_closed_url(rooms(:designers)), params: { room: { name: "New Name", topic: "Forbidden topic" } }
+     end
+ 
+     assert_response :forbidden
+     assert rooms(:designers).reload.name, "Designers"
++    assert_nil rooms(:designers).reload.topic
+   end
+ 
+   test "a direct room can't be converted to closed and have its participants revised" do
+diff --git a/test/controllers/rooms/opens_controller_test.rb b/test/controllers/rooms/opens_controller_test.rb
+index 680c2e1..4c694d8 100644
+--- a/test/controllers/rooms/opens_controller_test.rb
++++ b/test/controllers/rooms/opens_controller_test.rb
+@@ -5,6 +5,46 @@ class Rooms::OpensControllerTest < ActionDispatch::IntegrationTest
+     sign_in :david
+   end
+ 
++  test "edit includes topic in the rename form" do
++    rooms(:pets).update!(topic: "Current topic")
++
++    get edit_rooms_open_url(rooms(:pets))
++
++    assert_response :success
++    assert_select "form" do
++      assert_select "input[name='room[name]']"
++      assert_select "input[name='room[topic]'][maxlength='120'][value='Current topic']"
++    end
++  end
++
++  test "rename and set or clear topic in the same request" do
++    room = rooms(:pets)
++
++    [ "a" * 120, "New topic", "" ].each do |topic|
++      put rooms_open_url(room), params: {
++        room: { name: "Renamed room", topic: topic }, user_ids: room.user_ids
++      }
++
++      assert_redirected_to room_url(room)
++      assert_equal "Renamed room", room.reload.name
++      assert_equal topic, room.topic
++    end
++  end
++
++  test "overlong topic rejects the rename request" do
++    room = rooms(:pets)
++    original_name = room.name
++    original_user_ids = room.user_ids.sort
++
++    assert_raises ActiveRecord::RecordInvalid do
++      put rooms_open_url(room), params: { room: { name: "Rejected name", topic: "a" * 121 } }
++    end
++
++    assert_equal original_name, room.reload.name
++    assert_nil room.topic
++    assert_equal original_user_ids, room.user_ids.sort
++  end
++
+   test "show redirects to get general show" do
+     get rooms_open_url(users(:david).rooms.opens.last)
+     assert_redirected_to room_url(users(:david).rooms.opens.last)
+@@ -37,11 +77,12 @@ class Rooms::OpensControllerTest < ActionDispatch::IntegrationTest
+     sign_in :jz
+ 
+     assert_turbo_stream_broadcasts :rooms, count: 0 do
+-      put rooms_open_url(rooms(:hq)), params: { room: { name: "New Name" } }
++      put rooms_open_url(rooms(:hq)), params: { room: { name: "New Name", topic: "Forbidden topic" } }
+     end
+ 
+     assert_response :forbidden
+     assert rooms(:hq).reload.name, "HQ"
++    assert_nil rooms(:hq).reload.topic
+   end
+ 
+   test "update" do
+diff --git a/test/models/room_test.rb b/test/models/room_test.rb
+index b113726..f5f79ca 100644
+--- a/test/models/room_test.rb
++++ b/test/models/room_test.rb
+@@ -1,6 +1,30 @@
+ require "test_helper"
+ 
+ class RoomTest < ActiveSupport::TestCase
++  test "topic is optional and accepts up to 120 characters" do
++    room = rooms(:watercooler)
++
++    [ nil, "", "日" * 120 ].each do |topic|
++      assert room.update(topic: topic)
++      if topic.nil?
++        assert_nil room.reload.topic
++      else
++        assert_equal topic, room.reload.topic
++      end
++    end
++  end
++
++  test "overlong topic is rejected without saving other changes" do
++    room = rooms(:watercooler)
++    original_name = room.name
++    room.update!(topic: "Current topic")
++
++    assert_not room.update(name: "Changed name", topic: "a" * 121)
++    assert_includes room.errors[:topic], "is too long (maximum is 120 characters)"
++    assert_equal "Current topic", room.reload.topic
++    assert_equal original_name, room.name
++  end
++
+   test "grant membership to user" do
+     rooms(:watercooler).memberships.grant_to(users(:kevin))
+     assert rooms(:watercooler).users.include?(users(:kevin))

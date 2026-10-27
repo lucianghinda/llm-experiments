@@ -1,0 +1,3 @@
+Added a model regression test in [room_test.rb](/workspace/app/test/models/room_test.rb) that attempts to change a direct room to an open room and verifies the saved type remains direct.
+
+Ran `bin/rails test test/models/room_test.rb`: 7 tests, 0 failures.

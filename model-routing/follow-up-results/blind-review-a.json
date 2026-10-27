@@ -1,0 +1,266 @@
+{
+  "91e239dc9e7e41f2": {
+    "root_cause": [
+      4,
+      "“reads the store, then charges the gateway, then inserts a payment”; “synchronizes each lookup and insert individually” distinguishes workflow from operation locks."
+    ],
+    "execution_evidence": [
+      4,
+      "“Request A” and “Request B” each find no payment; “Both pass the test seam and call gateway.charge”; “Each inserts a payment row.”"
+    ],
+    "correction": [
+      4,
+      "“unique constraint on payments.order_id”; only successful claimant may charge; conflict loser reads existing row; pending claim is inserted before external call."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "“reuse the same durable key”; “resume or reconcile the existing pending attempt”; provider behavior cannot be inferred and exactly-once cannot be established."
+    ],
+    "regression_test_tradeoffs": [
+      4,
+      "Test requires one claimant/call and uncertain-outcome retry with persisted key/no second charge; crash window requires reconciliation or documented provider contract."
+    ]
+  },
+  "72c7701be2967d04": {
+    "root_cause": [
+      4,
+      "Calls it a “check-then-act race”; lookup, gateway call, and insert “are not one atomic operation.”"
+    ],
+    "execution_evidence": [
+      4,
+      "Numbered A/B absent lookups, both gateway calls with order-41, and both inserts; existing test observes “two calls and two rows.”"
+    ],
+    "correction": [
+      4,
+      "“atomically claim the order”; unique order_id constraint, pending row, creator alone calls, loser loads existing; warns lookup/insert transaction alone is insufficient."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "Timeout leaves “unknown/pending”; retry “must not blindly issue another charge”; requires supported outcome determination or documented gateway guarantee."
+    ],
+    "regression_test_tradeoffs": [
+      3,
+      "Two-thread claim test asserts one call and one record; no explicit ambiguous-timeout retry recovery assertion."
+    ]
+  },
+  "a6c5628a38d6e90f": {
+    "root_cause": [
+      4,
+      "Labels it “check, charge, insert”; individual store synchronization does not make the sequence atomic."
+    ],
+    "execution_evidence": [
+      4,
+      "Six-step timeline: both lookups absent, both call gateway, both insert; repeated key is not deduplicated."
+    ],
+    "correction": [
+      4,
+      "Short committed in_progress claim, UNIQUE(order_id), winner-only dispatch, conflict loser reads status, production coordination across processes."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "Preserve uncertainty; retry returns pending/unknown without charging; needs explicitly established provider deduplication or reconciliation; no exactly-once promise."
+    ],
+    "regression_test_tradeoffs": [
+      4,
+      "Asserts one invocation, one payment, success and no extra call on retry; warns barrier placement and explains stranded-attempt tradeoff."
+    ]
+  },
+  "35ece69f54fe793f": {
+    "root_cause": [
+      4,
+      "Calls out “check-then-act race”; individual synchronization does not cover the whole operation."
+    ],
+    "execution_evidence": [
+      4,
+      "Six-step table ends in two calls and two rows; FakeGateway “records every call.”"
+    ],
+    "correction": [
+      4,
+      "Durable attempt before gateway, UNIQUE(order_id), atomic insert/conflict handling, commit before gateway, DB coordination across processes."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "Succeeded retry returns stored result; pending/unknown does not charge; reconcile before another charge; no provider contract/API."
+    ],
+    "regression_test_tradeoffs": [
+      4,
+      "Barrier test expects one call/attempt and retry returns stored success; covers the crash-before/after charge limitation."
+    ]
+  },
+  "456aa04aa60a5aad": {
+    "root_cause": [
+      4,
+      "Identifies check-then-act and separate lookup/insert locks without whole-sequence atomicity."
+    ],
+    "execution_evidence": [
+      4,
+      "Both pass after_lookup, call with same key, insert; test sees two gateway calls and two records."
+    ],
+    "correction": [
+      4,
+      "Unique DB index and atomic claim; successful claimant dispatches; competing requests follow existing row; constraint must work across processes."
+    ],
+    "retry_failure_semantics": [
+      3,
+      "Retain claim and “reconcile or retry using the same key”; says safe resolution depends on unspecified behavior but does not explicitly forbid blind retry."
+    ],
+    "regression_test_tradeoffs": [
+      3,
+      "Concurrent claim test asserts one call/row and pending ambiguity; no explicit timeout/retry recovery test."
+    ]
+  },
+  "6c92756c8c8848df": {
+    "root_cause": [
+      4,
+      "“check-then-act race”; individual store methods synchronized but “whole sequence is not.”"
+    ],
+    "execution_evidence": [
+      4,
+      "Six-step A/B table: absent lookups, gateway calls, inserts; FakeGateway records every invocation."
+    ],
+    "correction": [
+      4,
+      "Pre-call reservation with UNIQUE NOT NULL order_id; only creator calls; conflicting request reads existing; DB enforcement across processes."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "Lost response/crash leaves pending/unknown; retries do not charge; reconcile before next attempt; “exactly-once external charge cannot be promised.”"
+    ],
+    "regression_test_tradeoffs": [
+      3,
+      "Barrier and post-success retry assert one call, one attempt, stored result; no ambiguous-timeout recovery test."
+    ]
+  },
+  "0bff12525bc13780": {
+    "root_cause": [
+      4,
+      "“check-then-act race”; synchronized store methods do not make operation atomic."
+    ],
+    "execution_evidence": [
+      4,
+      "Explicit timeline: both absent, both same-key calls, both inserts; FakeGateway performs no deduplication."
+    ],
+    "correction": [
+      4,
+      "Pre-call durable attempt with unique non-null order_id; atomic insert-or-find; creator-only call; DB enforcement across processes."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "Unresolved retry only returns status; timeout/crash must not reclaim; recovery needs provider/reconciliation contract."
+    ],
+    "regression_test_tradeoffs": [
+      3,
+      "Pauses A in gateway, tests B and successful retry for one call/row; no simulated ambiguous timeout/reconciliation recovery test."
+    ]
+  },
+  "07e2801a1405bd60": {
+    "root_cause": [
+      4,
+      "Finding no payment “does not give a request exclusive permission to charge”; mutex is per operation."
+    ],
+    "execution_evidence": [
+      4,
+      "Six-step concrete timeline with duplicate gateway calls and rows; key offers “no demonstrated protection.”"
+    ],
+    "correction": [
+      4,
+      "Pre-call pending attempt with unique constraint; only creator dispatches; conflict reads existing; rejects ordinary transaction as enough."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "Retry returns success or pending/unknown; no automatic charge for unresolved attempt; requires verified provider/reconciliation contract."
+    ],
+    "regression_test_tradeoffs": [
+      4,
+      "Holds first gateway call, checks second does not call, retries for stored success; states crash-before/after ambiguity and reconciliation."
+    ]
+  },
+  "7bdb1b503ec8d27d": {
+    "root_cause": [
+      4,
+      "“check-then-act race”; separate lookup and insert synchronization does not make charge decision exclusive."
+    ],
+    "execution_evidence": [
+      4,
+      "Four-step A/B sequence and test observation of two calls/two records."
+    ],
+    "correction": [
+      4,
+      "Pre-call pending attempt; unique order constraint and atomic ownership; loser reads existing; winner persists result."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "Unknown outcome requires reconciliation; same key alone is insufficient; no documented deduplication or lookup contract."
+    ],
+    "regression_test_tradeoffs": [
+      3,
+      "Overlapping test asserts one call/attempt and subsequent result; no ambiguous-timeout retry recovery test."
+    ]
+  },
+  "c1069c39d5508529": {
+    "root_cause": [
+      4,
+      "Maps “find-then-charge-then-insert”; no lock/transaction covers the sequence."
+    ],
+    "execution_evidence": [
+      4,
+      "Barrier timeline has both find absent, both call, both insert; gateway/store behavior stated."
+    ],
+    "correction": [
+      4,
+      "Unique DB constraint and atomic insert-or-fetch; only creator proceeds; transaction alone requires lock or uniqueness."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "No blind second charge; preserve pending/uncertain state; retry only under verified provider capability; disclaims exactly-once."
+    ],
+    "regression_test_tradeoffs": [
+      3,
+      "Concurrency test asserts sole caller and record; tradeoff explicit, but no ambiguous timeout recovery assertion."
+    ]
+  },
+  "34be33e585386bb6": {
+    "root_cause": [
+      4,
+      "Identifies check-then-act and mutex scope; nothing reserves order between lookup and charge."
+    ],
+    "execution_evidence": [
+      4,
+      "Six-step interleaving and observed two gateway calls/two rows."
+    ],
+    "correction": [
+      4,
+      "Durable pre-call attempt, unique order constraint, atomic ownership, conflict loser loads existing; multi-process DB enforcement."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "Unknown attempt does not auto-charge; needs reconciliation or verified provider capability; exactly-once not established."
+    ],
+    "regression_test_tradeoffs": [
+      4,
+      "Barrier test asserts one call/row and retry returns stored success; weighs crash before dispatch and after charge."
+    ]
+  },
+  "3be983588d4e24d3": {
+    "root_cause": [
+      4,
+      "Names check-then-charge race and orders lookup, gateway, insert."
+    ],
+    "execution_evidence": [
+      4,
+      "Timeline shows both absent, both charge, both insert; test confirms duplicate effects."
+    ],
+    "correction": [
+      4,
+      "Durable pre-call row and unique order constraint; atomic claim; losers follow existing; final-insert constraint is too late."
+    ],
+    "retry_failure_semantics": [
+      4,
+      "Retain unknown/pending; no blind retry; provider may lack dedup/lookup; reconcile before recovery; describes automatic retry tradeoff."
+    ],
+    "regression_test_tradeoffs": [
+      3,
+      "Held-gateway concurrency test checks one call/row and pending/result response; no explicit ambiguous-timeout recovery test."
+    ]
+  }
+}

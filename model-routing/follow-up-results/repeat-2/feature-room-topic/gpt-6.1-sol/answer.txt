@@ -1,0 +1,3 @@
+Added optional room topics in the `topic` database column. Topics can be set or cleared through the existing rename form and request, with the same permissions. Values over 120 characters are rejected without saving the rename.
+
+Validation: 355 tests passed with 2 skips; focused tests and lint passed. Browser tests could not start because Selenium’s browser manager fails in this environment.

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "notification_digest",
+    "fixture": "fixtures/notification_digest",
+    "prompt": {
+      "natural": "prompts/notification_digest/natural.txt",
+      "specified": "prompts/notification_digest/specified.txt"
+    },
+    "answers": {},
+    "checks": [
+      [
+        "ruby",
+        "test/test_app.rb"
+      ],
+      [
+        "ruby",
+        "{root}/checks/notification_digest.rb"
+      ]
+    ],
+    "followup": {
+      "prompt": "prompts/notification_digest/followup.txt",
+      "checks": [
+        [
+          "ruby",
+          "{root}/checks/notification_digest_followup.rb"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "regional_policy",
+    "fixture": "fixtures/regional_policy",
+    "prompt": {
+      "natural": "prompts/regional_policy/natural.txt",
+      "specified": "prompts/regional_policy/specified.txt"
+    },
+    "answers": {},
+    "checks": [
+      [
+        "ruby",
+        "test/test_app.rb"
+      ],
+      [
+        "ruby",
+        "{root}/checks/regional_policy.rb"
+      ]
+    ],
+    "followup": {
+      "prompt": "prompts/regional_policy/followup.txt",
+      "checks": [
+        [
+          "ruby",
+          "{root}/checks/regional_policy_followup.rb"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "archive_export",
+    "fixture": "fixtures/archive_export",
+    "prompt": {
+      "natural": "prompts/archive_export/natural.txt",
+      "specified": "prompts/archive_export/specified.txt"
+    },
+    "answers": {},
+    "checks": [
+      [
+        "ruby",
+        "test/test_app.rb"
+      ],
+      [
+        "ruby",
+        "{root}/checks/archive_export.rb"
+      ]
+    ],
+    "followup": {
+      "prompt": "prompts/archive_export/followup.txt",
+      "checks": [
+        [
+          "ruby",
+          "{root}/checks/archive_export_followup.rb"
+        ]
+      ]
+    }
+  }
+]

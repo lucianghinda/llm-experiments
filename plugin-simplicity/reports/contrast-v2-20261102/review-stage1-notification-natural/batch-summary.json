@@ -1,0 +1,164 @@
+{
+  "stage": "stage1",
+  "task": "notification_digest",
+  "track": "natural",
+  "assigned_task_cells_before_track_filter": 24,
+  "assigned_track_cells": 12,
+  "selected_final_trials": 11,
+  "excluded_track_cells": 1,
+  "actual_packet_count": 11,
+  "packet_builder_suppressed_count": 0,
+  "packet_builder_outcome_count": 28,
+  "operator_deviations_in_task": 1,
+  "active_blocked_cells_in_task": 0,
+  "output": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/reports/contrast-v2-20261102/review-stage1-notification-natural",
+  "selected": [
+    {
+      "grid_index": 1,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0001/continuations/answer-01",
+      "raw_disposition": "complete"
+    },
+    {
+      "grid_index": 2,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0002/continuations/answer-01",
+      "raw_disposition": "task_failure"
+    },
+    {
+      "grid_index": 3,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0003",
+      "raw_disposition": "task_failure"
+    },
+    {
+      "grid_index": 4,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0004",
+      "raw_disposition": "task_failure"
+    },
+    {
+      "grid_index": 5,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0005",
+      "raw_disposition": "task_failure"
+    },
+    {
+      "grid_index": 6,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0006",
+      "raw_disposition": "task_failure"
+    },
+    {
+      "grid_index": 14,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0014",
+      "raw_disposition": "task_failure"
+    },
+    {
+      "grid_index": 15,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0015",
+      "raw_disposition": "task_failure"
+    },
+    {
+      "grid_index": 16,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0016",
+      "raw_disposition": "task_failure"
+    },
+    {
+      "grid_index": 17,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0017",
+      "raw_disposition": "task_failure"
+    },
+    {
+      "grid_index": 18,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "trial_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0018/continuations/answer-01",
+      "raw_disposition": "complete"
+    }
+  ],
+  "exclusions": [
+    {
+      "grid_index": 13,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "reason": "operator protocol deviation",
+      "artifact_path": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/results-raw/contrast-v2-20261102-stage1/0013/protocol-deviation.json"
+    }
+  ],
+  "private_review_output": "/Users/luciang/Dropbox/workprojects/explorations/llm-experiments/plugin-simplicity/reports/contrast-v2-20261102/review-stage1-notification-natural/review-packets"
+}

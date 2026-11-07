@@ -1,0 +1,711 @@
+{
+  "verified_at": "2026-11-02T13:52:32Z",
+  "assigned_cells": 48,
+  "task_filter": null,
+  "turns": [
+    {
+      "cell": 1,
+      "turn": "0001",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 2,
+      "turn": "0002",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 3,
+      "turn": "0003",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 4,
+      "turn": "0004",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 5,
+      "turn": "0005",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 6,
+      "turn": "0006",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 7,
+      "turn": "0007",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 8,
+      "turn": "0008",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 9,
+      "turn": "0009",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 10,
+      "turn": "0010",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 11,
+      "turn": "0011",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 12,
+      "turn": "0012",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 13,
+      "turn": "0013",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 14,
+      "turn": "0014",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 14,
+      "turn": "0014/continuations/answer-01",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 14,
+      "turn": "0014/continuations/answer-02",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 14,
+      "turn": "0014/continuations/answer-03",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 14,
+      "turn": "0014/continuations/answer-04",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 14,
+      "turn": "0014/continuations/answer-05",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 14,
+      "turn": "0014/continuations/answer-06",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 15,
+      "turn": "0015",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 16,
+      "turn": "0016",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 16,
+      "turn": "0016/continuations/answer-01",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 16,
+      "turn": "0016/continuations/answer-02",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 16,
+      "turn": "0016/continuations/answer-03",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 16,
+      "turn": "0016/continuations/answer-04",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 16,
+      "turn": "0016/continuations/answer-05",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 16,
+      "turn": "0016/continuations/answer-06",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 17,
+      "turn": "0017",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 18,
+      "turn": "0018",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 19,
+      "turn": "0019",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 20,
+      "turn": "0020",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 21,
+      "turn": "0021",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 22,
+      "turn": "0022",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 23,
+      "turn": "0023",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 23,
+      "turn": "0023/continuations/answer-01",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 23,
+      "turn": "0023/continuations/answer-02",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 23,
+      "turn": "0023/continuations/answer-03",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 23,
+      "turn": "0023/continuations/answer-04",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 23,
+      "turn": "0023/continuations/answer-05",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 24,
+      "turn": "0024",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 25,
+      "turn": "0025",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 26,
+      "turn": "0026",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 27,
+      "turn": "0027",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 28,
+      "turn": "0028",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 29,
+      "turn": "0029",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 30,
+      "turn": "0030",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 31,
+      "turn": "0031",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 32,
+      "turn": "0032",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 33,
+      "turn": "0033",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 34,
+      "turn": "0034",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 35,
+      "turn": "0035",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 36,
+      "turn": "0036",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 37,
+      "turn": "0037",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 37,
+      "turn": "0037/continuations/answer-01",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 37,
+      "turn": "0037/continuations/answer-02",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 37,
+      "turn": "0037/continuations/answer-03",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 37,
+      "turn": "0037/continuations/answer-04",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 37,
+      "turn": "0037/continuations/answer-05",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 37,
+      "turn": "0037/continuations/answer-06",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 38,
+      "turn": "0038",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 39,
+      "turn": "0039",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 40,
+      "turn": "0040",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 41,
+      "turn": "0041",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 42,
+      "turn": "0042",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 42,
+      "turn": "0042/continuations/answer-01",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 42,
+      "turn": "0042/continuations/answer-02",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 42,
+      "turn": "0042/continuations/answer-03",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 42,
+      "turn": "0042/continuations/answer-04",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 42,
+      "turn": "0042/continuations/answer-05",
+      "status": "timeout",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 43,
+      "turn": "0043",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 44,
+      "turn": "0044",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 45,
+      "turn": "0045",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 45,
+      "turn": "0045/continuations/answer-01",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 45,
+      "turn": "0045/continuations/answer-02",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 45,
+      "turn": "0045/continuations/answer-03",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 45,
+      "turn": "0045/continuations/answer-04",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 45,
+      "turn": "0045/continuations/answer-05",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 45,
+      "turn": "0045/continuations/answer-06",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 46,
+      "turn": "0046",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 47,
+      "turn": "0047",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 47,
+      "turn": "0047/continuations/answer-01",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 47,
+      "turn": "0047/continuations/answer-02",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 47,
+      "turn": "0047/continuations/answer-03",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 47,
+      "turn": "0047/continuations/answer-04",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 47,
+      "turn": "0047/continuations/answer-05",
+      "status": "awaiting_review",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 47,
+      "turn": "0047/continuations/answer-06",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    },
+    {
+      "cell": 48,
+      "turn": "0048",
+      "status": "complete",
+      "restoration_verified_now": true,
+      "archives_verified_now": true,
+      "transcript_retained": true
+    }
+  ]
+}

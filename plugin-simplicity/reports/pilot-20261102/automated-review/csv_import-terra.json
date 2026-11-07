@@ -1,0 +1,332 @@
+{
+  "batch": "csv_import",
+  "reviewer": "terra",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.length returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.length; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.length returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.length; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.length returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.length; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count.",
+        "boundaries": "Private contact_from owns row validation and conversion; import maps through it before calling Store#add, though the small helper adds a hop.",
+        "cohesion": "contact_from keeps row extraction, validation, and hash creation together within Importer; import coordinates parsing and storage.",
+        "interfaces": "import(csv) returns contacts.size; separate name and email checks with specific ArgumentError messages, and CSV.parse errors propagate before storage, with distinct diagnostics for invalid name and email ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.length returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.length; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.length returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.length; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated pending buffer; pending.each writes it and pending.size returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated pending buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns pending.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count.",
+        "boundaries": "Private contact_from owns row validation and conversion; import maps through it before calling Store#add, though the small helper adds a hop.",
+        "cohesion": "contact_from keeps row extraction, validation, and hash creation together within Importer; import coordinates parsing and storage.",
+        "interfaces": "import(csv) returns contacts.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "contacts = [] and contacts << build the validated buffer; contacts.each writes it and contacts.length returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "contacts = [] and contacts << build the validated buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.length; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0012",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.length returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.length; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0013",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0014",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "Private contact_from owns row validation and conversion; import maps through it before calling Store#add, though the small helper adds a hop.",
+        "cohesion": "contact_from keeps row extraction, validation, and hash creation together within Importer; import coordinates parsing and storage.",
+        "interfaces": "import(csv) returns contacts.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0015",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, separate name and email checks raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.size; separate name and email checks raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0016",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0017",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.length returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.length; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0018",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.count returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.count; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0019",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0020",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0021",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "contacts = [] and contacts << build the validated buffer; contacts.each writes it and contacts.size returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "contacts = [] and contacts << build the validated buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0022",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "CSV.parse(..., headers: true).map builds the validated contacts buffer; contacts.each writes it and contacts.size returns the count.",
+        "boundaries": "CSV.parse(..., headers: true).map builds the validated contacts buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.size; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0023",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "contacts = [] and contacts << build the validated buffer; contacts.each writes it and contacts.length returns the count; the explicit blank-email check overlaps the @ check.",
+        "boundaries": "contacts = [] and contacts << build the validated buffer before Store#add, creating the staging boundary needed to reject bad input without partial writes.",
+        "cohesion": "Importer keeps row extraction, the name and email guard raising ArgumentError, and the later Store#add calls together; Store retains record ownership.",
+        "interfaces": "import(csv) returns contacts.length; the name and email guard raising ArgumentError, and CSV.parse errors propagate before storage, with a shared invalid-contact message ."
+      },
+      "correctness_concerns": []
+    }
+  ],
+  "limitations": [
+    "Secondary automated assessment of the supplied snapshots and contract, not human truth.",
+    "Candidate code was not executed and recorded checks were not rerun; broader store behavior and tests were not assessed."
+  ]
+}

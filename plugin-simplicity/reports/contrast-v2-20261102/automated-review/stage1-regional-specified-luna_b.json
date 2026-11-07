@@ -1,0 +1,179 @@
+{
+  "batch": "stage1-regional-specified",
+  "reviewer": "luna_b",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The existing ternaries directly encode the two thresholds stated in the contract.",
+        "boundaries": "No extra layer is added; each class retains its threshold check.",
+        "cohesion": "Checkout and estimate keep their separate charge formulas while applying the same regional thresholds.",
+        "interfaces": "quote retains its named arguments and numeric return."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The existing ternaries directly encode north and south threshold values.",
+        "boundaries": "No new abstraction; each quote method owns a short local threshold choice.",
+        "cohesion": "The modified threshold checks remain close to their distinct charge calculations.",
+        "interfaces": "The method signatures and numeric results are clear and unchanged."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "RegionalRates consolidates thresholds and per-weight/base rules into one table plus a shared quote operation.",
+        "boundaries": "The module centralizes rules genuinely used by both quote policies; the surcharge hook supports the documented checkout distinction.",
+        "cohesion": "Common rates are cohesive in RegionalRates and checkout-specific handling is isolated in CheckoutShipping#surcharge.",
+        "interfaces": "rule_for has a documented fallback and quote has the same named arguments; the overridable surcharge hook is an internal interface."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 4,
+      "boundaries": 3,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The two regional threshold values are applied directly in both existing quote methods.",
+        "boundaries": "The calculation stays local, but the identical policy choice is duplicated in two places and could drift.",
+        "cohesion": "Each class retains its own coherent formula and uses the same threshold rule.",
+        "interfaces": "The contract remains represented by the existing region/subtotal/weight arguments."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "RegionalRates uses three tables and a shared base_quote operation to represent common regional rates.",
+        "boundaries": "A shared module prevents divergence between quote paths, though inclusion and hash lookups add a layer beyond two short formulas.",
+        "cohesion": "Common rate calculations are together; checkout handling is isolated in CheckoutShipping.",
+        "interfaces": "base_quote takes explicit keyword arguments, but CheckoutShipping uses charge.zero? to infer that the subtotal threshold was met."
+      },
+      "correctness_concerns": [
+        "CheckoutShipping decides to waive handling via charge.zero?, coupling free shipping to a computed amount rather than the threshold condition; this is a potential edge case if a valid charge can be zero."
+      ]
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Named constants clarify both thresholds and the existing handling charge.",
+        "boundaries": "Top-level constants are shared by both quote paths without introducing a helper object.",
+        "cohesion": "The constants serve the existing formulas directly and checkout handling remains class-local.",
+        "interfaces": "The quote interface is unchanged; region selection remains explicit in both methods."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The code directly changes the southern value in the existing regional ternaries.",
+        "boundaries": "The local threshold decision avoids extra layers and remains easy to trace.",
+        "cohesion": "Both quote methods retain the same structure and separate responsibilities.",
+        "interfaces": "Existing keyword inputs and return values are clear."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The existing ternary expresses the regional threshold with no added concept.",
+        "boundaries": "No helper or shared object is introduced.",
+        "cohesion": "Threshold selection remains beside the relevant free-shipping comparison in both methods.",
+        "interfaces": "The named quote parameters remain unchanged."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Only the southern value in the existing threshold ternaries changes.",
+        "boundaries": "The implementation retains the local decision already used by each quote method.",
+        "cohesion": "The update stays close to each method’s own regional rate formula.",
+        "interfaces": "The quote interface and return shape remain unchanged."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "The existing ternary tests for south and chooses 75.0, otherwise 50.0.",
+        "boundaries": "No added boundary; threshold selection is local and direct.",
+        "cohesion": "The selection is repeated consistently in the two quote classes.",
+        "interfaces": "North and south are handled plainly, while any other region silently follows the north threshold."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The existing ternary directly captures north and south thresholds.",
+        "boundaries": "No additional indirection is introduced.",
+        "cohesion": "Threshold updates are colocated with each class’s existing charge calculation.",
+        "interfaces": "The existing quote keyword contract is preserved."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0012",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The current threshold ternaries now use 50.0 for north and 75.0 for other regions.",
+        "boundaries": "The regional decision remains a local expression with no new helper layer.",
+        "cohesion": "Both quote methods are updated consistently and retain their class-specific charges.",
+        "interfaces": "The existing keyword interface remains stable; behavior outside the two named regions is implicit."
+      },
+      "correctness_concerns": []
+    }
+  ],
+  "limitations": [
+    "Review is limited to the packet Markdown and the review rubric. Candidate code was not executed; no tests, outcomes, or trial metadata were consulted."
+  ]
+}

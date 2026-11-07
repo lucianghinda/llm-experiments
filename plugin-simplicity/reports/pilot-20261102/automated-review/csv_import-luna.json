@@ -1,0 +1,332 @@
+{
+  "batch": "csv_import",
+  "reviewer": "luna",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "import maps rows through contact_from, which adds a named validation concept and separates it from the atomic write pass.",
+        "boundaries": "contact_from is a private single-row boundary used by import; it centralizes normalization and validation, though it is only called here.",
+        "cohesion": "contact_from owns the contact-specific checks and hash construction, while import owns parsing and storing.",
+        "interfaces": "The method raises ArgumentError with distinct blank-name and invalid-email messages; email.to_s.include?(\"@\") rejects a missing or blank email."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 4,
+      "boundaries": 3,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import delegates each row to contact_from, then stores the resulting hashes in a second pass to preserve all-or-nothing validation.",
+        "boundaries": "The private helper is a one-use boundary; it does isolate per-row mapping and checks but adds a call hop for a short transformation.",
+        "cohesion": "Row validation and contact hash construction stay together in contact_from; parsing and store writes stay in import.",
+        "interfaces": "import accepts CSV and returns contacts.size; validation raises a generic ArgumentError, and email.to_s.include?(\"@\") rejects absent or blank email."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0012",
+      "concepts": 4,
+      "boundaries": 5,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "The temporary contacts array supports validation before storage, but fail and numbered parameter _1 add less explicit syntax to a short pipeline.",
+        "boundaries": "The validation pass and later store pass create a purposeful boundary needed for atomic imports.",
+        "cohesion": "Parsing, row validation, and storage remain within Importer#import and its associated behavior.",
+        "interfaces": "The signature and return count are clear, but the only block parameter is implicit in contacts.each { @store.add(**_1) }, which is harder to scan than a named contact."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0013",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0014",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows through contact_from and stores the collected contacts afterward, making validation and commit distinct steps.",
+        "boundaries": "The private contact_from helper gives row validation and mapping a named boundary; it is only used once but keeps import compact.",
+        "cohesion": "Parsing and storage remain in import, while the helper owns the contact-specific validation and hash shape.",
+        "interfaces": "The public method returns the number stored and invalid rows raise ArgumentError; the generic message does not identify which field failed."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0015",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "One CSV map validates each row and builds a contact hash; a second pass commits the result set, which is the minimal extra state needed for atomicity.",
+        "boundaries": "The temporary contacts array is justified by the all-or-nothing requirement; no extra object or helper layer is introduced.",
+        "cohesion": "Contact validation, mapping, and storage are kept within Importer#import and grouped by the import flow.",
+        "interfaces": "Each invalid row raises ArgumentError and successful calls return contacts.size; the same generic message covers blank name and invalid email."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0016",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0017",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0018",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0019",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0020",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0021",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0022",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0023",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "import maps rows to contact hashes, validates them, then writes them and returns the collection size; the temporary array directly supports atomicity.",
+        "boundaries": "The collected contacts form a justified boundary between complete validation and mutation of the store; no unnecessary layers are added.",
+        "cohesion": "CSV row checks, contact mapping, and the store write pass remain together in Contacts::Importer#import.",
+        "interfaces": "The method accepts CSV text, returns a count, and uses ArgumentError for invalid rows while CSV parsing errors can propagate; the error message is generic."
+      },
+      "correctness_concerns": []
+    }
+  ],
+  "limitations": [
+    "Review is based only on the supplied code snapshots, patches, and neutral contract; candidate code was not executed.",
+    "The packets show limited surrounding application context, so fit ratings reflect the included baseline and stated contract."
+  ]
+}

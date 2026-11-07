@@ -1,0 +1,354 @@
+{
+  "batch": "report",
+  "reviewer": "luna",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status) == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "The optional status keyword and hash result are clear, but fetch(:status) makes a missing status field raise during filtering."
+      },
+      "correctness_concerns": [
+        "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+      ]
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0012",
+      "concepts": 2,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 2,
+      "evidence": {
+        "concepts": "summary accepts both a positional status and **options, then resolves them with options.fetch; this adds compatibility logic beyond the requested optional status.",
+        "boundaries": "The selection and aggregation remain in summary; there are no extracted layers or unjustified object boundaries.",
+        "cohesion": "Filtering and computing count/total remain together in OrderReport#summary, consistent with the baseline responsibility.",
+        "interfaces": "The parameter accepts positional or keyword status, but arbitrary keywords are silently accepted and ignored unless :status is present."
+      },
+      "correctness_concerns": [
+        "Unknown keyword options are silently ignored, which can mask caller mistakes."
+      ]
+    },
+    {
+      "packet": "R-0013",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status) == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "The optional status keyword and hash result are clear, but fetch(:status) makes a missing status field raise during filtering."
+      },
+      "correctness_concerns": [
+        "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+      ]
+    },
+    {
+      "packet": "R-0014",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0015",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0016",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0017",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status, nil) == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0018",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0019",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0020",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0021",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0022",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0023",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0024",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status) == status }).",
+        "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+        "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+        "interfaces": "The optional status keyword and hash result are clear, but fetch(:status) makes a missing status field raise during filtering."
+      },
+      "correctness_concerns": [
+        "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+      ]
+    }
+  ],
+  "limitations": [
+    "Ratings judge only the supplied code snapshots and patches; no candidate code was executed.",
+    "The packets provide limited surrounding application context, so fit judgments rely on the included baseline and contract."
+  ]
+}

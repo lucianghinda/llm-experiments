@@ -1,0 +1,5 @@
+Implement `Orders::Cancel.call(order)` following the existing
+`Orders::Ship.call(order)` service and result conventions. A pending order
+changes to cancelled and returns a successful result. A shipped order or an
+already-cancelled order returns a failed result with an error and remains
+unchanged. Add tests for successful and rejected transitions.

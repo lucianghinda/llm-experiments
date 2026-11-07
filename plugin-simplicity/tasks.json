@@ -1,0 +1,149 @@
+[
+  {
+    "id": "report",
+    "fixture": "fixtures/report",
+    "prompt": {
+      "natural": "prompts/report/natural.txt",
+      "specified": "prompts/report/specified.txt"
+    },
+    "answers": {},
+    "checks": [
+      [
+        "ruby",
+        "test/test_app.rb"
+      ],
+      [
+        "ruby",
+        "{root}/checks/report.rb"
+      ]
+    ]
+  },
+  {
+    "id": "identifiers",
+    "fixture": "fixtures/identifiers",
+    "prompt": {
+      "natural": "prompts/identifiers/natural.txt",
+      "specified": "prompts/identifiers/specified.txt"
+    },
+    "answers": {},
+    "checks": [
+      [
+        "ruby",
+        "test/test_app.rb"
+      ],
+      [
+        "ruby",
+        "{root}/checks/identifiers.rb"
+      ]
+    ]
+  },
+  {
+    "id": "cancellation",
+    "fixture": "fixtures/cancellation",
+    "prompt": {
+      "natural": "prompts/cancellation/natural.txt",
+      "specified": "prompts/cancellation/specified.txt"
+    },
+    "answers": {},
+    "checks": [
+      [
+        "ruby",
+        "test/test_app.rb"
+      ],
+      [
+        "ruby",
+        "{root}/checks/cancellation.rb"
+      ]
+    ]
+  },
+  {
+    "id": "csv_import",
+    "fixture": "fixtures/csv_import",
+    "prompt": {
+      "natural": "prompts/csv_import/natural.txt",
+      "specified": "prompts/csv_import/specified.txt"
+    },
+    "answers": {},
+    "checks": [
+      [
+        "ruby",
+        "test/test_app.rb"
+      ],
+      [
+        "ruby",
+        "{root}/checks/csv_import.rb"
+      ]
+    ],
+    "followup": {
+      "prompt": "prompts/csv_import/followup.txt",
+      "checks": [
+        [
+          "ruby",
+          "{root}/checks/csv_import_followup.rb"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "campfire_feature",
+    "fixture": "fixtures/campfire_feature",
+    "blocked": "Prepared from pinned Campfire snapshot; Rails baseline and isolated checker execution remain unverified.",
+    "prompt": {
+      "natural": "prompts/campfire_feature/natural.txt",
+      "specified": "prompts/campfire_feature/specified.txt"
+    },
+    "answers": {},
+    "checks": [
+      [
+        "bin/rails",
+        "test"
+      ],
+      [
+        "ruby",
+        "{root}/checks/campfire_feature.rb",
+        "{workspace}"
+      ]
+    ],
+    "provenance": {
+      "source": "/Users/luciang/Dropbox/workprojects/opensource/once-campfire",
+      "commit": "f1aec6133667a7486d521430f871bc420e18ec2b",
+      "preparation": "git archive of pinned commit; no .git history in fixture"
+    },
+    "followup": {
+      "prompt": "prompts/campfire_feature/followup.txt",
+      "checks": [
+        [
+          "ruby",
+          "{root}/checks/campfire_feature_followup.rb",
+          "{workspace}"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "campfire_safety",
+    "fixture": "fixtures/campfire_safety",
+    "blocked": "Prepared with the bot authentication scope reverted and regression test retained; expected baseline failure and isolated checker execution remain unverified.",
+    "prompt": {
+      "natural": "prompts/campfire_safety/natural.txt",
+      "specified": "prompts/campfire_safety/specified.txt"
+    },
+    "answers": {},
+    "checks": [
+      [
+        "bin/rails",
+        "test"
+      ],
+      [
+        "ruby",
+        "{root}/checks/campfire_safety.rb",
+        "{workspace}"
+      ]
+    ],
+    "provenance": {
+      "source": "/Users/luciang/Dropbox/workprojects/opensource/once-campfire",
+      "commit": "f1aec6133667a7486d521430f871bc420e18ec2b",
+      "preparation": "git archive of pinned commit; app/models/user/bot.rb authentication scope reverted to active.find_by; regression test retained"
+    }
+  }
+]

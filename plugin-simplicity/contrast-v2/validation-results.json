@@ -1,0 +1,32 @@
+[
+  {
+    "id": "notification_digest",
+    "baseline_passes": true,
+    "reference_baseline_passes": true,
+    "starter_acceptance_rejects": true,
+    "reference_acceptance_passes": true,
+    "starter_followup_rejects": true,
+    "stage1_reference_followup_rejects": true,
+    "reference_followup_passes": true
+  },
+  {
+    "id": "regional_policy",
+    "baseline_passes": true,
+    "reference_baseline_passes": true,
+    "starter_acceptance_rejects": true,
+    "reference_acceptance_passes": true,
+    "starter_followup_rejects": true,
+    "stage1_reference_followup_rejects": true,
+    "reference_followup_passes": true
+  },
+  {
+    "id": "archive_export",
+    "baseline_passes": true,
+    "reference_baseline_passes": true,
+    "starter_acceptance_rejects": true,
+    "reference_acceptance_passes": true,
+    "starter_followup_rejects": true,
+    "stage1_reference_followup_rejects": true,
+    "reference_followup_passes": true
+  }
+]

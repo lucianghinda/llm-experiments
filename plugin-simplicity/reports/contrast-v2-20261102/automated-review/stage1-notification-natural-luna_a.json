@@ -1,0 +1,185 @@
+{
+  "batch": "stage1-notification-natural",
+  "reviewer": "luna_a",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Coalescer#call groups by actor and merges text with SEPARATOR.",
+        "boundaries": "Coalescer owns grouping; deliver reuses formatting and delivery.",
+        "cohesion": "Burst flow filters, coalesces, then uses the existing path.",
+        "interfaces": "publish_burst accepts events; empty eligible input emits nothing."
+      },
+      "correctness_concerns": [
+        "The contract does not name the new batch entry point; this exposes publish_burst and retains immediate publish."
+      ]
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 3,
+      "boundaries": 3,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Buffer stores actor groups; Coalescer reduces each group; flush drains and formats.",
+        "boundaries": "Buffer and Coalescer separate state and transformation, adding two helper classes for a small pipeline.",
+        "cohesion": "The comments and method names explain the batch lifecycle.",
+        "interfaces": "publish buffers eligible events; flush drains them and empty batches emit nothing."
+      },
+      "correctness_concerns": [
+        "Buffer#empty? is defined but unused."
+      ]
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "publish_batch filters, groups by actor, formats each event, and joins strings with newline.",
+        "boundaries": "Inline processing reuses existing rules, formatter, and delivery without new abstractions.",
+        "cohesion": "Batch processing sits beside publish and reuses its collaborators.",
+        "interfaces": "The input is clear, but joining complete formatted strings leaves output structure implicit."
+      },
+      "correctness_concerns": [
+        "Joining formatted events repeats actor prefixes and uses newline, neither specified by the broad contract."
+      ]
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "@pending maps actors to message arrays; flush joins with \"; \" and clears the map.",
+        "boundaries": "A hash owns pending state; existing collaborators retain their roles.",
+        "cohesion": "State and flush behavior are together in NotificationPipeline.",
+        "interfaces": "Empty flush emits nothing; delivery errors have no explicit policy."
+      },
+      "correctness_concerns": [
+        "event[:message].to_s adds coercion before buffering."
+      ]
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Coalescer groups events by actor and joins their messages with SEPARATOR.",
+        "boundaries": "Coalescer isolates transformation, though it is a small stateless operation.",
+        "cohesion": "Single and burst paths share deliver; grouping remains in its helper.",
+        "interfaces": "Input and rule filtering are clear; empty input emits nothing."
+      },
+      "correctness_concerns": [
+        "Fresh actor/message hashes drop other event fields; visible Formatter only reads these fields."
+      ]
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "publish_burst groups eligible events; private coalesce merges messages, preserving singleton events.",
+        "boundaries": "A private method avoids an extra class and keeps transformation local.",
+        "cohesion": "deliver centralizes formatting and delivery; coalesce handles event merging.",
+        "interfaces": "Burst input is clear and the method explicitly returns nil."
+      },
+      "correctness_concerns": [
+        "The broad contract does not settle whether single publish is immediate or participates in batching."
+      ]
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "publish_batch groups eligible events and joins each group’s formatted strings with newline.",
+        "boundaries": "Inline grouping shares existing delivery and formatting dependencies.",
+        "cohesion": "Batch behavior sits beside publish and uses the same collaborators.",
+        "interfaces": "The input is clear, though joining complete strings obscures output structure."
+      },
+      "correctness_concerns": [
+        "Each group repeats actor prefixes and uses newline, which the broad contract does not specify."
+      ]
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 4,
+      "boundaries": 3,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Coalescer groups events and joins message fields; initialize exposes separator:.",
+        "boundaries": "The transform boundary is clean, but a nested class plus configurable separator expands the API for a fixed behavior.",
+        "cohesion": "Filtering, grouping, and shared delivery are distinct.",
+        "interfaces": "The burst API and separator option are explicit; filtering matches publish."
+      },
+      "correctness_concerns": [
+        "initialize exposes separator customization without a corresponding contract requirement."
+      ]
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "publish_batch groups formatted eligible notifications by actor and joins with newline.",
+        "boundaries": "No new object is added; existing collaborators do the work.",
+        "cohesion": "Batch logic is localized and reuses rules, formatter, and delivery.",
+        "interfaces": "Input/filtering are clear; grouped output is implicit in the newline join."
+      },
+      "correctness_concerns": [
+        "Output repeats actor labels and uses newline, details not established by the broad contract."
+      ]
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Formatter#coalesce combines actor/message values with a named separator; publish_burst groups eligible events.",
+        "boundaries": "No extra class is added, though Formatter now also aggregates event groups.",
+        "cohesion": "Single and burst paths share formatting behavior.",
+        "interfaces": "The burst input and rule filtering are clear; separator is named."
+      },
+      "correctness_concerns": [
+        "publish now routes through publish_burst, coupling single publication to grouping."
+      ]
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "publish_batch filters and groups, merges messages, then uses the existing formatter.",
+        "boundaries": "Grouping remains inline without extra abstraction layers.",
+        "cohesion": "Batch and single publication are adjacent in the pipeline.",
+        "interfaces": "Method shape is clear; newline is hard-coded and unnamed."
+      },
+      "correctness_concerns": [
+        "Joining with newline is not specified by the broad contract."
+      ]
+    }
+  ],
+  "limitations": [
+    "Judgments use only packet snapshots and neutral contracts; acceptance results and runtime behavior were not inspected."
+  ]
+}

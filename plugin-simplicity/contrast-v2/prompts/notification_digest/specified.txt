@@ -1,0 +1,1 @@
+Update NotificationPipeline so consecutive publish calls made before flush are grouped by actor into one delivered message. Add flush; it sends pending messages in first-seen actor order, joins that actor's message texts with '; ', and emits nothing for an empty buffer. Preserve the current actor/message format. Calls after a flush start a new batch.

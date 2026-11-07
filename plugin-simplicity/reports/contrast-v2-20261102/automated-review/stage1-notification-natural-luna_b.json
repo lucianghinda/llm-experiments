@@ -1,0 +1,164 @@
+{
+  "batch": "stage1-notification-natural",
+  "reviewer": "luna_b",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "Adds a Coalescer with one grouping and merge operation; this is a compact model of the new burst behavior.",
+        "boundaries": "Coalescer owns grouping and message merging, while publish_burst applies rules and delivery; both are straightforward boundaries.",
+        "cohesion": "Burst filtering, coalescing, and the existing formatter/delivery pipeline remain together in NotificationPipeline.",
+        "interfaces": "publish_burst accepts an enumerable of event hashes; the fixed separator and output handling are implicit."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 3,
+      "boundaries": 3,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "Buffer and Coalescer divide accumulation, draining, and message merging into two new concepts.",
+        "boundaries": "Buffer owns grouped state and reset; Coalescer owns per-group merging, though the split adds a handoff for a small feature.",
+        "cohesion": "Both new objects support the batching lifecycle and sit beside the existing pipeline pieces.",
+        "interfaces": "publish buffers and flush drains, but callers must understand the new two-step lifecycle; empty? is provided but unused."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "The batch path uses selection, grouping, mapping, and joining directly without new helper objects.",
+        "boundaries": "Grouping logic stays inside the pipeline, avoiding an extra abstraction; no helper names the aggregation contract.",
+        "cohesion": "publish_batch is adjacent to publish and uses the existing rule, formatter, and delivery objects.",
+        "interfaces": "The method accepts event collections, but joins already formatted notifications with newline and leaves the batch output shape implicit."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "A pending hash keyed by actor and a flush method express the accumulation and delivery behavior with little machinery.",
+        "boundaries": "State and flush behavior live in the pipeline where publishing already occurs; there is no new layer.",
+        "cohesion": "Filtering, accumulation, formatting, delivery, and reset are localized in the existing class.",
+        "interfaces": "flush defines the boundary, but publish changes from immediate delivery to buffering and callers must know when to flush."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "One Coalescer performs the actor grouping and text joining, with a small shared deliver method.",
+        "boundaries": "Coalescer separates aggregation from pipeline delivery; this is a modest and relevant boundary.",
+        "cohesion": "The helper and publish_burst keep burst-specific behavior close to NotificationPipeline.",
+        "interfaces": "publish_burst accepts event hashes and uses a fixed separator; grouped output is passed through the existing formatter."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "The burst path uses built-in grouping plus a private coalesce method and one shared delivery method.",
+        "boundaries": "Private helpers isolate delivery and merging without introducing extra objects.",
+        "cohesion": "The helpers sit with the pipeline methods they support, though the grouping itself remains in publish_burst.",
+        "interfaces": "Input is an event collection; return value is explicitly nil, but separator and malformed-event behavior are not surfaced."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "Grouping and merging use standard collection operations plus two focused private helpers.",
+        "boundaries": "The private helpers name delivery and coalescing steps without introducing additional layers.",
+        "cohesion": "The burst method and its helpers remain in NotificationPipeline and reuse its existing collaborators.",
+        "interfaces": "The event collection input is clear, while the newline separator and output contract are hard-coded."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 4,
+      "boundaries": 3,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Coalescer is a focused concept; accepting a separator adds a small configuration concept.",
+        "boundaries": "A separate Coalescer cleanly owns grouping, and an injectable separator supports variation, though no such variation is required by the packet contract.",
+        "cohesion": "Filtering and delivery stay in the pipeline while grouping and merge stay in Coalescer.",
+        "interfaces": "publish_burst is documented, and separator configuration is explicit in initialize; event validation remains implicit."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "A local hash, iteration, and join implement batching without extra objects or helpers.",
+        "boundaries": "The pipeline owns the logic directly, consistent with the surrounding small class; there is no extraction for grouping.",
+        "cohesion": "The added method uses the established rule, formatter, and delivery in one place.",
+        "interfaces": "publish_batch takes events, but emits one joined formatted string per actor and does not state the separator contract in its method interface."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 3,
+      "boundaries": 2,
+      "cohesion": 3,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "Formatter now handles both per-event formatting and batch aggregation, combining two related but distinct operations.",
+        "boundaries": "Formatter#coalesce adds batch grouping/joining to the formatting boundary, while publish delegates even a single event through this new path.",
+        "cohesion": "The workflow remains in NotificationPipeline, but aggregation responsibility is placed inside Formatter.",
+        "interfaces": "publish_burst accepts events and separator is named in Formatter, but the formatter now has a second operation with its own assumptions."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "The method uses select, group_by, and merge to form one event per actor with no extra class.",
+        "boundaries": "Aggregation stays inline in the existing pipeline; the local implementation is easy to trace.",
+        "cohesion": "Batch behavior is adjacent to publish and reuses Rule, Formatter, and Delivery.",
+        "interfaces": "publish_batch input is apparent, while newline joining and one-output-per-actor semantics are encoded rather than exposed."
+      },
+      "correctness_concerns": []
+    }
+  ],
+  "limitations": [
+    "Review uses only packet Markdown and the root rubric; candidate code was not executed. No acceptance status, outcome data, or trial metadata was consulted.",
+    "For the natural batch, method names and scheduling semantics were not inferred beyond the packet contract, which only specifies behavior at a concept level."
+  ]
+}

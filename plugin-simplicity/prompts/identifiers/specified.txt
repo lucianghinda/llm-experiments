@@ -1,0 +1,5 @@
+Fix identifier handling in both the import and manual-entry callers by using
+the shared `Identifiers.normalize(value)` behavior. Normalization strips
+surrounding whitespace and lowercases strings; blank input normalizes to nil.
+Both callers must reject blank identifiers with `ArgumentError`. Preserve
+existing behavior for valid identifiers and cover both callers in tests.

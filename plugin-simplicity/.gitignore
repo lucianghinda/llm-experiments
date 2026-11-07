@@ -1,0 +1,4 @@
+results-raw/
+fixtures/campfire_feature/
+fixtures/campfire_safety/
+.build/

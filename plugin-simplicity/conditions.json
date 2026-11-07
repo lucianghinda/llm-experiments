@@ -1,0 +1,14 @@
+[
+  {
+    "id": "baseline",
+    "plugin_path": null
+  },
+  {
+    "id": "ruby-plainspoken",
+    "plugin_path": "/Users/luciang/Dropbox/workprojects/opensource/ruby-plainspoken"
+  },
+  {
+    "id": "rubypowers",
+    "plugin_path": "/Users/luciang/Dropbox/workprojects/opensource/rubypowers"
+  }
+]

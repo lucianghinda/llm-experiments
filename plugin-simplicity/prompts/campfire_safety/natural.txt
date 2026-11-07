@@ -1,0 +1,4 @@
+There is a security issue in how bot credentials identify their account. A
+credential belonging to an automated poster must not let its holder act as a
+regular user. Find and fix the credential matching behavior, and add regression
+coverage for the unauthorized case while preserving valid bot access.

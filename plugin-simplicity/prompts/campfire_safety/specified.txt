@@ -1,0 +1,6 @@
+Fix bot credential authentication so a bot key can identify only an enabled
+automated account. It must never authenticate as a regular enabled user, even
+when the key value overlaps that user's identifier/key format. Verify that an
+invalid or regular-user key cannot create or update a message, and that a valid
+bot key still works for its permitted room actions. Follow the existing
+`User::Bot` and controller conventions and add regression tests.

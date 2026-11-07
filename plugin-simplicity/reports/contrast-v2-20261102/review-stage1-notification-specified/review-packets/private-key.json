@@ -1,0 +1,113 @@
+{
+  "seed": 42,
+  "packets": {
+    "R-0001": {
+      "final_trial": "0023",
+      "grid_cell": "0023",
+      "task": "notification_digest",
+      "agent": "codex",
+      "model": "gpt-6.1-sol",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0002": {
+      "final_trial": "0022",
+      "grid_cell": "0022",
+      "task": "notification_digest",
+      "agent": "codex",
+      "model": "gpt-6.1-sol",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0003": {
+      "final_trial": "0007",
+      "grid_cell": "0007",
+      "task": "notification_digest",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0004": {
+      "final_trial": "0021",
+      "grid_cell": "0021",
+      "task": "notification_digest",
+      "agent": "codex",
+      "model": "gpt-6.1-sol",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0005": {
+      "final_trial": "0012",
+      "grid_cell": "0012",
+      "task": "notification_digest",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0006": {
+      "final_trial": "0009",
+      "grid_cell": "0009",
+      "task": "notification_digest",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0007": {
+      "final_trial": "0008",
+      "grid_cell": "0008",
+      "task": "notification_digest",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0008": {
+      "final_trial": "0024",
+      "grid_cell": "0024",
+      "task": "notification_digest",
+      "agent": "codex",
+      "model": "gpt-6.1-sol",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0009": {
+      "final_trial": "0011",
+      "grid_cell": "0011",
+      "task": "notification_digest",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0010": {
+      "final_trial": "0020",
+      "grid_cell": "0020",
+      "task": "notification_digest",
+      "agent": "codex",
+      "model": "gpt-6.1-sol",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0011": {
+      "final_trial": "0010",
+      "grid_cell": "0010",
+      "task": "notification_digest",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0012": {
+      "final_trial": "0019",
+      "grid_cell": "0019",
+      "task": "notification_digest",
+      "agent": "codex",
+      "model": "gpt-6.1-sol",
+      "condition": "rubypowers",
+      "track": "specified"
+    }
+  }
+}

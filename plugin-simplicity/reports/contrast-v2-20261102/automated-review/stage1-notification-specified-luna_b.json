@@ -1,0 +1,202 @@
+{
+  "batch": "stage1-notification-specified",
+  "reviewer": "luna_b",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "A pending hash groups message texts by actor and flush iterates then clears it; this directly matches the stated lifecycle.",
+        "boundaries": "No extra layer is added; state belongs to the pipeline that receives publish calls.",
+        "cohesion": "Eligibility, accumulation, formatting, delivery, and reset are in the existing pipeline flow.",
+        "interfaces": "publish and flush are direct caller operations; flush has no explicit return contract, and message shape stays consistent with Formatter."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises midway through flush, the pending hash is not cleared, so a later flush may redeliver earlier entries."
+      ]
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The same compact pending-hash approach directly represents actor grouping and message accumulation.",
+        "boundaries": "The existing pipeline owns state and reset, with no unnecessary helper boundary.",
+        "cohesion": "The added state and flush behavior sit directly beside publish and existing formatting/delivery.",
+        "interfaces": "The two-step lifecycle is clear from the method names; flush return behavior is implicit."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises midway through flush, the pending hash is not cleared, so a later flush may redeliver earlier entries."
+      ]
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Batch encapsulates actor ordering and message joining; it adds a distinct helper object for one batch.",
+        "boundaries": "Batch owns its grouped state and exposes add/each_grouped, which cleanly separates accumulation from pipeline delivery.",
+        "cohesion": "The helper is focused and the pipeline coordinates eligibility, lifecycle, formatting, and delivery.",
+        "interfaces": "add and each_grouped give callers a clear protocol, though each_grouped is a callback interface and flush return is implicit."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises during iteration, the pipeline has already replaced its batch; remaining groups are discarded."
+      ]
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "A pending hash keyed by actor and flush directly implement the specified contract.",
+        "boundaries": "State, ordering, and reset remain in NotificationPipeline without additional indirection.",
+        "cohesion": "The changes stay with publish and reuse Formatter and Delivery.",
+        "interfaces": "Caller lifecycle is clear; flush return value is not specified."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+      ]
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Batch names and encapsulates grouped state, joining, and drain, adding one focused concept.",
+        "boundaries": "Batch owns aggregation and reset; the pipeline only filters, drains, formats, and delivers.",
+        "cohesion": "Each responsibility is grouped around the batch lifecycle and existing pipeline collaborators.",
+        "interfaces": "add and drain are simple; drain returns event hashes that match Formatter input."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises after drain, the drained batch has already been removed and remaining outputs are lost."
+      ]
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "A pending hash captures actor groups; flush delivers and replaces it with a fresh hash.",
+        "boundaries": "The state remains local to NotificationPipeline, with no unnecessary abstraction.",
+        "cohesion": "Eligibility, accumulation, ordered delivery, and reset are adjacent and reuse existing collaborators.",
+        "interfaces": "The required operations are clear; flush explicitly returns nil, while publish returns nil on filtered events."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises midway, the buffer was replaced before delivery and remaining pending outputs are lost."
+      ]
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "A pending hash directly records actors and message texts; flush swaps it before delivering.",
+        "boundaries": "No extra objects or methods mediate the behavior.",
+        "cohesion": "The lifecycle is localized and consistently uses the existing formatter and delivery.",
+        "interfaces": "publish and flush are straightforward; both return nil, and the hash swap makes the next batch boundary clear."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises midway, the saved batch is no longer reachable from the pipeline and remaining outputs are lost."
+      ]
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "One hash and two methods implement accumulation, ordered delivery, and clearing.",
+        "boundaries": "All new state belongs to NotificationPipeline; no additional abstraction obscures the path.",
+        "cohesion": "The implementation directly reuses existing Rule, Formatter, and Delivery collaborators.",
+        "interfaces": "The flush boundary is clear, though its return value is implicit."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+      ]
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "A buffer hash and flush method are sufficient to express the requested grouping and reset.",
+        "boundaries": "State and delivery sequencing stay together in NotificationPipeline.",
+        "cohesion": "The implementation uses existing formatter and delivery in one compact lifecycle.",
+        "interfaces": "publish and flush make the lifecycle clear; flush return is explicitly nil."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises midway, the buffer remains uncleared and a later flush may redeliver earlier entries."
+      ]
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "A pending hash and flush directly represent grouping and clearing.",
+        "boundaries": "No new boundary is introduced; the pipeline remains the owner of pending work.",
+        "cohesion": "Filtering, buffering, formatting, and delivery are placed together in the established class.",
+        "interfaces": "The lifecycle is clear, with message formatting delegated to the existing Formatter; flush return is implicit."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+      ]
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "A pending hash directly implements actor grouping, with insertion order preserving first-seen ordering.",
+        "boundaries": "The pipeline owns the state and reset without introducing extra layers.",
+        "cohesion": "The added state is next to publish and flush and uses established collaborators.",
+        "interfaces": "The lifecycle is clear, and the ordering rationale is stated; flush return is implicit."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises midway, the hash is not reset and a later flush may redeliver earlier entries."
+      ]
+    },
+    {
+      "packet": "R-0012",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "A pending hash keyed by actor and its message arrays directly implement the required batch.",
+        "boundaries": "State and aggregation stay in NotificationPipeline; there are no extra abstractions.",
+        "cohesion": "The implementation reuses the existing eligibility, formatting, and delivery structure.",
+        "interfaces": "publish and flush clearly define the lifecycle; flush return value is implicit."
+      },
+      "correctness_concerns": [
+        "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+      ]
+    }
+  ],
+  "limitations": [
+    "Review uses only packet Markdown and the root rubric; candidate code was not executed. No acceptance status, outcome data, or trial metadata was consulted.",
+    "For the natural batch, method names and scheduling semantics were not inferred beyond the packet contract, which only specifies behavior at a concept level."
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "seed": 1729,
+  "packets": {
+    "R-0001": {
+      "final_trial": "0011",
+      "grid_cell": "0011",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0002": {
+      "final_trial": "0021",
+      "grid_cell": "0021",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0003": {
+      "final_trial": "0017",
+      "grid_cell": "0017",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "ruby-plainspoken",
+      "track": "natural"
+    },
+    "R-0004": {
+      "final_trial": "0003",
+      "grid_cell": "0003",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "ruby-plainspoken",
+      "track": "natural"
+    },
+    "R-0005": {
+      "final_trial": "0008",
+      "grid_cell": "0008",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0006": {
+      "final_trial": "0009",
+      "grid_cell": "0009",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0007": {
+      "final_trial": "0001",
+      "grid_cell": "0001",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "rubypowers",
+      "track": "natural"
+    },
+    "R-0008": {
+      "final_trial": "0015",
+      "grid_cell": "0015",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "ruby-plainspoken",
+      "track": "natural"
+    },
+    "R-0009": {
+      "final_trial": "0013",
+      "grid_cell": "0013",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "baseline",
+      "track": "natural"
+    },
+    "R-0010": {
+      "final_trial": "0016/continuations/answer-06",
+      "grid_cell": "0016",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "rubypowers",
+      "track": "natural"
+    },
+    "R-0011": {
+      "final_trial": "0023/continuations/answer-05",
+      "grid_cell": "0023",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0012": {
+      "final_trial": "0018",
+      "grid_cell": "0018",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "baseline",
+      "track": "natural"
+    },
+    "R-0013": {
+      "final_trial": "0019",
+      "grid_cell": "0019",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0014": {
+      "final_trial": "0010",
+      "grid_cell": "0010",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0015": {
+      "final_trial": "0005",
+      "grid_cell": "0005",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "rubypowers",
+      "track": "natural"
+    },
+    "R-0016": {
+      "final_trial": "0012",
+      "grid_cell": "0012",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0017": {
+      "final_trial": "0002",
+      "grid_cell": "0002",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "baseline",
+      "track": "natural"
+    },
+    "R-0018": {
+      "final_trial": "0022",
+      "grid_cell": "0022",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0019": {
+      "final_trial": "0024",
+      "grid_cell": "0024",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0020": {
+      "final_trial": "0004",
+      "grid_cell": "0004",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "baseline",
+      "track": "natural"
+    },
+    "R-0021": {
+      "final_trial": "0006",
+      "grid_cell": "0006",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "ruby-plainspoken",
+      "track": "natural"
+    },
+    "R-0022": {
+      "final_trial": "0020",
+      "grid_cell": "0020",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0023": {
+      "final_trial": "0007",
+      "grid_cell": "0007",
+      "task": "report",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0024": {
+      "final_trial": "0014/continuations/answer-06",
+      "grid_cell": "0014",
+      "task": "report",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "rubypowers",
+      "track": "natural"
+    }
+  }
+}

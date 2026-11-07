@@ -1,0 +1,4 @@
+Add a topic to chat rooms so members can see what a room is for. Room settings
+already have an update flow; use the existing conventions for saving and
+showing room information. Keep the current room access rules in force when a
+topic is changed.

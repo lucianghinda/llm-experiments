@@ -1,0 +1,3 @@
+Identifiers entered from imports and the manual-entry flow do not behave the
+same way when they include spaces or different letter casing. Fix the shared
+behavior so both entry paths treat the same identifier consistently.

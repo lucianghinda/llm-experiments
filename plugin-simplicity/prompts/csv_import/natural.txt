@@ -1,0 +1,4 @@
+Add a CSV import for contacts. Reject invalid row data with `ArgumentError`,
+and let malformed CSV syntax raise `CSV::MalformedCSVError`. Neither kind of
+failure should leave a partly imported file behind. Follow the fixture's
+existing storage and validation conventions.

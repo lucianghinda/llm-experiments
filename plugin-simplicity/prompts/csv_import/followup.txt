@@ -1,0 +1,7 @@
+The import is now used by a second source that sends columns named
+`full_name,email_address`. Extend the importer to accept that header pair as
+well as the original `name,email` pair. Keep validation and all-or-nothing
+behavior for both formats. Add coverage showing that each format imports the
+same contact values and that invalid input in either format leaves storage
+unchanged. Invalid row data raises `ArgumentError`; malformed CSV syntax raises
+`CSV::MalformedCSVError`.

@@ -1,0 +1,6 @@
+Implement `Contacts::Importer#import(csv)` for CSV with `name,email` headers.
+Return the number of imported contacts. A row with a blank name or an email
+without `@` must raise `ArgumentError`. Malformed CSV syntax must raise
+`CSV::MalformedCSVError`. Import the file atomically: if any input is invalid,
+no contacts from that call are added. Add tests for valid input, each invalid
+case, and the unchanged storage after failure.

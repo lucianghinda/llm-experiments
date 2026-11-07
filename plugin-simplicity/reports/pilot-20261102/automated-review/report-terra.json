@@ -1,0 +1,354 @@
+{
+  "batch": "report",
+  "reviewer": "terra",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status) raises for an absent status key during filtering and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": [
+        "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+      ]
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0012",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 5,
+      "interfaces": 2,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection; the positional argument and options precedence introduce an extra input mechanism.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input; options.fetch adds a precedence rule without a stated need.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status = nil, **options) accepts positional status and arbitrary keywords, with :status overriding the positional value; unknown keywords are silently ignored; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": [
+        "Unknown keywords are silently accepted and ignored; a misspelled status keyword returns an unfiltered report."
+      ]
+    },
+    {
+      "packet": "R-0013",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status) raises for an absent status key during filtering and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": [
+        "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+      ]
+    },
+    {
+      "packet": "R-0014",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0015",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0016",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0017",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status, nil) supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0018",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0019",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0020",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0021",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0022",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0023",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0024",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+        "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+        "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+        "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status) raises for an absent status key during filtering and fetch(:total) raises for a missing total."
+      },
+      "correctness_concerns": [
+        "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+      ]
+    }
+  ],
+  "limitations": [
+    "Secondary automated assessment based only on supplied production snapshots and neutral contract; not human truth.",
+    "Recorded checks were not rerun, and candidate code was not executed; tests and broader domain assumptions were not available."
+  ]
+}

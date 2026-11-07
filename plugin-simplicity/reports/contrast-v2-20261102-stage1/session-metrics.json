@@ -1,0 +1,2790 @@
+{
+  "scope": "One record per actual attempt transcript in the recorded continuation chain. Verification-attempt backups are excluded; no transcript text is included.",
+  "assigned_cells": 72,
+  "turn_records": [
+    {
+      "grid_index": 1,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0001",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 9,
+        "tool_calls_by_name": {
+          "Bash": 4,
+          "Edit": 2,
+          "Read": 3
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 2,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T17:55:39.564000Z",
+          "last": "2026-11-02T17:56:38.952000Z",
+          "span_seconds": 59.388
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 1,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0001/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 5,
+        "tool_calls_by_name": {
+          "Bash": 2,
+          "Read": 1,
+          "Write": 2
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T17:58:04.512000Z",
+          "last": "2026-11-02T17:58:52.872000Z",
+          "span_seconds": 48.36
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 2,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0002",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 10,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Edit": 3,
+          "Read": 3,
+          "Skill": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "ruby-plainspoken:ruby-plainspoken"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:01:02.013000Z",
+          "last": "2026-11-02T18:02:12.861000Z",
+          "span_seconds": 70.848
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 2,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0002/continuations/answer-01",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 2,
+        "tool_calls_by_name": {
+          "Bash": 1,
+          "Read": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:03:25.847000Z",
+          "last": "2026-11-02T18:03:34.654000Z",
+          "span_seconds": 8.807
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 3,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0003",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 12,
+        "tool_calls_by_name": {
+          "Bash": 6,
+          "Edit": 2,
+          "Read": 3,
+          "Skill": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "rubypowers:test-driven-development"
+          }
+        ],
+        "hook_deliveries": [
+          {
+            "event": "SessionStart",
+            "name": "SessionStart:startup",
+            "exit_code": 0,
+            "outcome": "success",
+            "additional_context_present": true,
+            "plugin_markers_in_context": [
+              "rubypowers"
+            ]
+          }
+        ],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:04:22.292000Z",
+          "last": "2026-11-02T18:05:42.324000Z",
+          "span_seconds": 80.032
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 4,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "attempt": "0004",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 10,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Edit": 3,
+          "Read": 3,
+          "Skill": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "ruby-plainspoken:ruby-plainspoken"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:06:56.771000Z",
+          "last": "2026-11-02T18:08:02.658000Z",
+          "span_seconds": 65.887
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 5,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "attempt": "0005",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 8,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Read": 3,
+          "Write": 2
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:09:08.193000Z",
+          "last": "2026-11-02T18:10:10.236000Z",
+          "span_seconds": 62.043
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 6,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0006",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 11,
+        "tool_calls_by_name": {
+          "Bash": 4,
+          "Edit": 2,
+          "Read": 3,
+          "Skill": 1,
+          "Write": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "rubypowers:test-driven-development"
+          }
+        ],
+        "hook_deliveries": [
+          {
+            "event": "SessionStart",
+            "name": "SessionStart:startup",
+            "exit_code": 0,
+            "outcome": "success",
+            "additional_context_present": true,
+            "plugin_markers_in_context": [
+              "rubypowers"
+            ]
+          }
+        ],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:10:46.135000Z",
+          "last": "2026-11-02T18:12:07.180000Z",
+          "span_seconds": 81.045
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 7,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0007",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 9,
+        "tool_calls_by_name": {
+          "Bash": 4,
+          "Edit": 2,
+          "Read": 3
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [
+          {
+            "event": "SessionStart",
+            "name": "SessionStart:startup",
+            "exit_code": 0,
+            "outcome": "success",
+            "additional_context_present": true,
+            "plugin_markers_in_context": [
+              "rubypowers"
+            ]
+          }
+        ],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:13:09.045000Z",
+          "last": "2026-11-02T18:13:40.906000Z",
+          "span_seconds": 31.861
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 8,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0008",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 6,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Edit": 1,
+          "Read": 2
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:14:30.133000Z",
+          "last": "2026-11-02T18:14:55.001000Z",
+          "span_seconds": 24.868
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 9,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0009",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 9,
+        "tool_calls_by_name": {
+          "Bash": 4,
+          "Edit": 2,
+          "Read": 2,
+          "Skill": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "ruby-plainspoken:ruby-plainspoken"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:15:35.547000Z",
+          "last": "2026-11-02T18:16:19.306000Z",
+          "span_seconds": 43.759
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 10,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "attempt": "0010",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 7,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Edit": 1,
+          "Read": 1,
+          "Skill": 1,
+          "Write": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "ruby-plainspoken:ruby-plainspoken"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:16:59.433000Z",
+          "last": "2026-11-02T18:17:40.155000Z",
+          "span_seconds": 40.722
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 11,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "attempt": "0011",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 6,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Edit": 1,
+          "Read": 2
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:18:22.649000Z",
+          "last": "2026-11-02T18:18:43.181000Z",
+          "span_seconds": 20.532
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 12,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0012",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 11,
+        "tool_calls_by_name": {
+          "Bash": 5,
+          "Edit": 1,
+          "Read": 3,
+          "Skill": 1,
+          "Write": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "rubypowers:test-driven-development"
+          }
+        ],
+        "hook_deliveries": [
+          {
+            "event": "SessionStart",
+            "name": "SessionStart:startup",
+            "exit_code": 0,
+            "outcome": "success",
+            "additional_context_present": true,
+            "plugin_markers_in_context": [
+              "rubypowers"
+            ]
+          }
+        ],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:19:18.426000Z",
+          "last": "2026-11-02T18:20:06.868000Z",
+          "span_seconds": 48.442
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 13,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0013",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 3,
+        "tool_calls_by_name": {
+          "command_execution": 3
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 13,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0013/continuations/answer-01",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 3,
+        "tool_calls_by_name": {
+          "command_execution": 3
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 14,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0014",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 5,
+        "tool_calls_by_name": {
+          "command_execution": 5
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 15,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0015",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 5,
+        "tool_calls_by_name": {
+          "command_execution": 5
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 16,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "attempt": "0016",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 17,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "attempt": "0017",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 5,
+        "tool_calls_by_name": {
+          "command_execution": 5
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 18,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0018",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 18,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0018/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 3,
+        "tool_calls_by_name": {
+          "command_execution": 3
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 19,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0019",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 8,
+        "tool_calls_by_name": {
+          "command_execution": 8
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 20,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0020",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 21,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0021",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 22,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0022",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 8,
+        "tool_calls_by_name": {
+          "command_execution": 8
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 23,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "attempt": "0023",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 24,
+      "cell": {
+        "task": "notification_digest",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "attempt": "0024",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 25,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0025",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 9,
+        "tool_calls_by_name": {
+          "Bash": 4,
+          "Read": 3,
+          "Skill": 1,
+          "Write": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "ruby-plainspoken:ruby-plainspoken"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 2,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:44:13.221000Z",
+          "last": "2026-11-02T18:45:17.894000Z",
+          "span_seconds": 64.673
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 25,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0025/continuations/answer-01",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 0,
+        "tool_calls_by_name": {},
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:46:34.856000Z",
+          "last": "2026-11-02T18:46:39.170000Z",
+          "span_seconds": 4.314
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 25,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0025/continuations/answer-02",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 3,
+        "tool_calls_by_name": {
+          "Bash": 1,
+          "Edit": 1,
+          "Write": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:47:27.067000Z",
+          "last": "2026-11-02T18:47:44.065000Z",
+          "span_seconds": 16.998
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 26,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0026",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 9,
+        "tool_calls_by_name": {
+          "Bash": 5,
+          "Read": 3,
+          "Write": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 2,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:48:29.344000Z",
+          "last": "2026-11-02T18:49:26.659000Z",
+          "span_seconds": 57.315
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 26,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0026/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "Bash": 2,
+          "Edit": 1,
+          "Write": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:50:49.975000Z",
+          "last": "2026-11-02T18:51:21.810000Z",
+          "span_seconds": 31.835
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 27,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0027",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 9,
+        "tool_calls_by_name": {
+          "Bash": 5,
+          "Edit": 1,
+          "Read": 3
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [
+          {
+            "event": "SessionStart",
+            "name": "SessionStart:startup",
+            "exit_code": 0,
+            "outcome": "success",
+            "additional_context_present": true,
+            "plugin_markers_in_context": [
+              "rubypowers"
+            ]
+          }
+        ],
+        "question_mark_messages": 2,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:51:56.293000Z",
+          "last": "2026-11-02T18:52:39.854000Z",
+          "span_seconds": 43.561
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 27,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0027/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "Bash": 1,
+          "Edit": 3
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:53:43.919000Z",
+          "last": "2026-11-02T18:54:07.657000Z",
+          "span_seconds": 23.738
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 28,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "attempt": "0028",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 8,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Edit": 2,
+          "Read": 3
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 2,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:54:45.461000Z",
+          "last": "2026-11-02T18:55:33.056000Z",
+          "span_seconds": 47.595
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 28,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "attempt": "0028/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "Bash": 2,
+          "Edit": 1,
+          "Write": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:56:25.774000Z",
+          "last": "2026-11-02T18:57:00.660000Z",
+          "span_seconds": 34.886
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 29,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "attempt": "0029",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 6,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Read": 3
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:57:36.779000Z",
+          "last": "2026-11-02T18:58:35.173000Z",
+          "span_seconds": 58.394
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 29,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "attempt": "0029/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "Bash": 1,
+          "Edit": 2,
+          "Skill": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "ruby-plainspoken:ruby-plainspoken"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T18:59:45.918000Z",
+          "last": "2026-11-02T19:00:17.597000Z",
+          "span_seconds": 31.679
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 30,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0030",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 9,
+        "tool_calls_by_name": {
+          "Bash": 5,
+          "Read": 3,
+          "Write": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [
+          {
+            "event": "SessionStart",
+            "name": "SessionStart:startup",
+            "exit_code": 0,
+            "outcome": "success",
+            "additional_context_present": true,
+            "plugin_markers_in_context": [
+              "rubypowers"
+            ]
+          }
+        ],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T19:00:51.963000Z",
+          "last": "2026-11-02T19:01:57.590000Z",
+          "span_seconds": 65.627
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 30,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0030/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "Bash": 2,
+          "Edit": 1,
+          "Write": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T19:02:56.028000Z",
+          "last": "2026-11-02T19:03:34.244000Z",
+          "span_seconds": 38.216
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 31,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0031",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 8,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Edit": 1,
+          "Read": 3,
+          "Write": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 2,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T19:04:14.277000Z",
+          "last": "2026-11-02T19:05:08.946000Z",
+          "span_seconds": 54.669
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 32,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0032",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 10,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Edit": 3,
+          "Read": 3,
+          "Skill": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "ruby-plainspoken:ruby-plainspoken"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T19:05:29.124000Z",
+          "last": "2026-11-02T19:06:07.463000Z",
+          "span_seconds": 38.339
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 33,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0033",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 8,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Edit": 1,
+          "Read": 3,
+          "Write": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [
+          {
+            "event": "SessionStart",
+            "name": "SessionStart:startup",
+            "exit_code": 0,
+            "outcome": "success",
+            "additional_context_present": true,
+            "plugin_markers_in_context": [
+              "rubypowers"
+            ]
+          }
+        ],
+        "question_mark_messages": 2,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T19:06:53.182000Z",
+          "last": "2026-11-02T19:07:35.049000Z",
+          "span_seconds": 41.867
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 34,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "attempt": "0034",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 14,
+        "tool_calls_by_name": {
+          "Bash": 7,
+          "Edit": 3,
+          "Read": 3,
+          "Skill": 1
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "ruby-plainspoken:ruby-plainspoken"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T19:08:16.464000Z",
+          "last": "2026-11-02T19:09:25.783000Z",
+          "span_seconds": 69.319
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 35,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0035",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 9,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Edit": 2,
+          "Read": 3,
+          "Write": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [
+          {
+            "event": "SessionStart",
+            "name": "SessionStart:startup",
+            "exit_code": 0,
+            "outcome": "success",
+            "additional_context_present": true,
+            "plugin_markers_in_context": [
+              "rubypowers"
+            ]
+          }
+        ],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T19:09:59.441000Z",
+          "last": "2026-11-02T19:10:33.495000Z",
+          "span_seconds": 34.054
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 36,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "attempt": "0036",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 8,
+        "tool_calls_by_name": {
+          "Bash": 3,
+          "Read": 3,
+          "Write": 2
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T19:11:20.778000Z",
+          "last": "2026-11-02T19:12:02.784000Z",
+          "span_seconds": 42.006
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 37,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0037",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 5,
+        "tool_calls_by_name": {
+          "command_execution": 5
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 37,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0037/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 3,
+        "tool_calls_by_name": {
+          "command_execution": 3
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 38,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0038",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 3,
+        "tool_calls_by_name": {
+          "command_execution": 3
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 38,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0038/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 2,
+        "tool_calls_by_name": {
+          "command_execution": 2
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 39,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0039",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 39,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0039/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 1,
+        "tool_calls_by_name": {
+          "command_execution": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 40,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "attempt": "0040",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 40,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "attempt": "0040/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 1,
+        "tool_calls_by_name": {
+          "command_execution": 1
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 41,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "attempt": "0041",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 2,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 41,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "attempt": "0041/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 2,
+        "tool_calls_by_name": {
+          "command_execution": 2
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 42,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0042",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 6,
+        "tool_calls_by_name": {
+          "command_execution": 6
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 1,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 42,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0042/continuations/answer-01",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 43,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0043",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 44,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "attempt": "0044",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 8,
+        "tool_calls_by_name": {
+          "command_execution": 8
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 45,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "attempt": "0045",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 46,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "attempt": "0046",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 47,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "attempt": "0047",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 4,
+        "tool_calls_by_name": {
+          "command_execution": 4
+        },
+        "skill_evidence": [],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 48,
+      "cell": {
+        "task": "regional_policy",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "attempt": "0048",
+      "status": "complete",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "codex",
+        "tool_call_count": 6,
+        "tool_calls_by_name": {
+          "command_execution": 6
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_file_reference_in_tool_call",
+            "tool": "command_execution"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 0,
+        "question_texts": "omitted",
+        "timestamps": "unknown",
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    },
+    {
+      "grid_index": 49,
+      "cell": {
+        "task": "archive_export",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "attempt": "0049",
+      "status": "awaiting_review",
+      "metrics": {
+        "source": "transcript.txt",
+        "agent": "claude",
+        "tool_call_count": 14,
+        "tool_calls_by_name": {
+          "Bash": 8,
+          "Read": 3,
+          "Skill": 1,
+          "Write": 2
+        },
+        "skill_evidence": [
+          {
+            "kind": "skill_tool_call",
+            "tool": "Skill",
+            "skill": "ruby-plainspoken:ruby-plainspoken"
+          }
+        ],
+        "hook_deliveries": [],
+        "question_mark_messages": 2,
+        "question_texts": "omitted",
+        "timestamps": {
+          "first": "2026-11-02T19:38:52.402000Z",
+          "last": "2026-11-02T19:40:43.760000Z",
+          "span_seconds": 111.358
+        },
+        "observed_subagent_tool_calls": 0,
+        "cost": "unknown (not measured by this parser)",
+        "human_interventions": "unknown (questions do not establish whether a human responded)",
+        "malformed_lines": 0,
+        "limitations": [
+          "Counts cover this transcript file only; continuation-chain aggregation and duplicate usage accounting are not performed.",
+          "Only tool events present in the transcript are counted; an observed subagent count of zero means no matching tool event appeared, not that no subagent work occurred.",
+          "Question-mark message count only records assistant messages containing '?'; it does not establish a clarification request or human intervention.",
+          "A SKILL.md path reference is not evidence that the file read succeeded; hook context markers indicate text presence only, not a successful skill read or invocation."
+        ]
+      }
+    }
+  ]
+}

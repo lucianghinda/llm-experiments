@@ -1,0 +1,4 @@
+Orders can be shipped through the existing order operation, but there is no
+matching way to cancel an order. Add cancellation using the conventions already
+used by the order operations, including their handling of orders that cannot
+transition.

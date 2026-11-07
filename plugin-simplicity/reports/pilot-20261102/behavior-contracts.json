@@ -1,0 +1,4 @@
+{
+  "report": "Implement status filtering for `OrderReport#summary(status: nil)`. With no\nstatus, summarize every order. With a status, include only matching orders in\nboth the returned count and total. Keep the return value as a hash with `count`\nand `total` keys and preserve existing unfiltered behavior. Add or update tests\nfor both paths.\n",
+  "csv_import": "Implement `Contacts::Importer#import(csv)` for CSV with `name,email` headers.\nReturn the number of imported contacts. A row with a blank name or an email\nwithout `@` must raise `ArgumentError`. Malformed CSV syntax must raise\n`CSV::MalformedCSVError`. Import the file atomically: if any input is invalid,\nno contacts from that call are added. Add tests for valid input, each invalid\ncase, and the unchanged storage after failure.\n"
+}

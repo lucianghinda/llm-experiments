@@ -1,0 +1,1 @@
+Exports can fail while being written. Make sure an incomplete archive is never presented as a completed export, and retrying a completed export should not publish it twice.

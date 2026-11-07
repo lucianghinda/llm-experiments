@@ -1,0 +1,2746 @@
+{
+  "scope_note": "Automated review is a secondary view, not primary human truth. Score disagreements are preserved without adjudication. Correctness concerns are reviewer questions or uncovered-edge-case notes, not newly failed acceptance checks.",
+  "batches": [
+    {
+      "batch": "report",
+      "status": "complete",
+      "mapping_path": "review-report/private-key.json",
+      "reviewer_files": {
+        "luna": "automated-review/report-luna.json",
+        "terra": "automated-review/report-terra.json"
+      },
+      "expected_reviewers": [
+        "luna",
+        "terra"
+      ],
+      "missing_reviewers": [],
+      "expected_packet_count": 24,
+      "reviewers": {
+        "luna": {
+          "R-0001": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0002": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0003": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0004": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0005": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0006": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0007": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0008": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0009": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0010": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 4
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status) == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "The optional status keyword and hash result are clear, but fetch(:status) makes a missing status field raise during filtering."
+            },
+            "correctness_concerns": [
+              "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+            ]
+          },
+          "R-0011": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0012": {
+            "scores": {
+              "concepts": 2,
+              "boundaries": 4,
+              "cohesion": 4,
+              "interfaces": 2
+            },
+            "evidence": {
+              "concepts": "summary accepts both a positional status and **options, then resolves them with options.fetch; this adds compatibility logic beyond the requested optional status.",
+              "boundaries": "The selection and aggregation remain in summary; there are no extracted layers or unjustified object boundaries.",
+              "cohesion": "Filtering and computing count/total remain together in OrderReport#summary, consistent with the baseline responsibility.",
+              "interfaces": "The parameter accepts positional or keyword status, but arbitrary keywords are silently accepted and ignored unless :status is present."
+            },
+            "correctness_concerns": [
+              "Unknown keyword options are silently ignored, which can mask caller mistakes."
+            ]
+          },
+          "R-0013": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 4
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status) == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "The optional status keyword and hash result are clear, but fetch(:status) makes a missing status field raise during filtering."
+            },
+            "correctness_concerns": [
+              "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+            ]
+          },
+          "R-0014": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0015": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0016": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0017": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status, nil) == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0018": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0019": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0020": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0021": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0022": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0023": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+            },
+            "correctness_concerns": []
+          },
+          "R-0024": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 4
+            },
+            "evidence": {
+              "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status) == status }).",
+              "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+              "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+              "interfaces": "The optional status keyword and hash result are clear, but fetch(:status) makes a missing status field raise during filtering."
+            },
+            "correctness_concerns": [
+              "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+            ]
+          }
+        },
+        "terra": {
+          "R-0001": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0002": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0003": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0004": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0005": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0006": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0007": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0008": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0009": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0010": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 4
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status) raises for an absent status key during filtering and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": [
+              "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+            ]
+          },
+          "R-0011": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0012": {
+            "scores": {
+              "concepts": 4,
+              "boundaries": 4,
+              "cohesion": 5,
+              "interfaces": 2
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection; the positional argument and options precedence introduce an extra input mechanism.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input; options.fetch adds a precedence rule without a stated need.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status = nil, **options) accepts positional status and arbitrary keywords, with :status overriding the positional value; unknown keywords are silently ignored; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": [
+              "Unknown keywords are silently accepted and ignored; a misspelled status keyword returns an unfiltered report."
+            ]
+          },
+          "R-0013": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 4
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status) raises for an absent status key during filtering and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": [
+              "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+            ]
+          },
+          "R-0014": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0015": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0016": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0017": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status, nil) supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0018": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0019": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0020": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0021": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0022": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0023": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 5
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": []
+          },
+          "R-0024": {
+            "scores": {
+              "concepts": 5,
+              "boundaries": 5,
+              "cohesion": 5,
+              "interfaces": 4
+            },
+            "evidence": {
+              "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+              "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+              "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+              "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status) raises for an absent status key during filtering and fetch(:total) raises for a missing total."
+            },
+            "correctness_concerns": [
+              "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+            ]
+          }
+        }
+      },
+      "packets": [
+        {
+          "packet": "R-0001",
+          "cell": {
+            "grid_cell": "0011",
+            "final_trial": "0011",
+            "task": "report",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0001.md",
+          "cell_path": "../../results-raw/pilot-20261102/0011",
+          "workspace_path": "../../results-raw/pilot-20261102/0011/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0002",
+          "cell": {
+            "grid_cell": "0021",
+            "final_trial": "0021",
+            "task": "report",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0002.md",
+          "cell_path": "../../results-raw/pilot-20261102/0021",
+          "workspace_path": "../../results-raw/pilot-20261102/0021/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0003",
+          "cell": {
+            "grid_cell": "0017",
+            "final_trial": "0017",
+            "task": "report",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0003.md",
+          "cell_path": "../../results-raw/pilot-20261102/0017",
+          "workspace_path": "../../results-raw/pilot-20261102/0017/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0004",
+          "cell": {
+            "grid_cell": "0003",
+            "final_trial": "0003",
+            "task": "report",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0004.md",
+          "cell_path": "../../results-raw/pilot-20261102/0003",
+          "workspace_path": "../../results-raw/pilot-20261102/0003/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0005",
+          "cell": {
+            "grid_cell": "0008",
+            "final_trial": "0008",
+            "task": "report",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0005.md",
+          "cell_path": "../../results-raw/pilot-20261102/0008",
+          "workspace_path": "../../results-raw/pilot-20261102/0008/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0006",
+          "cell": {
+            "grid_cell": "0009",
+            "final_trial": "0009",
+            "task": "report",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0006.md",
+          "cell_path": "../../results-raw/pilot-20261102/0009",
+          "workspace_path": "../../results-raw/pilot-20261102/0009/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0007",
+          "cell": {
+            "grid_cell": "0001",
+            "final_trial": "0001",
+            "task": "report",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0007.md",
+          "cell_path": "../../results-raw/pilot-20261102/0001",
+          "workspace_path": "../../results-raw/pilot-20261102/0001/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0008",
+          "cell": {
+            "grid_cell": "0015",
+            "final_trial": "0015",
+            "task": "report",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0008.md",
+          "cell_path": "../../results-raw/pilot-20261102/0015",
+          "workspace_path": "../../results-raw/pilot-20261102/0015/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0009",
+          "cell": {
+            "grid_cell": "0013",
+            "final_trial": "0013",
+            "task": "report",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0009.md",
+          "cell_path": "../../results-raw/pilot-20261102/0013",
+          "workspace_path": "../../results-raw/pilot-20261102/0013/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0010",
+          "cell": {
+            "grid_cell": "0016",
+            "final_trial": "0016/continuations/answer-06",
+            "task": "report",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0010.md",
+          "cell_path": "../../results-raw/pilot-20261102/0016",
+          "workspace_path": "unknown",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status) == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "The optional status keyword and hash result are clear, but fetch(:status) makes a missing status field raise during filtering."
+              },
+              "correctness_concerns": [
+                "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+              ]
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status) raises for an absent status key during filtering and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": [
+                "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+              ]
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [
+              "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+            ],
+            "terra": [
+              "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+            ]
+          }
+        },
+        {
+          "packet": "R-0011",
+          "cell": {
+            "grid_cell": "0023",
+            "final_trial": "0023/continuations/answer-05",
+            "task": "report",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0011.md",
+          "cell_path": "../../results-raw/pilot-20261102/0023",
+          "workspace_path": "unknown",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0012",
+          "cell": {
+            "grid_cell": "0018",
+            "final_trial": "0018",
+            "task": "report",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0012.md",
+          "cell_path": "../../results-raw/pilot-20261102/0018",
+          "workspace_path": "../../results-raw/pilot-20261102/0018/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 2,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 2
+              },
+              "evidence": {
+                "concepts": "summary accepts both a positional status and **options, then resolves them with options.fetch; this adds compatibility logic beyond the requested optional status.",
+                "boundaries": "The selection and aggregation remain in summary; there are no extracted layers or unjustified object boundaries.",
+                "cohesion": "Filtering and computing count/total remain together in OrderReport#summary, consistent with the baseline responsibility.",
+                "interfaces": "The parameter accepts positional or keyword status, but arbitrary keywords are silently accepted and ignored unless :status is present."
+              },
+              "correctness_concerns": [
+                "Unknown keyword options are silently ignored, which can mask caller mistakes."
+              ]
+            },
+            "terra": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 5,
+                "interfaces": 2
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection; the positional argument and options precedence introduce an extra input mechanism.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input; options.fetch adds a precedence rule without a stated need.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status = nil, **options) accepts positional status and arbitrary keywords, with :status overriding the positional value; unknown keywords are silently ignored; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": [
+                "Unknown keywords are silently accepted and ignored; a misspelled status keyword returns an unfiltered report."
+              ]
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": -2,
+            "boundaries": 0,
+            "cohesion": -1,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [
+              "Unknown keyword options are silently ignored, which can mask caller mistakes."
+            ],
+            "terra": [
+              "Unknown keywords are silently accepted and ignored; a misspelled status keyword returns an unfiltered report."
+            ]
+          }
+        },
+        {
+          "packet": "R-0013",
+          "cell": {
+            "grid_cell": "0019",
+            "final_trial": "0019",
+            "task": "report",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0013.md",
+          "cell_path": "../../results-raw/pilot-20261102/0019",
+          "workspace_path": "../../results-raw/pilot-20261102/0019/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status) == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "The optional status keyword and hash result are clear, but fetch(:status) makes a missing status field raise during filtering."
+              },
+              "correctness_concerns": [
+                "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+              ]
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status) raises for an absent status key during filtering and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": [
+                "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+              ]
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [
+              "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+            ],
+            "terra": [
+              "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+            ]
+          }
+        },
+        {
+          "packet": "R-0014",
+          "cell": {
+            "grid_cell": "0010",
+            "final_trial": "0010",
+            "task": "report",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0014.md",
+          "cell_path": "../../results-raw/pilot-20261102/0010",
+          "workspace_path": "../../results-raw/pilot-20261102/0010/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0015",
+          "cell": {
+            "grid_cell": "0005",
+            "final_trial": "0005",
+            "task": "report",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0015.md",
+          "cell_path": "../../results-raw/pilot-20261102/0005",
+          "workspace_path": "../../results-raw/pilot-20261102/0005/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0016",
+          "cell": {
+            "grid_cell": "0012",
+            "final_trial": "0012",
+            "task": "report",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0016.md",
+          "cell_path": "../../results-raw/pilot-20261102/0012",
+          "workspace_path": "../../results-raw/pilot-20261102/0012/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0017",
+          "cell": {
+            "grid_cell": "0002",
+            "final_trial": "0002",
+            "task": "report",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0017.md",
+          "cell_path": "../../results-raw/pilot-20261102/0002",
+          "workspace_path": "../../results-raw/pilot-20261102/0002/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status, nil) == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status, nil) supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0018",
+          "cell": {
+            "grid_cell": "0022",
+            "final_trial": "0022",
+            "task": "report",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0018.md",
+          "cell_path": "../../results-raw/pilot-20261102/0022",
+          "workspace_path": "../../results-raw/pilot-20261102/0022/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0019",
+          "cell": {
+            "grid_cell": "0024",
+            "final_trial": "0024",
+            "task": "report",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0019.md",
+          "cell_path": "../../results-raw/pilot-20261102/0024",
+          "workspace_path": "../../results-raw/pilot-20261102/0024/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0020",
+          "cell": {
+            "grid_cell": "0004",
+            "final_trial": "0004",
+            "task": "report",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0020.md",
+          "cell_path": "../../results-raw/pilot-20261102/0004",
+          "workspace_path": "../../results-raw/pilot-20261102/0004/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0021",
+          "cell": {
+            "grid_cell": "0006",
+            "final_trial": "0006",
+            "task": "report",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0021.md",
+          "cell_path": "../../results-raw/pilot-20261102/0006",
+          "workspace_path": "../../results-raw/pilot-20261102/0006/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0022",
+          "cell": {
+            "grid_cell": "0020",
+            "final_trial": "0020",
+            "task": "report",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0022.md",
+          "cell_path": "../../results-raw/pilot-20261102/0020",
+          "workspace_path": "../../results-raw/pilot-20261102/0020/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0023",
+          "cell": {
+            "grid_cell": "0007",
+            "final_trial": "0007",
+            "task": "report",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-report/packets/R-0023.md",
+          "cell_path": "../../results-raw/pilot-20261102/0007",
+          "workspace_path": "../../results-raw/pilot-20261102/0007/workspace",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order[:status] == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "summary exposes status as an optional keyword and keeps the existing {count:, total:} result; nil preserves the unfiltered path."
+              },
+              "correctness_concerns": []
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order[:status] supplies the comparison value and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [],
+            "terra": []
+          }
+        },
+        {
+          "packet": "R-0024",
+          "cell": {
+            "grid_cell": "0014",
+            "final_trial": "0014/continuations/answer-06",
+            "task": "report",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-report/packets/R-0024.md",
+          "cell_path": "../../results-raw/pilot-20261102/0014",
+          "workspace_path": "unknown",
+          "source_index_path": "code-index.md",
+          "reviewers": {
+            "luna": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "summary derives a local orders collection from the optional status and uses it for both count and total (status.nil? ? @orders : @orders.select { |order| order.fetch(:status) == status }).",
+                "boundaries": "The change stays within OrderReport#summary; the filtering operation is directly tied to the summary contract and needs no separate layer.",
+                "cohesion": "Status selection and the existing count/total aggregation remain in the report method that owns this behavior.",
+                "interfaces": "The optional status keyword and hash result are clear, but fetch(:status) makes a missing status field raise during filtering."
+              },
+              "correctness_concerns": [
+                "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+              ]
+            },
+            "terra": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The nil check selects either @orders or a status-matching collection; count and sum then share that collection.",
+                "boundaries": "Selection and aggregation stay in OrderReport#summary, and the local orders variable gives both aggregates the same input.",
+                "cohesion": "Status selection lives beside the existing count and total aggregation and retains the original fetch(:total) behavior.",
+                "interfaces": "summary(status: nil) exposes the requested keyword and returns count and total; order.fetch(:status) raises for an absent status key during filtering and fetch(:total) raises for a missing total."
+              },
+              "correctness_concerns": [
+                "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+              ]
+            }
+          },
+          "score_difference_luna_minus_terra": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna": [
+              "When filtering, fetch(:status) raises KeyError for an order without that key, rather than treating it as a non-match."
+            ],
+            "terra": [
+              "A filtered report raises KeyError for an order lacking :status; the contract does not specify that every order must have this key, so such an order cannot simply be excluded."
+            ]
+          }
+        }
+      ],
+      "dimension_agreement": {
+        "concepts": {
+          "paired_packet_count": 24,
+          "exact_agreement_count": 23,
+          "mean_absolute_disagreement": 0.08333333333333333
+        },
+        "boundaries": {
+          "paired_packet_count": 24,
+          "exact_agreement_count": 24,
+          "mean_absolute_disagreement": 0.0
+        },
+        "cohesion": {
+          "paired_packet_count": 24,
+          "exact_agreement_count": 23,
+          "mean_absolute_disagreement": 0.041666666666666664
+        },
+        "interfaces": {
+          "paired_packet_count": 24,
+          "exact_agreement_count": 24,
+          "mean_absolute_disagreement": 0.0
+        }
+      },
+      "cell_groups": [
+        {
+          "task": "report",
+          "agent": "claude",
+          "track": "natural",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "claude",
+          "track": "natural",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "claude",
+          "track": "natural",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "claude",
+          "track": "specified",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "claude",
+          "track": "specified",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "claude",
+          "track": "specified",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "codex",
+          "track": "natural",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.5
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.5
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.5
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.5
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.5
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.5
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "codex",
+          "track": "natural",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "codex",
+          "track": "natural",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "codex",
+          "track": "specified",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.5
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.5
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "codex",
+          "track": "specified",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            }
+          }
+        },
+        {
+          "task": "report",
+          "agent": "codex",
+          "track": "specified",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension_medians": {
+            "luna": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            },
+            "terra": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "batch": "csv_import",
+      "status": "pending_reviews",
+      "pending_reason": "packet mapping has not been created",
+      "expected_reviewers": [
+        "luna",
+        "terra"
+      ],
+      "missing_reviewers": [
+        "luna",
+        "terra"
+      ],
+      "expected_packet_count": "unknown",
+      "reviewers": {},
+      "packets": [],
+      "dimension_agreement": {},
+      "cell_groups": []
+    }
+  ]
+}

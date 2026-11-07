@@ -1,0 +1,1 @@
+Users sometimes post several notifications in one burst, and a burst should appear as one message per person. Add this behavior while preserving the current formatting and delivery behavior.

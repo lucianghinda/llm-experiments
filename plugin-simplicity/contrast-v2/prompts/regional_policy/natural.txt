@@ -1,0 +1,1 @@
+The southern warehouse has negotiated a different free-shipping threshold. Update its quotes without changing the northern warehouse's current terms.

@@ -1,0 +1,212 @@
+{
+  "seed": 1729,
+  "packets": {
+    "R-0001": {
+      "final_trial": "0039",
+      "grid_cell": "0039",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "baseline",
+      "track": "natural"
+    },
+    "R-0002": {
+      "final_trial": "0040",
+      "grid_cell": "0040",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "baseline",
+      "track": "natural"
+    },
+    "R-0003": {
+      "final_trial": "0027",
+      "grid_cell": "0027",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "rubypowers",
+      "track": "natural"
+    },
+    "R-0004": {
+      "final_trial": "0046",
+      "grid_cell": "0046",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0005": {
+      "final_trial": "0032",
+      "grid_cell": "0032",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0006": {
+      "final_trial": "0025",
+      "grid_cell": "0025",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "ruby-plainspoken",
+      "track": "natural"
+    },
+    "R-0007": {
+      "final_trial": "0043",
+      "grid_cell": "0043",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0008": {
+      "final_trial": "0033",
+      "grid_cell": "0033",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0009": {
+      "final_trial": "0035",
+      "grid_cell": "0035",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0010": {
+      "final_trial": "0047/continuations/answer-06",
+      "grid_cell": "0047",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0011": {
+      "final_trial": "0041",
+      "grid_cell": "0041",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "ruby-plainspoken",
+      "track": "natural"
+    },
+    "R-0012": {
+      "final_trial": "0037/continuations/answer-06",
+      "grid_cell": "0037",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "rubypowers",
+      "track": "natural"
+    },
+    "R-0013": {
+      "final_trial": "0034",
+      "grid_cell": "0034",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "baseline",
+      "track": "specified"
+    },
+    "R-0014": {
+      "final_trial": "0029",
+      "grid_cell": "0029",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "rubypowers",
+      "track": "natural"
+    },
+    "R-0015": {
+      "final_trial": "0036",
+      "grid_cell": "0036",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0016": {
+      "final_trial": "0026",
+      "grid_cell": "0026",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "baseline",
+      "track": "natural"
+    },
+    "R-0017": {
+      "final_trial": "0044",
+      "grid_cell": "0044",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0018": {
+      "final_trial": "0048",
+      "grid_cell": "0048",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0019": {
+      "final_trial": "0028",
+      "grid_cell": "0028",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "ruby-plainspoken",
+      "track": "natural"
+    },
+    "R-0020": {
+      "final_trial": "0030",
+      "grid_cell": "0030",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "baseline",
+      "track": "natural"
+    },
+    "R-0021": {
+      "final_trial": "0045/continuations/answer-06",
+      "grid_cell": "0045",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "rubypowers",
+      "track": "specified"
+    },
+    "R-0022": {
+      "final_trial": "0031",
+      "grid_cell": "0031",
+      "task": "csv_import",
+      "agent": "claude",
+      "model": "claude-opus-5",
+      "condition": "ruby-plainspoken",
+      "track": "specified"
+    },
+    "R-0023": {
+      "final_trial": "0038",
+      "grid_cell": "0038",
+      "task": "csv_import",
+      "agent": "codex",
+      "model": "gpt-5.6-terra",
+      "condition": "ruby-plainspoken",
+      "track": "natural"
+    }
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "batch": "stage1-notification-specified",
+  "reviewer": "luna_a",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "publish appends eligible messages by actor; flush joins with \"; \" and clears pending state.",
+        "boundaries": "A hash directly represents actor batches; existing collaborators remain.",
+        "cohesion": "State and lifecycle stay together in the pipeline.",
+        "interfaces": "Empty flush is silent and insertion order preserves first-seen actors; flush return is incidental."
+      },
+      "correctness_concerns": [
+        "flush returns Hash#clear’s value without an explicit return contract."
+      ]
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "@pending groups messages; flush joins each with \"; \" and clears it.",
+        "boundaries": "One map models the needed state without another abstraction.",
+        "cohesion": "Batch lifecycle is expressed directly in the pipeline.",
+        "interfaces": "Empty flush does nothing; return value is implicit."
+      },
+      "correctness_concerns": [
+        "flush returns the map returned by clear."
+      ]
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Batch tracks actor order and messages; each_grouped yields joined text; flush replaces the batch before delivery.",
+        "boundaries": "Batch owns grouping/order, but @actors duplicates order already represented by insertion-ordered @messages.",
+        "cohesion": "Batch owns grouping and pipeline owns delivery.",
+        "interfaces": "Empty state is checked and the next batch starts before delivery."
+      },
+      "correctness_concerns": [
+        "@actors and @messages encode overlapping grouping structure."
+      ]
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "publish records messages in an insertion-ordered hash; flush joins and clears after delivery.",
+        "boundaries": "A hash suffices; existing collaborators are reused.",
+        "cohesion": "State and both lifecycle operations are local.",
+        "interfaces": "Behavior is direct; empty map emits nothing."
+      },
+      "correctness_concerns": [
+        "A mid-flush delivery exception leaves the map uncleared, so retry may duplicate prior output."
+      ]
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Batch#add stores messages; drain swaps the map and returns actor/message hashes for formatting.",
+        "boundaries": "Batch gives buffer ownership a clear home, though it wraps one hash.",
+        "cohesion": "Batch handles accumulation/draining; pipeline handles filtering/output.",
+        "interfaces": "Drain explicitly resets and preserves insertion order; empty drain returns an empty collection."
+      },
+      "correctness_concerns": [
+        "An exception after draining can discard undelivered groups."
+      ]
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "publish appends eligible messages; flush swaps maps before iterating and explicitly returns nil.",
+        "boundaries": "Direct map representation keeps existing boundaries intact.",
+        "cohesion": "Public methods divide accumulation and flush cleanly.",
+        "interfaces": "Explicit nil returns, insertion order, and pre-delivery reset make the lifecycle clear."
+      },
+      "correctness_concerns": [
+        "Delivery failure mid-flush loses remaining groups from the swapped map."
+      ]
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "publish buffers and returns nil; flush swaps maps, joins, delivers, and returns nil.",
+        "boundaries": "A single hash is sufficient; no unnecessary boundary.",
+        "cohesion": "Buffering and delivery are localized and easy to trace.",
+        "interfaces": "Both methods return nil; empty flush is a no-op and state resets before iteration."
+      },
+      "correctness_concerns": [
+        "Delivery failure can leave remaining drained messages unavailable for retry."
+      ]
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "@pending groups text by actor; flush formats joined messages then clears the map.",
+        "boundaries": "Minimal hash representation reuses formatter and delivery.",
+        "cohesion": "Behavior stays inside the pipeline.",
+        "interfaces": "API and joiner are clear; failure policy is implicit."
+      },
+      "correctness_concerns": [
+        "Partial delivery failure leaves pending entries; retry may duplicate prior messages."
+      ]
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 5,
+      "evidence": {
+        "concepts": "publish accumulates; flush formats joined messages, replaces the map, and returns nil.",
+        "boundaries": "The map is the only needed structure.",
+        "cohesion": "Accumulation and flushing are distinct and adjacent.",
+        "interfaces": "Nil returns and first-seen order are clear; empty buffer does nothing."
+      },
+      "correctness_concerns": [
+        "On delivery failure before replacement, retry may duplicate earlier deliveries."
+      ]
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "publish adds eligible messages; flush joins and delivers then clears.",
+        "boundaries": "A minimal map preserves existing boundaries.",
+        "cohesion": "Related batching behavior stays together.",
+        "interfaces": "Lifecycle is apparent; repeated empty flush is harmless."
+      },
+      "correctness_concerns": [
+        "A mid-loop failure can cause already delivered messages to repeat on retry."
+      ]
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "publish accumulates with an insertion-order comment; flush emits joined text then replaces the map.",
+        "boundaries": "A hash captures grouping/order without another abstraction.",
+        "cohesion": "Eligibility, state, and flush stay in one cohesive class.",
+        "interfaces": "Ordering/reset are clear; return contract is implicit."
+      },
+      "correctness_concerns": [
+        "A mid-flush exception before replacing the map can permit duplicates on retry."
+      ]
+    },
+    {
+      "packet": "R-0012",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 5,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "publish buffers by actor; flush formats joined text and clears after iteration.",
+        "boundaries": "One map is the simplest representation.",
+        "cohesion": "Lifecycle stays local and uses existing formatter/delivery.",
+        "interfaces": "Straightforward API; empty flush is harmless; return is implicit."
+      },
+      "correctness_concerns": [
+        "Partial delivery failure before clear can lead to duplicate output if flush is retried."
+      ]
+    }
+  ],
+  "limitations": [
+    "Judgments use only packet snapshots and neutral contracts; acceptance results and runtime behavior were not inspected."
+  ]
+}

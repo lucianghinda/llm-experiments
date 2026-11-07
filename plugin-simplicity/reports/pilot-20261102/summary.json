@@ -1,0 +1,4890 @@
+{
+  "assigned_cells": 48,
+  "disposition_counts": {
+    "complete": 47,
+    "task_failure": 0,
+    "agent_failure": 0,
+    "infrastructure_failure": 0,
+    "timeout": 1,
+    "awaiting_review": 0,
+    "running": 0,
+    "unstarted": 0,
+    "identity_mismatch": 0,
+    "fake": 0
+  },
+  "cells": [
+    {
+      "grid_index": 1,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 27.280377000104636,
+      "all_agent_execution_seconds": 27.280377000104636,
+      "known_agent_execution_seconds_sum": 27.280377000104636,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 157.0,
+      "final_path": "0001",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 2,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 36.62941400008276,
+      "all_agent_execution_seconds": 36.62941400008276,
+      "known_agent_execution_seconds_sum": 36.62941400008276,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 56.0,
+      "final_path": "0002",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 3,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 30.791056000161916,
+      "all_agent_execution_seconds": 30.791056000161916,
+      "known_agent_execution_seconds_sum": 30.791056000161916,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 150.0,
+      "final_path": "0003",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 4,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 33.23960199998692,
+      "all_agent_execution_seconds": 33.23960199998692,
+      "known_agent_execution_seconds_sum": 33.23960199998692,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 50.0,
+      "final_path": "0004",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 5,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 34.77192299999297,
+      "all_agent_execution_seconds": 34.77192299999297,
+      "known_agent_execution_seconds_sum": 34.77192299999297,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 146.0,
+      "final_path": "0005",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "verification-attempts/recheck-20261102T110513-c0a9e24d",
+      "recheck_audits": {
+        "attempts": 1,
+        "passed": 1,
+        "failed": 0,
+        "unknown": 0
+      },
+      "checker_infrastructure_recovery_count": 1
+    },
+    {
+      "grid_index": 6,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 36.272065999917686,
+      "all_agent_execution_seconds": 36.272065999917686,
+      "known_agent_execution_seconds_sum": 36.272065999917686,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 139.0,
+      "final_path": "0006",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 7,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 21.365234000142664,
+      "all_agent_execution_seconds": 21.365234000142664,
+      "known_agent_execution_seconds_sum": 21.365234000142664,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 45.0,
+      "final_path": "0007",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 8,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 24.64436999987811,
+      "all_agent_execution_seconds": 24.64436999987811,
+      "known_agent_execution_seconds_sum": 24.64436999987811,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 141.0,
+      "final_path": "0008",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 9,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 33.81140000000596,
+      "all_agent_execution_seconds": 33.81140000000596,
+      "known_agent_execution_seconds_sum": 33.81140000000596,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 144.0,
+      "final_path": "0009",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 10,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 23.764702000189573,
+      "all_agent_execution_seconds": 23.764702000189573,
+      "known_agent_execution_seconds_sum": 23.764702000189573,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 46.0,
+      "final_path": "0010",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 11,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 22.90458200033754,
+      "all_agent_execution_seconds": 22.90458200033754,
+      "known_agent_execution_seconds_sum": 22.90458200033754,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 143.0,
+      "final_path": "0011",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 12,
+      "cell": {
+        "task": "report",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 28.477431000210345,
+      "all_agent_execution_seconds": 28.477431000210345,
+      "known_agent_execution_seconds_sum": 28.477431000210345,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 141.0,
+      "final_path": "0012",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 5,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 13,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 27.026723000220954,
+      "all_agent_execution_seconds": 27.026723000220954,
+      "known_agent_execution_seconds_sum": 27.026723000220954,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 46.0,
+      "final_path": "0013",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 6,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 14,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 7,
+      "continuation_count": 6,
+      "first_agent_execution_seconds": 30.923345000017434,
+      "all_agent_execution_seconds": 300.578793999739,
+      "known_agent_execution_seconds_sum": 300.578793999739,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 875.0,
+      "final_path": "0014/continuations/answer-06",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 7
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 7,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 15,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 23.062855000142008,
+      "all_agent_execution_seconds": 23.062855000142008,
+      "known_agent_execution_seconds_sum": 23.062855000142008,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 143.0,
+      "final_path": "0015",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 6,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 16,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 7,
+      "continuation_count": 6,
+      "first_agent_execution_seconds": 17.982446999754757,
+      "all_agent_execution_seconds": 152.78553499886766,
+      "known_agent_execution_seconds_sum": 152.78553499886766,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 471.0,
+      "final_path": "0016/continuations/answer-06",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 7
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 7,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 17,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 25.365536999888718,
+      "all_agent_execution_seconds": 25.365536999888718,
+      "known_agent_execution_seconds_sum": 25.365536999888718,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 139.0,
+      "final_path": "0017",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 6,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 18,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 24.598163000307977,
+      "all_agent_execution_seconds": 24.598163000307977,
+      "known_agent_execution_seconds_sum": 24.598163000307977,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 45.0,
+      "final_path": "0018",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 7,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 19,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 26.606013999786228,
+      "all_agent_execution_seconds": 26.606013999786228,
+      "known_agent_execution_seconds_sum": 26.606013999786228,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 45.0,
+      "final_path": "0019",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 6,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 20,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 64.24313100008294,
+      "all_agent_execution_seconds": 64.24313100008294,
+      "known_agent_execution_seconds_sum": 64.24313100008294,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 144.0,
+      "final_path": "0020",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 6,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 21,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 33.43580299988389,
+      "all_agent_execution_seconds": 33.43580299988389,
+      "known_agent_execution_seconds_sum": 33.43580299988389,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 141.0,
+      "final_path": "0021",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 6,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 22,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 16.9804570004344,
+      "all_agent_execution_seconds": 16.9804570004344,
+      "known_agent_execution_seconds_sum": 16.9804570004344,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 39.0,
+      "final_path": "0022",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 6,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 23,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 6,
+      "continuation_count": 5,
+      "first_agent_execution_seconds": 19.42625299980864,
+      "all_agent_execution_seconds": 215.6711220005527,
+      "known_agent_execution_seconds_sum": 215.6711220005527,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 533.0,
+      "final_path": "0023/continuations/answer-05",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 6
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 6,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 24,
+      "cell": {
+        "task": "report",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 44.597212000284344,
+      "all_agent_execution_seconds": 44.597212000284344,
+      "known_agent_execution_seconds_sum": 44.597212000284344,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 157.0,
+      "final_path": "0024",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 6,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 25,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 71.26170299993828,
+      "all_agent_execution_seconds": 71.26170299993828,
+      "known_agent_execution_seconds_sum": 71.26170299993828,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 142.0,
+      "final_path": "0025",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 26,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 37.16803500009701,
+      "all_agent_execution_seconds": 37.16803500009701,
+      "known_agent_execution_seconds_sum": 37.16803500009701,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 60.0,
+      "final_path": "0026",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 27,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 79.82002199999988,
+      "all_agent_execution_seconds": 79.82002199999988,
+      "known_agent_execution_seconds_sum": 79.82002199999988,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 147.0,
+      "final_path": "0027",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 9,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 28,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 62.93728099996224,
+      "all_agent_execution_seconds": 62.93728099996224,
+      "known_agent_execution_seconds_sum": 62.93728099996224,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 147.0,
+      "final_path": "0028",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 29,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 77.18304299982265,
+      "all_agent_execution_seconds": 77.18304299982265,
+      "known_agent_execution_seconds_sum": 77.18304299982265,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 147.0,
+      "final_path": "0029",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 17,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 1,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 30,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 54.63818700006232,
+      "all_agent_execution_seconds": 54.63818700006232,
+      "known_agent_execution_seconds_sum": 54.63818700006232,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 78.0,
+      "final_path": "0030",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 9,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 31,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 49.08479300001636,
+      "all_agent_execution_seconds": 49.08479300001636,
+      "known_agent_execution_seconds_sum": 49.08479300001636,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 141.0,
+      "final_path": "0031",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 32,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 50.36570299975574,
+      "all_agent_execution_seconds": 50.36570299975574,
+      "known_agent_execution_seconds_sum": 50.36570299975574,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 151.0,
+      "final_path": "0032",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 20,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 1,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 33,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 46.75313000008464,
+      "all_agent_execution_seconds": 46.75313000008464,
+      "known_agent_execution_seconds_sum": 46.75313000008464,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 80.0,
+      "final_path": "0033",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 9,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 34,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 50.951828999910504,
+      "all_agent_execution_seconds": 50.951828999910504,
+      "known_agent_execution_seconds_sum": 50.951828999910504,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 72.0,
+      "final_path": "0034",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 13,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 35,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 49.90825199987739,
+      "all_agent_execution_seconds": 49.90825199987739,
+      "known_agent_execution_seconds_sum": 49.90825199987739,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 154.0,
+      "final_path": "0035",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 16,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 1,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 36,
+      "cell": {
+        "task": "csv_import",
+        "agent": "claude",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 64.87267399998382,
+      "all_agent_execution_seconds": 64.87267399998382,
+      "known_agent_execution_seconds_sum": 64.87267399998382,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 147.0,
+      "final_path": "0036",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 13,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 1
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 37,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 7,
+      "continuation_count": 6,
+      "first_agent_execution_seconds": 31.7364459997043,
+      "all_agent_execution_seconds": 298.56603000080213,
+      "known_agent_execution_seconds_sum": 298.56603000080213,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 610.0,
+      "final_path": "0037/continuations/answer-06",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 7
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 14,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 38,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 40.72469499986619,
+      "all_agent_execution_seconds": 40.72469499986619,
+      "known_agent_execution_seconds_sum": 40.72469499986619,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 146.0,
+      "final_path": "0038",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 9,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 39,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 35.62305400008336,
+      "all_agent_execution_seconds": 35.62305400008336,
+      "known_agent_execution_seconds_sum": 35.62305400008336,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 58.0,
+      "final_path": "0039",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 40,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 21.490996999666095,
+      "all_agent_execution_seconds": 21.490996999666095,
+      "known_agent_execution_seconds_sum": 21.490996999666095,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 44.0,
+      "final_path": "0040",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 41,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 44.841066000051796,
+      "all_agent_execution_seconds": 44.841066000051796,
+      "known_agent_execution_seconds_sum": 44.841066000051796,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 149.0,
+      "final_path": "0041",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 9,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 42,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "natural",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "disposition": "timeout",
+      "correctness": "unknown",
+      "recorded_status": "timeout",
+      "attempt_count": 6,
+      "continuation_count": 5,
+      "first_agent_execution_seconds": 17.14999599987641,
+      "all_agent_execution_seconds": 899.088254999835,
+      "known_agent_execution_seconds_sum": 899.088254999835,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 1304.0,
+      "final_path": "0042/continuations/answer-05",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": false,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": false,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 6
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": "unknown",
+        "structural_delta": "unknown",
+        "dependency_files_changed": "unknown"
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 43,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 46.82450299989432,
+      "all_agent_execution_seconds": 46.82450299989432,
+      "known_agent_execution_seconds_sum": 46.82450299989432,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 69.0,
+      "final_path": "0043",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 44,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 22.047240999992937,
+      "all_agent_execution_seconds": 22.047240999992937,
+      "known_agent_execution_seconds_sum": 22.047240999992937,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 138.0,
+      "final_path": "0044",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 45,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 1
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 7,
+      "continuation_count": 6,
+      "first_agent_execution_seconds": 29.12696100026369,
+      "all_agent_execution_seconds": 492.08782100118697,
+      "known_agent_execution_seconds_sum": 492.08782100118697,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 821.0,
+      "final_path": "0045/continuations/answer-06",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 7
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 9,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 46,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "baseline",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 36.1674790000543,
+      "all_agent_execution_seconds": 36.1674790000543,
+      "known_agent_execution_seconds_sum": 36.1674790000543,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 55.0,
+      "final_path": "0046",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 47,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "rubypowers",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 7,
+      "continuation_count": 6,
+      "first_agent_execution_seconds": 38.62421299982816,
+      "all_agent_execution_seconds": 667.7526400000788,
+      "known_agent_execution_seconds_sum": 667.7526400000788,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 983.0,
+      "final_path": "0047/continuations/answer-06",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 7
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    },
+    {
+      "grid_index": 48,
+      "cell": {
+        "task": "csv_import",
+        "agent": "codex",
+        "track": "specified",
+        "condition": "ruby-plainspoken",
+        "repeat": 2
+      },
+      "disposition": "complete",
+      "correctness": true,
+      "recorded_status": "complete",
+      "attempt_count": 1,
+      "continuation_count": 0,
+      "first_agent_execution_seconds": 51.08384699979797,
+      "all_agent_execution_seconds": 51.08384699979797,
+      "known_agent_execution_seconds_sum": 51.08384699979797,
+      "agent_execution_seconds_complete": true,
+      "recorded_wall_seconds": 152.0,
+      "final_path": "0048",
+      "identity_errors": [],
+      "retention": {
+        "meta": true,
+        "snapshot": true,
+        "checks": true,
+        "baseline_bundle": true,
+        "final_bundle": true,
+        "patch": true,
+        "transcript": true,
+        "workspace": true,
+        "container_reference": true,
+        "core_artifacts_retained": true,
+        "all_attempt_metadata_retained": true,
+        "all_attempt_transcripts_retained": true,
+        "chain_attempts": 1
+      },
+      "note": null,
+      "solution_metrics": {
+        "production_changed_lines": 11,
+        "structural_delta": {
+          "ruby_files": 0,
+          "classes": 0,
+          "modules": 0,
+          "method_definitions": 0,
+          "branch_nodes": 0
+        },
+        "dependency_files_changed": []
+      },
+      "recheck_attempt_path": "unknown",
+      "recheck_audits": "unknown",
+      "checker_infrastructure_recovery_count": "unknown"
+    }
+  ],
+  "groups": [
+    {
+      "agent": "claude",
+      "task": "csv_import",
+      "track": "natural",
+      "condition": "baseline",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 69.0,
+        "range": {
+          "min": 60.0,
+          "max": 78.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 10.0,
+        "range": {
+          "min": 9,
+          "max": 11
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "csv_import",
+      "track": "natural",
+      "condition": "ruby-plainspoken",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 144.5,
+        "range": {
+          "min": 142.0,
+          "max": 147.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 11.0,
+        "range": {
+          "min": 11,
+          "max": 11
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "csv_import",
+      "track": "natural",
+      "condition": "rubypowers",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 147.0,
+        "range": {
+          "min": 147.0,
+          "max": 147.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 13.0,
+        "range": {
+          "min": 9,
+          "max": 17
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.5,
+          "range": {
+            "min": 0,
+            "max": 1
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "csv_import",
+      "track": "specified",
+      "condition": "baseline",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 76.0,
+        "range": {
+          "min": 72.0,
+          "max": 80.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 11.0,
+        "range": {
+          "min": 9,
+          "max": 13
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "csv_import",
+      "track": "specified",
+      "condition": "ruby-plainspoken",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 144.0,
+        "range": {
+          "min": 141.0,
+          "max": 147.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 12.0,
+        "range": {
+          "min": 11,
+          "max": 13
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.5,
+          "range": {
+            "min": 0,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "csv_import",
+      "track": "specified",
+      "condition": "rubypowers",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 152.5,
+        "range": {
+          "min": 151.0,
+          "max": 154.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 18.0,
+        "range": {
+          "min": 16,
+          "max": 20
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.5,
+          "range": {
+            "min": 0,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "report",
+      "track": "natural",
+      "condition": "baseline",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 53.0,
+        "range": {
+          "min": 50.0,
+          "max": 56.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 5.0,
+        "range": {
+          "min": 5,
+          "max": 5
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "report",
+      "track": "natural",
+      "condition": "ruby-plainspoken",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 144.5,
+        "range": {
+          "min": 139.0,
+          "max": 150.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 5.0,
+        "range": {
+          "min": 5,
+          "max": 5
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "report",
+      "track": "natural",
+      "condition": "rubypowers",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 151.5,
+        "range": {
+          "min": 146.0,
+          "max": 157.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 5.0,
+        "range": {
+          "min": 5,
+          "max": 5
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "report",
+      "track": "specified",
+      "condition": "baseline",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 45.5,
+        "range": {
+          "min": 45.0,
+          "max": 46.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 5.0,
+        "range": {
+          "min": 5,
+          "max": 5
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "report",
+      "track": "specified",
+      "condition": "ruby-plainspoken",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 141.0,
+        "range": {
+          "min": 141.0,
+          "max": 141.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 5.0,
+        "range": {
+          "min": 5,
+          "max": 5
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "claude",
+      "task": "report",
+      "track": "specified",
+      "condition": "rubypowers",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 143.5,
+        "range": {
+          "min": 143.0,
+          "max": 144.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 5.0,
+        "range": {
+          "min": 5,
+          "max": 5
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "csv_import",
+      "track": "natural",
+      "condition": "baseline",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 51.0,
+        "range": {
+          "min": 44.0,
+          "max": 58.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 11.0,
+        "range": {
+          "min": 11,
+          "max": 11
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "csv_import",
+      "track": "natural",
+      "condition": "ruby-plainspoken",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 147.5,
+        "range": {
+          "min": 146.0,
+          "max": 149.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 9.0,
+        "range": {
+          "min": 9,
+          "max": 9
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "csv_import",
+      "track": "natural",
+      "condition": "rubypowers",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 1,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 1,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 1,
+      "recorded_wall_seconds": {
+        "n_known": 1,
+        "n_unknown": 0,
+        "median": 610.0,
+        "range": {
+          "min": 610.0,
+          "max": 610.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 1,
+        "n_unknown": 0,
+        "median": 14,
+        "range": {
+          "min": 14,
+          "max": 14
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 1,
+          "n_unknown": 0,
+          "median": 0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 1,
+          "n_unknown": 0,
+          "median": 0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 1,
+          "n_unknown": 0,
+          "median": 0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 1,
+          "n_unknown": 0,
+          "median": 0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 1,
+          "n_unknown": 0,
+          "median": 0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 1,
+        "n_unknown": 0,
+        "median": 0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 1,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "csv_import",
+      "track": "specified",
+      "condition": "baseline",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 62.0,
+        "range": {
+          "min": 55.0,
+          "max": 69.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 11.0,
+        "range": {
+          "min": 11,
+          "max": 11
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "csv_import",
+      "track": "specified",
+      "condition": "ruby-plainspoken",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 145.0,
+        "range": {
+          "min": 138.0,
+          "max": 152.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 11.0,
+        "range": {
+          "min": 11,
+          "max": 11
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "csv_import",
+      "track": "specified",
+      "condition": "rubypowers",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 902.0,
+        "range": {
+          "min": 821.0,
+          "max": 983.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 10.0,
+        "range": {
+          "min": 9,
+          "max": 11
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "report",
+      "track": "natural",
+      "condition": "baseline",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 45.5,
+        "range": {
+          "min": 45.0,
+          "max": 46.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 6.5,
+        "range": {
+          "min": 6,
+          "max": 7
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "report",
+      "track": "natural",
+      "condition": "ruby-plainspoken",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 141.0,
+        "range": {
+          "min": 139.0,
+          "max": 143.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 6.0,
+        "range": {
+          "min": 6,
+          "max": 6
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "report",
+      "track": "natural",
+      "condition": "rubypowers",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 673.0,
+        "range": {
+          "min": 471.0,
+          "max": 875.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 7.0,
+        "range": {
+          "min": 7,
+          "max": 7
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "report",
+      "track": "specified",
+      "condition": "baseline",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 42.0,
+        "range": {
+          "min": 39.0,
+          "max": 45.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 6.0,
+        "range": {
+          "min": 6,
+          "max": 6
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "report",
+      "track": "specified",
+      "condition": "ruby-plainspoken",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 149.0,
+        "range": {
+          "min": 141.0,
+          "max": 157.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 6.0,
+        "range": {
+          "min": 6,
+          "max": 6
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    },
+    {
+      "agent": "codex",
+      "task": "report",
+      "track": "specified",
+      "condition": "rubypowers",
+      "assigned_cells": 2,
+      "disposition_counts": {
+        "complete": 2,
+        "task_failure": 0,
+        "agent_failure": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "awaiting_review": 0,
+        "running": 0,
+        "unstarted": 0,
+        "identity_mismatch": 0,
+        "fake": 0
+      },
+      "correct_solutions": 2,
+      "recorded_wall_seconds": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 338.5,
+        "range": {
+          "min": 144.0,
+          "max": 533.0
+        }
+      },
+      "production_changed_lines": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 6.0,
+        "range": {
+          "min": 6,
+          "max": 6
+        }
+      },
+      "structural_deltas": {
+        "ruby_files": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "classes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "modules": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "method_definitions": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 0.0,
+          "range": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        "branch_nodes": {
+          "n_known": 2,
+          "n_unknown": 0,
+          "median": 1.0,
+          "range": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      },
+      "dependency_files_changed_count": {
+        "n_known": 2,
+        "n_unknown": 0,
+        "median": 0.0,
+        "range": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retention": {
+        "core_artifacts_retained_cells": 2,
+        "container_reference_recorded_cells": 2
+      }
+    }
+  ],
+  "analysis_note": "Descriptive pilot evidence only. Small repetition counts do not support a universal winner or statistical inference. Structural counts and line counts are diagnostics, not simplicity scores.",
+  "recorded_wall_time_note": "Recorded wall seconds span the first started_at through the last recorded finished_at in the chain. They include setup, checks, and evaluator waits. Pending chains stop at the last recorded turn; this is not all attributable to the agent or treatment.",
+  "generated_at": "2026-11-02T13:52:09Z",
+  "cumulative_agent_execution_seconds": {
+    "completed_cells": {
+      "n_known": 47,
+      "n_unknown": 0,
+      "median": 37.16803500009701,
+      "range": {
+        "min": 16.9804570004344,
+        "max": 667.7526400000788
+      }
+    },
+    "all_outcomes_known_agent_time": {
+      "n_known": 48,
+      "n_unknown": 0,
+      "median": 38.9463649999816,
+      "range": {
+        "min": 16.9804570004344,
+        "max": 899.088254999835
+      }
+    },
+    "definition": "Sum of recorded agent execution seconds across the single recorded attempt/continuation chain per assigned cell; excludes verification-attempt backups. These are agent execution durations, not wall-clock time."
+  }
+}

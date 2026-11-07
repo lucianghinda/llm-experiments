@@ -1,0 +1,8 @@
+Add a persisted topic for open and closed rooms. Users who can already
+administer a room must be able to edit its topic through the existing room
+settings update flow, and members who can view a room must be able to see its
+topic on the room page. Preserve the existing forbidden response for users who
+cannot administer that room and leave the saved topic unchanged. Preserve
+current room name behavior and the existing exclusion of direct rooms from
+this update flow. Add a migration and focused model/controller/view tests
+following the application's conventions.

@@ -1,0 +1,163 @@
+{
+  "batch": "stage1-regional-natural",
+  "reviewer": "luna_b",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Both quote methods change only the southern threshold literal from 50.0 to 75.0, so the change adds no new concept.",
+        "boundaries": "Each existing quote method retains ownership of its own threshold; no new layer mediates the calculation.",
+        "cohesion": "The threshold adjustment stays beside the corresponding charge logic in both classes.",
+        "interfaces": "The existing keyword arguments and numeric return behavior are unchanged."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 3,
+      "boundaries": 3,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "FreeShipping adds a shared constants module and a threshold lookup method for two quote paths.",
+        "boundaries": "The module centralizes the shared threshold fact; the new module and helper are a modest extra indirection.",
+        "cohesion": "Both quoting classes call the same region threshold lookup while keeping their own charge formulas.",
+        "interfaces": "threshold(region) exposes a narrow region-to-value operation, though unknown regions fall into the southern branch."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The change uses the same threshold ternary already present, replacing the duplicated southern value.",
+        "boundaries": "No new boundary is added; each class keeps the local decision it already owned.",
+        "cohesion": "The threshold stays adjacent to each quote calculation.",
+        "interfaces": "quote keeps its existing keyword inputs and output behavior."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The only new concept is the southern threshold value in the existing ternary.",
+        "boundaries": "The existing per-class threshold calculation remains local and direct.",
+        "cohesion": "Both quote methods retain their existing formula branches and apply the changed value at the free-shipping check.",
+        "interfaces": "The quote interface remains unchanged."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 3,
+      "boundaries": 2,
+      "cohesion": 3,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "Named constants replace literals, but each class defines a duplicate pair of regional constants.",
+        "boundaries": "The two identical constant sets are duplicated instead of providing one shared source for two quote paths.",
+        "cohesion": "Constants remain near each class, but repeated policy data can drift between CheckoutShipping and DeliveryEstimate.",
+        "interfaces": "Named values clarify the thresholds; the region ternary still treats every non-north region as south."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Two named top-level threshold constants and one named handling constant clarify the changed values.",
+        "boundaries": "Shared threshold constants avoid duplicate copies; no extra object or method is added.",
+        "cohesion": "The constants support the existing quote methods and formulas directly.",
+        "interfaces": "The input and output interface is unchanged; non-north regions continue to use the southern threshold."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Each existing ternary directly expresses north 50.0 and south 75.0 without added constructs.",
+        "boundaries": "No additional abstraction; threshold selection stays in the quote methods.",
+        "cohesion": "Both classes update their threshold in place and preserve their separate charge formulas.",
+        "interfaces": "Existing quote keyword arguments and numeric results remain the interface."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 3,
+      "boundaries": 3,
+      "cohesion": 3,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "ShippingThresholds introduces a regional table, a default, and an included helper for threshold lookup.",
+        "boundaries": "The shared module avoids duplicated values, but mixin inclusion and a private lookup add layers for one shared decision.",
+        "cohesion": "The threshold lookup is centralized; per-region charge logic remains in each class.",
+        "interfaces": "The helper documents fallback behavior, although regions outside north and south silently use the default."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The existing ternary changes only the southern threshold value.",
+        "boundaries": "No new boundary or dependency is introduced.",
+        "cohesion": "The change remains local to each established quote method.",
+        "interfaces": "The public quote signature and result shape remain unchanged."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 3,
+      "evidence": {
+        "concepts": "The existing threshold ternary is updated to select 75.0 for south and 50.0 otherwise.",
+        "boundaries": "No new abstraction is added; the selection stays in quote.",
+        "cohesion": "Both quote implementations change consistently while retaining their separate charge logic.",
+        "interfaces": "The known north/south paths are explicit; all other regions take the 50.0 branch without an error or validation boundary."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "The existing threshold ternaries directly express the two regional values.",
+        "boundaries": "The quote methods keep the decision without added indirection.",
+        "cohesion": "Both classes retain their existing regional charge branches.",
+        "interfaces": "The existing keyword interface is preserved."
+      },
+      "correctness_concerns": []
+    }
+  ],
+  "limitations": [
+    "Review is limited to the packet Markdown and the review rubric. Candidate code was not executed; no tests, outcomes, or trial metadata were consulted."
+  ]
+}

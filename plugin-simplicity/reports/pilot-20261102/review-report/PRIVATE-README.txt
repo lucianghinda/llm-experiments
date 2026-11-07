@@ -1,0 +1,1 @@
+Share only the packets/ directory and the separate review rubric. Keep private-key.json, outcomes.md, and this directory's other files private. Flagged submissions require manual review of original artifacts and worktree archives. Label scanning is not a guarantee of blindness.

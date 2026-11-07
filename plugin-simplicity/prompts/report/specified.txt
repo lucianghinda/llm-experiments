@@ -1,0 +1,5 @@
+Implement status filtering for `OrderReport#summary(status: nil)`. With no
+status, summarize every order. With a status, include only matching orders in
+both the returned count and total. Keep the return value as a hash with `count`
+and `total` keys and preserve existing unfiltered behavior. Add or update tests
+for both paths.

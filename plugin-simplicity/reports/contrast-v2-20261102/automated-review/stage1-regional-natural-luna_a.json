@@ -1,0 +1,183 @@
+{
+  "batch": "stage1-regional-natural",
+  "reviewer": "luna_a",
+  "ratings": [
+    {
+      "packet": "R-0001",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Each quote method changes only its south threshold from 50.0 to 75.0.",
+        "boundaries": "No new boundary or collaborator is introduced.",
+        "cohesion": "The edits follow the existing CheckoutShipping and DeliveryEstimate structure, though threshold logic remains duplicated as it was in baseline.",
+        "interfaces": "The existing quote(region:, subtotal:, weight_kg:) interface is unchanged."
+      },
+      "correctness_concerns": [
+        "Both classes retain their own threshold expression, so future policy changes must be mirrored."
+      ]
+    },
+    {
+      "packet": "R-0002",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "FreeShipping names NORTH_THRESHOLD and SOUTH_THRESHOLD and provides threshold(region).",
+        "boundaries": "A shared module removes duplicated threshold values and centralizes selection for both quote paths.",
+        "cohesion": "The policy is grouped in FreeShipping; each class still owns its specific charge calculation.",
+        "interfaces": "threshold(region) has a clear input and returns a numeric threshold; behavior for regions beyond north/south defaults to south."
+      },
+      "correctness_concerns": []
+    },
+    {
+      "packet": "R-0003",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Both quote methods change the south branch threshold to 75.0 and retain the existing charge branches.",
+        "boundaries": "The change adds no indirection and follows the two existing quote boundaries.",
+        "cohesion": "Each class remains self-contained, with threshold logic repeated as in the baseline.",
+        "interfaces": "The public keyword interface remains unchanged; the local threshold is direct."
+      },
+      "correctness_concerns": [
+        "Threshold values are repeated across both classes, leaving a future synchronization concern."
+      ]
+    },
+    {
+      "packet": "R-0004",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Each quote method switches the non-north threshold from 50.0 to 75.0.",
+        "boundaries": "No new abstraction is added.",
+        "cohesion": "The change fits the existing duplicated quote implementations.",
+        "interfaces": "No input/output boundary changes; threshold selection remains inline."
+      },
+      "correctness_concerns": [
+        "The same threshold rule is still duplicated between quote classes."
+      ]
+    },
+    {
+      "packet": "R-0005",
+      "concepts": 3,
+      "boundaries": 2,
+      "cohesion": 3,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Each class defines NORTH_FREE_SHIPPING_THRESHOLD and SOUTH_FREE_SHIPPING_THRESHOLD and selects between its own constants.",
+        "boundaries": "Constants are duplicated across the two classes, so the new names do not create a shared source of truth.",
+        "cohesion": "The constants live with each class, but identical threshold policy now has two copies.",
+        "interfaces": "Named values make threshold selection readable and the quote interface is unchanged."
+      },
+      "correctness_concerns": [
+        "The parallel constants can drift independently."
+      ]
+    },
+    {
+      "packet": "R-0006",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Top-level NORTH_FREE_SHIPPING_THRESHOLD and SOUTH_FREE_SHIPPING_THRESHOLD feed each class’s threshold ternary.",
+        "boundaries": "Shared constants centralize values without introducing a service or helper.",
+        "cohesion": "The values are shared while each class keeps its own pricing calculation.",
+        "interfaces": "The method signature is unchanged and named constants clarify selection."
+      },
+      "correctness_concerns": [
+        "The same selection expression remains duplicated."
+      ]
+    },
+    {
+      "packet": "R-0007",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Both quote methods update the south branch threshold to 75.0.",
+        "boundaries": "No extra boundary is introduced.",
+        "cohesion": "The minimal edits fit the existing class layout, retaining pre-existing duplicated logic.",
+        "interfaces": "The quote interface stays unchanged."
+      },
+      "correctness_concerns": [
+        "Threshold selection is still duplicated."
+      ]
+    },
+    {
+      "packet": "R-0008",
+      "concepts": 4,
+      "boundaries": 4,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "ShippingThresholds centralizes FREE_SHIPPING and DEFAULT_FREE_SHIPPING; both classes call free_shipping_threshold.",
+        "boundaries": "The module provides one reusable threshold policy for the two quote paths.",
+        "cohesion": "The shared rule is cohesive; charge calculation remains in each class.",
+        "interfaces": "fetch(region, default) makes fallback explicit, and the private method narrows its use."
+      },
+      "correctness_concerns": [
+        "The broad contract does not specify unknown-region behavior; the implementation preserves the prior non-north threshold through DEFAULT_FREE_SHIPPING."
+      ]
+    },
+    {
+      "packet": "R-0009",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Both quote methods change only the non-north threshold literal to 75.0.",
+        "boundaries": "No new abstraction is introduced.",
+        "cohesion": "The edits follow the existing local class responsibilities.",
+        "interfaces": "No interface change; threshold remains a local value."
+      },
+      "correctness_concerns": [
+        "The threshold expression is duplicated across the two classes."
+      ]
+    },
+    {
+      "packet": "R-0010",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Both methods use `region == :south ? 75.0 : 50.0` for threshold selection.",
+        "boundaries": "The expression keeps policy local and adds no layers.",
+        "cohesion": "Each existing class remains independently readable.",
+        "interfaces": "The quote signature is unchanged and the branching condition is explicit."
+      },
+      "correctness_concerns": [
+        "Unknown regions receive the 50.0 fallback; the broad contract does not specify them."
+      ]
+    },
+    {
+      "packet": "R-0011",
+      "concepts": 5,
+      "boundaries": 5,
+      "cohesion": 4,
+      "interfaces": 4,
+      "evidence": {
+        "concepts": "Both methods change the non-north threshold branch from 50.0 to 75.0.",
+        "boundaries": "No new abstraction; existing objects retain their boundaries.",
+        "cohesion": "The change stays within each quote method, matching surrounding structure.",
+        "interfaces": "The public keyword interface is untouched."
+      },
+      "correctness_concerns": [
+        "The same threshold expression remains duplicated."
+      ]
+    }
+  ],
+  "limitations": [
+    "Judgments use only packet snapshots and neutral contracts; acceptance results and runtime behavior were not inspected."
+  ]
+}

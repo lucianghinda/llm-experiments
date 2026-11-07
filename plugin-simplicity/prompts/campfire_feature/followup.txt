@@ -1,0 +1,5 @@
+Room creators can administer their own rooms even when they are not account
+administrators. Extend topic coverage to prove that a room creator can update
+the topic, while an ordinary member who is not the creator or an account
+administrator remains forbidden. The topic change must not alter the room name
+or grant access to direct rooms.

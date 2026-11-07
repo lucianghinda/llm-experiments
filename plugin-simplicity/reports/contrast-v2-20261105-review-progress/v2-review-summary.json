@@ -1,0 +1,4357 @@
+{
+  "scope_note": "Automated review is a secondary perspective. Correctness concerns are reviewer questions or uncovered-edge-case notes, not failed acceptance checks. Dimensions and raters are summarized separately; no weighted score, rank, or winner is produced.",
+  "batches": [
+    {
+      "batch": "stage1-notification-natural",
+      "status": "complete",
+      "mapping_path": "review-stage1-notification-natural/review-packets/private-key.json",
+      "reviewer_files": {
+        "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+        "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+      },
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [],
+      "expected_packet_count": 11,
+      "exclusions": {
+        "count": 1,
+        "reasons": {
+          "operator protocol deviation": 1
+        },
+        "source_path": "review-stage1-notification-natural/batch-summary.json"
+      },
+      "packets": [
+        {
+          "packet": "R-0001",
+          "cell": {
+            "grid_cell": "0006",
+            "final_trial": "0006",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0001.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Coalescer#call groups by actor and merges text with SEPARATOR.",
+                "boundaries": "Coalescer owns grouping; deliver reuses formatting and delivery.",
+                "cohesion": "Burst flow filters, coalesces, then uses the existing path.",
+                "interfaces": "publish_burst accepts events; empty eligible input emits nothing."
+              },
+              "correctness_concerns": [
+                "The contract does not name the new batch entry point; this exposes publish_burst and retains immediate publish."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "Adds a Coalescer with one grouping and merge operation; this is a compact model of the new burst behavior.",
+                "boundaries": "Coalescer owns grouping and message merging, while publish_burst applies rules and delivery; both are straightforward boundaries.",
+                "cohesion": "Burst filtering, coalescing, and the existing formatter/delivery pipeline remain together in NotificationPipeline.",
+                "interfaces": "publish_burst accepts an enumerable of event hashes; the fixed separator and output handling are implicit."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The contract does not name the new batch entry point; this exposes publish_burst and retains immediate publish."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0002",
+          "cell": {
+            "grid_cell": "0001",
+            "final_trial": "0001/continuations/answer-01",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0002.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 3,
+                "boundaries": 3,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Buffer stores actor groups; Coalescer reduces each group; flush drains and formats.",
+                "boundaries": "Buffer and Coalescer separate state and transformation, adding two helper classes for a small pipeline.",
+                "cohesion": "The comments and method names explain the batch lifecycle.",
+                "interfaces": "publish buffers eligible events; flush drains them and empty batches emit nothing."
+              },
+              "correctness_concerns": [
+                "Buffer#empty? is defined but unused."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 3,
+                "boundaries": 3,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "Buffer and Coalescer divide accumulation, draining, and message merging into two new concepts.",
+                "boundaries": "Buffer owns grouped state and reset; Coalescer owns per-group merging, though the split adds a handoff for a small feature.",
+                "cohesion": "Both new objects support the batching lifecycle and sit beside the existing pipeline pieces.",
+                "interfaces": "publish buffers and flush drains, but callers must understand the new two-step lifecycle; empty? is provided but unused."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Buffer#empty? is defined but unused."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0003",
+          "cell": {
+            "grid_cell": "0017",
+            "final_trial": "0017",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0003.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "publish_batch filters, groups by actor, formats each event, and joins strings with newline.",
+                "boundaries": "Inline processing reuses existing rules, formatter, and delivery without new abstractions.",
+                "cohesion": "Batch processing sits beside publish and reuses its collaborators.",
+                "interfaces": "The input is clear, but joining complete formatted strings leaves output structure implicit."
+              },
+              "correctness_concerns": [
+                "Joining formatted events repeats actor prefixes and uses newline, neither specified by the broad contract."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "The batch path uses selection, grouping, mapping, and joining directly without new helper objects.",
+                "boundaries": "Grouping logic stays inside the pipeline, avoiding an extra abstraction; no helper names the aggregation contract.",
+                "cohesion": "publish_batch is adjacent to publish and uses the existing rule, formatter, and delivery objects.",
+                "interfaces": "The method accepts event collections, but joins already formatted notifications with newline and leaves the batch output shape implicit."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Joining formatted events repeats actor prefixes and uses newline, neither specified by the broad contract."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0004",
+          "cell": {
+            "grid_cell": "0018",
+            "final_trial": "0018/continuations/answer-01",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0004.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "@pending maps actors to message arrays; flush joins with \"; \" and clears the map.",
+                "boundaries": "A hash owns pending state; existing collaborators retain their roles.",
+                "cohesion": "State and flush behavior are together in NotificationPipeline.",
+                "interfaces": "Empty flush emits nothing; delivery errors have no explicit policy."
+              },
+              "correctness_concerns": [
+                "event[:message].to_s adds coercion before buffering."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "A pending hash keyed by actor and a flush method express the accumulation and delivery behavior with little machinery.",
+                "boundaries": "State and flush behavior live in the pipeline where publishing already occurs; there is no new layer.",
+                "cohesion": "Filtering, accumulation, formatting, delivery, and reset are localized in the existing class.",
+                "interfaces": "flush defines the boundary, but publish changes from immediate delivery to buffering and callers must know when to flush."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 1,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "event[:message].to_s adds coercion before buffering."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0005",
+          "cell": {
+            "grid_cell": "0003",
+            "final_trial": "0003",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0005.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Coalescer groups events by actor and joins their messages with SEPARATOR.",
+                "boundaries": "Coalescer isolates transformation, though it is a small stateless operation.",
+                "cohesion": "Single and burst paths share deliver; grouping remains in its helper.",
+                "interfaces": "Input and rule filtering are clear; empty input emits nothing."
+              },
+              "correctness_concerns": [
+                "Fresh actor/message hashes drop other event fields; visible Formatter only reads these fields."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "One Coalescer performs the actor grouping and text joining, with a small shared deliver method.",
+                "boundaries": "Coalescer separates aggregation from pipeline delivery; this is a modest and relevant boundary.",
+                "cohesion": "The helper and publish_burst keep burst-specific behavior close to NotificationPipeline.",
+                "interfaces": "publish_burst accepts event hashes and uses a fixed separator; grouped output is passed through the existing formatter."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Fresh actor/message hashes drop other event fields; visible Formatter only reads these fields."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0006",
+          "cell": {
+            "grid_cell": "0002",
+            "final_trial": "0002/continuations/answer-01",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0006.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "publish_burst groups eligible events; private coalesce merges messages, preserving singleton events.",
+                "boundaries": "A private method avoids an extra class and keeps transformation local.",
+                "cohesion": "deliver centralizes formatting and delivery; coalesce handles event merging.",
+                "interfaces": "Burst input is clear and the method explicitly returns nil."
+              },
+              "correctness_concerns": [
+                "The broad contract does not settle whether single publish is immediate or participates in batching."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "The burst path uses built-in grouping plus a private coalesce method and one shared delivery method.",
+                "boundaries": "Private helpers isolate delivery and merging without introducing extra objects.",
+                "cohesion": "The helpers sit with the pipeline methods they support, though the grouping itself remains in publish_burst.",
+                "interfaces": "Input is an event collection; return value is explicitly nil, but separator and malformed-event behavior are not surfaced."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The broad contract does not settle whether single publish is immediate or participates in batching."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0007",
+          "cell": {
+            "grid_cell": "0016",
+            "final_trial": "0016",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0007.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "publish_batch groups eligible events and joins each group’s formatted strings with newline.",
+                "boundaries": "Inline grouping shares existing delivery and formatting dependencies.",
+                "cohesion": "Batch behavior sits beside publish and uses the same collaborators.",
+                "interfaces": "The input is clear, though joining complete strings obscures output structure."
+              },
+              "correctness_concerns": [
+                "Each group repeats actor prefixes and uses newline, which the broad contract does not specify."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "Grouping and merging use standard collection operations plus two focused private helpers.",
+                "boundaries": "The private helpers name delivery and coalescing steps without introducing additional layers.",
+                "cohesion": "The burst method and its helpers remain in NotificationPipeline and reuse its existing collaborators.",
+                "interfaces": "The event collection input is clear, while the newline separator and output contract are hard-coded."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Each group repeats actor prefixes and uses newline, which the broad contract does not specify."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0008",
+          "cell": {
+            "grid_cell": "0005",
+            "final_trial": "0005",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0008.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 3,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Coalescer groups events and joins message fields; initialize exposes separator:.",
+                "boundaries": "The transform boundary is clean, but a nested class plus configurable separator expands the API for a fixed behavior.",
+                "cohesion": "Filtering, grouping, and shared delivery are distinct.",
+                "interfaces": "The burst API and separator option are explicit; filtering matches publish."
+              },
+              "correctness_concerns": [
+                "initialize exposes separator customization without a corresponding contract requirement."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 3,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Coalescer is a focused concept; accepting a separator adds a small configuration concept.",
+                "boundaries": "A separate Coalescer cleanly owns grouping, and an injectable separator supports variation, though no such variation is required by the packet contract.",
+                "cohesion": "Filtering and delivery stay in the pipeline while grouping and merge stay in Coalescer.",
+                "interfaces": "publish_burst is documented, and separator configuration is explicit in initialize; event validation remains implicit."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "initialize exposes separator customization without a corresponding contract requirement."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0009",
+          "cell": {
+            "grid_cell": "0015",
+            "final_trial": "0015",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0009.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "publish_batch groups formatted eligible notifications by actor and joins with newline.",
+                "boundaries": "No new object is added; existing collaborators do the work.",
+                "cohesion": "Batch logic is localized and reuses rules, formatter, and delivery.",
+                "interfaces": "Input/filtering are clear; grouped output is implicit in the newline join."
+              },
+              "correctness_concerns": [
+                "Output repeats actor labels and uses newline, details not established by the broad contract."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "A local hash, iteration, and join implement batching without extra objects or helpers.",
+                "boundaries": "The pipeline owns the logic directly, consistent with the surrounding small class; there is no extraction for grouping.",
+                "cohesion": "The added method uses the established rule, formatter, and delivery in one place.",
+                "interfaces": "publish_batch takes events, but emits one joined formatted string per actor and does not state the separator contract in its method interface."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Output repeats actor labels and uses newline, details not established by the broad contract."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0010",
+          "cell": {
+            "grid_cell": "0004",
+            "final_trial": "0004",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0010.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Formatter#coalesce combines actor/message values with a named separator; publish_burst groups eligible events.",
+                "boundaries": "No extra class is added, though Formatter now also aggregates event groups.",
+                "cohesion": "Single and burst paths share formatting behavior.",
+                "interfaces": "The burst input and rule filtering are clear; separator is named."
+              },
+              "correctness_concerns": [
+                "publish now routes through publish_burst, coupling single publication to grouping."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 3,
+                "boundaries": 2,
+                "cohesion": 3,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "Formatter now handles both per-event formatting and batch aggregation, combining two related but distinct operations.",
+                "boundaries": "Formatter#coalesce adds batch grouping/joining to the formatting boundary, while publish delegates even a single event through this new path.",
+                "cohesion": "The workflow remains in NotificationPipeline, but aggregation responsibility is placed inside Formatter.",
+                "interfaces": "publish_burst accepts events and separator is named in Formatter, but the formatter now has a second operation with its own assumptions."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 2,
+            "cohesion": 1,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "publish now routes through publish_burst, coupling single publication to grouping."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0011",
+          "cell": {
+            "grid_cell": "0014",
+            "final_trial": "0014",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-notification-natural/review-packets/packets/R-0011.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "publish_batch filters and groups, merges messages, then uses the existing formatter.",
+                "boundaries": "Grouping remains inline without extra abstraction layers.",
+                "cohesion": "Batch and single publication are adjacent in the pipeline.",
+                "interfaces": "Method shape is clear; newline is hard-coded and unnamed."
+              },
+              "correctness_concerns": [
+                "Joining with newline is not specified by the broad contract."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "The method uses select, group_by, and merge to form one event per actor with no extra class.",
+                "boundaries": "Aggregation stays inline in the existing pipeline; the local implementation is easy to trace.",
+                "cohesion": "Batch behavior is adjacent to publish and reuses Rule, Formatter, and Delivery.",
+                "interfaces": "publish_batch input is apparent, while newline joining and one-output-per-actor semantics are encoded rather than exposed."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Joining with newline is not specified by the broad contract."
+            ],
+            "luna_b": []
+          }
+        }
+      ],
+      "dimension_agreement": {
+        "concepts": {
+          "paired_packet_count": 11,
+          "exact_agreement_count": 9,
+          "mean_absolute_disagreement": 0.18181818181818182
+        },
+        "boundaries": {
+          "paired_packet_count": 11,
+          "exact_agreement_count": 9,
+          "mean_absolute_disagreement": 0.2727272727272727
+        },
+        "cohesion": {
+          "paired_packet_count": 11,
+          "exact_agreement_count": 9,
+          "mean_absolute_disagreement": 0.18181818181818182
+        },
+        "interfaces": {
+          "paired_packet_count": 11,
+          "exact_agreement_count": 5,
+          "mean_absolute_disagreement": 0.5454545454545454
+        }
+      },
+      "cell_groups": [
+        {
+          "task": "notification_digest",
+          "agent": "claude",
+          "track": "natural",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 3.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 3.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.5
+              }
+            }
+          }
+        },
+        {
+          "task": "notification_digest",
+          "agent": "claude",
+          "track": "natural",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 3.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.0
+              }
+            }
+          }
+        },
+        {
+          "task": "notification_digest",
+          "agent": "claude",
+          "track": "natural",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.0
+              }
+            }
+          }
+        },
+        {
+          "task": "notification_digest",
+          "agent": "codex",
+          "track": "natural",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.0
+              }
+            }
+          }
+        },
+        {
+          "task": "notification_digest",
+          "agent": "codex",
+          "track": "natural",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.0
+              }
+            }
+          }
+        },
+        {
+          "task": "notification_digest",
+          "agent": "codex",
+          "track": "natural",
+          "condition": "rubypowers",
+          "packet_count": 1,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 1,
+                "median": 5
+              },
+              "boundaries": {
+                "sample_count": 1,
+                "median": 5
+              },
+              "cohesion": {
+                "sample_count": 1,
+                "median": 5
+              },
+              "interfaces": {
+                "sample_count": 1,
+                "median": 4
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 1,
+                "median": 4
+              },
+              "boundaries": {
+                "sample_count": 1,
+                "median": 4
+              },
+              "cohesion": {
+                "sample_count": 1,
+                "median": 4
+              },
+              "interfaces": {
+                "sample_count": 1,
+                "median": 3
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "batch": "stage1-notification-specified",
+      "status": "complete",
+      "mapping_path": "review-stage1-notification-specified/review-packets/private-key.json",
+      "reviewer_files": {
+        "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+        "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+      },
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [],
+      "expected_packet_count": 12,
+      "exclusions": {
+        "count": 0,
+        "reasons": {},
+        "source_path": "review-stage1-notification-specified/batch-summary.json"
+      },
+      "packets": [
+        {
+          "packet": "R-0001",
+          "cell": {
+            "grid_cell": "0023",
+            "final_trial": "0023",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0001.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "publish appends eligible messages by actor; flush joins with \"; \" and clears pending state.",
+                "boundaries": "A hash directly represents actor batches; existing collaborators remain.",
+                "cohesion": "State and lifecycle stay together in the pipeline.",
+                "interfaces": "Empty flush is silent and insertion order preserves first-seen actors; flush return is incidental."
+              },
+              "correctness_concerns": [
+                "flush returns Hash#clear’s value without an explicit return contract."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "A pending hash groups message texts by actor and flush iterates then clears it; this directly matches the stated lifecycle.",
+                "boundaries": "No extra layer is added; state belongs to the pipeline that receives publish calls.",
+                "cohesion": "Eligibility, accumulation, formatting, delivery, and reset are in the existing pipeline flow.",
+                "interfaces": "publish and flush are direct caller operations; flush has no explicit return contract, and message shape stays consistent with Formatter."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises midway through flush, the pending hash is not cleared, so a later flush may redeliver earlier entries."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "flush returns Hash#clear’s value without an explicit return contract."
+            ],
+            "luna_b": [
+              "If sink delivery raises midway through flush, the pending hash is not cleared, so a later flush may redeliver earlier entries."
+            ]
+          }
+        },
+        {
+          "packet": "R-0002",
+          "cell": {
+            "grid_cell": "0022",
+            "final_trial": "0022",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0002.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "@pending groups messages; flush joins each with \"; \" and clears it.",
+                "boundaries": "One map models the needed state without another abstraction.",
+                "cohesion": "Batch lifecycle is expressed directly in the pipeline.",
+                "interfaces": "Empty flush does nothing; return value is implicit."
+              },
+              "correctness_concerns": [
+                "flush returns the map returned by clear."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The same compact pending-hash approach directly represents actor grouping and message accumulation.",
+                "boundaries": "The existing pipeline owns state and reset, with no unnecessary helper boundary.",
+                "cohesion": "The added state and flush behavior sit directly beside publish and existing formatting/delivery.",
+                "interfaces": "The two-step lifecycle is clear from the method names; flush return behavior is implicit."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises midway through flush, the pending hash is not cleared, so a later flush may redeliver earlier entries."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "flush returns the map returned by clear."
+            ],
+            "luna_b": [
+              "If sink delivery raises midway through flush, the pending hash is not cleared, so a later flush may redeliver earlier entries."
+            ]
+          }
+        },
+        {
+          "packet": "R-0003",
+          "cell": {
+            "grid_cell": "0007",
+            "final_trial": "0007",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0003.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Batch tracks actor order and messages; each_grouped yields joined text; flush replaces the batch before delivery.",
+                "boundaries": "Batch owns grouping/order, but @actors duplicates order already represented by insertion-ordered @messages.",
+                "cohesion": "Batch owns grouping and pipeline owns delivery.",
+                "interfaces": "Empty state is checked and the next batch starts before delivery."
+              },
+              "correctness_concerns": [
+                "@actors and @messages encode overlapping grouping structure."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Batch encapsulates actor ordering and message joining; it adds a distinct helper object for one batch.",
+                "boundaries": "Batch owns its grouped state and exposes add/each_grouped, which cleanly separates accumulation from pipeline delivery.",
+                "cohesion": "The helper is focused and the pipeline coordinates eligibility, lifecycle, formatting, and delivery.",
+                "interfaces": "add and each_grouped give callers a clear protocol, though each_grouped is a callback interface and flush return is implicit."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises during iteration, the pipeline has already replaced its batch; remaining groups are discarded."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 1,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "@actors and @messages encode overlapping grouping structure."
+            ],
+            "luna_b": [
+              "If sink delivery raises during iteration, the pipeline has already replaced its batch; remaining groups are discarded."
+            ]
+          }
+        },
+        {
+          "packet": "R-0004",
+          "cell": {
+            "grid_cell": "0021",
+            "final_trial": "0021",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0004.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "publish records messages in an insertion-ordered hash; flush joins and clears after delivery.",
+                "boundaries": "A hash suffices; existing collaborators are reused.",
+                "cohesion": "State and both lifecycle operations are local.",
+                "interfaces": "Behavior is direct; empty map emits nothing."
+              },
+              "correctness_concerns": [
+                "A mid-flush delivery exception leaves the map uncleared, so retry may duplicate prior output."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "A pending hash keyed by actor and flush directly implement the specified contract.",
+                "boundaries": "State, ordering, and reset remain in NotificationPipeline without additional indirection.",
+                "cohesion": "The changes stay with publish and reuse Formatter and Delivery.",
+                "interfaces": "Caller lifecycle is clear; flush return value is not specified."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "A mid-flush delivery exception leaves the map uncleared, so retry may duplicate prior output."
+            ],
+            "luna_b": [
+              "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+            ]
+          }
+        },
+        {
+          "packet": "R-0005",
+          "cell": {
+            "grid_cell": "0012",
+            "final_trial": "0012",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0005.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Batch#add stores messages; drain swaps the map and returns actor/message hashes for formatting.",
+                "boundaries": "Batch gives buffer ownership a clear home, though it wraps one hash.",
+                "cohesion": "Batch handles accumulation/draining; pipeline handles filtering/output.",
+                "interfaces": "Drain explicitly resets and preserves insertion order; empty drain returns an empty collection."
+              },
+              "correctness_concerns": [
+                "An exception after draining can discard undelivered groups."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Batch names and encapsulates grouped state, joining, and drain, adding one focused concept.",
+                "boundaries": "Batch owns aggregation and reset; the pipeline only filters, drains, formats, and delivers.",
+                "cohesion": "Each responsibility is grouped around the batch lifecycle and existing pipeline collaborators.",
+                "interfaces": "add and drain are simple; drain returns event hashes that match Formatter input."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises after drain, the drained batch has already been removed and remaining outputs are lost."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 1,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "An exception after draining can discard undelivered groups."
+            ],
+            "luna_b": [
+              "If sink delivery raises after drain, the drained batch has already been removed and remaining outputs are lost."
+            ]
+          }
+        },
+        {
+          "packet": "R-0006",
+          "cell": {
+            "grid_cell": "0009",
+            "final_trial": "0009",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0006.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "publish appends eligible messages; flush swaps maps before iterating and explicitly returns nil.",
+                "boundaries": "Direct map representation keeps existing boundaries intact.",
+                "cohesion": "Public methods divide accumulation and flush cleanly.",
+                "interfaces": "Explicit nil returns, insertion order, and pre-delivery reset make the lifecycle clear."
+              },
+              "correctness_concerns": [
+                "Delivery failure mid-flush loses remaining groups from the swapped map."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "A pending hash captures actor groups; flush delivers and replaces it with a fresh hash.",
+                "boundaries": "The state remains local to NotificationPipeline, with no unnecessary abstraction.",
+                "cohesion": "Eligibility, accumulation, ordered delivery, and reset are adjacent and reuse existing collaborators.",
+                "interfaces": "The required operations are clear; flush explicitly returns nil, while publish returns nil on filtered events."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises midway, the buffer was replaced before delivery and remaining pending outputs are lost."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Delivery failure mid-flush loses remaining groups from the swapped map."
+            ],
+            "luna_b": [
+              "If sink delivery raises midway, the buffer was replaced before delivery and remaining pending outputs are lost."
+            ]
+          }
+        },
+        {
+          "packet": "R-0007",
+          "cell": {
+            "grid_cell": "0008",
+            "final_trial": "0008",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0007.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "publish buffers and returns nil; flush swaps maps, joins, delivers, and returns nil.",
+                "boundaries": "A single hash is sufficient; no unnecessary boundary.",
+                "cohesion": "Buffering and delivery are localized and easy to trace.",
+                "interfaces": "Both methods return nil; empty flush is a no-op and state resets before iteration."
+              },
+              "correctness_concerns": [
+                "Delivery failure can leave remaining drained messages unavailable for retry."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "A pending hash directly records actors and message texts; flush swaps it before delivering.",
+                "boundaries": "No extra objects or methods mediate the behavior.",
+                "cohesion": "The lifecycle is localized and consistently uses the existing formatter and delivery.",
+                "interfaces": "publish and flush are straightforward; both return nil, and the hash swap makes the next batch boundary clear."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises midway, the saved batch is no longer reachable from the pipeline and remaining outputs are lost."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Delivery failure can leave remaining drained messages unavailable for retry."
+            ],
+            "luna_b": [
+              "If sink delivery raises midway, the saved batch is no longer reachable from the pipeline and remaining outputs are lost."
+            ]
+          }
+        },
+        {
+          "packet": "R-0008",
+          "cell": {
+            "grid_cell": "0024",
+            "final_trial": "0024",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0008.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "@pending groups text by actor; flush formats joined messages then clears the map.",
+                "boundaries": "Minimal hash representation reuses formatter and delivery.",
+                "cohesion": "Behavior stays inside the pipeline.",
+                "interfaces": "API and joiner are clear; failure policy is implicit."
+              },
+              "correctness_concerns": [
+                "Partial delivery failure leaves pending entries; retry may duplicate prior messages."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "One hash and two methods implement accumulation, ordered delivery, and clearing.",
+                "boundaries": "All new state belongs to NotificationPipeline; no additional abstraction obscures the path.",
+                "cohesion": "The implementation directly reuses existing Rule, Formatter, and Delivery collaborators.",
+                "interfaces": "The flush boundary is clear, though its return value is implicit."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Partial delivery failure leaves pending entries; retry may duplicate prior messages."
+            ],
+            "luna_b": [
+              "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+            ]
+          }
+        },
+        {
+          "packet": "R-0009",
+          "cell": {
+            "grid_cell": "0011",
+            "final_trial": "0011",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0009.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 5
+              },
+              "evidence": {
+                "concepts": "publish accumulates; flush formats joined messages, replaces the map, and returns nil.",
+                "boundaries": "The map is the only needed structure.",
+                "cohesion": "Accumulation and flushing are distinct and adjacent.",
+                "interfaces": "Nil returns and first-seen order are clear; empty buffer does nothing."
+              },
+              "correctness_concerns": [
+                "On delivery failure before replacement, retry may duplicate earlier deliveries."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "A buffer hash and flush method are sufficient to express the requested grouping and reset.",
+                "boundaries": "State and delivery sequencing stay together in NotificationPipeline.",
+                "cohesion": "The implementation uses existing formatter and delivery in one compact lifecycle.",
+                "interfaces": "publish and flush make the lifecycle clear; flush return is explicitly nil."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises midway, the buffer remains uncleared and a later flush may redeliver earlier entries."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "On delivery failure before replacement, retry may duplicate earlier deliveries."
+            ],
+            "luna_b": [
+              "If sink delivery raises midway, the buffer remains uncleared and a later flush may redeliver earlier entries."
+            ]
+          }
+        },
+        {
+          "packet": "R-0010",
+          "cell": {
+            "grid_cell": "0020",
+            "final_trial": "0020",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0010.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "publish adds eligible messages; flush joins and delivers then clears.",
+                "boundaries": "A minimal map preserves existing boundaries.",
+                "cohesion": "Related batching behavior stays together.",
+                "interfaces": "Lifecycle is apparent; repeated empty flush is harmless."
+              },
+              "correctness_concerns": [
+                "A mid-loop failure can cause already delivered messages to repeat on retry."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "A pending hash and flush directly represent grouping and clearing.",
+                "boundaries": "No new boundary is introduced; the pipeline remains the owner of pending work.",
+                "cohesion": "Filtering, buffering, formatting, and delivery are placed together in the established class.",
+                "interfaces": "The lifecycle is clear, with message formatting delegated to the existing Formatter; flush return is implicit."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "A mid-loop failure can cause already delivered messages to repeat on retry."
+            ],
+            "luna_b": [
+              "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+            ]
+          }
+        },
+        {
+          "packet": "R-0011",
+          "cell": {
+            "grid_cell": "0010",
+            "final_trial": "0010",
+            "task": "notification_digest",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0011.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "publish accumulates with an insertion-order comment; flush emits joined text then replaces the map.",
+                "boundaries": "A hash captures grouping/order without another abstraction.",
+                "cohesion": "Eligibility, state, and flush stay in one cohesive class.",
+                "interfaces": "Ordering/reset are clear; return contract is implicit."
+              },
+              "correctness_concerns": [
+                "A mid-flush exception before replacing the map can permit duplicates on retry."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "A pending hash directly implements actor grouping, with insertion order preserving first-seen ordering.",
+                "boundaries": "The pipeline owns the state and reset without introducing extra layers.",
+                "cohesion": "The added state is next to publish and flush and uses established collaborators.",
+                "interfaces": "The lifecycle is clear, and the ordering rationale is stated; flush return is implicit."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises midway, the hash is not reset and a later flush may redeliver earlier entries."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "A mid-flush exception before replacing the map can permit duplicates on retry."
+            ],
+            "luna_b": [
+              "If sink delivery raises midway, the hash is not reset and a later flush may redeliver earlier entries."
+            ]
+          }
+        },
+        {
+          "packet": "R-0012",
+          "cell": {
+            "grid_cell": "0019",
+            "final_trial": "0019",
+            "task": "notification_digest",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-notification-specified/review-packets/packets/R-0012.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-notification-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-notification-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "publish buffers by actor; flush formats joined text and clears after iteration.",
+                "boundaries": "One map is the simplest representation.",
+                "cohesion": "Lifecycle stays local and uses existing formatter/delivery.",
+                "interfaces": "Straightforward API; empty flush is harmless; return is implicit."
+              },
+              "correctness_concerns": [
+                "Partial delivery failure before clear can lead to duplicate output if flush is retried."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 5,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "A pending hash keyed by actor and its message arrays directly implement the required batch.",
+                "boundaries": "State and aggregation stay in NotificationPipeline; there are no extra abstractions.",
+                "cohesion": "The implementation reuses the existing eligibility, formatting, and delivery structure.",
+                "interfaces": "publish and flush clearly define the lifecycle; flush return value is implicit."
+              },
+              "correctness_concerns": [
+                "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Partial delivery failure before clear can lead to duplicate output if flush is retried."
+            ],
+            "luna_b": [
+              "If sink delivery raises midway through flush, pending entries remain and a later flush may redeliver earlier entries."
+            ]
+          }
+        }
+      ],
+      "dimension_agreement": {
+        "concepts": {
+          "paired_packet_count": 12,
+          "exact_agreement_count": 12,
+          "mean_absolute_disagreement": 0.0
+        },
+        "boundaries": {
+          "paired_packet_count": 12,
+          "exact_agreement_count": 12,
+          "mean_absolute_disagreement": 0.0
+        },
+        "cohesion": {
+          "paired_packet_count": 12,
+          "exact_agreement_count": 10,
+          "mean_absolute_disagreement": 0.16666666666666666
+        },
+        "interfaces": {
+          "paired_packet_count": 12,
+          "exact_agreement_count": 9,
+          "mean_absolute_disagreement": 0.25
+        }
+      },
+      "cell_groups": [
+        {
+          "task": "notification_digest",
+          "agent": "claude",
+          "track": "specified",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 5.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "notification_digest",
+          "agent": "claude",
+          "track": "specified",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.5
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "notification_digest",
+          "agent": "claude",
+          "track": "specified",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "notification_digest",
+          "agent": "codex",
+          "track": "specified",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "notification_digest",
+          "agent": "codex",
+          "track": "specified",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "notification_digest",
+          "agent": "codex",
+          "track": "specified",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "batch": "stage1-regional-natural",
+      "status": "complete",
+      "mapping_path": "review-stage1-regional-natural/review-packets/private-key.json",
+      "reviewer_files": {
+        "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+        "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+      },
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [],
+      "expected_packet_count": 11,
+      "exclusions": {
+        "count": 1,
+        "reasons": {
+          "operator protocol deviation": 1
+        },
+        "source_path": "review-stage1-regional-natural/batch-summary.json"
+      },
+      "packets": [
+        {
+          "packet": "R-0001",
+          "cell": {
+            "grid_cell": "0037",
+            "final_trial": "0037/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0001.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Each quote method changes only its south threshold from 50.0 to 75.0.",
+                "boundaries": "No new boundary or collaborator is introduced.",
+                "cohesion": "The edits follow the existing CheckoutShipping and DeliveryEstimate structure, though threshold logic remains duplicated as it was in baseline.",
+                "interfaces": "The existing quote(region:, subtotal:, weight_kg:) interface is unchanged."
+              },
+              "correctness_concerns": [
+                "Both classes retain their own threshold expression, so future policy changes must be mirrored."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both quote methods change only the southern threshold literal from 50.0 to 75.0, so the change adds no new concept.",
+                "boundaries": "Each existing quote method retains ownership of its own threshold; no new layer mediates the calculation.",
+                "cohesion": "The threshold adjustment stays beside the corresponding charge logic in both classes.",
+                "interfaces": "The existing keyword arguments and numeric return behavior are unchanged."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Both classes retain their own threshold expression, so future policy changes must be mirrored."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0002",
+          "cell": {
+            "grid_cell": "0026",
+            "final_trial": "0026/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0002.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "FreeShipping names NORTH_THRESHOLD and SOUTH_THRESHOLD and provides threshold(region).",
+                "boundaries": "A shared module removes duplicated threshold values and centralizes selection for both quote paths.",
+                "cohesion": "The policy is grouped in FreeShipping; each class still owns its specific charge calculation.",
+                "interfaces": "threshold(region) has a clear input and returns a numeric threshold; behavior for regions beyond north/south defaults to south."
+              },
+              "correctness_concerns": []
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 3,
+                "boundaries": 3,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "FreeShipping adds a shared constants module and a threshold lookup method for two quote paths.",
+                "boundaries": "The module centralizes the shared threshold fact; the new module and helper are a modest extra indirection.",
+                "cohesion": "Both quoting classes call the same region threshold lookup while keeping their own charge formulas.",
+                "interfaces": "threshold(region) exposes a narrow region-to-value operation, though unknown regions fall into the southern branch."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0003",
+          "cell": {
+            "grid_cell": "0041",
+            "final_trial": "0041/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0003.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both quote methods change the south branch threshold to 75.0 and retain the existing charge branches.",
+                "boundaries": "The change adds no indirection and follows the two existing quote boundaries.",
+                "cohesion": "Each class remains self-contained, with threshold logic repeated as in the baseline.",
+                "interfaces": "The public keyword interface remains unchanged; the local threshold is direct."
+              },
+              "correctness_concerns": [
+                "Threshold values are repeated across both classes, leaving a future synchronization concern."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The change uses the same threshold ternary already present, replacing the duplicated southern value.",
+                "boundaries": "No new boundary is added; each class keeps the local decision it already owned.",
+                "cohesion": "The threshold stays adjacent to each quote calculation.",
+                "interfaces": "quote keeps its existing keyword inputs and output behavior."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Threshold values are repeated across both classes, leaving a future synchronization concern."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0004",
+          "cell": {
+            "grid_cell": "0042",
+            "final_trial": "0042/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0004.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Each quote method switches the non-north threshold from 50.0 to 75.0.",
+                "boundaries": "No new abstraction is added.",
+                "cohesion": "The change fits the existing duplicated quote implementations.",
+                "interfaces": "No input/output boundary changes; threshold selection remains inline."
+              },
+              "correctness_concerns": [
+                "The same threshold rule is still duplicated between quote classes."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The only new concept is the southern threshold value in the existing ternary.",
+                "boundaries": "The existing per-class threshold calculation remains local and direct.",
+                "cohesion": "Both quote methods retain their existing formula branches and apply the changed value at the free-shipping check.",
+                "interfaces": "The quote interface remains unchanged."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The same threshold rule is still duplicated between quote classes."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0005",
+          "cell": {
+            "grid_cell": "0028",
+            "final_trial": "0028/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0005.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 3,
+                "boundaries": 2,
+                "cohesion": 3,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Each class defines NORTH_FREE_SHIPPING_THRESHOLD and SOUTH_FREE_SHIPPING_THRESHOLD and selects between its own constants.",
+                "boundaries": "Constants are duplicated across the two classes, so the new names do not create a shared source of truth.",
+                "cohesion": "The constants live with each class, but identical threshold policy now has two copies.",
+                "interfaces": "Named values make threshold selection readable and the quote interface is unchanged."
+              },
+              "correctness_concerns": [
+                "The parallel constants can drift independently."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 3,
+                "boundaries": 2,
+                "cohesion": 3,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "Named constants replace literals, but each class defines a duplicate pair of regional constants.",
+                "boundaries": "The two identical constant sets are duplicated instead of providing one shared source for two quote paths.",
+                "cohesion": "Constants remain near each class, but repeated policy data can drift between CheckoutShipping and DeliveryEstimate.",
+                "interfaces": "Named values clarify the thresholds; the region ternary still treats every non-north region as south."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The parallel constants can drift independently."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0006",
+          "cell": {
+            "grid_cell": "0027",
+            "final_trial": "0027/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0006.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Top-level NORTH_FREE_SHIPPING_THRESHOLD and SOUTH_FREE_SHIPPING_THRESHOLD feed each class’s threshold ternary.",
+                "boundaries": "Shared constants centralize values without introducing a service or helper.",
+                "cohesion": "The values are shared while each class keeps its own pricing calculation.",
+                "interfaces": "The method signature is unchanged and named constants clarify selection."
+              },
+              "correctness_concerns": [
+                "The same selection expression remains duplicated."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Two named top-level threshold constants and one named handling constant clarify the changed values.",
+                "boundaries": "Shared threshold constants avoid duplicate copies; no extra object or method is added.",
+                "cohesion": "The constants support the existing quote methods and formulas directly.",
+                "interfaces": "The input and output interface is unchanged; non-north regions continue to use the southern threshold."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The same selection expression remains duplicated."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0007",
+          "cell": {
+            "grid_cell": "0040",
+            "final_trial": "0040/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0007.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both quote methods update the south branch threshold to 75.0.",
+                "boundaries": "No extra boundary is introduced.",
+                "cohesion": "The minimal edits fit the existing class layout, retaining pre-existing duplicated logic.",
+                "interfaces": "The quote interface stays unchanged."
+              },
+              "correctness_concerns": [
+                "Threshold selection is still duplicated."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Each existing ternary directly expresses north 50.0 and south 75.0 without added constructs.",
+                "boundaries": "No additional abstraction; threshold selection stays in the quote methods.",
+                "cohesion": "Both classes update their threshold in place and preserve their separate charge formulas.",
+                "interfaces": "Existing quote keyword arguments and numeric results remain the interface."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Threshold selection is still duplicated."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0008",
+          "cell": {
+            "grid_cell": "0030",
+            "final_trial": "0030/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0008.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "ShippingThresholds centralizes FREE_SHIPPING and DEFAULT_FREE_SHIPPING; both classes call free_shipping_threshold.",
+                "boundaries": "The module provides one reusable threshold policy for the two quote paths.",
+                "cohesion": "The shared rule is cohesive; charge calculation remains in each class.",
+                "interfaces": "fetch(region, default) makes fallback explicit, and the private method narrows its use."
+              },
+              "correctness_concerns": [
+                "The broad contract does not specify unknown-region behavior; the implementation preserves the prior non-north threshold through DEFAULT_FREE_SHIPPING."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 3,
+                "boundaries": 3,
+                "cohesion": 3,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "ShippingThresholds introduces a regional table, a default, and an included helper for threshold lookup.",
+                "boundaries": "The shared module avoids duplicated values, but mixin inclusion and a private lookup add layers for one shared decision.",
+                "cohesion": "The threshold lookup is centralized; per-region charge logic remains in each class.",
+                "interfaces": "The helper documents fallback behavior, although regions outside north and south silently use the default."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 1,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The broad contract does not specify unknown-region behavior; the implementation preserves the prior non-north threshold through DEFAULT_FREE_SHIPPING."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0009",
+          "cell": {
+            "grid_cell": "0039",
+            "final_trial": "0039/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0009.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both quote methods change only the non-north threshold literal to 75.0.",
+                "boundaries": "No new abstraction is introduced.",
+                "cohesion": "The edits follow the existing local class responsibilities.",
+                "interfaces": "No interface change; threshold remains a local value."
+              },
+              "correctness_concerns": [
+                "The threshold expression is duplicated across the two classes."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The existing ternary changes only the southern threshold value.",
+                "boundaries": "No new boundary or dependency is introduced.",
+                "cohesion": "The change remains local to each established quote method.",
+                "interfaces": "The public quote signature and result shape remain unchanged."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The threshold expression is duplicated across the two classes."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0010",
+          "cell": {
+            "grid_cell": "0029",
+            "final_trial": "0029/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0010.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both methods use `region == :south ? 75.0 : 50.0` for threshold selection.",
+                "boundaries": "The expression keeps policy local and adds no layers.",
+                "cohesion": "Each existing class remains independently readable.",
+                "interfaces": "The quote signature is unchanged and the branching condition is explicit."
+              },
+              "correctness_concerns": [
+                "Unknown regions receive the 50.0 fallback; the broad contract does not specify them."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "The existing threshold ternary is updated to select 75.0 for south and 50.0 otherwise.",
+                "boundaries": "No new abstraction is added; the selection stays in quote.",
+                "cohesion": "Both quote implementations change consistently while retaining their separate charge logic.",
+                "interfaces": "The known north/south paths are explicit; all other regions take the 50.0 branch without an error or validation boundary."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Unknown regions receive the 50.0 fallback; the broad contract does not specify them."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0011",
+          "cell": {
+            "grid_cell": "0038",
+            "final_trial": "0038/continuations/answer-01",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "natural"
+          },
+          "packet_path": "review-stage1-regional-natural/review-packets/packets/R-0011.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-natural-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-natural-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both methods change the non-north threshold branch from 50.0 to 75.0.",
+                "boundaries": "No new abstraction; existing objects retain their boundaries.",
+                "cohesion": "The change stays within each quote method, matching surrounding structure.",
+                "interfaces": "The public keyword interface is untouched."
+              },
+              "correctness_concerns": [
+                "The same threshold expression remains duplicated."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The existing threshold ternaries directly express the two regional values.",
+                "boundaries": "The quote methods keep the decision without added indirection.",
+                "cohesion": "Both classes retain their existing regional charge branches.",
+                "interfaces": "The existing keyword interface is preserved."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The same threshold expression remains duplicated."
+            ],
+            "luna_b": []
+          }
+        }
+      ],
+      "dimension_agreement": {
+        "concepts": {
+          "paired_packet_count": 11,
+          "exact_agreement_count": 2,
+          "mean_absolute_disagreement": 0.8181818181818182
+        },
+        "boundaries": {
+          "paired_packet_count": 11,
+          "exact_agreement_count": 2,
+          "mean_absolute_disagreement": 0.8181818181818182
+        },
+        "cohesion": {
+          "paired_packet_count": 11,
+          "exact_agreement_count": 10,
+          "mean_absolute_disagreement": 0.09090909090909091
+        },
+        "interfaces": {
+          "paired_packet_count": 11,
+          "exact_agreement_count": 8,
+          "mean_absolute_disagreement": 0.2727272727272727
+        }
+      },
+      "cell_groups": [
+        {
+          "task": "regional_policy",
+          "agent": "claude",
+          "track": "natural",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 3.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 3.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 2.5
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.5
+              }
+            }
+          }
+        },
+        {
+          "task": "regional_policy",
+          "agent": "claude",
+          "track": "natural",
+          "condition": "ruby-plainspoken",
+          "packet_count": 1,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 1,
+                "median": 5
+              },
+              "boundaries": {
+                "sample_count": 1,
+                "median": 5
+              },
+              "cohesion": {
+                "sample_count": 1,
+                "median": 4
+              },
+              "interfaces": {
+                "sample_count": 1,
+                "median": 4
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 1,
+                "median": 4
+              },
+              "boundaries": {
+                "sample_count": 1,
+                "median": 4
+              },
+              "cohesion": {
+                "sample_count": 1,
+                "median": 4
+              },
+              "interfaces": {
+                "sample_count": 1,
+                "median": 3
+              }
+            }
+          }
+        },
+        {
+          "task": "regional_policy",
+          "agent": "claude",
+          "track": "natural",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.5
+              }
+            }
+          }
+        },
+        {
+          "task": "regional_policy",
+          "agent": "codex",
+          "track": "natural",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "regional_policy",
+          "agent": "codex",
+          "track": "natural",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "regional_policy",
+          "agent": "codex",
+          "track": "natural",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "batch": "stage1-regional-specified",
+      "status": "complete",
+      "mapping_path": "review-stage1-regional-specified/review-packets/private-key.json",
+      "reviewer_files": {
+        "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+        "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+      },
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [],
+      "expected_packet_count": 12,
+      "exclusions": {
+        "count": 0,
+        "reasons": {},
+        "source_path": "review-stage1-regional-specified/batch-summary.json"
+      },
+      "packets": [
+        {
+          "packet": "R-0001",
+          "cell": {
+            "grid_cell": "0047",
+            "final_trial": "0047",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0001.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "CheckoutShipping and DeliveryEstimate each change the south threshold to 75.0; north remains 50.0.",
+                "boundaries": "The existing class boundaries remain adequate for this narrow policy change.",
+                "cohesion": "Each class keeps its distinct charge calculation while sharing the same visible threshold expression.",
+                "interfaces": "The keyword inputs and returned numeric quotes are unchanged; inclusive comparison remains `>=`."
+              },
+              "correctness_concerns": [
+                "The threshold expression is duplicated in both methods."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The existing ternaries directly encode the two thresholds stated in the contract.",
+                "boundaries": "No extra layer is added; each class retains its threshold check.",
+                "cohesion": "Checkout and estimate keep their separate charge formulas while applying the same regional thresholds.",
+                "interfaces": "quote retains its named arguments and numeric return."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The threshold expression is duplicated in both methods."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0002",
+          "cell": {
+            "grid_cell": "0046",
+            "final_trial": "0046",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0002.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "FreeShipping defines named regional thresholds and both quote methods use threshold(region).",
+                "boundaries": "A small shared module centralizes the threshold rule used by both paths.",
+                "cohesion": "The module owns threshold policy while classes retain distinct checkout and estimate charges.",
+                "interfaces": "The selection boundary is a simple region-in/numeric-threshold-out method."
+              },
+              "correctness_concerns": [
+                "`threshold` treats any non-north region as south; the contract only specifies north and south."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The existing ternaries directly encode north and south threshold values.",
+                "boundaries": "No new abstraction; each quote method owns a short local threshold choice.",
+                "cohesion": "The modified threshold checks remain close to their distinct charge calculations.",
+                "interfaces": "The method signatures and numeric results are clear and unchanged."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "`threshold` treats any non-north region as south; the contract only specifies north and south."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0003",
+          "cell": {
+            "grid_cell": "0031",
+            "final_trial": "0031",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0003.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 3,
+                "boundaries": 3,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "RegionalRates stores base, per_kg, and free_at values and composes quote from those values plus surcharge(region).",
+                "boundaries": "A shared rate engine and override hook create reusable boundaries, but they generalize beyond the requested threshold update.",
+                "cohesion": "Regional price math is centralized; CheckoutShipping specializes surcharge and DeliveryEstimate uses the default.",
+                "interfaces": "`quote` is shared and explicit, but `rule_for`/`surcharge` visibility and unknown-region fallback require inference."
+              },
+              "correctness_concerns": [
+                "Unknown regions fall back to the south rule although that behavior is not in the contract."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "RegionalRates consolidates thresholds and per-weight/base rules into one table plus a shared quote operation.",
+                "boundaries": "The module centralizes rules genuinely used by both quote policies; the surcharge hook supports the documented checkout distinction.",
+                "cohesion": "Common rates are cohesive in RegionalRates and checkout-specific handling is isolated in CheckoutShipping#surcharge.",
+                "interfaces": "rule_for has a documented fallback and quote has the same named arguments; the overridable surcharge hook is an internal interface."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": -1,
+            "boundaries": -1,
+            "cohesion": 0,
+            "interfaces": -1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Unknown regions fall back to the south rule although that behavior is not in the contract."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0004",
+          "cell": {
+            "grid_cell": "0045",
+            "final_trial": "0045",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0004.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both methods keep the existing formula and update only the southern threshold to 75.0.",
+                "boundaries": "No new abstraction is needed for the specified change.",
+                "cohesion": "Checkout and estimate continue to own their distinct charge formulas.",
+                "interfaces": "Inclusive `>=` and keyword inputs remain unchanged."
+              },
+              "correctness_concerns": [
+                "The threshold branch is duplicated."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 3,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The two regional threshold values are applied directly in both existing quote methods.",
+                "boundaries": "The calculation stays local, but the identical policy choice is duplicated in two places and could drift.",
+                "cohesion": "Each class retains its own coherent formula and uses the same threshold rule.",
+                "interfaces": "The contract remains represented by the existing region/subtotal/weight arguments."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 2,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The threshold branch is duplicated."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0005",
+          "cell": {
+            "grid_cell": "0036",
+            "final_trial": "0036",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "baseline",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0005.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 3,
+                "boundaries": 3,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "RegionalRates centralizes threshold/base/per-kg maps; base_quote returns zero at threshold; CheckoutShipping adds HANDLING only to nonzero south charges.",
+                "boundaries": "A shared regional calculator is coherent, though three maps and a mixin are broader than the threshold change requires.",
+                "cohesion": "Rate calculation is centralized and the checkout surcharge stays with CheckoutShipping.",
+                "interfaces": "`fetch(region)` gives an error for unsupported regions, but that boundary behavior is not described in the contract."
+              },
+              "correctness_concerns": [
+                "Unsupported region values raise through Hash#fetch; contract only states north and south."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "RegionalRates uses three tables and a shared base_quote operation to represent common regional rates.",
+                "boundaries": "A shared module prevents divergence between quote paths, though inclusion and hash lookups add a layer beyond two short formulas.",
+                "cohesion": "Common rate calculations are together; checkout handling is isolated in CheckoutShipping.",
+                "interfaces": "base_quote takes explicit keyword arguments, but CheckoutShipping uses charge.zero? to infer that the subtotal threshold was met."
+              },
+              "correctness_concerns": [
+                "CheckoutShipping decides to waive handling via charge.zero?, coupling free shipping to a computed amount rather than the threshold condition; this is a potential edge case if a valid charge can be zero."
+              ]
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": -1,
+            "boundaries": -1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Unsupported region values raise through Hash#fetch; contract only states north and south."
+            ],
+            "luna_b": [
+              "CheckoutShipping decides to waive handling via charge.zero?, coupling free shipping to a computed amount rather than the threshold condition; this is a potential edge case if a valid charge can be zero."
+            ]
+          }
+        },
+        {
+          "packet": "R-0006",
+          "cell": {
+            "grid_cell": "0033",
+            "final_trial": "0033",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0006.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Two named top-level constants are used by both threshold ternaries; HANDLING names the existing checkout fee.",
+                "boundaries": "Shared constants avoid duplicated values without adding an extra service boundary.",
+                "cohesion": "Constants represent policy values while both classes keep their specific formulas.",
+                "interfaces": "Inputs and numeric outputs are unchanged, and inclusive `>=` remains clear."
+              },
+              "correctness_concerns": [
+                "The threshold selection logic remains duplicated."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Named constants clarify both thresholds and the existing handling charge.",
+                "boundaries": "Top-level constants are shared by both quote paths without introducing a helper object.",
+                "cohesion": "The constants serve the existing formulas directly and checkout handling remains class-local.",
+                "interfaces": "The quote interface is unchanged; region selection remains explicit in both methods."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The threshold selection logic remains duplicated."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0007",
+          "cell": {
+            "grid_cell": "0032",
+            "final_trial": "0032",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0007.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both methods update the southern threshold to 75.0 and preserve their respective existing formulas.",
+                "boundaries": "No new abstraction is introduced.",
+                "cohesion": "The edit stays inside the two pricing policies.",
+                "interfaces": "The existing interface and inclusive threshold check remain clear."
+              },
+              "correctness_concerns": [
+                "The duplicated threshold logic could drift later."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The code directly changes the southern value in the existing regional ternaries.",
+                "boundaries": "The local threshold decision avoids extra layers and remains easy to trace.",
+                "cohesion": "Both quote methods retain the same structure and separate responsibilities.",
+                "interfaces": "Existing keyword inputs and return values are clear."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The duplicated threshold logic could drift later."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0008",
+          "cell": {
+            "grid_cell": "0048",
+            "final_trial": "0048",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0008.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "ShippingThresholds defines frozen regional thresholds and a private free_shipping_threshold lookup used by both classes.",
+                "boundaries": "The module is a reasonable shared policy boundary; fallback constant is additional behavior beyond the stated two regions.",
+                "cohesion": "Threshold selection is cohesive in the module and separate charge formulas remain in each class.",
+                "interfaces": "Private lookup uses fetch with an explicit default and leaves quote interfaces unchanged."
+              },
+              "correctness_concerns": [
+                "The fallback for unspecified regions is extra behavior, though consistent with the baseline."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The existing ternary expresses the regional threshold with no added concept.",
+                "boundaries": "No helper or shared object is introduced.",
+                "cohesion": "Threshold selection remains beside the relevant free-shipping comparison in both methods.",
+                "interfaces": "The named quote parameters remain unchanged."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 0,
+            "boundaries": 0,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The fallback for unspecified regions is extra behavior, though consistent with the baseline."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0009",
+          "cell": {
+            "grid_cell": "0035",
+            "final_trial": "0035",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0009.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both quote methods change their south threshold from 50.0 to 75.0 while preserving charge formulas.",
+                "boundaries": "No abstraction is added, which fits the narrow requirement.",
+                "cohesion": "Each method retains its existing responsibility and surrounding structure.",
+                "interfaces": "The method interface and inclusive threshold behavior remain clear."
+              },
+              "correctness_concerns": [
+                "Duplicated regional threshold logic remains."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Only the southern value in the existing threshold ternaries changes.",
+                "boundaries": "The implementation retains the local decision already used by each quote method.",
+                "cohesion": "The update stays close to each method’s own regional rate formula.",
+                "interfaces": "The quote interface and return shape remain unchanged."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Duplicated regional threshold logic remains."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0010",
+          "cell": {
+            "grid_cell": "0044",
+            "final_trial": "0044",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "rubypowers",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0010.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both methods set threshold to 75.0 for :south and 50.0 otherwise.",
+                "boundaries": "Inline conditionals keep the smallest boundary surface.",
+                "cohesion": "Each pricing path remains local and parallel.",
+                "interfaces": "Inputs and output are unchanged; comparison remains inclusive."
+              },
+              "correctness_concerns": [
+                "Any region other than south gets 50.0; only north/south are defined by contract."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 3
+              },
+              "evidence": {
+                "concepts": "The existing ternary tests for south and chooses 75.0, otherwise 50.0.",
+                "boundaries": "No added boundary; threshold selection is local and direct.",
+                "cohesion": "The selection is repeated consistently in the two quote classes.",
+                "interfaces": "North and south are handled plainly, while any other region silently follows the north threshold."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 1
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Any region other than south gets 50.0; only north/south are defined by contract."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0011",
+          "cell": {
+            "grid_cell": "0034",
+            "final_trial": "0034",
+            "task": "regional_policy",
+            "agent": "claude",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0011.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both quote methods change only the non-north threshold to 75.0.",
+                "boundaries": "No new layer or abstraction is introduced.",
+                "cohesion": "The independent checkout and estimate formulas remain grouped in their classes.",
+                "interfaces": "The quote contract stays explicit and the inclusive comparison is preserved."
+              },
+              "correctness_concerns": [
+                "Selection logic remains duplicated between classes."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The existing ternary directly captures north and south thresholds.",
+                "boundaries": "No additional indirection is introduced.",
+                "cohesion": "Threshold updates are colocated with each class’s existing charge calculation.",
+                "interfaces": "The existing quote keyword contract is preserved."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "Selection logic remains duplicated between classes."
+            ],
+            "luna_b": []
+          }
+        },
+        {
+          "packet": "R-0012",
+          "cell": {
+            "grid_cell": "0043",
+            "final_trial": "0043",
+            "task": "regional_policy",
+            "agent": "codex",
+            "condition": "ruby-plainspoken",
+            "track": "specified"
+          },
+          "packet_path": "review-stage1-regional-specified/review-packets/packets/R-0012.md",
+          "reviewer_source_paths": {
+            "luna_a": "automated-review/stage1-regional-specified-luna_a.json",
+            "luna_b": "automated-review/stage1-regional-specified-luna_b.json"
+          },
+          "reviewers": {
+            "luna_a": {
+              "scores": {
+                "concepts": 5,
+                "boundaries": 5,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "Both methods use a 75.0 threshold for non-north and retain the existing pricing formulas.",
+                "boundaries": "The direct ternaries add no indirection.",
+                "cohesion": "The code remains in the two existing quote implementations.",
+                "interfaces": "No new inputs or outputs are introduced; `>=` preserves inclusivity."
+              },
+              "correctness_concerns": [
+                "The two methods duplicate threshold selection."
+              ]
+            },
+            "luna_b": {
+              "scores": {
+                "concepts": 4,
+                "boundaries": 4,
+                "cohesion": 4,
+                "interfaces": 4
+              },
+              "evidence": {
+                "concepts": "The current threshold ternaries now use 50.0 for north and 75.0 for other regions.",
+                "boundaries": "The regional decision remains a local expression with no new helper layer.",
+                "cohesion": "Both quote methods are updated consistently and retain their class-specific charges.",
+                "interfaces": "The existing keyword interface remains stable; behavior outside the two named regions is implicit."
+              },
+              "correctness_concerns": []
+            }
+          },
+          "score_difference_luna_a_minus_luna_b": {
+            "concepts": 1,
+            "boundaries": 1,
+            "cohesion": 0,
+            "interfaces": 0
+          },
+          "correctness_concerns": {
+            "luna_a": [
+              "The two methods duplicate threshold selection."
+            ],
+            "luna_b": []
+          }
+        }
+      ],
+      "dimension_agreement": {
+        "concepts": {
+          "paired_packet_count": 12,
+          "exact_agreement_count": 2,
+          "mean_absolute_disagreement": 0.8333333333333334
+        },
+        "boundaries": {
+          "paired_packet_count": 12,
+          "exact_agreement_count": 3,
+          "mean_absolute_disagreement": 0.8333333333333334
+        },
+        "cohesion": {
+          "paired_packet_count": 12,
+          "exact_agreement_count": 12,
+          "mean_absolute_disagreement": 0.0
+        },
+        "interfaces": {
+          "paired_packet_count": 12,
+          "exact_agreement_count": 10,
+          "mean_absolute_disagreement": 0.16666666666666666
+        }
+      },
+      "cell_groups": [
+        {
+          "task": "regional_policy",
+          "agent": "claude",
+          "track": "specified",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 3.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 3.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.5
+              }
+            }
+          }
+        },
+        {
+          "task": "regional_policy",
+          "agent": "claude",
+          "track": "specified",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "regional_policy",
+          "agent": "claude",
+          "track": "specified",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.5
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "regional_policy",
+          "agent": "codex",
+          "track": "specified",
+          "condition": "baseline",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 5.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 3.5
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "regional_policy",
+          "agent": "codex",
+          "track": "specified",
+          "condition": "ruby-plainspoken",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.5
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.5
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            }
+          }
+        },
+        {
+          "task": "regional_policy",
+          "agent": "codex",
+          "track": "specified",
+          "condition": "rubypowers",
+          "packet_count": 2,
+          "per_rater_dimension": {
+            "luna_a": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.5
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.5
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 4.0
+              }
+            },
+            "luna_b": {
+              "concepts": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "boundaries": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "cohesion": {
+                "sample_count": 2,
+                "median": 4.0
+              },
+              "interfaces": {
+                "sample_count": 2,
+                "median": 3.5
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "batch": "stage1-export-natural",
+      "status": "pending_reviews",
+      "pending_reason": "packet mapping missing",
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "expected_packet_count": "unknown",
+      "reviewers": {},
+      "packets": [],
+      "dimension_agreement": {},
+      "cell_groups": [],
+      "exclusions": {
+        "count": "unknown",
+        "reasons": {},
+        "source_path": "unknown"
+      }
+    },
+    {
+      "batch": "stage1-export-specified",
+      "status": "pending_reviews",
+      "pending_reason": "packet mapping missing",
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "expected_packet_count": "unknown",
+      "reviewers": {},
+      "packets": [],
+      "dimension_agreement": {},
+      "cell_groups": [],
+      "exclusions": {
+        "count": "unknown",
+        "reasons": {},
+        "source_path": "unknown"
+      }
+    },
+    {
+      "batch": "stage2-notification-natural",
+      "status": "pending_reviews",
+      "pending_reason": "packet mapping missing",
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "expected_packet_count": "unknown",
+      "reviewers": {},
+      "packets": [],
+      "dimension_agreement": {},
+      "cell_groups": [],
+      "exclusions": {
+        "count": "unknown",
+        "reasons": {},
+        "source_path": "unknown"
+      }
+    },
+    {
+      "batch": "stage2-notification-specified",
+      "status": "pending_reviews",
+      "pending_reason": "packet mapping missing",
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "expected_packet_count": "unknown",
+      "reviewers": {},
+      "packets": [],
+      "dimension_agreement": {},
+      "cell_groups": [],
+      "exclusions": {
+        "count": "unknown",
+        "reasons": {},
+        "source_path": "unknown"
+      }
+    },
+    {
+      "batch": "stage2-regional-natural",
+      "status": "pending_reviews",
+      "pending_reason": "packet mapping missing",
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "expected_packet_count": "unknown",
+      "reviewers": {},
+      "packets": [],
+      "dimension_agreement": {},
+      "cell_groups": [],
+      "exclusions": {
+        "count": "unknown",
+        "reasons": {},
+        "source_path": "unknown"
+      }
+    },
+    {
+      "batch": "stage2-regional-specified",
+      "status": "pending_reviews",
+      "pending_reason": "packet mapping missing",
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "expected_packet_count": "unknown",
+      "reviewers": {},
+      "packets": [],
+      "dimension_agreement": {},
+      "cell_groups": [],
+      "exclusions": {
+        "count": "unknown",
+        "reasons": {},
+        "source_path": "unknown"
+      }
+    },
+    {
+      "batch": "stage2-export-natural",
+      "status": "pending_reviews",
+      "pending_reason": "packet mapping missing",
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "expected_packet_count": "unknown",
+      "reviewers": {},
+      "packets": [],
+      "dimension_agreement": {},
+      "cell_groups": [],
+      "exclusions": {
+        "count": "unknown",
+        "reasons": {},
+        "source_path": "unknown"
+      }
+    },
+    {
+      "batch": "stage2-export-specified",
+      "status": "pending_reviews",
+      "pending_reason": "packet mapping missing",
+      "expected_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "missing_reviewers": [
+        "luna_a",
+        "luna_b"
+      ],
+      "expected_packet_count": "unknown",
+      "reviewers": {},
+      "packets": [],
+      "dimension_agreement": {},
+      "cell_groups": [],
+      "exclusions": {
+        "count": "unknown",
+        "reasons": {},
+        "source_path": "unknown"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+Make ArchiveExporter publish atomically: if writing the header, any row, or finishing raises, no partial archive is visible and a later call can retry. A successful export publishes once; subsequent calls return :already_exported and do not write again. Propagate the original writer error.

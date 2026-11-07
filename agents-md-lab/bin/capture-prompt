@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Capture the exact request Claude Code sends to the API, so we can read the
+# real system prompt instead of what the model reports about it.
+#
+# It is the Claude side of `codex debug prompt-input`: a tiny HTTP server on
+# localhost that stores every POST body and answers 400, so Claude stops after
+# one request and no model is called.
+#
+#   bin/capture-prompt <dir> [-- claude args...]
+#
+# Runs `claude -p hi` in <dir> with ANTHROPIC_BASE_URL pointed at the server,
+# writes each request body to results/captures/<stamp>-N.json and prints
+# where every CANARY_ token sits in the system prompt, in order.
+
+require "socket"
+require "json"
+require "fileutils"
+require "open3"
+
+ROOT = File.expand_path("..", __dir__)
+dir, *extra = ARGV
+extra.shift if extra.first == "--"
+abort "usage: bin/capture-prompt <dir> [-- claude args...]" if dir.nil? || !Dir.exist?(dir)
+
+server = TCPServer.new("127.0.0.1", 0)
+port = server.addr[1]
+bodies = []
+
+reader = Thread.new do
+  loop do
+    client = server.accept
+    head = +""
+    head << client.readline until head.end_with?("\r\n\r\n")
+    length = head[/^content-length:\s*(\d+)/i, 1].to_i
+    body = length.positive? ? client.read(length) : ""
+    bodies << body
+    reply = { type: "error", error: { type: "invalid_request_error", message: "captured by agents-md-lab" } }.to_json
+    client.write "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n" \
+                 "Content-Length: #{reply.bytesize}\r\nConnection: close\r\n\r\n#{reply}"
+    client.close
+  rescue StandardError => e
+    warn "capture: #{e.message}"
+  end
+end
+
+settings = { "pluginConfigs" => { "cc-plugin-agents-md@builtin" =>
+             { "options" => { "instructionFiles" => "claude-md-or-agents-md" } } } }
+cmd = ["claude", "-p", "hi", "--settings", JSON.generate(settings), "--tools", "",
+       "--no-session-persistence", "--max-turns", "1", *extra]
+env = { "ANTHROPIC_BASE_URL" => "http://127.0.0.1:#{port}" }
+_out, err, _status = Open3.capture3(env, *cmd, chdir: dir)
+sleep 0.5
+reader.kill
+
+abort "No request captured. Claude said:\n#{err}" if bodies.empty?
+
+stamp = Time.now.strftime("%Y-%m-%d-%H%M%S")
+out_dir = File.join(ROOT, "results", "captures")
+FileUtils.mkdir_p(out_dir)
+files = bodies.each_with_index.map do |body, i|
+  path = File.join(out_dir, "#{stamp}-#{i + 1}.json")
+  File.write(path, body)
+  path
+end
+puts "Captured #{bodies.size} request(s) in #{out_dir}"
+
+bodies.zip(files).each do |body, path|
+  req = JSON.parse(body) rescue next
+  # Memory files travel in a <system-reminder> inside the first user message,
+  # not in the API "system" field, so scan both.
+  texts = Array(req["system"]).map { |s| s.is_a?(Hash) ? s["text"] : s.to_s }
+  Array(req["messages"]).each do |m|
+    Array(m["content"]).each { |c| texts << (c.is_a?(Hash) ? c["text"].to_s : c.to_s) }
+  end
+  text = texts.join("\n")
+  hits = text.enum_for(:scan, /CANARY_\w+/).map { [Regexp.last_match.begin(0), Regexp.last_match[0]] }
+  next if hits.empty?
+
+  blocks = text.scan(/^Contents of .*?(?=^Contents of |<\/system-reminder>|\z)/m)
+  puts "\n#{File.basename(path)}  model=#{req['model']}"
+  puts "CANARY tokens in request order:"
+  hits.each { |offset, tok| puts "  #{offset.to_s.rjust(7)}  #{tok}" }
+  puts "\nMemory blocks, in order (first line of each):"
+  blocks.each { |b| puts "  #{b.lines.first.strip}" }
+  puts "\nBlocks holding a CANARY:"
+  blocks.select { |b| b.include?("CANARY_") }.each { |b| puts "-----", b.strip, "" }
+  break # one request is enough; the rest are retries of the same prompt
+end

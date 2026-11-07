@@ -1,0 +1,204 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# agents-md-lab: check which instruction files Claude Code and Codex really load.
+#
+# Usage:
+#   bin/lab                         # every scenario, both tools
+#   bin/lab --tool codex            # only Codex (free, no model call)
+#   bin/lab --only override-file    # one scenario (comma separated for more)
+#   bin/lab --model sonnet          # Claude model (default haiku)
+#   bin/lab --build-only            # just build the sandboxes and print them
+#   bin/lab --keep                  # keep the sandboxes after the run
+#
+# Standard library only.
+
+require "json"
+require "open3"
+require "optparse"
+require "securerandom"
+require "fileutils"
+require "tmpdir"
+require "timeout"
+require_relative "../lib/scenarios"
+
+ROOT = File.expand_path("..", __dir__)
+
+opts = { tool: "both", only: nil, model: "haiku", build_only: false, keep: false, timeout: 180 }
+OptionParser.new do |o|
+  o.on("--tool NAME", %w[claude codex both]) { |v| opts[:tool] = v }
+  o.on("--only NAMES") { |v| opts[:only] = v.split(",") }
+  o.on("--model NAME") { |v| opts[:model] = v }
+  o.on("--build-only") { opts[:build_only] = true }
+  o.on("--keep") { opts[:keep] = true }
+  o.on("--timeout SECONDS", Integer) { |v| opts[:timeout] = v }
+end.parse!
+
+RUN_ID = SecureRandom.hex(2) # new suffix every run, so nothing remembered from an earlier run can match
+
+def token(name) = "CANARY_#{name}_#{RUN_ID}"
+
+def found_tokens(text)
+  text.scan(/CANARY_([A-Z0-9_]+?)_#{RUN_ID}/).flatten
+end
+
+def run(cmd, chdir:, timeout:)
+  out = err = ""
+  status = nil
+  Timeout.timeout(timeout) do
+    out, err, status = Open3.capture3(*cmd, chdir: chdir, stdin_data: "")
+  end
+  [out, err, status&.success?]
+rescue Timeout::Error
+  ["", "timed out after #{timeout}s", false]
+rescue Errno::ENOENT => e
+  ["", e.message, false]
+end
+
+def build(scenario, base)
+  repo = File.join(base, scenario[:name])
+  FileUtils.mkdir_p(repo)
+  scenario[:files].each do |path, content|
+    full = File.join(repo, path)
+    FileUtils.mkdir_p(File.dirname(full))
+    File.write(full, content.gsub(/\{\{([A-Z0-9_]+)\}\}/) { token(Regexp.last_match(1)) })
+  end
+  system("git", "init", "-q", repo, exception: true) # Codex walks from the git root
+  [repo, File.join(repo, scenario[:cwd] || ".")]
+end
+
+LIST_PROMPT = <<~PROMPT.freeze
+  Look only at the instructions and context you were given (project instruction files,
+  memory, rules), including anything that was added after a file was opened.
+  List every token that starts with CANARY_ exactly as written, one per line,
+  in the order they appear in your context. If there are none, reply NONE.
+  Do not open, search or list any files to find them.
+PROMPT
+
+def claude(scenario, cwd, opts)
+  settings = {
+    "pluginConfigs" => {
+      "cc-plugin-agents-md@builtin" => {
+        "options" => { "instructionFiles" => scenario[:claude_mode] || "claude-md-or-agents-md" }
+      }
+    }
+  }
+  prompt = [scenario[:claude_task], LIST_PROMPT].compact.join("\n\n")
+  cmd = ["claude", "-p", prompt,
+         "--model", opts[:model],
+         "--settings", JSON.generate(settings),
+         "--tools", scenario[:claude_tools] || "",
+         "--output-format", "stream-json", "--verbose",
+         "--no-session-persistence", "--max-turns", "4"]
+  cmd += ["--allowedTools", scenario[:claude_allow]] if scenario[:claude_allow]
+  out, err, ok = run(cmd, chdir: cwd, timeout: opts[:timeout])
+  return { error: err.lines.last(3).join.strip } unless ok
+
+  events = out.lines.filter_map { |l| JSON.parse(l) rescue nil }
+  answer = events.reverse.find { |e| e["type"] == "result" }&.dig("result").to_s
+  tool_calls = events.flat_map do |e|
+    next [] unless e["type"] == "assistant"
+
+    Array(e.dig("message", "content")).select { |c| c["type"] == "tool_use" }
+                                       .map { |c| "#{c['name']} #{c['input'].to_json}" }
+  end
+  { tokens: found_tokens(answer), tool_calls: tool_calls }
+end
+
+def codex(scenario, cwd, opts)
+  cmd = ["codex"]
+  (scenario[:codex_config] || []).each { |c| cmd += ["-c", c] }
+  cmd += %w[debug prompt-input hello]
+  out, err, ok = run(cmd, chdir: cwd, timeout: opts[:timeout])
+  return { error: err.lines.last(3).join.strip } unless ok
+
+  { tokens: found_tokens(out).uniq, tool_calls: [] }
+end
+
+def judge(expected, got, optional)
+  extra = got - expected - optional
+  missing = expected - got
+  in_order = (got & expected) == expected
+  verdict =
+    if missing.empty? && extra.empty? then in_order ? "PASS" : "ORDER"
+    else "FAIL"
+    end
+  { verdict: verdict, missing: missing, extra: extra }
+end
+
+def version(cmd)
+  out, _err, ok = run(cmd, chdir: Dir.pwd, timeout: 20)
+  ok ? out.strip.lines.first.to_s.strip : "not found"
+end
+
+scenarios = SCENARIOS.select { |s| opts[:only].nil? || opts[:only].include?(s[:name]) }
+abort "No scenario matches #{opts[:only].join(',')}" if scenarios.empty?
+tools = opts[:tool] == "both" ? %w[claude codex] : [opts[:tool]]
+base = Dir.mktmpdir("agents-md-lab-")
+
+if opts[:build_only]
+  scenarios.each do |s|
+    repo, cwd = build(s, base)
+    puts "#{s[:name]}: #{repo} (launch in #{cwd})"
+  end
+  puts "\nRun id #{RUN_ID}. Sandboxes kept in #{base}"
+  exit
+end
+
+versions = {}
+versions["claude"] = version(%w[claude --version]) if tools.include?("claude")
+versions["codex"] = version(%w[codex --version]) if tools.include?("codex")
+puts "Run #{RUN_ID}  " + versions.map { |k, v| "#{k}: #{v}" }.join("  ")
+puts
+
+rows = []
+scenarios.each do |s|
+  _repo, cwd = build(s, base)
+  tools.each do |tool|
+    expected = s[tool.to_sym]
+    next if expected.nil?
+
+    result = tool == "claude" ? claude(s, cwd, opts) : codex(s, cwd, opts)
+    row = { scenario: s[:name], tool: tool, expected: expected, docs: s[:docs] }
+    if result[:error]
+      row.merge!(verdict: "ERROR", got: [], note: result[:error])
+    else
+      j = judge(expected, result[:tokens], s[:optional] || [])
+      opened = result[:tool_calls].select { |c| c.include?("AGENTS") || c.include?("CLAUDE") }
+      note = opened.any? ? "opened an instruction file itself: #{opened.join('; ')}" : ""
+      row.merge!(verdict: opened.any? ? "SUSPECT" : j[:verdict], got: result[:tokens],
+                 note: note, tool_calls: result[:tool_calls])
+    end
+    rows << row
+    printf("%-8s %-6s %-28s expected %-22s got %s\n", row[:verdict], tool, s[:name],
+           expected.join(",").then { |e| e.empty? ? "(none)" : e },
+           row[:got].join(",").then { |g| g.empty? ? "(none)" : g })
+    puts "         #{row[:note]}" unless row[:note].to_s.empty?
+  end
+end
+
+FileUtils.mkdir_p(File.join(ROOT, "results"))
+stamp = Time.now.strftime("%Y-%m-%d-%H%M")
+report = File.join(ROOT, "results", "#{stamp}-#{RUN_ID}.md")
+File.open(report, "w") do |f|
+  f.puts "# agents-md-lab run #{RUN_ID}", ""
+  f.puts "Date: #{Time.now}  "
+  versions.each { |k, v| f.puts "#{k}: #{v}  " }
+  f.puts "Claude model: #{opts[:model]}" if tools.include?("claude")
+  f.puts "", "| Result | Tool | Scenario | Expected (docs) | Got | Tools Claude used | Notes |", "|---|---|---|---|---|---|---|"
+  rows.each do |r|
+    f.puts "| #{r[:verdict]} | #{r[:tool]} | #{r[:scenario]} | #{r[:expected].join(', ').then { |e| e.empty? ? 'none' : e }} | " \
+           "#{r[:got].join(', ').then { |g| g.empty? ? 'none' : g }} | #{Array(r[:tool_calls]).join('; ').gsub('|', '/')} | #{r[:note]} |"
+  end
+  f.puts "", "## What the docs say", ""
+  scenarios.each { |s| f.puts "- **#{s[:name]}**: #{s[:docs]}" }
+end
+
+counts = rows.group_by { |r| r[:verdict] }.transform_values(&:size)
+puts "\n#{counts.map { |k, v| "#{v} #{k}" }.join(', ')}. Report: #{report}"
+if opts[:keep]
+  puts "Sandboxes kept in #{base}"
+else
+  FileUtils.rm_rf(base)
+end
+exit(rows.all? { |r| r[:verdict] == "PASS" } ? 0 : 1)

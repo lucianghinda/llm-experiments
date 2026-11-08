@@ -43,6 +43,21 @@ MAP_METRICS = HEADLINE.merge(
   "searches_before_first_target" => "searches before first target"
 ).freeze
 
+# Derived from the trial directory rather than from the transcript: how much
+# code the agent wrote to reach its passing state. Cost has two currencies and
+# tokens are only one of them -- two trials that pass the same acceptance check
+# can differ by a factor of seven in the code they leave behind.
+#
+# `diff_added_lines` counts `+` lines in agent.diff, excluding file headers.
+# agent.diff is `git diff` over tracked files, so brand-new files -- the
+# migration, a new test file -- contribute nothing to the line count; their
+# contents are not kept. They are counted in `files_touched`, which is modified
+# plus untracked files from meta.json.
+DIFF_METRICS = {
+  "diff_added_lines" => "lines added to tracked files",
+  "files_touched" => "files touched (modified + new)"
+}.freeze
+
 def commas(number)
   return "-" if number.nil?
 
@@ -54,7 +69,25 @@ raw = Dir.glob(File.join(EXPERIMENT_DIR, "results-raw", "**", "metrics.json"))
 files = raw.empty? ? Dir.glob(File.join(EXPERIMENT_DIR, "results", "**", "metrics.json")) : raw
 abort "no metrics.json found. Run trials, then parse_transcript.rb --all" if files.empty?
 
-all = files.map { |f| JSON.parse(File.read(f)) }
+# Each record is a metrics.json enriched with the two DIFF_METRICS, read from
+# the same trial directory. Every trial has an agent.diff (empty when the agent
+# changed nothing, which is every locate trial) and a meta.json with both file
+# lists, so a nil here means the directory is broken, not that the trial is old.
+all = files.map do |f|
+  record = JSON.parse(File.read(f))
+  dir = File.dirname(f)
+  diff_path = File.join(dir, "agent.diff")
+  if File.exist?(diff_path)
+    record["diff_added_lines"] =
+      File.foreach(diff_path).count { |l| l.start_with?("+") && !l.start_with?("+++") }
+  end
+  meta_path = File.join(dir, "meta.json")
+  if File.exist?(meta_path)
+    meta = JSON.parse(File.read(meta_path))
+    record["files_touched"] = (meta["changed_files"] || []).size + (meta["untracked_files"] || []).size
+  end
+  record
+end
 passed = all.select { |r| r["passed"] }
 
 agents = all.map { |r| r["agent"] }.uniq.compact.sort
@@ -188,7 +221,7 @@ if present_conditions.include?("scrambled-mapped")
   out << "|---|---|---|---|---|---|---|---|---|\n"
 
   agents.each do |agent|
-    MAP_METRICS.each do |metric, label|
+    MAP_METRICS.merge(DIFF_METRICS).each do |metric, label|
       tasks.each do |task|
         cell = passed.select { |r| r["agent"] == agent && r["task"] == task }
         series = CONDITIONS.to_h do |cond|
@@ -224,6 +257,55 @@ if present_conditions.include?("scrambled-mapped")
     end
   end
   out << "\n"
+end
+
+# --- code written -------------------------------------------------------------
+out << "## Code written\n\n"
+out << "How much code each passing trial left behind. Lines are `+` lines in\n"
+out << "agent.diff, which is `git diff` over tracked files -- a brand-new file\n"
+out << "(the migration, a fresh test file) adds nothing to the line count and is\n"
+out << "counted only in files touched. Two trials that pass the same scripted\n"
+out << "acceptance check can differ by a factor of seven here, and nothing in\n"
+out << "this experiment scores which of them wrote the better change: passing is\n"
+out << "the only quality bar a trial faces.\n\n"
+
+agents.each do |agent|
+  DIFF_METRICS.each do |metric, label|
+    out << "### #{agent}: #{label}, median over trials that passed\n\n"
+    out << "| task | " + present_conditions.join(" | ") + " | change c->s | exact p c->s |\n"
+    out << "|---" * (present_conditions.size + 3) + "|\n"
+
+    tasks.each do |task|
+      cell = passed.select { |r| r["agent"] == agent && r["task"] == task }
+      next if cell.empty?
+
+      medians = present_conditions.to_h do |cond|
+        values = cell.select { |r| r["condition"] == cond }.filter_map { |r| r[metric] }.map(&:to_f)
+        [cond, values.empty? ? nil : Stats.median(values)]
+      end
+
+      a = cell.select { |r| r["condition"] == "conventional" }.filter_map { |r| r[metric] }.map(&:to_f)
+      b = cell.select { |r| r["condition"] == "scrambled" }.filter_map { |r| r[metric] }.map(&:to_f)
+      change =
+        if medians["conventional"] && medians["scrambled"]
+          pct = Stats.percent_change(medians["conventional"], medians["scrambled"])
+          pct ? format("%+.0f%%", pct) : format("%+.1f", medians["scrambled"] - medians["conventional"])
+        else
+          "-"
+        end
+      p_text =
+        if a.empty? || b.empty?
+          "-"
+        else
+          result = Stats.exact_mann_whitney(a, b)
+          result[:p] ? format("%.3f", result[:p]) : result[:note]
+        end
+
+      cells = present_conditions.map { |cond| medians[cond].nil? ? "-" : format("%g", medians[cond].round(1)) }
+      out << "| #{task} | #{cells.join(' | ')} | #{change} | #{p_text} |\n"
+    end
+    out << "\n"
+  end
 end
 
 # --- zero-search navigation ---------------------------------------------------

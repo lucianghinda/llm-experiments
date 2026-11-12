@@ -146,6 +146,7 @@ folder above it? If yes, every `AGENTS.md` is off for the session, in every fold
 | In cwd, AGENTS.md in a folder above | All off | Request capture |
 | Above cwd, AGENTS.md in cwd | All off | Request capture |
 | Above the git root | All off, the walk up does not stop at the repo | Request capture |
+| `~/CLAUDE.md`, directly in the home folder | All off, in every project under home | Request capture, by hand |
 | `.claude/CLAUDE.md` in cwd | All off | Request capture |
 | In a subfolder below cwd | None at launch. It only wins inside its own folder, on demand | Request capture |
 | `.claude/rules/*.md`, `~/.claude/CLAUDE.md` | None | Request capture |

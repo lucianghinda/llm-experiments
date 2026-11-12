@@ -18,7 +18,7 @@ Ruby 3 and the standard library only.
 ```sh
 bin/lab                          # every scenario, both tools
 bin/lab --tool codex             # only Codex, free and fast
-bin/lab --tool claude            # only Claude, about 16 short haiku calls
+bin/lab --tool claude            # only Claude, about 22 short haiku calls
 bin/lab --only override-file     # one scenario, or a comma separated list
 bin/lab --model sonnet           # another Claude model
 bin/lab --build-only --keep      # just build the repos so you can poke at them by hand
@@ -55,6 +55,13 @@ Each run writes a Markdown report to `results/`.
 | subfolder-on-cat | A subfolder AGENTS.md after `cat` |
 | subfolder-claude-on-cat | Control: a subfolder CLAUDE.md after `cat` |
 | subfolder-with-own-claude | A subfolder with both CLAUDE.md and AGENTS.md |
+| scope-claude-above-cwd | A CLAUDE.md above cwd, AGENTS.md in cwd |
+| scope-claude-in-cwd-agents-above | A CLAUDE.md in cwd, AGENTS.md above it |
+| scope-claude-below-cwd | A stray CLAUDE.md in a subfolder Claude never touches |
+| scope-claude-above-git-root | A CLAUDE.md in the folder above the git repo |
+| scope-dot-claude-claude-md | `.claude/CLAUDE.md` next to AGENTS.md |
+| scope-rules-keep-agents-on | `.claude/rules/` next to AGENTS.md |
+| scope-root-claude-subfolder-agents-on-read | Root CLAUDE.md, then a Read in a subfolder with AGENTS.md |
 | codex-fallback-name | `project_doc_fallback_filenames` with TEAM_GUIDE.md |
 | codex-fallback-claude-md | Untested Day 1 idea: CLAUDE.md as a Codex fallback name |
 | codex-size-budget | The 32 KiB `project_doc_max_bytes` budget across two files |
@@ -125,6 +132,31 @@ Evidence standard by row: the import row is request level, no model in the loop
 (`bin/capture-prompt`, plus `/context all`). Every other row is the model's own report, consistent
 across runs, with no instruction file opened by Claude itself. See `MANUAL-CHECK.md` for the
 import capture and `results/` for the runs.
+
+### How far one CLAUDE.md reaches (2026-11-12, Claude Code 2.1.319)
+
+Full run: `results/2026-11-12-scope-run.md`.
+
+The rule is not per directory, and it is not "anywhere in the project". Claude makes one check
+at launch: is there a `CLAUDE.md`, `.claude/CLAUDE.md` or `CLAUDE.local.md` in cwd or in any
+folder above it? If yes, every `AGENTS.md` is off for the session, in every folder.
+
+| Where the CLAUDE.md is | Effect on AGENTS.md | Evidence |
+|---|---|---|
+| In cwd, AGENTS.md in a folder above | All off | Request capture |
+| Above cwd, AGENTS.md in cwd | All off | Request capture |
+| Above the git root | All off, the walk up does not stop at the repo | Request capture |
+| `.claude/CLAUDE.md` in cwd | All off | Request capture |
+| In a subfolder below cwd | None at launch. It only wins inside its own folder, on demand | Request capture |
+| `.claude/rules/*.md`, `~/.claude/CLAUDE.md` | None | Request capture |
+
+One more effect goes past what the docs spell out. With a root `CLAUDE.md`, a subfolder
+`AGENTS.md` also stays unread after a Read in that folder (3 of 3 runs, model report). The docs
+sentence on on-demand loading only names CLAUDE files in the subfolder itself.
+
+So the same repo can behave in two ways. Launch at the root of a monorepo with a stray
+`services/api/CLAUDE.md` and the root `AGENTS.md` loads. Launch in `services/api/` and it does
+not.
 
 Not verified yet: whether Write or Edit on a subfolder file triggers its `AGENTS.md` (docs name
 only Read), and whether a subfolder `AGENTS.md` loads again after `/compact`.

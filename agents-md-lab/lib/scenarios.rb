@@ -2,7 +2,9 @@
 # should see according to the docs (checked on 7 Nov 2026).
 #
 #   files:     path => content. "{{NAME}}" becomes a unique token like CANARY_NAME_3f9a.
-#   cwd:       where the tool is launched, relative to the repo root.
+#   cwd:       where the tool is launched, relative to the sandbox folder.
+#   git_root:  where `git init` runs, relative to the sandbox folder. Default: the
+#              sandbox folder itself. Set it to put files above the git repo.
 #   claude:    expected tokens for Claude Code, in context order. nil = skip.
 #   codex:     expected tokens for Codex, in prompt order. nil = skip.
 #   optional:  tokens that may or may not show up without failing the check.
@@ -137,6 +139,60 @@ SCENARIOS = [
     claude_tools: "Read",
     claude_task: "First use the Read tool once to open pkg/thing.rb. Do not open any other file.",
     claude: %w[A_ROOT C_PKG], codex: nil
+  },
+  # Scope of the "a CLAUDE.md turns AGENTS.md off" rule. The docs say the check
+  # covers the working directory and every directory above it, nothing else.
+  {
+    name: "scope-claude-above-cwd",
+    docs: "CLAUDE.md at the root, AGENTS.md in app/, launched in app/: a CLAUDE.md above cwd counts, so app/AGENTS.md is off.",
+    files: { "CLAUDE.md" => "Marker {{C_ROOT}}", "app/AGENTS.md" => "Marker {{A_APP}}" },
+    cwd: "app",
+    claude: %w[C_ROOT], codex: %w[A_APP]
+  },
+  {
+    name: "scope-claude-in-cwd-agents-above",
+    docs: "AGENTS.md at the root, CLAUDE.md in app/, launched in app/: the rule is not per directory, so the root AGENTS.md is off too.",
+    files: { "AGENTS.md" => "Marker {{A_ROOT}}", "app/CLAUDE.md" => "Marker {{C_APP}}" },
+    cwd: "app",
+    claude: %w[C_APP], codex: %w[A_ROOT]
+  },
+  {
+    name: "scope-claude-below-cwd",
+    docs: "AGENTS.md at the root, a stray CLAUDE.md in pkg/, launched at the root, pkg/ never touched: a CLAUDE.md below cwd does not count.",
+    files: { "AGENTS.md" => "Marker {{A_ROOT}}", "pkg/CLAUDE.md" => "Marker {{C_PKG}}" },
+    claude: %w[A_ROOT], codex: %w[A_ROOT]
+  },
+  {
+    name: "scope-claude-above-git-root",
+    docs: "CLAUDE.md in the folder above the git repo: 'any directory above' has no git boundary, so the repo AGENTS.md is off.",
+    files: { "CLAUDE.md" => "Marker {{C_OUTER}}", "repo/AGENTS.md" => "Marker {{A_REPO}}" },
+    git_root: "repo", cwd: "repo",
+    claude: %w[C_OUTER], codex: %w[A_REPO]
+  },
+  {
+    name: "scope-dot-claude-claude-md",
+    docs: ".claude/CLAUDE.md counts like a CLAUDE.md, so the AGENTS.md next to it is off.",
+    files: { ".claude/CLAUDE.md" => "Marker {{C_DOTCLAUDE}}", "AGENTS.md" => "Marker {{A_ROOT}}" },
+    claude: %w[C_DOTCLAUDE], codex: %w[A_ROOT]
+  },
+  {
+    name: "scope-rules-keep-agents-on",
+    docs: ".claude/rules/ files do not count: they load alongside AGENTS.md. The docs give no order; the request capture shows the rule first.",
+    files: { ".claude/rules/style.md" => "Marker {{RULE}}", "AGENTS.md" => "Marker {{A_ROOT}}" },
+    claude: %w[RULE A_ROOT], codex: %w[A_ROOT]
+  },
+  {
+    name: "scope-root-claude-subfolder-agents-on-read",
+    docs: "CLAUDE.md at the root, AGENTS.md only in pkg/, Read on a pkg/ file: the root CLAUDE.md turns AGENTS.md off for the whole session, " \
+          "so pkg/AGENTS.md stays unread. The on-demand sentence in the docs only names CLAUDE files in pkg/ itself, which reads as if it would load.",
+    files: {
+      "CLAUDE.md" => "Marker {{C_ROOT}}",
+      "pkg/AGENTS.md" => "Marker {{A_PKG}}",
+      "pkg/thing.rb" => "class Thing; end\n"
+    },
+    claude_tools: "Read",
+    claude_task: "First use the Read tool once to open pkg/thing.rb. Do not open any other file.",
+    claude: %w[C_ROOT], codex: nil
   },
   {
     name: "codex-fallback-name",
